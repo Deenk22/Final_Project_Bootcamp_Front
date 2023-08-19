@@ -1,0 +1,1 @@
+export const IM_INVESTING_KEY = "IM_INVESTING_KEY";
