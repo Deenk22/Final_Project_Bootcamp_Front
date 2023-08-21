@@ -2,7 +2,6 @@ import {useFormik} from "formik";
 import {initialValues} from "./utils/loginFormIV";
 import {loginFormSchema} from "./loginFormSchema";
 import {Toaster} from "react-hot-toast";
-import {notifySuccess} from "../../notifications/notificationService";
 import {Box, Grid, TextField, Typography, Button} from "@mui/material";
 import {useUserLoginContext} from "../../context/UserLoginContext";
 
@@ -11,7 +10,6 @@ export default function LoginForm() {
   function onSubmit(values, actions) {
     signIn(values);
     actions.resetForm();
-    notifySuccess();
   }
   const {
     values,

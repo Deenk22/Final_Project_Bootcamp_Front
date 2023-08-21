@@ -9,7 +9,6 @@ export default function RegForm() {
   const {signUp} = useUserRegisterContext();
   function onSubmit(values, actions) {
     signUp(values);
-    console.log(values);
     actions.resetForm();
   }
 
