@@ -1,9 +1,9 @@
 import {useFormik} from "formik";
 import {initialValues} from "./utils/loginFormIV";
 import {loginFormSchema} from "./loginFormSchema";
+import {useUserLoginContext} from "../../context/UserLoginContext";
 import {Toaster} from "react-hot-toast";
 import {Box, Grid, TextField, Typography, Button} from "@mui/material";
-import {useUserLoginContext} from "../../context/UserLoginContext";
 
 export default function LoginForm() {
   const {signIn} = useUserLoginContext();
@@ -24,6 +24,10 @@ export default function LoginForm() {
     validationSchema: loginFormSchema,
     onSubmit,
   });
+
+  // Dudas
+  // Si utilizamos la propiedad helperText o no en los inputs.
+  // Si utilizamos la propiedad disabled en los inputs.
 
   return (
     <Grid
@@ -55,6 +59,7 @@ export default function LoginForm() {
             variant="filled"
             className={errors.email && touched.email ? "textfield-error" : ""}
           />
+
           {errors.email && touched.email && (
             <Typography sx={{marginLeft: 4, marginRight: 4}} variant="body2">
               {errors.email}

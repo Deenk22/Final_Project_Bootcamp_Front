@@ -19,7 +19,7 @@ export const regFormSchema = yup.object().shape({
     .max(25, "Only a maximum of 25 words is allowed")
     .matches(
       passwordRules,
-      "password must contain at least one number and lowercase letter"
+      "Password must contain at least one number and lowercase letter"
     )
     .required("Password is required"),
   regConfirmPassword: yup
