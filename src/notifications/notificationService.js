@@ -1,19 +1,20 @@
 import {toast} from "react-hot-toast";
+import {colorPalettes} from "../const/colorPalettes";
 
 // Success
 
-export const userSuccessfullySignIn = (userWelcomeMessageLogin) =>
-  toast.success(`Welcome ${userWelcomeMessageLogin}`, {
-    duration: 2500,
-    position: "top-center",
-    icon: "✅",
-    style: {
-      marginTop: "64px",
-      margin: 0,
-      padding: 24,
-      fontFamily: "sans-serif",
-    },
-  });
+// export const userSuccessfullySignIn = () =>
+//   toast.success(`Welcome`, {
+//     duration: 2500,
+//     position: "top-center",
+//     icon: "✅",
+//     style: {
+//       marginTop: "64px",
+//       margin: 0,
+//       padding: 24,
+//       fontFamily: "sans-serif",
+//     },
+//   });
 
 export const userSuccessfullyRegistered = (userWelcomeMessageReg) =>
   toast.success(userWelcomeMessageReg, {
@@ -25,6 +26,7 @@ export const userSuccessfullyRegistered = (userWelcomeMessageReg) =>
       margin: 0,
       padding: 24,
       fontFamily: "sans-serif",
+      backgroundColor: colorPalettes.blue,
     },
   });
 
@@ -53,6 +55,8 @@ export const authenticationError = () =>
       margin: 0,
       padding: 24,
       fontFamily: "sans-serif",
+      backgroundColor: colorPalettes.blue,
+      color: colorPalettes.white,
     },
   });
 
@@ -66,6 +70,8 @@ export const databaseNotFoundUser = () =>
       margin: 0,
       padding: 24,
       fontFamily: "sans-serif",
+      backgroundColor: colorPalettes.blue,
+      color: colorPalettes.white,
     },
   });
 
@@ -79,6 +85,8 @@ export const userAlreadyExists = () =>
       margin: 0,
       padding: 24,
       fontFamily: "sans-serif",
+      backgroundColor: colorPalettes.blue,
+      color: colorPalettes.white,
     },
   });
 
@@ -92,5 +100,7 @@ export const internalServerError = () =>
       margin: 0,
       padding: 24,
       fontFamily: "sans-serif",
+      backgroundColor: colorPalettes.blue,
+      color: colorPalettes.white,
     },
   });

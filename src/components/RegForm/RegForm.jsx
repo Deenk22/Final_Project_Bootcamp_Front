@@ -1,9 +1,9 @@
 import {useFormik} from "formik";
 import {initialValues} from "./utils/regFormIV";
 import {regFormSchema} from "./regFormSchema";
-import {Toaster} from "react-hot-toast";
 import {Box, Grid, TextField, Typography, Button} from "@mui/material";
 import {useUserRegisterContext} from "../../context/UserRegisterContext";
+import {colorPalettes} from "../../const/colorPalettes";
 
 export default function RegForm() {
   const {signUp} = useUserRegisterContext();
@@ -38,11 +38,10 @@ export default function RegForm() {
           sx={{
             display: "flex",
             flexDirection: "column",
-            gap: 2,
             alignItems: "center",
-            marginTop: "25vh",
-            border: "1px solid black",
             padding: 8,
+            gap: 2,
+            border: "1px solid black",
           }}
         >
           <TextField
@@ -137,11 +136,32 @@ export default function RegForm() {
           )}
         </Box>
         <Box textAlign="center">
-          <Button disabled={isSubmitting} type="submit">
+          <Button
+            variant="contained"
+            disableTouchRipple
+            disableElevation
+            sx={{
+              marginTop: 2,
+              color: colorPalettes.grey,
+              bgcolor: colorPalettes.blue,
+              border: "1px solid #162938",
+              borderBottomRightRadius: 12,
+              borderTopLeftRadius: 12,
+              transition: "0.2s",
+              ":hover": {
+                color: colorPalettes.blue,
+                bgcolor: colorPalettes.grey,
+                boxShadow: "0px 5px 0px 0px" + colorPalettes.blue,
+                borderBottomRightRadius: 12,
+                borderTopLeftRadius: 12,
+              },
+            }}
+            disabled={isSubmitting}
+            type="submit"
+          >
             Submit
           </Button>
         </Box>
-        <Toaster />
         {/* <pre>{JSON.stringify({values, errors}, null, 1)}</pre> */}
       </form>
     </Grid>

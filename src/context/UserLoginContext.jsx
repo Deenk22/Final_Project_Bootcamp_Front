@@ -4,7 +4,6 @@ import axios from "axios";
 import jwtDecode from "jwt-decode";
 import {IM_INVESTING_KEY} from "../const/IM_investingKey";
 import {
-  userSuccessfullySignIn,
   inputsError,
   authenticationError,
   databaseNotFoundUser,
@@ -52,9 +51,6 @@ export default function UserLoginContextProvider({children}) {
         const token = data.jwt;
         const user = jwtDecode(token);
         setUser(user);
-        const userWelcomeMessageLogin = user.name;
-        // Esta notificación debemos cambiarla a la vista Dashboard.
-        userSuccessfullySignIn(userWelcomeMessageLogin);
         localStorage.setItem(IM_INVESTING_KEY, JSON.stringify(user));
       }
     } catch (err) {
