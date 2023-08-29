@@ -41,7 +41,7 @@ export default function RegForm() {
             alignItems: "center",
             padding: 8,
             gap: 2,
-            border: "1px solid black",
+            border: "2px solid " + colorPalettes.blue,
           }}
         >
           <TextField
@@ -138,22 +138,16 @@ export default function RegForm() {
         <Box textAlign="center">
           <Button
             variant="contained"
-            disableTouchRipple
-            disableElevation
             sx={{
               marginTop: 2,
-              color: colorPalettes.grey,
+              color: colorPalettes.skyBlue,
               bgcolor: colorPalettes.blue,
-              border: "1px solid #162938",
-              borderBottomRightRadius: 12,
-              borderTopLeftRadius: 12,
+              border: "2px solid " + colorPalettes.blue,
               transition: "0.2s",
               ":hover": {
                 color: colorPalettes.blue,
-                bgcolor: colorPalettes.grey,
+                bgcolor: colorPalettes.skyBlue,
                 boxShadow: "0px 5px 0px 0px" + colorPalettes.blue,
-                borderBottomRightRadius: 12,
-                borderTopLeftRadius: 12,
               },
             }}
             disabled={isSubmitting}

@@ -17,7 +17,7 @@ const UserLoginContext = createContext({
   logout: () => {},
 });
 
-// Preguntar a Nacho si usar useMemo... para envolver la petición.
+// Preguntar a Nacho como mejorar este código / Could not Fast Refresh.
 export default function UserLoginContextProvider({children}) {
   const [user, setUser] = useState(
     JSON.parse(localStorage.getItem(IM_INVESTING_KEY)) ?? null
@@ -26,11 +26,12 @@ export default function UserLoginContextProvider({children}) {
   const mutation = useMutation({
     mutationFn: async ({email, password}) => {
       return await axios.post(url, {
-        email: email,
-        password: password,
+        email,
+        password,
       });
     },
-    onError: async (err) => {
+
+    onError: (err) => {
       if (err.response.status === 400) {
         inputsError();
       } else if (err.response.status === 401) {
@@ -39,12 +40,13 @@ export default function UserLoginContextProvider({children}) {
         databaseNotFoundUser();
       }
     },
-    onSuccess: () => {
-      return signIn;
+
+    onSuccess: (data) => {
+      return data;
     },
   });
 
-  async function signIn({email, password}) {
+  const signIn = async ({email, password}) => {
     try {
       const {data, status} = await mutation.mutateAsync({email, password});
       if (status === 200) {
@@ -56,7 +58,7 @@ export default function UserLoginContextProvider({children}) {
     } catch (err) {
       throw new Error(`Something went wrong with the Sign-in: ${err.message}`);
     }
-  }
+  };
 
   function logout() {
     localStorage.removeItem(IM_INVESTING_KEY);
@@ -79,22 +81,3 @@ export default function UserLoginContextProvider({children}) {
 export function useUserLoginContext() {
   return useContext(UserLoginContext);
 }
-
-// Manera Antigua
-
-// const mutation = useMutation(async ({email, password}) => {
-//   return await axios
-//     .post(url, {
-//       email: email,
-//       password: password,
-//     })
-//     .catch((error) => {
-//       if (error.response.status === 400) {
-//         inputsError();
-//       } else if (error.response.status === 401) {
-//         authenticationError();
-//       } else if (error.response.status === 404) {
-//         databaseNotFoundUser();
-//       }
-//     });
-// });

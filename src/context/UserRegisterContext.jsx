@@ -14,7 +14,7 @@ const UserRegisterContext = createContext({
   signUp: () => {},
 });
 
-// Preguntar a Nacho si usar useMemo... para envolver la petición.
+// Preguntar a Nacho como mejorar este código / Could not Fast Refresh.
 export default function UserRegisterContextProvider({children}) {
   const mutation = useMutation({
     mutationFn: async (values) => {
@@ -26,7 +26,7 @@ export default function UserRegisterContextProvider({children}) {
         password: regPassword,
       });
     },
-    onError: async (err) => {
+    onError: (err) => {
       if (err.response.status === 400) {
         inputsError();
       } else if (err.response.status === 409) {
@@ -35,14 +35,13 @@ export default function UserRegisterContextProvider({children}) {
         internalServerError();
       }
     },
-    onSuccess: () => {
-      return signUp;
+    onSuccess: (data) => {
+      return data;
     },
   });
 
   const signUp = async (values) => {
     try {
-      //
       const {data, status} = await mutation.mutateAsync(values);
       if (status === 200) {
         const userWelcomeMessageReg = data;
@@ -67,25 +66,3 @@ export default function UserRegisterContextProvider({children}) {
 export function useUserRegisterContext() {
   return useContext(UserRegisterContext);
 }
-
-// Manera Antigua
-
-// const mutation = useMutation(async (values) => {
-//   const {name, surname, regEmail, regPassword} = values;
-//   return await axios
-//     .post(url, {
-//       name: name,
-//       surname: surname,
-//       email: regEmail,
-//       password: regPassword,
-//     })
-//     .catch((error) => {
-//       if (error.response.status === 400) {
-//         inputsError();
-//       } else if (error.response.status === 409) {
-//         userAlreadyExists();
-//       } else if (error.response.status === 500) {
-//         internalServerError();
-//       }
-//     });
-// });

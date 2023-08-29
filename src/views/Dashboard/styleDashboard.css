@@ -1,0 +1,36 @@
+/* < blur-slide-effect @KEYFRAMES */
+
+@keyframes slideInFromLeft {
+  0% {
+    transform: translateX(-20%);
+    filter: blur(64px);
+  }
+
+  100% {
+    transform: translateX(0%);
+    filter: blur(0);
+  }
+}
+
+.blur-effect-doughnut-chart-left {
+  animation: slideInFromLeft 0.3s ease-out forwards;
+}
+
+
+@keyframes slideInFromRight {
+  0% {
+    transform: translateX(10%);
+    filter: blur(64px);
+  }
+
+  100% {
+    transform: translateX(0%);
+    filter: blur(0);
+  }
+}
+
+.blur-effect-doughnut-chart-right {
+  animation: slideInFromRight 0.3s ease-out forwards;
+}
+
+/* blur-slide-effect > */

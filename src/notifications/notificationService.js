@@ -3,18 +3,20 @@ import {colorPalettes} from "../const/colorPalettes";
 
 // Success
 
-// export const userSuccessfullySignIn = () =>
-//   toast.success(`Welcome`, {
-//     duration: 2500,
-//     position: "top-center",
-//     icon: "✅",
-//     style: {
-//       marginTop: "64px",
-//       margin: 0,
-//       padding: 24,
-//       fontFamily: "sans-serif",
-//     },
-//   });
+export const userSuccessfullySignIn = () =>
+  toast.success(`Welcome`, {
+    duration: 2500,
+    position: "top-center",
+    icon: "✅",
+    style: {
+      marginTop: "64px",
+      margin: 0,
+      padding: 24,
+      fontFamily: "sans-serif",
+      backgroundColor: colorPalettes.blue,
+      color: colorPalettes.skyBlue,
+    },
+  });
 
 export const userSuccessfullyRegistered = (userWelcomeMessageReg) =>
   toast.success(userWelcomeMessageReg, {
@@ -27,13 +29,14 @@ export const userSuccessfullyRegistered = (userWelcomeMessageReg) =>
       padding: 24,
       fontFamily: "sans-serif",
       backgroundColor: colorPalettes.blue,
+      color: colorPalettes.skyBlue,
     },
   });
 
 // Errors
 
 export const inputsError = () =>
-  toast.success("Check the data entered", {
+  toast.error("Check the data entered", {
     duration: 2500,
     position: "top-center",
     icon: "❌",
@@ -42,11 +45,13 @@ export const inputsError = () =>
       margin: 0,
       padding: 24,
       fontFamily: "sans-serif",
+      backgroundColor: colorPalettes.blue,
+      color: colorPalettes.skyBlue,
     },
   });
 
 export const authenticationError = () =>
-  toast.success("Incorrect email or password", {
+  toast.error("Incorrect email or password", {
     duration: 2500,
     position: "top-center",
     icon: "⛔",
@@ -56,12 +61,12 @@ export const authenticationError = () =>
       padding: 24,
       fontFamily: "sans-serif",
       backgroundColor: colorPalettes.blue,
-      color: colorPalettes.white,
+      color: colorPalettes.skyBlue,
     },
   });
 
 export const databaseNotFoundUser = () =>
-  toast.success("User not found", {
+  toast.error("User not found", {
     duration: 2500,
     position: "top-center",
     icon: "📡",
@@ -71,12 +76,12 @@ export const databaseNotFoundUser = () =>
       padding: 24,
       fontFamily: "sans-serif",
       backgroundColor: colorPalettes.blue,
-      color: colorPalettes.white,
+      color: colorPalettes.skyBlue,
     },
   });
 
 export const userAlreadyExists = () =>
-  toast.success("User already exists", {
+  toast.error("User already exists", {
     duration: 2500,
     position: "top-center",
     icon: "📡",
@@ -86,12 +91,12 @@ export const userAlreadyExists = () =>
       padding: 24,
       fontFamily: "sans-serif",
       backgroundColor: colorPalettes.blue,
-      color: colorPalettes.white,
+      color: colorPalettes.skyBlue,
     },
   });
 
 export const internalServerError = () =>
-  toast.success("Internal server error", {
+  toast.error("Internal server error", {
     duration: 2500,
     position: "top-center",
     icon: "❌",
@@ -101,6 +106,6 @@ export const internalServerError = () =>
       padding: 24,
       fontFamily: "sans-serif",
       backgroundColor: colorPalettes.blue,
-      color: colorPalettes.white,
+      color: colorPalettes.skyBlue,
     },
   });

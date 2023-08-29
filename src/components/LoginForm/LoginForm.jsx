@@ -44,18 +44,18 @@ export default function LoginForm() {
             alignItems: "center",
             padding: 8,
             gap: 2,
-            border: "1px solid black",
+            border: "2px solid " + colorPalettes.blue,
           }}
         >
           <TextField
-            sx={{width: 250}}
-            value={values.email}
-            onChange={handleChange}
-            onBlur={handleBlur}
             type="email"
             id="email"
             label="Email"
             variant="filled"
+            value={values.email}
+            onChange={handleChange}
+            onBlur={handleBlur}
+            sx={{width: 250}}
             className={errors.email && touched.email ? "textfield-error" : ""}
           />
 
@@ -65,14 +65,14 @@ export default function LoginForm() {
             </Typography>
           )}
           <TextField
-            sx={{width: 250}}
-            value={values.password}
-            onChange={handleChange}
-            onBlur={handleBlur}
             type="password"
             id="password"
             label="Password"
             variant="filled"
+            value={values.password}
+            onChange={handleChange}
+            onBlur={handleBlur}
+            sx={{width: 250}}
             className={
               errors.password && touched.password ? "textfield-error" : ""
             }
@@ -89,18 +89,14 @@ export default function LoginForm() {
             variant="contained"
             sx={{
               marginTop: 2,
-              color: colorPalettes.grey,
+              color: colorPalettes.skyBlue,
               bgcolor: colorPalettes.blue,
-              border: "1px solid #162938",
-              borderBottomRightRadius: 12,
-              borderTopLeftRadius: 12,
+              border: "2px solid " + colorPalettes.blue,
               transition: "0.2s",
               ":hover": {
                 color: colorPalettes.blue,
-                bgcolor: colorPalettes.grey,
+                bgcolor: colorPalettes.skyBlue,
                 boxShadow: "0px 5px 0px 0px" + colorPalettes.blue,
-                borderBottomRightRadius: 12,
-                borderTopLeftRadius: 12,
               },
             }}
             disabled={isSubmitting}

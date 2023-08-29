@@ -1,3 +1,5 @@
+/* < login-button */
+
 .to-login{
   color: #d1d1d6;
   background-color: #162938;
@@ -6,16 +8,18 @@
 
 .to-login:hover{
   color: #162938;
-  background-color: #d1d1d6;
-  box-shadow: 0 5px 0 0 #162938;
+  background-color: #D0E4E9;
+  box-shadow: 0 6px 0 0 #162938;
 }
 
-/* blur-effect */
+/* login-button > */
+
+/* < blur-slide-effect @KEYFRAMES */
 
 @keyframes slideInFromLeft {
   0% {
-    transform: translateX(-25%);
-    filter: blur(5rem);
+    transform: translateX(-20%);
+    filter: blur(64px);
   }
     
   100% {
@@ -24,16 +28,7 @@
   }
 }
 .blur-effect {
-  animation: slideInFromLeft 0.4s ease-out forwards;
+  animation: slideInFromLeft 0.2s ease-out forwards;
 }
 
-/* final-blur-effect */
-
-
-.login-effect{
-  position: absolute;
-  transform: translateY(350px);
-  opacity: 0;
-}
-
-
+/* blur-slide-effect > */

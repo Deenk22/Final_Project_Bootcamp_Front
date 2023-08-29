@@ -5,7 +5,9 @@
 }
 
 body{
-  background-color: #d1d1d6;
+  background-image: url(./assets/bg.jpg);
+  background-size: cover;
+  height: 100vh;
 }
 
 /*TextField-Error*/
@@ -16,7 +18,12 @@ body{
 
 .allLinks{
   text-decoration: none;
+  display: inline-block;
 }
 
-
+.logo{
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
 
