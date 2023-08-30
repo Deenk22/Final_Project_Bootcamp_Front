@@ -72,7 +72,7 @@ export default function LandingPage() {
           <Box position={"relative"} top={"22vh"} ml={2} mr={2}>
             <Box display={"flex"} justifyContent={"center"} mb={2}>
               <img
-                src="../src/assets/landing-vector.png"
+                src="../src/assets/landingVector.png"
                 alt="data-photo"
                 width={165}
               />

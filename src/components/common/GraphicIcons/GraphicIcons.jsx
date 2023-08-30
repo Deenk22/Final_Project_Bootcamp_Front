@@ -25,7 +25,6 @@ export default function GraphicIcons() {
       display={"flex"}
       alignItems={"center"}
       justifyContent={"space-evenly"}
-      mb={2}
       ml={1}
       mr={1}
     >

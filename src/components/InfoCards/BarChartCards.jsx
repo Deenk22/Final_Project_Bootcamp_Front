@@ -1,9 +1,14 @@
-import {Box, Grid, Typography} from "@mui/material";
 import {colorPalettes} from "../../const/colorPalettes";
+import {Box, Grid, Typography} from "@mui/material";
 import DataUsageIcon from "@mui/icons-material/DataUsage";
 import TimelineIcon from "@mui/icons-material/Timeline";
 import AssessmentIcon from "@mui/icons-material/Assessment";
 import LeaderboardIcon from "@mui/icons-material/Leaderboard";
+
+// Pasar cantidades de la base de datos, reales.
+// Iconos representativos y en sintonía con la información.
+// Redactar texto relacionado e informativo con algunos ${}.
+// Un Grid que solo envuelva otro Grid... creo que no tiene mucho sentido.
 
 const smallCard = [
   {

@@ -13,13 +13,13 @@
 }
 
 .blur-effect-doughnut-chart-left {
-  animation: slideInFromLeft 0.3s ease-out forwards;
+  animation: slideInFromLeft 0.2s ease-out forwards;
 }
 
 
 @keyframes slideInFromRight {
   0% {
-    transform: translateX(10%);
+    transform: translateX(15%);
     filter: blur(64px);
   }
 
@@ -30,7 +30,7 @@
 }
 
 .blur-effect-doughnut-chart-right {
-  animation: slideInFromRight 0.3s ease-out forwards;
+  animation: slideInFromRight 0.2s ease-out forwards;
 }
 
 /* blur-slide-effect > */

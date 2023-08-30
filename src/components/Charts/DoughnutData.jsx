@@ -5,32 +5,24 @@ import {colorPalettes} from "../../const/colorPalettes";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
+// Podemos pasar una función, array con .map(), a las propiedades, bgColor por ejemplo y borderColor.
+
 export default function DoughnutData() {
+  ChartJS.defaults.color = colorPalettes.blue;
+
+  // data.labels
+  // const tipoActivos = databaseInfo.map((activo) => activo.model); Recorrer o imprimir en data.labels cada tipo de activo. new SET [...new SET() + .map()] para eliminar duplicidades. Leer e investigar si esto es correcto o hay mejores formas de hacerlo.
+
+  //datasets.data
+  // Utilizaremos el .map() y el .filter() para añadir a esta propiedad el valor invertido de cada activo.
+
   const data = {
-    labels: [
-      "Blue",
-      "White",
-      "Black",
-      "Green",
-      "Yellow",
-      "Grey",
-      "Brown",
-      "Orange",
-    ],
+    labels: ["Blue", "White", "Black", "Green", "Yellow"],
     datasets: [
       {
-        label: "Poll",
-        data: [3, 6, 4, 6, 10, 20, 10, 8],
-        company: [
-          "Shop1",
-          "Shop2",
-          "Shop3",
-          "Shop4",
-          "Shop5",
-          "Shop6",
-          "Shop7",
-          "Shop8",
-        ],
+        label: "Capital Invested",
+        data: [3, 6, 4, 6, 10],
+        company: ["Shop1", "Shop2", "Shop3", "Shop4", "Shop5"],
         backgroundColor: [
           colorPalettes.tealBlue,
           colorPalettes.blue,
@@ -47,21 +39,22 @@ export default function DoughnutData() {
   const options = {
     type: "doughnut",
     data,
-    plugins: [
-      {
-        tooltip: {
-          callbacks: {
-            label: (context) => {
-              console.log(context);
-              const dataPoint = context.dataIndex;
-              return `${context.label}: ${context.dataset.data[dataPoint]} Invested: ${context.dataset.company[dataPoint]}`;
-            },
-          },
-          borderColor: colorPalettes.skyBlue,
-          borderWidth: 1,
-        },
+    plugins: {
+      legend: {
+        position: "top",
       },
-    ],
+      tooltip: {
+        callbacks: {
+          label: (context) => {
+            console.log(context);
+            const dataPoint = context.dataIndex;
+            return `${context.label}: ${context.dataset.data[dataPoint]} Invested: ${context.dataset.company[dataPoint]}`;
+          },
+        },
+        borderColor: colorPalettes.skyBlue,
+        borderWidth: 1,
+      },
+    },
   };
 
   return (

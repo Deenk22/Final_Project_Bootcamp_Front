@@ -42,6 +42,8 @@ const navLinks = [
   },
 ];
 
+// Intentar activar y desactivar el panel lateral (Navbar) para hacer que solo este activo cuando el viewport cumpla con las medidas.
+
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const {logout} = useUserLoginContext();
@@ -63,13 +65,12 @@ export default function Navbar() {
             color={colorPalettes.blue}
             sx={{flexGrow: 1}}
             display={"flex"}
-            alignItems={"center"}
             gap={1}
           >
             <BubbleChartIcon />
           </Box>
           <Box
-            padding={2}
+            mr={2}
             sx={{
               display: {xs: "none", sm: "flex"},
               gap: 2,
