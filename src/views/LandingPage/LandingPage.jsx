@@ -1,11 +1,15 @@
 import {Link} from "react-router-dom";
 import GraphicIcons from "../../components/common/GraphicIcons/GraphicIcons";
 import {Box, Grid, Typography} from "@mui/material";
+import styled from "@emotion/styled";
 import {colorPalettes} from "../../const/colorPalettes";
-// import HandshakeIcon from "@mui/icons-material/Handshake";
 import "./styleLanding.css";
 
 export default function LandingPage() {
+  const Img = styled("img")({
+    width: 165,
+  });
+
   return (
     <>
       <Grid
@@ -15,9 +19,8 @@ export default function LandingPage() {
         alignItems={"center"}
         className="landing"
       >
-        <Grid item xs={12} md={5}>
+        <Grid item xs={10} sm={10} md={6}>
           <Box
-            className="blur-effect "
             position={"relative"}
             top={"23vh"}
             ml={1}
@@ -27,7 +30,8 @@ export default function LandingPage() {
             sx={{
               borderTopRightRadius: 32,
               borderBottomLeftRadius: 32,
-              boxShadow: "0px 4px 2px 0px #162938",
+              boxShadow: "0px 4px 2px 0px" + colorPalettes.blue,
+              backgroundColor: colorPalettes.skyBlue,
             }}
           >
             <Typography
@@ -68,29 +72,30 @@ export default function LandingPage() {
             </Link>
           </Box>
         </Grid>
-        <Grid item md={4} mt={2}>
-          <Box position={"relative"} top={"22vh"} ml={2} mr={2}>
+        <Grid item xs={10} sm={10} md={4} mt={2}>
+          <Box position={"relative"} top={"22vh"} ml={2} mr={2} padding={2}>
             <Box display={"flex"} justifyContent={"center"} mb={2}>
-              <img
+              <Img
                 src="../src/assets/landingVector.png"
                 alt="data-photo"
-                width={165}
+                loading="lazy"
               />
             </Box>
             <GraphicIcons />
             <Typography
               variant="h4"
               textAlign={"center"}
-              color={colorPalettes.green}
-              borderRight={"2px solid" + colorPalettes.green}
-              borderLeft={"2px solid" + colorPalettes.green}
+              color={colorPalettes.tealBlue}
+              borderRight={"2px solid" + colorPalettes.tealBlue}
+              borderLeft={"2px solid" + colorPalettes.tealBlue}
+              mt={2}
               mb={2}
             >
               Makes Your Financial Goals Real
             </Typography>
             <Typography
               variant="body2"
-              color={colorPalettes.green}
+              color={colorPalettes.blue}
               textAlign={"center"}
             >
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione

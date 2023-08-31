@@ -16,7 +16,7 @@
 
 /* < blur-slide-effect @KEYFRAMES */
 
-@keyframes slideInFromLeft {
+/* @keyframes slideInFromLeft {
   0% {
     transform: translateX(-20%);
     filter: blur(64px);
@@ -29,6 +29,6 @@
 }
 .blur-effect {
   animation: slideInFromLeft 0.2s ease-out forwards;
-}
+} */
 
 /* blur-slide-effect > */

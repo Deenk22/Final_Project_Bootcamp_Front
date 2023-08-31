@@ -40,12 +40,7 @@ export default function DashboardView({articles}) {
                 Lorem ipsum, dolor sit amet consectetur adipisicing elit.
                 Consequuntur velit harum, alias voluptatem laudantium, nobis nam
                 blanditiis quia tempore dignissimos iure qui! Tenetur Lorem
-                ipsum, dolor sit amet consectetur adipisicing elit. Consequuntur
-                velit harum, alias voluptatem laudantium, nobis nam blanditiis
-                quia tempore dignissimos iure qui! Tenetur Lorem ipsum, dolor
-                sit amet consectetur adipisicing elit. Consequuntur velit harum,
-                alias voluptatem laudantium, nobis nam blanditiis quia tempore
-                dignissimos iure qui! Tenetur
+                ipsum, dolor sit amet consectetur adipisicing elit.
               </Typography>
               <DoughnutChartCards />
             </Box>
@@ -70,12 +65,7 @@ export default function DashboardView({articles}) {
                 Lorem ipsum, dolor sit amet consectetur adipisicing elit.
                 Consequuntur velit harum, alias voluptatem laudantium, nobis nam
                 blanditiis quia tempore dignissimos iure qui! Tenetur Lorem
-                ipsum, dolor sit amet consectetur adipisicing elit. Consequuntur
-                velit harum, alias voluptatem laudantium, nobis nam blanditiis
-                quia tempore dignissimos iure qui! Tenetur Lorem ipsum, dolor
-                sit amet consectetur adipisicing elit. Consequuntur velit harum,
-                alias voluptatem laudantium, nobis nam blanditiis quia tempore
-                dignissimos iure qui! Tenetur
+                ipsum, dolor sit amet consectetur adipisicing elit.
               </Typography>
               <BarChartCards />
             </Box>

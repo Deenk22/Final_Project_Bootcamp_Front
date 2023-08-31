@@ -1,11 +1,11 @@
 .wrapper-loginview {
-  animation: slideIn 0.2s ease-out forwards;
+  animation: slideIn 0.1s ease-out forwards;
 }
 
 @keyframes slideIn {
   0% {
-    transform: translateX(100px);
-    filter: blur(1rem);
+    transform: translateX(50%);
+    filter: blur(16px);
     opacity: 0;
   }
 

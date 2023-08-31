@@ -44,13 +44,12 @@ export default function DoughnutData() {
         position: "top",
       },
       tooltip: {
-        callbacks: {
-          label: (context) => {
-            console.log(context);
-            const dataPoint = context.dataIndex;
-            return `${context.label}: ${context.dataset.data[dataPoint]} Invested: ${context.dataset.company[dataPoint]}`;
-          },
-        },
+        // callbacks: {
+        //   label: (context) => {
+        //     const dataPoint = context.dataIndex;
+        //     return `${context.label}: ${context.dataset.data[dataPoint]} Invested: ${context.dataset.company[dataPoint]}`;
+        //   },
+        // },
         borderColor: colorPalettes.skyBlue,
         borderWidth: 1,
       },

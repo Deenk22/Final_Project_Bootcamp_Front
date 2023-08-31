@@ -1,6 +1,6 @@
 /* < blur-slide-effect @KEYFRAMES */
 
-@keyframes slideInFromLeft {
+/* @keyframes slideInFromLeft {
   0% {
     transform: translateX(-20%);
     filter: blur(64px);
@@ -13,7 +13,7 @@
 }
 
 .blur-effect-doughnut-chart-left {
-  animation: slideInFromLeft 0.2s ease-out forwards;
+  animation: slideInFromLeft 0.1s ease-out forwards;
 }
 
 
@@ -30,7 +30,7 @@
 }
 
 .blur-effect-doughnut-chart-right {
-  animation: slideInFromRight 0.2s ease-out forwards;
-}
+  animation: slideInFromRight 0.1s ease-out forwards;
+} */
 
 /* blur-slide-effect > */
