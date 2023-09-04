@@ -68,7 +68,9 @@ export default function DoughnutChartCards() {
               <Box padding={1} color={colorPalettes.skyBlue}>
                 {card.icon}
                 <Typography variant="body1">{card.title}</Typography>
-                <Typography variant="body2">{card.title2}</Typography>
+                <Typography variant="body2" mt={1}>
+                  {card.title2}
+                </Typography>
               </Box>
             </Box>
           </Grid>

@@ -35,11 +35,10 @@ export default function RegForm() {
           alignItems: "center",
           padding: 8,
           gap: 2,
-          border: "2px solid " + colorPalettes.blue,
         }}
       >
         <TextField
-          sx={{width: 250}}
+          sx={{width: 220}}
           value={values.name}
           onChange={handleChange}
           onBlur={handleBlur}
@@ -55,7 +54,7 @@ export default function RegForm() {
           </Typography>
         )}
         <TextField
-          sx={{width: 250}}
+          sx={{width: 220}}
           value={values.surname}
           onChange={handleChange}
           onBlur={handleBlur}
@@ -71,7 +70,7 @@ export default function RegForm() {
           </Typography>
         )}
         <TextField
-          sx={{width: 250}}
+          sx={{width: 220}}
           value={values.regEmail}
           onChange={handleChange}
           onBlur={handleBlur}
@@ -89,7 +88,7 @@ export default function RegForm() {
           </Typography>
         )}
         <TextField
-          sx={{width: 250}}
+          sx={{width: 220}}
           value={values.regPassword}
           onChange={handleChange}
           onBlur={handleBlur}
@@ -107,7 +106,7 @@ export default function RegForm() {
           </Typography>
         )}
         <TextField
-          sx={{width: 250}}
+          sx={{width: 220}}
           value={values.regConfirmPassword}
           onChange={handleChange}
           onBlur={handleBlur}

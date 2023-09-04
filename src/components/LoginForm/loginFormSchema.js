@@ -11,7 +11,7 @@ export const loginFormSchema = yup.object().shape({
     .string()
     .matches(
       passwordRules,
-      "Remember, password must contain at least one number and lowercase letter"
+      "Remember, password must contain at least one number and uppercase letter"
     )
     .required("Password is required"),
 });

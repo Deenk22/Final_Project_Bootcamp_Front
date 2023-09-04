@@ -36,7 +36,7 @@ export default function DashboardView({articles}) {
               <Typography variant="h4" color={colorPalettes.blue} mb={1}>
                 Data Management
               </Typography>
-              <Typography variant="body2" color={colorPalettes.tealBlue}>
+              <Typography variant="body2" color={colorPalettes.blue}>
                 Lorem ipsum, dolor sit amet consectetur adipisicing elit.
                 Consequuntur velit harum, alias voluptatem laudantium, nobis nam
                 blanditiis quia tempore dignissimos iure qui! Tenetur Lorem
@@ -61,7 +61,7 @@ export default function DashboardView({articles}) {
               <Typography variant="h4" color={colorPalettes.blue} mb={1}>
                 Total Capital Invested
               </Typography>
-              <Typography variant="body2" color={colorPalettes.tealBlue}>
+              <Typography variant="body2" color={colorPalettes.blue}>
                 Lorem ipsum, dolor sit amet consectetur adipisicing elit.
                 Consequuntur velit harum, alias voluptatem laudantium, nobis nam
                 blanditiis quia tempore dignissimos iure qui! Tenetur Lorem

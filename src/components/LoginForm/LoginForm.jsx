@@ -38,7 +38,6 @@ export default function LoginForm() {
           alignItems: "center",
           padding: 8,
           gap: 2,
-          border: "2px solid " + colorPalettes.blue,
         }}
       >
         <TextField
@@ -49,7 +48,7 @@ export default function LoginForm() {
           value={values.email}
           onChange={handleChange}
           onBlur={handleBlur}
-          sx={{width: 250}}
+          sx={{width: 220}}
           className={errors.email && touched.email ? "textfield-error" : ""}
         />
 
@@ -66,7 +65,7 @@ export default function LoginForm() {
           value={values.password}
           onChange={handleChange}
           onBlur={handleBlur}
-          sx={{width: 250}}
+          sx={{width: 220}}
           className={
             errors.password && touched.password ? "textfield-error" : ""
           }

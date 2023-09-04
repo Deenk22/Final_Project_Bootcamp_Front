@@ -1,15 +1,11 @@
 import {Link} from "react-router-dom";
-import GraphicIcons from "../../components/common/GraphicIcons/GraphicIcons";
 import {Box, Grid, Typography} from "@mui/material";
-import styled from "@emotion/styled";
 import {colorPalettes} from "../../const/colorPalettes";
+// import FitbitIcon from "@mui/icons-material/Fitbit";
 import "./styleLanding.css";
+import GraphicIcons from "../../components/common/GraphicIcons/GraphicIcons";
 
 export default function LandingPage() {
-  const Img = styled("img")({
-    width: 165,
-  });
-
   return (
     <>
       <Grid
@@ -72,15 +68,9 @@ export default function LandingPage() {
             </Link>
           </Box>
         </Grid>
-        <Grid item xs={10} sm={10} md={4} mt={2}>
+        <Grid item xs={12} sm={10} md={4} mt={2}>
           <Box position={"relative"} top={"22vh"} ml={2} mr={2} padding={2}>
-            <Box display={"flex"} justifyContent={"center"} mb={2}>
-              <Img
-                src="../src/assets/landingVector.png"
-                alt="data-photo"
-                loading="lazy"
-              />
-            </Box>
+            <Box display={"flex"} justifyContent={"center"} mb={2}></Box>
             <GraphicIcons />
             <Typography
               variant="h4"
@@ -106,6 +96,65 @@ export default function LandingPage() {
           </Box>
         </Grid>
       </Grid>
+      {/* <Grid
+        container
+        direction={"column"}
+        justifyContent={"center"}
+        alignItems={"center"}
+      >
+        <Grid item>
+          <Box position={"relative"} top={"27vh"}>
+            <FitbitIcon fontSize="large" />
+          </Box>
+        </Grid>
+        <Grid item>
+          <Box position={"relative"} top={"28vh"}>
+            <Typography
+              variant="h2"
+              component={"h1"}
+              textAlign={"center"}
+              mt={2}
+              padding={4}
+              border={"2px solid" + colorPalettes.skyBlue}
+              color={colorPalettes.blue}
+            >
+              Smart Financial Service
+            </Typography>
+            <Typography variant="body2" textAlign={"center"} mt={2}>
+              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Beatae
+              dolor nisi et
+            </Typography>
+            <Typography
+              variant="h5"
+              textAlign={"center"}
+              color={colorPalettes.blue}
+              mt={2}
+            >
+              Financial Well-Being
+            </Typography>
+            <Box textAlign={"center"}>
+              <Link className="allLinks" to="/login">
+                <Typography
+                  component={"button"}
+                  variant="body2"
+                  className="to-login"
+                  mt={2}
+                  sx={{
+                    padding: 1,
+                    width: "96px",
+                    border: "2px solid " + colorPalettes.blue,
+                    borderBottomRightRadius: 12,
+                    borderTopLeftRadius: 12,
+                  }}
+                  color={colorPalettes.skyBlue}
+                >
+                  Get Started
+                </Typography>
+              </Link>
+            </Box>
+          </Box>
+        </Grid>
+      </Grid> */}
     </>
   );
 }

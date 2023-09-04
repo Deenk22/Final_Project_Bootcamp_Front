@@ -8,7 +8,10 @@ export const regFormSchema = yup.object().shape({
     .min(2, "Name must be at least 2 characters long")
     .max(20, "Only a maximum of 25 words is allowed")
     .required("Name is required"),
-  surname: yup.string().min(2, "").max(20, ""),
+  surname: yup
+    .string()
+    .min(2, "Surname must be at least 2 characters long")
+    .max(20, "Only a maximum of 25 words is allowed"),
   regEmail: yup
     .string()
     .email("Please enter a valid email")
@@ -19,7 +22,7 @@ export const regFormSchema = yup.object().shape({
     .max(25, "Only a maximum of 25 words is allowed")
     .matches(
       passwordRules,
-      "Password must contain at least one number and lowercase letter"
+      "Password must contain at least one number and uppercase letter"
     )
     .required("Password is required"),
   regConfirmPassword: yup
