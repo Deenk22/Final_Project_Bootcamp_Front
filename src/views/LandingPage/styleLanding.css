@@ -1,13 +1,13 @@
 /* < login-button */
 
 .to-login{
-  color: #d1d1d6;
+  color: #D0E4E9;
   background-color: #162938;
   transition: 0.2s;
 }
 
 .to-login:hover{
-  color: #162938;
+  color: #367588;
   background-color: #D0E4E9;
   box-shadow: 0 6px 0 0 #162938;
 }

@@ -1,14 +1,10 @@
 import DoughnutData from "../../components/Charts/DoughnutData";
 import DoughnutChartCards from "../../components/InfoCards/DoughnutChartCards";
-import BarData from "../../components/Charts/BarData";
-import BarChartCards from "../../components/InfoCards/BarChartCards";
-import GraphicIcons from "../../components/common/GraphicIcons/GraphicIcons";
-import CardsSections from "../../components/CardsSections/CardsSections";
 import {Box, Grid, Typography} from "@mui/material";
 import {colorPalettes} from "../../const/colorPalettes";
 import "./styleDashboard.css";
 
-export default function DashboardView({articles}) {
+export default function DashboardView({data}) {
   return (
     <>
       <Grid
@@ -16,58 +12,55 @@ export default function DashboardView({articles}) {
         direction="row"
         justifyContent="space-evenly"
         alignItems="center"
+        alignContent={"center"}
         mt={16}
+        sx={{
+          border: "2px solid" + colorPalettes.blue,
+        }}
       >
-        <Grid item xs={10} sm={10} md={4}>
+        <Grid item xs={10} sm={10} md={10} lg={4} padding={2}>
           <Box
             display={"flex"}
             justifyContent={"center"}
-            mt={4}
-            padding={2}
-            className="blur-effect-doughnut-chart-left"
+            border={"2px solid" + colorPalettes.blue}
           >
-            <DoughnutData />
+            <DoughnutData dataDemo={data} />
           </Box>
         </Grid>
-        <Grid item xs={10} sm={10} md={6}>
-          <GraphicIcons />
-          <Box padding={4}>
-            <Box>
-              <Typography variant="h4" color={colorPalettes.blue} mb={1}>
-                Data Management
-              </Typography>
-              <Typography variant="body2" color={colorPalettes.blue}>
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                Consequuntur velit harum, alias voluptatem laudantium, nobis nam
-                blanditiis quia tempore dignissimos iure qui! Tenetur Lorem
-                ipsum, dolor sit amet consectetur adipisicing elit.
-              </Typography>
-              <DoughnutChartCards />
-            </Box>
+        <Grid item xs={10} sm={10} md={10} lg={6} padding={2}>
+          <Box padding={8} bgcolor={colorPalettes.blue}>
+            <Typography variant="h4" color={colorPalettes.skyBlue} mb={1}>
+              Data Management / Portfolio
+            </Typography>
+            <Typography variant="body1" color={colorPalettes.skyBlue}>
+              Improve your investment strategy with our Doughnut charts.
+              Streamline data management, merging key financial metrics to make
+              informed decisions. These visualisations provide valuable insights
+              for a data-driven investment approach.
+            </Typography>
+            <DoughnutChartCards dataDemo={data} />
           </Box>
         </Grid>
       </Grid>
-      <CardsSections />
       <Grid
         container
         direction="row"
         justifyContent="space-evenly"
         alignItems="center"
+        mt={16}
       >
         <Grid item xs={10} sm={10} md={6} mb={4}>
-          <GraphicIcons />
           <Box padding={4}>
             <Box>
               <Typography variant="h4" color={colorPalettes.blue} mb={1}>
                 Total Capital Invested
               </Typography>
               <Typography variant="body2" color={colorPalettes.blue}>
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                Consequuntur velit harum, alias voluptatem laudantium, nobis nam
-                blanditiis quia tempore dignissimos iure qui! Tenetur Lorem
-                ipsum, dolor sit amet consectetur adipisicing elit.
+                Improve your investment strategy with our Doughnut charts.
+                Streamline data management, merging key financial metrics to
+                make informed decisions. These visualisations provide valuable
+                insights for a data-driven investment approach.
               </Typography>
-              <BarChartCards />
             </Box>
           </Box>
         </Grid>
@@ -77,9 +70,7 @@ export default function DashboardView({articles}) {
             justifyContent={"center"}
             padding={2}
             className="blur-effect-doughnut-chart-right"
-          >
-            <BarData />
-          </Box>
+          ></Box>
         </Grid>
       </Grid>
     </>

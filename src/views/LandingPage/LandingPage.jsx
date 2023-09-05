@@ -1,51 +1,38 @@
 import {Link} from "react-router-dom";
+import LandingCards from "../../components/InfoCards/LandingCards";
 import {Box, Grid, Typography} from "@mui/material";
 import {colorPalettes} from "../../const/colorPalettes";
-// import FitbitIcon from "@mui/icons-material/Fitbit";
 import "./styleLanding.css";
-import GraphicIcons from "../../components/common/GraphicIcons/GraphicIcons";
 
 export default function LandingPage() {
   return (
     <>
       <Grid
         container
-        direction="row"
+        direction={"row"}
         justifyContent={"space-evenly"}
         alignItems={"center"}
-        className="landing"
+        gap={4}
+        mt={16}
       >
-        <Grid item xs={10} sm={10} md={6}>
-          <Box
-            position={"relative"}
-            top={"23vh"}
-            ml={1}
-            mr={1}
-            padding={4}
-            border={"2px solid" + colorPalettes.blue}
-            sx={{
-              borderTopRightRadius: 32,
-              borderBottomLeftRadius: 32,
-              boxShadow: "0px 4px 2px 0px" + colorPalettes.blue,
-              backgroundColor: colorPalettes.skyBlue,
-            }}
-          >
+        <Grid item xs={10} sm={10} md={4} lg={2}>
+          <Box>
             <Typography
               component={"h1"}
-              variant="h2"
+              variant="h1"
+              fontSize={"5.50rem"}
               color={colorPalettes.blue}
-              overflow={"hidden"}
             >
               Smart Financial Service
             </Typography>
-            <Typography variant="h5" color={colorPalettes.blue}>
-              Financial Well-Being
-            </Typography>
-            <Typography variant="body2" color={colorPalettes.blue}>
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptas
-              reiciendis voluptate temporibus obcaecati maxime sed, qui
-              distinctio adipisci, cumque repudiandae doloribus voluptatibus,
-              optio dolore. Tempore vel eius officia quo sunt.
+            <Typography
+              width={"95%"}
+              variant="body2"
+              color={colorPalettes.tealBlue}
+            >
+              Discover the art of investment with Smart Financial Service. Our
+              platform provides you with the tools and necessary information to
+              make intelligent financial decisions.
             </Typography>
             <Link className="allLinks" to="/login">
               <Typography
@@ -68,93 +55,60 @@ export default function LandingPage() {
             </Link>
           </Box>
         </Grid>
-        <Grid item xs={12} sm={10} md={4} mt={2}>
-          <Box position={"relative"} top={"22vh"} ml={2} mr={2} padding={2}>
-            <Box display={"flex"} justifyContent={"center"} mb={2}></Box>
-            <GraphicIcons />
+        <Grid item xs={10} sm={10} md={6} lg={5}>
+          <Box
+            width={"100%"}
+            height={"30vh"}
+            bgcolor={colorPalettes.blue}
+            sx={{
+              backgroundImage: `url('../src/assets/buildings.jpg')`,
+              backgroundPosition: "center",
+              backgroundSize: "cover",
+              borderRadius: 2,
+              rotate: "1.5deg",
+              boxShadow: "4px 4px 8px 0px " + colorPalettes.blue,
+              border: "1px solid" + colorPalettes.tealBlue,
+              // borderTopRightRadius: 64,
+            }}
+          ></Box>
+          <Box display={"flex"} flexDirection={"column"} alignItems={"left"}>
             <Typography
-              variant="h4"
-              textAlign={"center"}
-              color={colorPalettes.tealBlue}
-              borderRight={"2px solid" + colorPalettes.tealBlue}
-              borderLeft={"2px solid" + colorPalettes.tealBlue}
-              mt={2}
-              mb={2}
+              variant="body1"
+              fontSize={"1.70rem"}
+              color={colorPalettes.blue}
+              mt={4}
+              // sx={{
+              //   bgcolor: colorPalettes.blue,
+              //   padding: 1,
+              //   width: "180px",
+              //   rotate: "-1.5deg",
+              //   borderRadius: 2,
+              // }}
             >
-              Makes Your Financial Goals Real
+              Invest Today
             </Typography>
             <Typography
               variant="body2"
-              color={colorPalettes.blue}
-              textAlign={"center"}
+              color={colorPalettes.tealBlue}
+              mt={-0.5}
             >
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione
-              odit ipsum minus esse reiciendis natus, sunt dolor ducimus totam
-              voluptates. Tenetur impedit quod autem ullam enim, veritatis ea
-              nisi labore!
+              From stocks to real estate, we are here to guide you on your
+              journey towards a solid and prosperous financial future. Join us
+              and start investing with confidence today.
             </Typography>
+            <LandingCards />
           </Box>
         </Grid>
+        <Box
+          display={"flex"}
+          justifyContent={"center"}
+          width={"80%"}
+          height={"2px"}
+          mt={10}
+          mb={4}
+          bgcolor={colorPalettes.tealBlue}
+        ></Box>
       </Grid>
-      {/* <Grid
-        container
-        direction={"column"}
-        justifyContent={"center"}
-        alignItems={"center"}
-      >
-        <Grid item>
-          <Box position={"relative"} top={"27vh"}>
-            <FitbitIcon fontSize="large" />
-          </Box>
-        </Grid>
-        <Grid item>
-          <Box position={"relative"} top={"28vh"}>
-            <Typography
-              variant="h2"
-              component={"h1"}
-              textAlign={"center"}
-              mt={2}
-              padding={4}
-              border={"2px solid" + colorPalettes.skyBlue}
-              color={colorPalettes.blue}
-            >
-              Smart Financial Service
-            </Typography>
-            <Typography variant="body2" textAlign={"center"} mt={2}>
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Beatae
-              dolor nisi et
-            </Typography>
-            <Typography
-              variant="h5"
-              textAlign={"center"}
-              color={colorPalettes.blue}
-              mt={2}
-            >
-              Financial Well-Being
-            </Typography>
-            <Box textAlign={"center"}>
-              <Link className="allLinks" to="/login">
-                <Typography
-                  component={"button"}
-                  variant="body2"
-                  className="to-login"
-                  mt={2}
-                  sx={{
-                    padding: 1,
-                    width: "96px",
-                    border: "2px solid " + colorPalettes.blue,
-                    borderBottomRightRadius: 12,
-                    borderTopLeftRadius: 12,
-                  }}
-                  color={colorPalettes.skyBlue}
-                >
-                  Get Started
-                </Typography>
-              </Link>
-            </Box>
-          </Box>
-        </Grid>
-      </Grid> */}
     </>
   );
 }

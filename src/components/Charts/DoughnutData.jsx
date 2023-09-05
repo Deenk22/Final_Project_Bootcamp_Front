@@ -7,9 +7,7 @@ ChartJS.register(ArcElement, Tooltip, Legend);
 
 // Podemos pasar una función, array con .map(), a las propiedades, bgColor por ejemplo y borderColor.
 
-export default function DoughnutData() {
-  ChartJS.defaults.color = colorPalettes.blue;
-
+export default function DoughnutData({dataDemo}) {
   // data.labels
   // const tipoActivos = databaseInfo.map((activo) => activo.model); Recorrer o imprimir en data.labels cada tipo de activo. new SET [...new SET() + .map()] para eliminar duplicidades. Leer e investigar si esto es correcto o hay mejores formas de hacerlo.
 
@@ -17,39 +15,39 @@ export default function DoughnutData() {
   // Utilizaremos el .map() y el .filter() para añadir a esta propiedad el valor invertido de cada activo.
 
   const data = {
-    labels: ["Blue", "White", "Black", "Green", "Grey"],
+    labels: dataDemo?.map((item) => item.name).splice(0, 5),
     datasets: [
       {
-        label: "Capital Invested",
-        data: [3, 6, 4, 6, 10],
-        company: ["Shop1", "Shop2", "Shop3", "Shop4", "Shop5"],
+        label: "Beneficios",
+        data: dataDemo?.map((beneficio) => beneficio.beneficios).splice(0, 5),
         backgroundColor: [
           colorPalettes.tealBlue,
           colorPalettes.blue,
           colorPalettes.green,
         ],
         borderColor: colorPalettes.skyBlue,
-        borderWidth: 2,
-        // circumference: 180,
-        // rotation: 270,
+        borderWidth: 1,
       },
     ],
   };
 
   const options = {
-    type: "doughnut",
-    data,
     plugins: {
       legend: {
-        position: "top",
+        // title: {
+        //   display: true,
+        //   text: "Activos",
+        // },
+        position: "left",
+        labels: {
+          font: {
+            size: 12,
+          },
+          padding: 16,
+        },
+        rtl: false,
       },
       tooltip: {
-        // callbacks: {
-        //   label: (context) => {
-        //     const dataPoint = context.dataIndex;
-        //     return `${context.label}: ${context.dataset.data[dataPoint]} Invested: ${context.dataset.company[dataPoint]}`;
-        //   },
-        // },
         borderColor: colorPalettes.skyBlue,
         borderWidth: 1,
       },
@@ -57,7 +55,7 @@ export default function DoughnutData() {
   };
 
   return (
-    <Box width={320}>
+    <Box width={360}>
       <Doughnut data={data} options={options}></Doughnut>
     </Box>
   );

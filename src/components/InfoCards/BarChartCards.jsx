@@ -1,8 +1,6 @@
 import {colorPalettes} from "../../const/colorPalettes";
 import {Box, Grid, Typography} from "@mui/material";
-import DataUsageIcon from "@mui/icons-material/DataUsage";
 import TimelineIcon from "@mui/icons-material/Timeline";
-import AssessmentIcon from "@mui/icons-material/Assessment";
 import LeaderboardIcon from "@mui/icons-material/Leaderboard";
 
 // Pasar cantidades de la base de datos, reales.
@@ -13,23 +11,23 @@ import LeaderboardIcon from "@mui/icons-material/Leaderboard";
 const smallCard = [
   {
     icon: <TimelineIcon fontSize="large" />,
-    title: "01",
+    title: "Profits",
     title2: "+1652€",
   },
-  {
-    icon: <DataUsageIcon fontSize="large" />,
-    title: "02",
-    title2: "-316€",
-  },
-  {
-    icon: <AssessmentIcon fontSize="large" />,
-    title: "03",
-    title2: "3056€",
-  },
+  // {
+  //   icon: <DataUsageIcon fontSize="large" />,
+  //   title: "02",
+  //   title2: "-316€",
+  // },
+  // {
+  //   icon: <AssessmentIcon fontSize="large" />,
+  //   title: "03",
+  //   title2: "3056€",
+  // },
   {
     icon: <LeaderboardIcon fontSize="large" />,
-    title: "04",
-    title2: "11390€",
+    title: "Losses",
+    title2: "- 305 €",
   },
 ];
 
@@ -38,22 +36,16 @@ export default function BarChartCards() {
     <Grid
       container
       direction="row"
-      justifyContent="center"
+      justifyContent="left"
       alignItems="center"
-      mt={4}
+      mt={2}
       gap={2}
     >
       {smallCard.map((card) => {
         return (
-          <Grid
-            key={card.title}
-            item
-            justifyContent="center"
-            textAlign={"center"}
-            m={1}
-          >
+          <Grid key={card.title} item>
             <Box
-              width={"120px"}
+              width={"200px"}
               height={"130px"}
               borderRadius={4}
               bgcolor={colorPalettes.blue}
@@ -64,15 +56,7 @@ export default function BarChartCards() {
                   borderTopLeftRadius: 32,
                 },
               }}
-            >
-              <Box padding={1} color={colorPalettes.skyBlue}>
-                {card.icon}
-                <Typography variant="body1">{card.title}</Typography>
-                <Typography variant="body2" mt={1}>
-                  {card.title2}
-                </Typography>
-              </Box>
-            </Box>
+            ></Box>
           </Grid>
         );
       })}
