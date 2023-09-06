@@ -70,7 +70,7 @@ export default function Navbar() {
             <BubbleChartIcon />
           </Box>
           <Box
-            mr={2}
+            mr={1.5}
             sx={{
               display: {xs: "none", sm: "flex"},
               gap: 2,
@@ -92,9 +92,8 @@ export default function Navbar() {
           <Typography
             variant="body2"
             component={NavLink}
-            color={colorPalettes.blue}
-            border={"2px solid" + colorPalettes.skyBlue}
             padding={1}
+            color={colorPalettes.blue}
             sx={{
               textDecoration: "none",
               display: {xs: "none", sm: "flex"},

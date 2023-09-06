@@ -4,7 +4,6 @@ import axios from "axios";
 import jwtDecode from "jwt-decode";
 import {IM_INVESTING_KEY} from "../const/IM_investingKey";
 import {
-  inputsError,
   authenticationError,
   databaseNotFoundUser,
 } from "../notifications/notificationService";
@@ -32,9 +31,7 @@ export default function UserLoginContextProvider({children}) {
     },
 
     onError: (err) => {
-      if (err.response.status === 400) {
-        inputsError();
-      } else if (err.response.status === 401) {
+      if (err.response.status === 401) {
         authenticationError();
       } else if (err.response.status === 404) {
         databaseNotFoundUser();

@@ -1,14 +1,31 @@
 .wrapper-loginview {
-  animation: slideIn 0.1s ease-out forwards;
+  animation: slideIn 0.2s ease-out forwards;
 }
 
 @keyframes slideIn {
   0% {
     transform: translateX(50%);
-    filter: blur(16px);
+    filter: blur(32px);
     opacity: 0;
   }
 
+  100% {
+    transform: translateX(0%);
+    filter: blur(0);
+    opacity: 1;
+  }
+}
+
+.wrapper-title{
+  animation: slideInTitle 0.4s ease-out forwards
+}
+
+@keyframes slideInTitle {
+  0% {
+    transform: translateX(50%);
+    filter: blur(32px);
+    opacity: 0;
+  }
   100% {
     transform: translateX(0%);
     filter: blur(0);

@@ -12,22 +12,22 @@ import AssuredWorkloadIcon from "@mui/icons-material/AssuredWorkload";
 
 const smallCard = [
   {
-    icon: <AddchartIcon fontSize="medium" />,
-    title: "Add custom graphics",
+    icon: <AddchartIcon fontSize="small" />,
+    title: "Adding custom graphics",
     title2: "+1652€",
   },
   {
-    icon: <QueryStatsIcon fontSize="medium" />,
+    icon: <QueryStatsIcon fontSize="small" />,
     title: "Customized data analysis",
     title2: "-316€",
   },
   {
-    icon: <TrendingUpIcon fontSize="medium" />,
+    icon: <TrendingUpIcon fontSize="small" />,
     title: "Achieve your ambitious goals",
     title2: "3056€",
   },
   {
-    icon: <AssuredWorkloadIcon fontSize="medium" />,
+    icon: <AssuredWorkloadIcon fontSize="small" />,
     title: "Financial well-being assured",
     title2: "11390€",
   },
@@ -40,8 +40,8 @@ export default function LandingCards() {
       direction="row"
       justifyContent="center"
       alignItems="center"
-      mt={3}
-      gap={2}
+      mt={5}
+      gap={6}
     >
       {smallCard.map((card) => {
         return (
@@ -50,38 +50,34 @@ export default function LandingCards() {
             item
             justifyContent="center"
             textAlign={"center"}
-            m={1}
           >
             <Box
-              width={"120px"}
-              height={"130px"}
+              width={"128px"}
+              height={"132px"}
               borderRadius={4}
               bgcolor={colorPalettes.blue}
               sx={{
                 transition: "0.2s",
                 "&:hover": {
                   boxShadow: "0px 16px 0px -8px " + colorPalettes.tealBlue,
-                  // borderTopLeftRadius: 32,
-                  // borderBottomRightRadius: 32,
+                  borderTopLeftRadius: 32,
                 },
               }}
             >
               <Box
                 position={"relative"}
                 top={-16}
-                left={64}
+                left={72}
                 width={"64px"}
                 bgcolor={colorPalettes.tealBlue}
                 color={colorPalettes.skyBlue}
                 padding={1}
-                borderRadius={4}
+                sx={{borderTopLeftRadius: 16, borderBottomRightRadius: 16}}
               >
                 {card.icon}
               </Box>
               <Box color={colorPalettes.skyBlue} padding={1}>
-                <Typography variant="body2" fontSize={"0.85rem"}>
-                  {card.title}
-                </Typography>
+                <Typography variant="body2">{card.title}</Typography>
                 {/* <Typography variant="h5">{card.title2}</Typography> */}
               </Box>
             </Box>

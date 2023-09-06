@@ -130,7 +130,6 @@ export default function RegForm() {
         <Button
           variant="contained"
           sx={{
-            marginTop: 2,
             color: colorPalettes.skyBlue,
             bgcolor: colorPalettes.blue,
             border: "2px solid " + colorPalettes.blue,

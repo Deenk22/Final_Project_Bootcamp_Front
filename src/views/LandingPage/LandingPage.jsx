@@ -2,6 +2,7 @@ import {Link} from "react-router-dom";
 import LandingCards from "../../components/InfoCards/LandingCards";
 import {Box, Grid, Typography} from "@mui/material";
 import {colorPalettes} from "../../const/colorPalettes";
+
 import "./styleLanding.css";
 
 export default function LandingPage() {
@@ -15,19 +16,20 @@ export default function LandingPage() {
         gap={4}
         mt={16}
       >
-        <Grid item xs={10} sm={10} md={4} lg={2}>
+        <Grid item xs={10} sm={10} md={3} lg={2}>
           <Box>
             <Typography
               component={"h1"}
               variant="h1"
-              fontSize={"5.50rem"}
               color={colorPalettes.blue}
+              fontFamily={"Bebas Neue"}
             >
               Smart Financial Service
             </Typography>
             <Typography
-              width={"95%"}
+              width={"100%"}
               variant="body2"
+              mb={1}
               color={colorPalettes.tealBlue}
             >
               Discover the art of investment with Smart Financial Service. Our
@@ -43,7 +45,7 @@ export default function LandingPage() {
                 sx={{
                   textAlign: "center",
                   padding: 1,
-                  width: "96px",
+                  width: "104px",
                   border: "2px solid " + colorPalettes.blue,
                   borderBottomRightRadius: 12,
                   borderTopLeftRadius: 12,
@@ -52,6 +54,9 @@ export default function LandingPage() {
               >
                 Get Started
               </Typography>
+              <Box position={"relative"} top={-40} left={108}>
+                <img src="../src/assets/svg/arrow.svg" alt="arrow" width={16} />
+              </Box>
             </Link>
           </Box>
         </Grid>
@@ -65,7 +70,7 @@ export default function LandingPage() {
               backgroundPosition: "center",
               backgroundSize: "cover",
               borderRadius: 2,
-              rotate: "1.5deg",
+              // rotate: "1.5deg",
               boxShadow: "4px 4px 8px 0px " + colorPalettes.blue,
               border: "1px solid" + colorPalettes.tealBlue,
               // borderTopRightRadius: 64,
@@ -73,10 +78,10 @@ export default function LandingPage() {
           ></Box>
           <Box display={"flex"} flexDirection={"column"} alignItems={"left"}>
             <Typography
-              variant="body1"
-              fontSize={"1.70rem"}
+              variant="h5"
               color={colorPalettes.blue}
               mt={4}
+              fontFamily={"Bebas Neue"}
               // sx={{
               //   bgcolor: colorPalettes.blue,
               //   padding: 1,
@@ -87,11 +92,7 @@ export default function LandingPage() {
             >
               Invest Today
             </Typography>
-            <Typography
-              variant="body2"
-              color={colorPalettes.tealBlue}
-              mt={-0.5}
-            >
+            <Typography variant="body2" color={colorPalettes.tealBlue}>
               From stocks to real estate, we are here to guide you on your
               journey towards a solid and prosperous financial future. Join us
               and start investing with confidence today.
@@ -99,6 +100,7 @@ export default function LandingPage() {
             <LandingCards />
           </Box>
         </Grid>
+
         <Box
           display={"flex"}
           justifyContent={"center"}
@@ -106,7 +108,7 @@ export default function LandingPage() {
           height={"2px"}
           mt={10}
           mb={4}
-          bgcolor={colorPalettes.tealBlue}
+          bgcolor={colorPalettes.blue}
         ></Box>
       </Grid>
     </>

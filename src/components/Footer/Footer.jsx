@@ -10,7 +10,6 @@ export default function Footer() {
       justifyContent={"space-evenly"}
       sx={{
         bgcolor: colorPalettes.blue,
-        marginTop: 8,
       }}
     >
       <Grid item xs={12} sm={6} md={4}>

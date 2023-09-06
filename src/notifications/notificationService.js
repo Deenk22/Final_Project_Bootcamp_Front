@@ -35,20 +35,20 @@ export const userSuccessfullyRegistered = (userWelcomeMessageReg) =>
 
 // Errors
 
-export const inputsError = () =>
-  toast.error("Check the data entered", {
-    duration: 2500,
-    position: "top-center",
-    icon: "❌",
-    style: {
-      marginTop: "64px",
-      margin: 0,
-      padding: 24,
-      fontFamily: "sans-serif",
-      backgroundColor: colorPalettes.blue,
-      color: colorPalettes.skyBlue,
-    },
-  });
+// export const inputsError = () =>
+//   toast.error("Check the data entered", {
+//     duration: 2500,
+//     position: "top-center",
+//     icon: "❌",
+//     style: {
+//       marginTop: "64px",
+//       margin: 0,
+//       padding: 24,
+//       fontFamily: "sans-serif",
+//       backgroundColor: colorPalettes.blue,
+//       color: colorPalettes.skyBlue,
+//     },
+//   });
 
 export const authenticationError = () =>
   toast.error("Incorrect email or password", {

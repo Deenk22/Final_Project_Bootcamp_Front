@@ -2,7 +2,6 @@ import {useMutation} from "@tanstack/react-query";
 import axios from "axios";
 import {createContext, useContext} from "react";
 import {
-  inputsError,
   internalServerError,
   userAlreadyExists,
   userSuccessfullyRegistered,
@@ -27,9 +26,7 @@ export default function UserRegisterContextProvider({children}) {
       });
     },
     onError: (err) => {
-      if (err.response.status === 400) {
-        inputsError();
-      } else if (err.response.status === 409) {
+      if (err.response.status === 409) {
         userAlreadyExists();
       } else if (err.response.status === 500) {
         internalServerError();

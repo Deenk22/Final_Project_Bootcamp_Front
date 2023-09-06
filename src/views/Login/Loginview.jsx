@@ -2,7 +2,6 @@ import LoginForm from "../../components/LoginForm/LoginForm";
 import RegForm from "../../components/RegForm/RegForm";
 import {useState} from "react";
 import {Link} from "react-router-dom";
-import {Toaster} from "react-hot-toast";
 import {Box, Grid, Typography} from "@mui/material";
 import {colorPalettes} from "../../const/colorPalettes";
 import "./styleLogin.css";
@@ -21,15 +20,21 @@ export default function LoginView() {
       justifyContent="center"
       alignItems="center"
       minHeight={"100vh"}
-      className="bg-image"
     >
+      <Typography
+        className="wrapper-title"
+        variant="h5"
+        color={colorPalettes.blue}
+      >
+        {isLoginVisible ? "Sign in to IM Investing" : "Sign up to IM Investing"}
+      </Typography>
       <Box className={"wrapper-loginview"}>
         {isLoginVisible ? <LoginForm /> : <RegForm />}
         <Box
           display={"flex"}
           justifyContent={"center"}
           alignItems={"center"}
-          mt={8}
+          mt={4}
           gap={1}
         >
           <Typography variant="body2">
@@ -41,16 +46,15 @@ export default function LoginView() {
             <Typography
               onClick={toggleForm}
               variant="body1"
-              color={colorPalettes.blue}
-              borderBottom={"1px solid" + colorPalettes.blue}
+              color={colorPalettes.tealBlue}
+              borderBottom={"2px solid" + colorPalettes.tealBlue}
               padding={0.5}
             >
-              {isLoginVisible ? "Register" : "Login"}
+              {isLoginVisible ? "Sign up" : "Sign in"}
             </Typography>
           </Link>
         </Box>
       </Box>
-      <Toaster />
     </Grid>
   );
 }

@@ -15,18 +15,18 @@ export default function DoughnutData({dataDemo}) {
   // Utilizaremos el .map() y el .filter() para añadir a esta propiedad el valor invertido de cada activo.
 
   const data = {
-    labels: dataDemo?.map((item) => item.name).splice(0, 5),
+    labels: dataDemo?.map((item) => item.name).splice(0, 6),
     datasets: [
       {
-        label: "Beneficios",
-        data: dataDemo?.map((beneficio) => beneficio.beneficios).splice(0, 5),
+        label: "Capital Invertido",
+        data: dataDemo?.map((capital) => capital.capitalInvertido).splice(0, 6),
         backgroundColor: [
           colorPalettes.tealBlue,
-          colorPalettes.blue,
+          colorPalettes.tealBlue,
           colorPalettes.green,
         ],
-        borderColor: colorPalettes.skyBlue,
-        borderWidth: 1,
+        borderColor: colorPalettes.blue,
+        borderWidth: 2,
       },
     ],
   };
