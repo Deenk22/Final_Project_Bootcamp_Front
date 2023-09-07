@@ -5,7 +5,6 @@ import PublicRoute from "./components/Router/PublicRoute";
 import PrivateRoute from "./components/Router/PrivateRoute";
 import Layout from "./components/Layout/Layout";
 import LandingPage from "./views/LandingPage/LandingPage";
-import LoginView from "./views/Login/LoginView";
 import Dashboard from "./views/Dashboard/Dashboard";
 import Stocks from "./views/Stocks/Stocks";
 import Strategies from "./views/Strategies/Strategies";
@@ -17,6 +16,7 @@ import {ThemeProvider} from "@mui/material";
 import {typeScale} from "./const/typeScale";
 import {Toaster} from "react-hot-toast";
 import "./App.css";
+import Login from "./views/Login/Login";
 
 // Arreglar las rutas ... cuando hago click en sign-in o sign-up, despues tengo que darle hacia atrás las mismas veces que le di a cada link.
 
@@ -30,7 +30,7 @@ function App() {
             <Routes>
               <Route path="/" element={<LandingPage />} />
               <Route element={<PublicRoute />}>
-                <Route path="/login" element={<LoginView />} />
+                <Route path="/login" element={<Login />} />
               </Route>
               <Route path="unauthorized" element={<Unauthorized />} />
               <Route

@@ -3,10 +3,7 @@ import {useMutation} from "@tanstack/react-query";
 import axios from "axios";
 import jwtDecode from "jwt-decode";
 import {IM_INVESTING_KEY} from "../const/IM_investingKey";
-import {
-  authenticationError,
-  databaseNotFoundUser,
-} from "../notifications/notificationService";
+import toastFunctions from "../notifications/notificationService";
 
 const url = "http://localhost:3000/user/login";
 
@@ -32,9 +29,9 @@ export default function UserLoginContextProvider({children}) {
 
     onError: (err) => {
       if (err.response.status === 401) {
-        authenticationError();
+        toastFunctions.authenticationError();
       } else if (err.response.status === 404) {
-        databaseNotFoundUser();
+        toastFunctions.databaseNotFoundUser();
       }
     },
 
@@ -43,7 +40,7 @@ export default function UserLoginContextProvider({children}) {
     },
   });
 
-  const signIn = async ({email, password}) => {
+  async function signIn({email, password}) {
     try {
       const {data, status} = await mutation.mutateAsync({email, password});
       if (status === 200) {
@@ -55,7 +52,7 @@ export default function UserLoginContextProvider({children}) {
     } catch (err) {
       throw new Error(`Something went wrong with the Sign-in: ${err.message}`);
     }
-  };
+  }
 
   function logout() {
     localStorage.removeItem(IM_INVESTING_KEY);

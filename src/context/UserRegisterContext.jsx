@@ -1,11 +1,7 @@
 import {useMutation} from "@tanstack/react-query";
 import axios from "axios";
 import {createContext, useContext} from "react";
-import {
-  internalServerError,
-  userAlreadyExists,
-  userSuccessfullyRegistered,
-} from "../notifications/notificationService";
+import toastFunctions from "../notifications/notificationService";
 
 const url = "http://localhost:3000/user";
 
@@ -27,9 +23,9 @@ export default function UserRegisterContextProvider({children}) {
     },
     onError: (err) => {
       if (err.response.status === 409) {
-        userAlreadyExists();
+        toastFunctions.userAlreadyExists();
       } else if (err.response.status === 500) {
-        internalServerError();
+        toastFunctions.internalServerError();
       }
     },
     onSuccess: (data) => {
@@ -37,17 +33,17 @@ export default function UserRegisterContextProvider({children}) {
     },
   });
 
-  const signUp = async (values) => {
+  async function signUp(values) {
     try {
       const {data, status} = await mutation.mutateAsync(values);
       if (status === 200) {
         const userWelcomeMessageReg = data;
-        userSuccessfullyRegistered(userWelcomeMessageReg);
+        toastFunctions.userSuccessfullyRegistered(userWelcomeMessageReg);
       }
     } catch (err) {
       throw new Error(`something went wrong with the Sign-Up: ${err.message}`);
     }
-  };
+  }
 
   const valueProvide = {
     signUp,

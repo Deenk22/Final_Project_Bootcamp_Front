@@ -54,9 +54,6 @@ export default function LandingPage() {
               >
                 Get Started
               </Typography>
-              <Box position={"relative"} top={-40} left={108}>
-                <img src="../src/assets/svg/arrow.svg" alt="arrow" width={16} />
-              </Box>
             </Link>
           </Box>
         </Grid>
