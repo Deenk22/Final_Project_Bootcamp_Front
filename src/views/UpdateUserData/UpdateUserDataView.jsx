@@ -86,6 +86,7 @@ export default function UpdateUserDataView({updateUser}) {
         <Button
           variant="contained"
           sx={{
+            marginTop: 4,
             color: colorPalettes.skyBlue,
             bgcolor: colorPalettes.blue,
             border: "2px solid " + colorPalettes.blue,
@@ -101,7 +102,7 @@ export default function UpdateUserDataView({updateUser}) {
           disabled={isSubmitting}
           type="submit"
         >
-          Submit
+          Update
         </Button>
       </Box>
     </form>

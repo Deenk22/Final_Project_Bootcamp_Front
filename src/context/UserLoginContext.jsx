@@ -5,6 +5,8 @@ import jwtDecode from "jwt-decode";
 import {IM_INVESTING_KEY} from "../const/IM_investingKey";
 import toastFunctions from "../notifications/notificationService";
 
+// Tareas pendientes > 1. / Modificar el código, eliminar TanStack del contexto.
+
 const url = "http://localhost:3000/user/login";
 
 const UserLoginContext = createContext({
@@ -13,11 +15,10 @@ const UserLoginContext = createContext({
   logout: () => {},
 });
 
-// Preguntar a Nacho como mejorar este código / Could not Fast Refresh.
 export default function UserLoginContextProvider({children}) {
-  const [user, setUser] = useState(
-    JSON.parse(localStorage.getItem(IM_INVESTING_KEY)) ?? null
-  );
+  const userLogged = JSON.parse(localStorage.getItem(IM_INVESTING_KEY));
+
+  const [user, setUser] = useState(userLogged ? jwtDecode(userLogged) : null);
 
   const mutation = useMutation({
     mutationFn: async ({email, password}) => {
@@ -47,7 +48,7 @@ export default function UserLoginContextProvider({children}) {
         const token = data.jwt;
         const user = jwtDecode(token);
         setUser(user);
-        localStorage.setItem(IM_INVESTING_KEY, JSON.stringify(user));
+        localStorage.setItem(IM_INVESTING_KEY, JSON.stringify(token));
       }
     } catch (err) {
       throw new Error(`Something went wrong with the Sign-in: ${err.message}`);

@@ -41,7 +41,7 @@ export default function LandingCards() {
       justifyContent="center"
       alignItems="center"
       mt={5}
-      gap={6}
+      gap={4}
     >
       {smallCard.map((card) => {
         return (
