@@ -2,7 +2,6 @@ import {useState} from "react";
 import {NavLink} from "react-router-dom";
 import NavListDrawer from "./NavListDrawer";
 import {useUserLoginContext} from "../../context/UserLoginContext";
-import {colorPalettes} from "../../const/colorPalettes";
 import {
   AppBar,
   Box,
@@ -13,6 +12,15 @@ import {
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import BubbleChartIcon from "@mui/icons-material/BubbleChart";
+
+const colorPalettes = {
+  blue: "#162938",
+  green: "#49726B",
+  skyBlue: "#D0E4E9",
+  tealBlue: "#367588",
+  yellow: "#eab308",
+  indigo: "#6366f1",
+};
 
 const navLinks = [
   {
@@ -57,11 +65,11 @@ export default function Navbar() {
         <Toolbar>
           <IconButton
             onClick={() => setOpen(true)}
-            sx={{display: {xs: "flex", sm: "none"}}}
+            // sx={{display: {xs: "flex", sm: "none"}}}
           >
             <MenuIcon sx={{color: colorPalettes.blue}} />
           </IconButton>
-          <Box
+          {/* <Box
             color={colorPalettes.blue}
             sx={{flexGrow: 1}}
             display={"flex"}
@@ -88,7 +96,7 @@ export default function Navbar() {
                 {item.title}
               </Typography>
             ))}
-          </Box>
+          </Box> */}
           <Typography
             variant="body2"
             component={NavLink}
@@ -115,7 +123,7 @@ export default function Navbar() {
         open={open}
         anchor="left"
         onClose={() => setOpen(false)}
-        sx={{display: {xs: "flex", sm: "none"}}}
+        // sx={{display: {xs: "flex", sm: "none"}}}
       >
         <NavListDrawer
           navLinks={navLinks}

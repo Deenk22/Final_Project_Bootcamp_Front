@@ -3,8 +3,16 @@ import RegForm from "../../components/RegForm/RegForm";
 import {useState} from "react";
 import {Link} from "react-router-dom";
 import {Box, Grid, Typography} from "@mui/material";
-import {colorPalettes} from "../../const/colorPalettes";
 import "./styleLogin.css";
+
+const colorPalettes = {
+  blue: "#162938",
+  green: "#49726B",
+  skyBlue: "#D0E4E9",
+  tealBlue: "#367588",
+  yellow: "#eab308",
+  indigo: "#6366f1",
+};
 
 export default function LoginView() {
   const [isLoginVisible, setIsLoginVisible] = useState(true);

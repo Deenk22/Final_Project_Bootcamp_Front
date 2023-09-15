@@ -1,7 +1,7 @@
-import {useMutation} from "@tanstack/react-query";
 import axios from "axios";
 import {createContext, useContext} from "react";
 import toastFunctions from "../notifications/notificationService";
+import {useMutation} from "@tanstack/react-query";
 
 const url = "http://localhost:3000/user";
 
@@ -37,7 +37,7 @@ export default function UserRegisterContextProvider({children}) {
     try {
       const {data, status} = await mutation.mutateAsync(values);
       if (status === 200) {
-        const userWelcomeMessageReg = data;
+        const userWelcomeMessageReg = data?.message;
         toastFunctions.userSuccessfullyRegistered(userWelcomeMessageReg);
       }
     } catch (err) {

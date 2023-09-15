@@ -1,9 +1,17 @@
-import {colorPalettes} from "../../const/colorPalettes";
 import {Box, Grid, Typography} from "@mui/material";
 import AddchartIcon from "@mui/icons-material/Addchart";
 import QueryStatsIcon from "@mui/icons-material/QueryStats";
 import TrendingUpIcon from "@mui/icons-material/TrendingUp";
 import AssuredWorkloadIcon from "@mui/icons-material/AssuredWorkload";
+
+const colorPalettes = {
+  blue: "#162938",
+  green: "#49726B",
+  skyBlue: "#D0E4E9",
+  tealBlue: "#367588",
+  yellow: "#eab308",
+  indigo: "#6366f1",
+};
 
 // Pasar cantidades de la base de datos, reales.
 // Iconos representativos y en sintonía con la información.

@@ -1,5 +1,13 @@
 import {Box, List, ListItem, ListItemButton, ListItemText} from "@mui/material";
-import {colorPalettes} from "../../const/colorPalettes";
+
+const colorPalettes = {
+  blue: "#162938",
+  green: "#49726B",
+  skyBlue: "#D0E4E9",
+  tealBlue: "#367588",
+  yellow: "#eab308",
+  indigo: "#6366f1",
+};
 
 export default function NavListDrawer({navLinks, NavLink, setOpen, logout}) {
   return (

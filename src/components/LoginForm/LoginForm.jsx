@@ -3,7 +3,15 @@ import {initialValues} from "./utils/loginFormIV";
 import {loginFormSchema} from "./loginFormSchema";
 import {useUserLoginContext} from "../../context/UserLoginContext";
 import {Box, TextField, Typography, Button} from "@mui/material";
-import {colorPalettes} from "../../const/colorPalettes";
+
+const colorPalettes = {
+  blue: "#162938",
+  green: "#49726B",
+  skyBlue: "#D0E4E9",
+  tealBlue: "#367588",
+  yellow: "#eab308",
+  indigo: "#6366f1",
+};
 
 export default function LoginForm() {
   const {signIn} = useUserLoginContext();

@@ -1,31 +1,33 @@
+import {useQuery} from "@tanstack/react-query";
 import DashboardView from "./DashboardView";
+import axios from "axios";
 
-const data = [];
-
-for (let i = 1; i <= 10; i++) {
-  const name = "Activo";
-  const years = Math.floor(Math.random() * 1000) + 1023;
-  const beneficios = Math.random() * 1000;
-  const perdidas = Math.random() * 500;
-  const stocks = Math.floor(Math.random() * 100);
-  const capitalInvertido = Math.random() * 5000;
-
-  const objeto = {
-    name: name,
-    years: years,
-    beneficios: beneficios.toFixed(2),
-    perdidas: perdidas.toFixed(2),
-    stocks: stocks,
-    capitalInvertido: capitalInvertido.toFixed(2),
-  };
-
-  data.push(objeto);
-}
+const url = "http://localhost:3000/operation/all";
+const token = localStorage.getItem("IM_INVESTING_KEY");
+const config = {
+  headers: {
+    Authorization: `Bearer ${token}`,
+  },
+};
 
 export default function Dashboard() {
+  const getAllOperations = async () => {
+    return await axios.get(url, config).then((res) => res.data);
+  };
+
+  const {data, status} = useQuery({
+    queryKey: ["allOperations"],
+    queryFn: () => getAllOperations(),
+  });
+
+  if (status === "loading") {
+    return <span>Loading...</span>;
+  }
+  const allOperations = data?.data;
+
   return (
     <>
-      <DashboardView data={data} />
+      <DashboardView allOperations={allOperations} />
     </>
   );
 }

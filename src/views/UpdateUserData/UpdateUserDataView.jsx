@@ -2,7 +2,15 @@ import {useFormik} from "formik";
 import {initialValues} from "./utils/updateUserIV";
 import {updateUserSchema} from "./updateUserSchema";
 import {Box, Button, TextField, Typography} from "@mui/material";
-import {colorPalettes} from "../../const/colorPalettes";
+
+const colorPalettes = {
+  blue: "#162938",
+  green: "#49726B",
+  skyBlue: "#D0E4E9",
+  tealBlue: "#367588",
+  yellow: "#eab308",
+  indigo: "#6366f1",
+};
 
 export default function UpdateUserDataView({updateUser}) {
   function onSubmit(values, actions) {

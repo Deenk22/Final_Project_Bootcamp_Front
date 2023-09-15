@@ -45,7 +45,7 @@ export default function UserLoginContextProvider({children}) {
     try {
       const {data, status} = await mutation.mutateAsync({email, password});
       if (status === 200) {
-        const token = data.jwt;
+        const token = data?.data.jwt;
         const user = jwtDecode(token);
         setUser(user);
         localStorage.setItem(IM_INVESTING_KEY, JSON.stringify(token));
