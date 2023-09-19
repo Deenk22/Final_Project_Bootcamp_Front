@@ -6,17 +6,16 @@ import PrivateRoute from "./components/Router/PrivateRoute";
 import Layout from "./components/Layout/Layout";
 import LandingPage from "./views/LandingPage/LandingPage";
 import Dashboard from "./views/Dashboard/Dashboard";
-import Stocks from "./views/Stocks/Stocks";
 import Strategies from "./views/Strategies/Strategies";
-import Transactions from "./views/Transactions/Transactions";
-import Settings from "./views/Settings/Settings";
+import Account from "./views/Account/Account";
 import Unauthorized from "./views/Unauthorized/Unauthorized";
 import {userRoles} from "./const/userRoles";
 import {ThemeProvider} from "@mui/material";
 import {typeScale} from "./const/typeScale";
 import {Toaster} from "react-hot-toast";
-import "./App.css";
 import Login from "./views/Login/Login";
+import "./App.css";
+import AddOperation from "./views/AddOperation/AddOperation";
 
 // Arreglar las rutas ... cuando hago click en sign-in o sign-up, despues tengo que darle hacia atrás las mismas veces que le di a cada link.
 
@@ -44,11 +43,13 @@ function App() {
                 </Route>
               </Route>
               <Route
-                path="/stocks"
-                element={<PrivateRoute allowedUserRoles={[userRoles.ADMIN]} />}
+                path="/account"
+                element={
+                  <PrivateRoute allowedUserRoles={userRoles.ALL_USERS} />
+                }
               >
                 <Route element={<Layout />}>
-                  <Route index element={<Stocks />} />
+                  <Route index element={<Account />} />
                 </Route>
               </Route>
               <Route
@@ -60,19 +61,11 @@ function App() {
                 </Route>
               </Route>
               <Route
-                path="/transactions"
+                path="/addoperation"
                 element={<PrivateRoute allowedUserRoles={[userRoles.ADMIN]} />}
               >
                 <Route element={<Layout />}>
-                  <Route index element={<Transactions />} />
-                </Route>
-              </Route>
-              <Route
-                path="/settings"
-                element={<PrivateRoute allowedUserRoles={[userRoles.ADMIN]} />}
-              >
-                <Route element={<Layout />}>
-                  <Route index element={<Settings />} />
+                  <Route index element={<AddOperation />} />
                 </Route>
               </Route>
             </Routes>

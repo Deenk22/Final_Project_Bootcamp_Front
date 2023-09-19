@@ -15,7 +15,7 @@ const toastStyles = {
   style: {
     marginTop: "64px",
     margin: 0,
-    padding: 24,
+    padding: 16,
     fontFamily: "sans-serif",
     backgroundColor: colorPalettes.blue,
     color: colorPalettes.skyBlue,
@@ -23,19 +23,22 @@ const toastStyles = {
 };
 
 const toastFunctions = {
+  // Success
   userSuccessfullySignIn: () => toast.success("Welcome", toastStyles),
-
   userSuccessfullyRegistered: (userWelcomeMessageReg) =>
     toast.success(userWelcomeMessageReg, toastStyles),
+  userSuccessfullyUploaded: (message) => toast.success(message, toastStyles),
+  passwordSuccessfullyUpdated: (message) => toast.success(message, toastStyles),
 
-  authenticationError: () =>
-    toast.error("Incorrect email or password", toastStyles),
-
-  databaseNotFoundUser: () => toast.error("User not found", toastStyles),
-
+  // Errors
   userAlreadyExists: () => toast.error("User already exists", toastStyles),
-
-  internalServerError: () => toast.error("Internal server error", toastStyles),
+  authenticationError: () =>
+    toast.error("Incorrect Email or Password", toastStyles),
+  databaseNotFoundUser: () => toast.error("User not found", toastStyles),
+  errorPasswordMatch: () =>
+    toast.error("Current Password does not Match", toastStyles),
+  internalServerError: () =>
+    toast.error("Sorry, Internal server error", toastStyles),
 };
 
 export default toastFunctions;

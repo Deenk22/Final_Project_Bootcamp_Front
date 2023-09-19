@@ -3,25 +3,28 @@ import {initialValues} from "./utils/updateUserIV";
 import {updateUserSchema} from "./updateUserSchema";
 import {Box, Button, TextField, Typography} from "@mui/material";
 
-const colorPalettes = {
-  blue: "#162938",
-  green: "#49726B",
-  skyBlue: "#D0E4E9",
+const chartColorsPalette = {
+  orange: "rgba(255, 159, 64, 0.7)",
+  lightPink: "rgba(255, 99, 132, 0.7)",
+  lightYellow: "rgba(255, 205, 86, 0.7)",
+  shadowYellow: "rgba(255, 205, 86, 0.4)",
+  tealBlue2: "rgba(75, 192, 192, 0.7)",
+  shadowtealBlue2: "rgba(75, 192, 192, 0.4)",
+  blue: "rgba(22, 41, 56)",
+  skyBlue: "rgba(208, 228, 233)",
   tealBlue: "#367588",
-  yellow: "#eab308",
-  indigo: "#6366f1",
 };
 
-export default function UpdateUserDataView({updateUser}) {
+export default function UpdateFormView({userPatch}) {
   function onSubmit(values, actions) {
-    updateUser(values);
+    userPatch(values);
     actions.resetForm();
   }
 
   const {
     values,
-    errors,
     touched,
+    errors,
     handleBlur,
     handleChange,
     handleSubmit,
@@ -44,14 +47,14 @@ export default function UpdateUserDataView({updateUser}) {
         }}
       >
         <TextField
-          sx={{width: 220}}
+          sx={{width: 250}}
           value={values.name}
           onChange={handleChange}
           onBlur={handleBlur}
           type="text"
           id="name"
           label="Name"
-          variant="filled"
+          variant="outlined"
           className={errors.name && touched.name ? "textfield-error" : ""}
         />
         {errors.name && touched.name && (
@@ -60,14 +63,14 @@ export default function UpdateUserDataView({updateUser}) {
           </Typography>
         )}
         <TextField
-          sx={{width: 220}}
+          sx={{width: 250}}
           value={values.surname}
           onChange={handleChange}
           onBlur={handleBlur}
           type="text"
           id="surname"
           label="Surname"
-          variant="filled"
+          variant="outlined"
           className={errors.surname && touched.surname ? "textfield-error" : ""}
         />
         {errors.surname && touched.surname && (
@@ -76,14 +79,14 @@ export default function UpdateUserDataView({updateUser}) {
           </Typography>
         )}
         <TextField
-          sx={{width: 220}}
+          sx={{width: 250}}
           value={values.email}
           onChange={handleChange}
           onBlur={handleBlur}
           type="email"
           id="email"
           label="Email"
-          variant="filled"
+          variant="outlined"
           className={errors.email && touched.email ? "textfield-error" : ""}
         />
         {errors.email && touched.email && (
@@ -95,22 +98,22 @@ export default function UpdateUserDataView({updateUser}) {
           variant="contained"
           sx={{
             marginTop: 4,
-            color: colorPalettes.skyBlue,
-            bgcolor: colorPalettes.blue,
-            border: "2px solid " + colorPalettes.blue,
+            color: chartColorsPalette.skyBlue,
+            bgcolor: chartColorsPalette.blue,
+            border: "2px solid " + chartColorsPalette.blue,
             borderTopLeftRadius: 16,
             borderBottomRightRadius: 16,
             transition: "0.2s",
             ":hover": {
-              color: colorPalettes.blue,
-              bgcolor: colorPalettes.skyBlue,
-              boxShadow: "0px 5px 0px 0px" + colorPalettes.blue,
+              color: chartColorsPalette.blue,
+              bgcolor: chartColorsPalette.skyBlue,
+              boxShadow: "0px 5px 0px 0px" + chartColorsPalette.blue,
             },
           }}
           disabled={isSubmitting}
           type="submit"
         >
-          Update
+          Save
         </Button>
       </Box>
     </form>

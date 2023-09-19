@@ -11,7 +11,6 @@ import {
   Typography,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
-import BubbleChartIcon from "@mui/icons-material/BubbleChart";
 
 const colorPalettes = {
   blue: "#162938",
@@ -22,39 +21,24 @@ const colorPalettes = {
   indigo: "#6366f1",
 };
 
-const navLinks = [
-  {
-    title: "Dashboard",
-    path: "/dashboard",
-    icon: "",
-  },
-  {
-    title: "Stock",
-    path: "/stocks",
-    icon: "icon",
-  },
-  {
-    title: "Strategies",
-    path: "/strategies",
-    icon: "icon",
-  },
-  {
-    title: "Transactions",
-    path: "/transactions",
-    icon: "icon",
-  },
-  {
-    title: "Settings",
-    path: "/settings",
-    icon: "icon",
-  },
-];
-
-// Intentar activar y desactivar el panel lateral (Navbar) para hacer que solo este activo cuando el viewport cumpla con las medidas.
-
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const {logout} = useUserLoginContext();
+
+  const navLinks = [
+    {
+      title: "Dashboard",
+      path: "/dashboard",
+    },
+    {
+      title: "Strategies",
+      path: "/strategies",
+    },
+    {
+      title: "My Account",
+      path: "/account",
+    },
+  ];
 
   return (
     <>
@@ -64,18 +48,31 @@ export default function Navbar() {
       >
         <Toolbar>
           <IconButton
+            onMouseEnter={() => setOpen(true)}
             onClick={() => setOpen(true)}
             // sx={{display: {xs: "flex", sm: "none"}}}
           >
             <MenuIcon sx={{color: colorPalettes.blue}} />
           </IconButton>
-          {/* <Box
+          <Box
             color={colorPalettes.blue}
             sx={{flexGrow: 1}}
             display={"flex"}
             gap={1}
           >
-            <BubbleChartIcon />
+            <Drawer
+              open={open}
+              anchor="left"
+              onClose={() => setOpen(false)}
+              // sx={{display: {xs: "flex", sm: "none"}}}
+            >
+              <NavListDrawer
+                navLinks={navLinks}
+                NavLink={NavLink}
+                setOpen={setOpen}
+                logout={logout}
+              />
+            </Drawer>
           </Box>
           <Box
             mr={1.5}
@@ -96,42 +93,9 @@ export default function Navbar() {
                 {item.title}
               </Typography>
             ))}
-          </Box> */}
-          <Typography
-            variant="body2"
-            component={NavLink}
-            padding={1}
-            color={colorPalettes.blue}
-            sx={{
-              textDecoration: "none",
-              display: {xs: "none", sm: "flex"},
-              transition: "0.2s",
-              "&:hover": {
-                borderTopLeftRadius: 12,
-                borderBottomRightRadius: 12,
-                color: colorPalettes.skyBlue,
-                bgcolor: colorPalettes.blue,
-              },
-            }}
-            onClick={() => logout()}
-          >
-            Logout
-          </Typography>
+          </Box>
         </Toolbar>
       </AppBar>
-      <Drawer
-        open={open}
-        anchor="left"
-        onClose={() => setOpen(false)}
-        // sx={{display: {xs: "flex", sm: "none"}}}
-      >
-        <NavListDrawer
-          navLinks={navLinks}
-          NavLink={NavLink}
-          setOpen={setOpen}
-          logout={logout}
-        />
-      </Drawer>
     </>
   );
 }

@@ -52,11 +52,11 @@ export default function LoginForm() {
           type="email"
           id="email"
           label="Email"
-          variant="filled"
+          variant="outlined"
           value={values.email}
           onChange={handleChange}
           onBlur={handleBlur}
-          sx={{width: 220}}
+          sx={{width: 250}}
           className={errors.email && touched.email ? "textfield-error" : ""}
         />
 
@@ -69,11 +69,11 @@ export default function LoginForm() {
           type="password"
           id="password"
           label="Password"
-          variant="filled"
+          variant="outlined"
           value={values.password}
           onChange={handleChange}
           onBlur={handleBlur}
-          sx={{width: 220}}
+          sx={{width: 250}}
           className={
             errors.password && touched.password ? "textfield-error" : ""
           }

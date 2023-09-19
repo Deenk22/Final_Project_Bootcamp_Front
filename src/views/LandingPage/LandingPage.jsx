@@ -1,6 +1,8 @@
 import {Link} from "react-router-dom";
 import LandingCards from "../../components/InfoCards/LandingCards";
+import CardsSections from "../../components/CardsSections/CardsSections";
 import {Box, Grid, Typography} from "@mui/material";
+import "./styleLanding.css";
 
 const colorPalettes = {
   blue: "#162938",
@@ -10,8 +12,6 @@ const colorPalettes = {
   yellow: "#eab308",
   indigo: "#6366f1",
 };
-
-import "./styleLanding.css";
 
 export default function LandingPage() {
   return (
@@ -30,7 +30,6 @@ export default function LandingPage() {
               component={"h1"}
               variant="h1"
               color={colorPalettes.blue}
-              fontFamily={"Bebas Neue"}
             >
               Smart Financial Service
             </Typography>
@@ -82,19 +81,7 @@ export default function LandingPage() {
             }}
           ></Box>
           <Box display={"flex"} flexDirection={"column"} alignItems={"left"}>
-            <Typography
-              variant="h5"
-              color={colorPalettes.blue}
-              mt={4}
-              fontFamily={"Bebas Neue"}
-              // sx={{
-              //   bgcolor: colorPalettes.blue,
-              //   padding: 1,
-              //   width: "180px",
-              //   rotate: "-1.5deg",
-              //   borderRadius: 2,
-              // }}
-            >
+            <Typography variant="h4" color={colorPalettes.blue} mt={4}>
               Invest Today
             </Typography>
             <Typography variant="body2" color={colorPalettes.tealBlue}>
@@ -111,11 +98,13 @@ export default function LandingPage() {
           justifyContent={"center"}
           width={"80%"}
           height={"2px"}
-          mt={10}
+          mt={16}
           mb={4}
           bgcolor={colorPalettes.blue}
         ></Box>
       </Grid>
+      <CardsSections />
+      {/* <ManageInvestmentsCard /> */}
     </>
   );
 }

@@ -17,7 +17,7 @@
 }
 
 .wrapper-title{
-  animation: slideInTitle 0.4s ease-out forwards
+  animation: slideInTitle 0.3s ease-out forwards
 }
 
 @keyframes slideInTitle {

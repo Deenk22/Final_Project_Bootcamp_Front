@@ -4,18 +4,22 @@ export const typeScale = createTheme({
   typography: {
     fontWeightLight: 400,
     h1: {
+      fontFamily: "Bebas Neue",
       fontSize: "5.96rem",
       fontWeight: 400,
     },
     h2: {
+      fontFamily: "Bebas Neue",
       fontSize: "3.815rem",
       fontWeight: 400,
     },
     h3: {
+      fontFamily: "Bebas Neue",
       fontSize: "2.441rem",
       fontWeight: 400,
     },
     h4: {
+      fontFamily: "Bebas Neue",
       fontSize: "1.953rem",
       fontWeight: 400,
     },

@@ -1,46 +1,42 @@
-import {Chart as ChartJS, ArcElement, Tooltip, Legend} from "chart.js";
-import {Doughnut} from "react-chartjs-2";
-import {Box, Typography} from "@mui/material";
+import {Pie} from "react-chartjs-2";
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  ArcElement,
+  Tooltip,
+  Legend,
+} from "chart.js";
+import {Box} from "@mui/material";
 
-const colorPalettes = {
-  blue: "rgb(22, 41, 56)",
-  green: "rgb(57, 112, 102)",
-  skyBlue: "rgb(208, 228, 233)",
-  tealBlue: "rgb(31, 115, 141)",
-  orange: "rgb(223, 132, 79)",
-  yellow: "rgb(236, 208, 111)",
-  otro: "rgb(160, 207, 211)",
-  otro1: "rgb(72, 130, 134)",
-  otro3: "rgb(89, 95, 114)",
+const chartColorsPalette = {
+  orange: "rgba(255, 159, 64, 0.7)",
+  lightPink: "rgba(255, 99, 132, 0.7)",
+  lightYellow: "rgba(255, 205, 86, 0.7)",
+  shadowYellow: "rgba(255, 205, 86, 0.4)",
+  tealBlue2: "rgba(75, 192, 192, 0.7)",
+  shadowtealBlue2: "rgba(75, 192, 192, 0.4)",
+  blue: "rgba(22, 41, 56)",
+  skyBlue: "rgba(208, 228, 233)",
 };
 
-ChartJS.register(ArcElement, Tooltip, Legend);
-
-// Podemos pasar una función, array con .map(), a las propiedades, bgColor por ejemplo y borderColor.
+ChartJS.register(CategoryScale, ArcElement, Tooltip, Legend);
 
 export default function DoughnutData({allOperations}) {
-  // data.labels
-  // const tipoActivos = databaseInfo.map((activo) => activo.model); Recorrer o imprimir en data.labels cada tipo de activo. new SET [...new SET() + .map()] para eliminar duplicidades. Leer e investigar si esto es correcto o hay mejores formas de hacerlo.
-
-  //datasets.data
-  // Utilizaremos el .map() y el .filter() para añadir a esta propiedad el valor invertido de cada activo.
-
   const data = {
-    labels: allOperations?.map((type) => type.operationType).splice(0, 5),
+    labels: allOperations?.map((type) => type.operationType),
     datasets: [
       {
         label: "Price Open",
-        data: allOperations
-          ?.map((priceOpen) => priceOpen.priceOpen)
-          .splice(0, 5),
+        data: allOperations?.map((priceOpen) => priceOpen.priceOpen),
         backgroundColor: [
-          colorPalettes.yellow,
-          colorPalettes.tealBlue,
-          colorPalettes.otro,
-          colorPalettes.otro1,
-          colorPalettes.green,
+          chartColorsPalette.lightPink,
+          chartColorsPalette.lightYellow,
+          chartColorsPalette.orange,
+          chartColorsPalette.tealBlue2,
+          chartColorsPalette.lightYellow,
         ],
-        borderColor: colorPalettes.blue,
+        hoverBorderColor: chartColorsPalette.skyBlue,
+        borderColor: chartColorsPalette.blue,
         borderWidth: 2,
       },
     ],
@@ -49,17 +45,18 @@ export default function DoughnutData({allOperations}) {
   const options = {
     plugins: {
       legend: {
-        position: "bottom",
+        position: "left",
         labels: {
           font: {
             size: 12,
           },
+          color: chartColorsPalette.skyBlue,
           padding: 16,
         },
         rtl: false,
       },
       tooltip: {
-        borderColor: colorPalettes.skyBlue,
+        borderColor: chartColorsPalette.lightPink,
         borderWidth: 1,
       },
     },
@@ -67,15 +64,7 @@ export default function DoughnutData({allOperations}) {
 
   return (
     <Box width={400}>
-      <Typography
-        textAlign={"center"}
-        mb={2}
-        variant="h5"
-        color={colorPalettes.skyBlue}
-      >
-        Operations
-      </Typography>
-      <Doughnut data={data} options={options}></Doughnut>
+      <Pie data={data} options={options} />
     </Box>
   );
 }

@@ -1,7 +1,7 @@
-import axios from "axios";
 import {createContext, useContext} from "react";
-import toastFunctions from "../notifications/notificationService";
 import {useMutation} from "@tanstack/react-query";
+import axios from "axios";
+import toastFunctions from "../notifications/notificationService";
 
 const url = "http://localhost:3000/user";
 
@@ -9,7 +9,6 @@ const UserRegisterContext = createContext({
   signUp: () => {},
 });
 
-// Preguntar a Nacho como mejorar este código / Could not Fast Refresh.
 export default function UserRegisterContextProvider({children}) {
   const mutation = useMutation({
     mutationFn: async (values) => {

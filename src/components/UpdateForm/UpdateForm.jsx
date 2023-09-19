@@ -1,10 +1,11 @@
-import UpdateUserDataView from "./UpdateUserDataView";
+import UpdateFormView from "./UpdateFormView";
 import {IM_INVESTING_KEY} from "../../const/IM_investingKey";
 import {useMutation} from "@tanstack/react-query";
-import axios from "axios";
 import jwtDecode from "jwt-decode";
+import axios from "axios";
+import toastFunctions from "../../notifications/notificationService";
 
-export default function UpdateUserData() {
+export default function UpdateForm() {
   const token = JSON.parse(localStorage.getItem(IM_INVESTING_KEY));
 
   const config = {
@@ -16,7 +17,8 @@ export default function UpdateUserData() {
   const mutation = useMutation({
     mutationFn: async (values) => {
       const {name, surname, email} = values;
-      const user = jwtDecode(token);
+      const user = await jwtDecode(token);
+      console.log(user);
       return await axios.patch(
         `http://localhost:3000/user/${user.id}`,
         {
@@ -27,26 +29,30 @@ export default function UpdateUserData() {
         config
       );
     },
+    onError: (err) => {
+      if (err.response.status === 409) {
+        toastFunctions.userAlreadyExists();
+      }
+      if (err.response.status === 500) {
+        toastFunctions.internalServerError();
+      }
+    },
     onSuccess: (data) => {
       return data;
     },
   });
 
-  async function updateUser(values) {
+  async function userPatch(values) {
     try {
       const {data, status} = await mutation.mutateAsync(values);
       if (status === 200) {
-        console.log(data);
-        console.log("Done!");
+        const {message} = data;
+        toastFunctions.userSuccessfullyUploaded(message);
       }
     } catch (err) {
-      throw new Error(`something went wrong with the Sign-Up: ${err.message}`);
+      console.log(err);
     }
   }
 
-  return (
-    <>
-      <UpdateUserDataView updateUser={updateUser} />
-    </>
-  );
+  return <UpdateFormView userPatch={userPatch} />;
 }

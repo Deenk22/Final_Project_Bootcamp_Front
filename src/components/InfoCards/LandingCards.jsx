@@ -53,12 +53,7 @@ export default function LandingCards() {
     >
       {smallCard.map((card) => {
         return (
-          <Grid
-            key={card.title}
-            item
-            justifyContent="center"
-            textAlign={"center"}
-          >
+          <Grid key={card.title} item textAlign={"center"}>
             <Box
               width={"128px"}
               height={"132px"}

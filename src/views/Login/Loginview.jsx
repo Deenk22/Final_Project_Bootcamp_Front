@@ -54,7 +54,7 @@ export default function LoginView() {
             <Typography
               onClick={toggleForm}
               variant="body1"
-              color={colorPalettes.tealBlue}
+              color={colorPalettes.blue}
               borderBottom={"2px solid" + colorPalettes.tealBlue}
               padding={0.5}
             >

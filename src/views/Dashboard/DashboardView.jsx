@@ -1,7 +1,7 @@
 import DoughnutData from "../../components/Charts/DoughnutData";
+import BarData from "../../components/Charts/BarData";
 import {Box, Grid, Typography} from "@mui/material";
 import "./styleDashboard.css";
-import OperationsTable from "../../components/Tables/OperationsTable";
 
 const colorPalettes = {
   blue: "#162938",
@@ -14,7 +14,7 @@ const colorPalettes = {
 
 export default function DashboardView({allOperations}) {
   return (
-    <>
+    <main>
       <Grid
         container
         direction="row"
@@ -24,58 +24,14 @@ export default function DashboardView({allOperations}) {
         paddingY={16}
         bgcolor={colorPalettes.blue}
       >
-        <Grid item xs={10} sm={10} md={10} lg={4} padding={2}>
-          <Box
-            display={"flex"}
-            justifyContent={"center"}
-            border={"2px solid" + colorPalettes.blue}
-          >
-            <DoughnutData allOperations={allOperations} />
+        <Grid item xs={10} sm={10} md={10} lg={4}>
+          <Box display={"flex"} justifyContent={"center"}>
+            <BarData allOperations={allOperations} />
           </Box>
         </Grid>
-        <Grid item xs={10} sm={10} md={10} lg={6} padding={2}>
-          <Box padding={4} bgcolor={colorPalettes.blue}>
-            <Typography
-              variant="h3"
-              fontFamily={"Bebas Neue"}
-              color={colorPalettes.skyBlue}
-              mb={1}
-            >
-              Data Management / Portfolio
-            </Typography>
-            <Typography mb={2} variant="body1" color={colorPalettes.skyBlue}>
-              Improve your investment strategy with our Doughnut charts.
-              Streamline data management, merging key financial metrics to make
-              informed decisions. These visualisations provide valuable insights
-              for a data-driven investment approach.
-            </Typography>
-            <Typography
-              variant="h4"
-              fontFamily={"Bebas Neue"}
-              color={colorPalettes.skyBlue}
-            >
-              Recent Operations
-            </Typography>
-            {allOperations?.map((operation) => {
-              const {
-                id,
-                operationType,
-                priceOpen,
-                stopLoss,
-                takeProfit,
-                commission,
-              } = operation;
-              return (
-                <OperationsTable
-                  key={id}
-                  operationType={operationType}
-                  priceOpen={priceOpen}
-                  stopLoss={stopLoss}
-                  takeProfit={takeProfit}
-                  commission={commission}
-                />
-              );
-            })}
+        <Grid item xs={10} sm={10} md={10} lg={4}>
+          <Box display={"flex"} justifyContent={"center"}>
+            <DoughnutData allOperations={allOperations} />
           </Box>
         </Grid>
       </Grid>
@@ -109,6 +65,6 @@ export default function DashboardView({allOperations}) {
           ></Box>
         </Grid>
       </Grid>
-    </>
+    </main>
   );
 }
