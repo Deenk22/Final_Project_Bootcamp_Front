@@ -34,6 +34,16 @@ const chartColorsPalette = {
 export default function BarData({allOperations}) {
   const [isCompare, setIsCompare] = useState(null);
 
+  // const hola = [...new Set(allOperations?.map((type) => type.operationType))];
+  // console.log(hola);
+
+  // const operationSelectedData = allOperations?.find(
+  //   (operation) => operation.operationType === operationSelected
+  // );
+
+  // console.log(operationSelectedData);
+  // console.log(operationSelected);
+
   function handleCompare() {
     setIsCompare(!isCompare);
   }

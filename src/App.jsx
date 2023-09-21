@@ -16,6 +16,9 @@ import {Toaster} from "react-hot-toast";
 import Login from "./views/Login/Login";
 import "./App.css";
 import AddOperation from "./views/AddOperation/AddOperation";
+import AddStock from "./views/AddStock/AddStock";
+import AddStrategy from "./views/AddStrategy/AddStrategy";
+import OperationDetails from "./views/OperationDetails/OperationsDetails";
 
 // Arreglar las rutas ... cuando hago click en sign-in o sign-up, despues tengo que darle hacia atrás las mismas veces que le di a cada link.
 
@@ -66,6 +69,26 @@ function App() {
               >
                 <Route element={<Layout />}>
                   <Route index element={<AddOperation />} />
+                  <Route
+                    path="operationdetails/:id"
+                    element={<OperationDetails />}
+                  />
+                </Route>
+              </Route>
+              <Route
+                path="/addstock"
+                element={<PrivateRoute allowedUserRoles={[userRoles.ADMIN]} />}
+              >
+                <Route element={<Layout />}>
+                  <Route index element={<AddStock />} />
+                </Route>
+              </Route>
+              <Route
+                path="/addstrategy"
+                element={<PrivateRoute allowedUserRoles={[userRoles.ADMIN]} />}
+              >
+                <Route element={<Layout />}>
+                  <Route index element={<AddStrategy />} />
                 </Route>
               </Route>
             </Routes>

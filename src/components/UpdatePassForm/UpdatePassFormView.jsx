@@ -27,10 +27,10 @@ export default function UpdatePassFormView({passPatch}) {
 
   const {
     values,
-    errors,
     touched,
-    handleChange,
+    errors,
     handleBlur,
+    handleChange,
     handleSubmit,
     isSubmitting,
   } = useFormik({

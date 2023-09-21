@@ -20,13 +20,21 @@ export default function NavListDrawer({navLinks, NavLink, setOpen, logout}) {
       title: "Dashboard",
       path: "/dashboard",
     },
-    {
-      title: "Strategies",
-      path: "/strategies",
-    },
+    // {
+    //   title: "Strategies",
+    //   path: "/strategies",
+    // },
     {
       title: "Add Operation",
       path: "/addoperation",
+    },
+    {
+      title: "Add Stock",
+      path: "/addstock",
+    },
+    {
+      title: "Add Strategy",
+      path: "/addstrategy",
     },
     {
       title: "My Account",
@@ -52,12 +60,10 @@ export default function NavListDrawer({navLinks, NavLink, setOpen, logout}) {
             top: 8,
             color: chartColorsPalette.skyBlue,
             transition: "0.4s",
-            transform: "rotate(180deg) scale(1)",
+            transform: "rotate(180deg)",
             "&:hover": {
-              transform: "rotate(0deg) scale(1.2)",
+              transform: "rotate(0deg)",
               color: chartColorsPalette.skyBlue,
-              // border: 1,
-              // borderRadius: 2,
             },
           }}
         />

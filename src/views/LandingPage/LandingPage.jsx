@@ -98,7 +98,7 @@ export default function LandingPage() {
           justifyContent={"center"}
           width={"80%"}
           height={"2px"}
-          mt={16}
+          mt={14}
           mb={4}
           bgcolor={colorPalettes.blue}
         ></Box>

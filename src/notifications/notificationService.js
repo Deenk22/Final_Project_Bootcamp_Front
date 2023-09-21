@@ -29,8 +29,10 @@ const toastFunctions = {
     toast.success(userWelcomeMessageReg, toastStyles),
   userSuccessfullyUploaded: (message) => toast.success(message, toastStyles),
   passwordSuccessfullyUpdated: (message) => toast.success(message, toastStyles),
+  operationSuccessfullyAdded: (message) => toast.success(message, toastStyles),
 
   // Errors
+  authorizationError: (message) => toast.error(message, toastStyles),
   userAlreadyExists: () => toast.error("User already exists", toastStyles),
   authenticationError: () =>
     toast.error("Incorrect Email or Password", toastStyles),

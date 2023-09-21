@@ -48,7 +48,7 @@ export default function UpdatePassForm() {
         toastFunctions.passwordSuccessfullyUpdated(message);
       }
     } catch (err) {
-      console.log(err);
+      throw new Error(err);
     }
   }
 

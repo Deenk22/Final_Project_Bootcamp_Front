@@ -6,7 +6,7 @@ import {
   Tooltip,
   Legend,
 } from "chart.js";
-import {Box} from "@mui/material";
+import {Box, Skeleton, Typography} from "@mui/material";
 
 const chartColorsPalette = {
   orange: "rgba(255, 159, 64, 0.7)",
@@ -21,13 +21,25 @@ const chartColorsPalette = {
 
 ChartJS.register(CategoryScale, ArcElement, Tooltip, Legend);
 
-export default function DoughnutData({allOperations}) {
+export default function DoughnutData({allOperations, operationSelected}) {
+  const operationSelectedData = allOperations?.find(
+    (operation) => operation.operationType === operationSelected
+  );
+
+  const labelsInfo = operationSelectedData
+    ? Object.keys(operationSelectedData)
+    : null;
+
+  const labelsData = operationSelectedData
+    ? Object.values(operationSelectedData)
+    : null;
+
   const data = {
-    labels: allOperations?.map((type) => type.operationType),
+    labels: labelsInfo ? labelsInfo.toSpliced(0, 4) : labelsInfo,
     datasets: [
       {
-        label: "Price Open",
-        data: allOperations?.map((priceOpen) => priceOpen.priceOpen),
+        label: "Quantity",
+        data: labelsData,
         backgroundColor: [
           chartColorsPalette.lightPink,
           chartColorsPalette.lightYellow,
@@ -64,7 +76,46 @@ export default function DoughnutData({allOperations}) {
 
   return (
     <Box width={400}>
-      <Pie data={data} options={options} />
+      {operationSelected ? (
+        <Box>
+          {/* <Typography
+            variant="body2"
+            textAlign={"center"}
+            color={chartColorsPalette.skyBlue}
+          >
+            Operation Selected
+          </Typography> */}
+          <Typography
+            variant="h4"
+            textAlign={"center"}
+            color={chartColorsPalette.skyBlue}
+          >
+            {operationSelected}
+          </Typography>
+          <Pie data={data} options={options} />
+        </Box>
+      ) : (
+        <Box
+          display={"flex"}
+          flexDirection={"column"}
+          justifyContent={"center"}
+          alignItems={"center"}
+        >
+          <Typography
+            variant="h4"
+            textAlign={"center"}
+            color={chartColorsPalette.skyBlue}
+          >
+            Select Operations
+          </Typography>
+          <Skeleton
+            variant="rectangular"
+            width={350}
+            height={350}
+            sx={{bgcolor: "rgba(255, 205, 86, 0.1)", borderRadius: 50}}
+          />
+        </Box>
+      )}
     </Box>
   );
 }

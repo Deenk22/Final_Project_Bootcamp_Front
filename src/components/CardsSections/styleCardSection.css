@@ -1,5 +1,5 @@
-.title{
-  animation-duration: 0.4s;
+/* .title{
+  animation-duration: 0.8s;
   animation-name: animate-title;
   animation-fill-mode: forwards;
 }
@@ -13,7 +13,7 @@
     filter: blur(0px);
     transform: translateY(0px);
   }
-}
+} */
 
 
 .box {
@@ -23,8 +23,8 @@
 }
 @keyframes animate-box {
   0% {
-    filter: blur(16px);
-    transform: translateY(150px);
+    filter: blur(8px);
+    transform: translateY(64px);
   }
 
   100% {
@@ -32,26 +32,6 @@
     transform: translateY(0px);
   }
 }
-
-
-/* .photo-two {
-  animation-duration: 0.6s;
-  animation-name: animate-photo-two;
-  animation-fill-mode: forwards;
-}
-
-@keyframes animate-photo-two{
-  0% {
-    filter: blur(16px);
-    transform: translateY(100px);
-  }
-
-  100% {
-    filter: blur(0px);
-    transform: translateY(0px);
-    opacity: 1;
-  }
-} */
 
 
 .text{
@@ -61,8 +41,8 @@
 }
 @keyframes animate-text {
   0% {
-    filter: blur(16px);
-    transform: translateY(150px);
+    filter: blur(8px);
+    transform: translateY(64px);
   }
 
   100% {

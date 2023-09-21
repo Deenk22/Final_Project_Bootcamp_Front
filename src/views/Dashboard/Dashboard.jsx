@@ -3,31 +3,63 @@ import DashboardView from "./DashboardView";
 import axios from "axios";
 
 const url = "http://localhost:3000/operation/all";
-const token = localStorage.getItem("IM_INVESTING_KEY");
-const config = {
-  headers: {
-    Authorization: `Bearer ${token}`,
-  },
-};
+
+// const operationType = "OperacionDemo";
+// const urlTwo = `http://localhost:3000/operation/types/${operationType}`;
 
 export default function Dashboard() {
+  const token = JSON.parse(localStorage.getItem("IM_INVESTING_KEY"));
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
   const getAllOperations = async () => {
-    return await axios.get(url, config).then((res) => res.data);
+    const res = await axios.get(url, config);
+    return res.data;
   };
 
-  const {data, status} = useQuery({
+  // const getOperationByType = async () => {
+  //   const res = await axios.get(urlTwo, config);
+  //   return res.data;
+  // };
+
+  // Retry
+  const {
+    data: operations,
+    // isError: allOperationsError,
+    // status: allOperationsStatus,
+  } = useQuery({
     queryKey: ["allOperations"],
-    queryFn: () => getAllOperations(),
+    queryFn: getAllOperations,
+    cacheTime: 5 * 60 * 1000,
+    // refetchOnWindowFocus: true,
+    // notifyOnChangeProps:
+    // remove: () => void
   });
 
-  if (status === "loading") {
-    return <span>Loading...</span>;
-  }
-  const allOperations = data?.data;
+  // const {
+  //   data: operationTypeData,
+  // isError: operationTypeError,
+  // status: typeStatus,
+  // } = useQuery({
+  //   queryKey: ["operationType"],
+  //   queryFn: getOperationByType,
+  //   cacheTime: 5 * 60 * 1000,
+  // refetchOnWindowFocus: true,
+  // notifyOnChangeProps:
+  // remove: () => void
+  // });
+
+  const allOperations = operations?.data;
+  // const allOperationType = operationTypeData?.data;
 
   return (
     <>
-      <DashboardView allOperations={allOperations} />
+      <DashboardView
+        allOperations={allOperations}
+        // allOperationType={allOperationType}
+      />
     </>
   );
 }

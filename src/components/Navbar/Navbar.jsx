@@ -30,10 +30,10 @@ export default function Navbar() {
       title: "Dashboard",
       path: "/dashboard",
     },
-    {
-      title: "Strategies",
-      path: "/strategies",
-    },
+    // {
+    //   title: "Strategies",
+    //   path: "/strategies",
+    // },
     {
       title: "My Account",
       path: "/account",

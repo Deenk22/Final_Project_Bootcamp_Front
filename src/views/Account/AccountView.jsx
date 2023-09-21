@@ -50,8 +50,7 @@ export default function AccountView() {
             )}
             {isSettingsVisible ? (
               <Typography variant="body2">
-                For your security, we highly recommend that you choose a unique
-                password.
+                We recommend that you choose a unique password.
               </Typography>
             ) : (
               <Typography variant="body2">
