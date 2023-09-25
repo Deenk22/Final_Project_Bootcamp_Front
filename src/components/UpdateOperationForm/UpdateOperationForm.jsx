@@ -1,16 +1,16 @@
 import {useMutation} from "@tanstack/react-query";
-import AddOperationView from "./AddOperationFormView";
-import axios from "axios";
 import {IM_INVESTING_KEY} from "../../const/IM_investingKey";
-import {operationFormFunction} from "../../const/operationFormFunction";
+import UpdateOperationFormView from "./UpdateOperationFormView";
+import axios from "axios";
+import {updateOperationFunction} from "../../const/updateOperationFunction";
 import {
   doneNotification,
   errorNotification,
 } from "../../notifications/notification";
+import {useParams} from "react-router-dom";
 
-const url = "http://localhost:3000/operation";
-
-export default function AddOperationForm() {
+export default function UpdateOperationForm() {
+  const {id} = useParams();
   const token = JSON.parse(localStorage.getItem(IM_INVESTING_KEY));
 
   const config = {
@@ -20,18 +20,21 @@ export default function AddOperationForm() {
   };
 
   function onSubmit(values, actions) {
-    postOperation(values);
+    updateOperation(values);
     actions.resetForm();
   }
 
+  const url = `http://localhost:3000/operation/${id}`;
+
   const mutation = useMutation({
-    mutationKey: ["newOperation"],
+    mutationKey: ["updateOperation"],
     mutationFn: async (values) => {
-      return await axios.post(url, operationFormFunction(values), config);
+      return await axios.patch(url, updateOperationFunction(values), config);
     },
 
     onError: (err) => {
-      if (err.response.status === 500) {
+      console.log(err.response.status);
+      if (err.response.status === 404) {
         const {message} = err.response.data;
         errorNotification(message);
       }
@@ -42,7 +45,7 @@ export default function AddOperationForm() {
     },
   });
 
-  async function postOperation(values) {
+  async function updateOperation(values) {
     try {
       const {data, status} = await mutation.mutateAsync(values);
       if (status === 200) {
@@ -54,5 +57,9 @@ export default function AddOperationForm() {
     }
   }
 
-  return <AddOperationView onSubmit={onSubmit} />;
+  return (
+    <>
+      <UpdateOperationFormView onSubmit={onSubmit} />
+    </>
+  );
 }

@@ -6,21 +6,18 @@ import PrivateRoute from "./components/Router/PrivateRoute";
 import Layout from "./components/Layout/Layout";
 import LandingPage from "./views/LandingPage/LandingPage";
 import Dashboard from "./views/Dashboard/Dashboard";
-import Strategies from "./views/Strategies/Strategies";
-import Account from "./views/Account/Account";
-import Unauthorized from "./views/Unauthorized/Unauthorized";
-import {userRoles} from "./const/userRoles";
-import {ThemeProvider} from "@mui/material";
-import {typeScale} from "./const/typeScale";
-import {Toaster} from "react-hot-toast";
 import Login from "./views/Login/Login";
-import "./App.css";
+import Account from "./views/Account/Account";
 import AddOperation from "./views/AddOperation/AddOperation";
+import OperationDetails from "./views/OperationDetails/OperationsDetails";
 import AddStock from "./views/AddStock/AddStock";
 import AddStrategy from "./views/AddStrategy/AddStrategy";
-import OperationDetails from "./views/OperationDetails/OperationsDetails";
-
-// Arreglar las rutas ... cuando hago click en sign-in o sign-up, despues tengo que darle hacia atrás las mismas veces que le di a cada link.
+import Unauthorized from "./views/Unauthorized/Unauthorized";
+import {ThemeProvider} from "@mui/material";
+import {userRoles} from "./const/userRoles";
+import {Toaster} from "react-hot-toast";
+import {typeScale} from "./const/typeScale";
+import "./App.css";
 
 function App() {
   return (
@@ -43,6 +40,10 @@ function App() {
               >
                 <Route element={<Layout />}>
                   <Route index element={<Dashboard />} />
+                  <Route
+                    path="operationdetails/:id"
+                    element={<OperationDetails />}
+                  />
                 </Route>
               </Route>
               <Route
@@ -53,14 +54,6 @@ function App() {
               >
                 <Route element={<Layout />}>
                   <Route index element={<Account />} />
-                </Route>
-              </Route>
-              <Route
-                path="/strategies"
-                element={<PrivateRoute allowedUserRoles={[userRoles.ADMIN]} />}
-              >
-                <Route element={<Layout />}>
-                  <Route index element={<Strategies />} />
                 </Route>
               </Route>
               <Route

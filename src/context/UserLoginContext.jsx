@@ -3,11 +3,29 @@ import {useMutation} from "@tanstack/react-query";
 import axios from "axios";
 import jwtDecode from "jwt-decode";
 import {IM_INVESTING_KEY} from "../const/IM_investingKey";
-import toastFunctions from "../notifications/notificationService";
+import {toast} from "react-hot-toast";
 
 // Tareas pendientes > 1. / Modificar el código, eliminar TanStack del contexto.
 
 const url = "http://localhost:3000/user/login";
+
+const colorPalettes = {
+  blue: "#162938",
+  skyBlue: "#D0E4E9",
+};
+
+const toastStyles = {
+  duration: 2500,
+  position: "top-center",
+  style: {
+    marginTop: "64px",
+    margin: 0,
+    padding: 16,
+    fontFamily: "sans-serif",
+    backgroundColor: colorPalettes.blue,
+    color: colorPalettes.skyBlue,
+  },
+};
 
 const UserLoginContext = createContext({
   user: null,
@@ -30,9 +48,11 @@ export default function UserLoginContextProvider({children}) {
 
     onError: (err) => {
       if (err.response.status === 401) {
-        toastFunctions.authenticationError();
+        const {message} = err.response.data;
+        toast.error(message, toastStyles);
       } else if (err.response.status === 404) {
-        toastFunctions.databaseNotFoundUser();
+        const {message} = err.response.data;
+        toast.error(message, toastStyles);
       }
     },
 

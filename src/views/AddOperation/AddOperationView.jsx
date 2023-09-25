@@ -13,15 +13,29 @@ const chartColorsPalette = {
   skyBlue: "rgba(208, 228, 233)",
 };
 
-export default function AddOperationView({operationTypeData}) {
+export default function AddOperationView({allOperations}) {
   return (
     <>
+      <Grid
+        container
+        direction={"column"}
+        justifyContent={"center"}
+        alignItems={"center"}
+      >
+        <Grid item xs={10}>
+          <Box>
+            <Typography textAlign={"center"} variant="h3" mb={2}>
+              Add New Operation
+            </Typography>
+            <AddOperationForm />
+          </Box>
+        </Grid>
+        <Grid item xs={10}>
+          <Box></Box>
+        </Grid>
+      </Grid>
       <Box color={chartColorsPalette.blue}>
-        <Typography textAlign={"center"} variant="h3" mb={4}>
-          Add New Operation
-        </Typography>
-        <AddOperationForm />
-        <Typography variant="h3" textAlign={"center"} mt={4}>
+        <Typography variant="h3" textAlign={"center"} mt={2}>
           Last Operation Added
         </Typography>
       </Box>
@@ -29,21 +43,24 @@ export default function AddOperationView({operationTypeData}) {
         container
         direction={"row"}
         justifyContent={"center"}
-        spacing={4}
-        mt={2}
+        spacing={2}
+        mt={4}
         mb={8}
       >
-        {operationTypeData
+        {allOperations
           ?.map((operationByType) => {
             const {...props} = operationByType;
             const {id} = props;
             return (
               <Grid item key={id} xs={10} sm={5} md={5} lg={3}>
-                <OperationByTypeCard props={props} />
+                <OperationByTypeCard
+                  props={props}
+                  allOperations={allOperations}
+                />
               </Grid>
             );
           })
-          .splice(0, 8)}
+          .toSpliced(4)}
       </Grid>
     </>
   );

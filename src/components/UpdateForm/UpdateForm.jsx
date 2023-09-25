@@ -14,6 +14,11 @@ export default function UpdateForm() {
     },
   };
 
+  function onSubmit(values, actions) {
+    userPatch(values);
+    actions.resetForm();
+  }
+
   const mutation = useMutation({
     mutationFn: async (values) => {
       const {name, surname, email} = values;
@@ -54,5 +59,5 @@ export default function UpdateForm() {
     }
   }
 
-  return <UpdateFormView userPatch={userPatch} />;
+  return <UpdateFormView userPatch={userPatch} onSubmit={onSubmit} />;
 }

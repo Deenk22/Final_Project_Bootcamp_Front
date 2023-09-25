@@ -45,7 +45,6 @@ body{
 /*TextField-Error*/
 .textfield-error label {
   color: rgb(235, 68, 17);
-  transition: 150ms;
 }
 
 .allLinks{

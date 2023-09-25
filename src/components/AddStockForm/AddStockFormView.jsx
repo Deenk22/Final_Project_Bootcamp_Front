@@ -1,7 +1,7 @@
 import {useFormik} from "formik";
 import {initialValues} from "./utils/addStockIV";
 import {addStockSchema} from "./addStockSchema";
-import {Button, TextField, Typography} from "@mui/material";
+import {Button, TextField} from "@mui/material";
 
 const chartColorsPalette = {
   orange: "rgba(255, 159, 64, 0.7)",
@@ -15,12 +15,7 @@ const chartColorsPalette = {
   tealBlue: "#367588",
 };
 
-export default function AddStockFormView({postStock}) {
-  function onSubmit(values, actions) {
-    postStock(values);
-    actions.resetForm();
-  }
-
+export default function AddStockFormView({onSubmit}) {
   const {
     values,
     touched,
@@ -44,15 +39,10 @@ export default function AddStockFormView({postStock}) {
         onBlur={handleBlur}
         type="text"
         id="name"
-        label="Strategy Name"
+        label={errors.name ? errors.name : "Stock Name"}
         variant="outlined"
         className={errors.name && touched.name ? "textfield-error" : ""}
       />
-      {errors.name && touched.name && (
-        <Typography sx={{marginLeft: 4, marginRight: 4}} variant="body2">
-          {errors.name}
-        </Typography>
-      )}
       <TextField
         sx={{width: 250}}
         value={values.country}
@@ -62,13 +52,7 @@ export default function AddStockFormView({postStock}) {
         id="country"
         label="Country"
         variant="outlined"
-        className={errors.country && touched.country ? "textfield-error" : ""}
       />
-      {errors.country && touched.country && (
-        <Typography sx={{marginLeft: 4, marginRight: 4}} variant="body2">
-          {errors.country}
-        </Typography>
-      )}
       <TextField
         sx={{width: 250}}
         value={values.ticker}
@@ -76,15 +60,10 @@ export default function AddStockFormView({postStock}) {
         onBlur={handleBlur}
         type="text"
         id="ticker"
-        label="Ticker"
+        label={errors.ticker ? errors.ticker : "Ticker"}
         variant="outlined"
         className={errors.ticker && touched.ticker ? "textfield-error" : ""}
       />
-      {errors.ticker && touched.ticker && (
-        <Typography sx={{marginLeft: 4, marginRight: 4}} variant="body2">
-          {errors.ticker}
-        </Typography>
-      )}
       <TextField
         sx={{width: 250}}
         value={values.type}
@@ -94,13 +73,7 @@ export default function AddStockFormView({postStock}) {
         id="type"
         label="Type"
         variant="outlined"
-        className={errors.type && touched.type ? "textfield-error" : ""}
       />
-      {errors.type && touched.type && (
-        <Typography sx={{marginLeft: 4, marginRight: 4}} variant="body2">
-          {errors.type}
-        </Typography>
-      )}
       <TextField
         sx={{width: 250}}
         value={values.sector}
@@ -110,13 +83,7 @@ export default function AddStockFormView({postStock}) {
         id="sector"
         label="Sector"
         variant="outlined"
-        className={errors.sector && touched.sector ? "textfield-error" : ""}
       />
-      {errors.sector && touched.sector && (
-        <Typography sx={{marginLeft: 4, marginRight: 4}} variant="body2">
-          {errors.sector}
-        </Typography>
-      )}
       <TextField
         sx={{width: 250}}
         value={values.industry}
@@ -126,13 +93,7 @@ export default function AddStockFormView({postStock}) {
         id="industry"
         label="Industry"
         variant="outlined"
-        className={errors.industry && touched.industry ? "textfield-error" : ""}
       />
-      {errors.industry && touched.industry && (
-        <Typography sx={{marginLeft: 4, marginRight: 4}} variant="body2">
-          {errors.industry}
-        </Typography>
-      )}
       <Button
         variant="contained"
         sx={{
@@ -152,7 +113,7 @@ export default function AddStockFormView({postStock}) {
         disabled={isSubmitting}
         type="submit"
       >
-        Save
+        Add
       </Button>
     </form>
   );

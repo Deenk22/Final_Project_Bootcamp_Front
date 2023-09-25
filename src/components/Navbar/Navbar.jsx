@@ -23,17 +23,13 @@ const colorPalettes = {
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
-  const {logout} = useUserLoginContext();
+  const {logout} = useUserLoginContext(false);
 
   const navLinks = [
     {
       title: "Dashboard",
       path: "/dashboard",
     },
-    // {
-    //   title: "Strategies",
-    //   path: "/strategies",
-    // },
     {
       title: "My Account",
       path: "/account",
@@ -48,11 +44,19 @@ export default function Navbar() {
       >
         <Toolbar>
           <IconButton
+            size="large"
             onMouseEnter={() => setOpen(true)}
             onClick={() => setOpen(true)}
             // sx={{display: {xs: "flex", sm: "none"}}}
           >
-            <MenuIcon sx={{color: colorPalettes.blue}} />
+            <MenuIcon
+              sx={{
+                position: "fixed",
+                color: colorPalettes.blue,
+                bgcolor: colorPalettes.skyBlue,
+                borderRadius: 4,
+              }}
+            />
           </IconButton>
           <Box
             color={colorPalettes.blue}
@@ -64,6 +68,7 @@ export default function Navbar() {
               open={open}
               anchor="left"
               onClose={() => setOpen(false)}
+
               // sx={{display: {xs: "flex", sm: "none"}}}
             >
               <NavListDrawer

@@ -1,7 +1,7 @@
 import {useFormik} from "formik";
-import {initialValues} from "./utils/addOperationIV";
-import {addOperationSchema} from "./addOperationSchema";
-import {TextField, Button, Box} from "@mui/material";
+import {initialValues} from "./utils/updateOperationIV";
+import {updateFormSchema} from "./updateOperationSchema";
+import {Box, Button, TextField} from "@mui/material";
 
 const chartColorsPalette = {
   orange: "rgba(255, 159, 64, 0.7)",
@@ -15,7 +15,7 @@ const chartColorsPalette = {
   tealBlue: "#367588",
 };
 
-export default function AddOperationView({onSubmit}) {
+export default function UpdateOperationFormView({onSubmit}) {
   const {
     values,
     errors,
@@ -26,7 +26,7 @@ export default function AddOperationView({onSubmit}) {
     isSubmitting,
   } = useFormik({
     initialValues,
-    validationSchema: addOperationSchema,
+    validationSchema: updateFormSchema,
     onSubmit,
   });
 
@@ -53,9 +53,7 @@ export default function AddOperationView({onSubmit}) {
               onBlur={handleBlur}
               type="text"
               id="operationType"
-              label={
-                errors.operationType ? errors.operationType : "Operation Type"
-              }
+              label="Operation Type"
               variant="outlined"
               className={
                 errors.operationType && touched.operationType
@@ -159,7 +157,6 @@ export default function AddOperationView({onSubmit}) {
               border: "2px solid " + chartColorsPalette.blue,
               borderTopLeftRadius: 16,
               borderBottomRightRadius: 16,
-              transition: "0.2s",
               ":hover": {
                 color: chartColorsPalette.blue,
                 bgcolor: chartColorsPalette.skyBlue,

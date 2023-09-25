@@ -15,12 +15,7 @@ const chartColorsPalette = {
   tealBlue: "#367588",
 };
 
-export default function UpdateFormView({userPatch}) {
-  function onSubmit(values, actions) {
-    userPatch(values);
-    actions.resetForm();
-  }
-
+export default function UpdateFormView({onSubmit}) {
   const {
     values,
     touched,

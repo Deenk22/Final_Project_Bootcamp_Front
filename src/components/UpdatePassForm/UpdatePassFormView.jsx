@@ -18,12 +18,8 @@ const chartColorsPalette = {
   tealBlue: "#367588",
 };
 
-export default function UpdatePassFormView({passPatch}) {
+export default function UpdatePassFormView({onSubmit}) {
   // const [isPasswordVisible, setIsPasswordVisible] = useState(false);
-  function onSubmit(values, actions) {
-    passPatch(values);
-    actions.resetForm();
-  }
 
   const {
     values,

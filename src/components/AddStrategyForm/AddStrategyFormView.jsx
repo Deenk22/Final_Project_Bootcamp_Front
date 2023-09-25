@@ -1,7 +1,7 @@
 import {useFormik} from "formik";
 import {initialValues} from "./utils/addStrategy";
 import {addStrategySchema} from "./addStrategySchema";
-import {Button, TextField, Typography} from "@mui/material";
+import {Button, TextField} from "@mui/material";
 
 const chartColorsPalette = {
   orange: "rgba(255, 159, 64, 0.7)",
@@ -15,12 +15,7 @@ const chartColorsPalette = {
   tealBlue: "#367588",
 };
 
-export default function AddStrategyFormView({postStrategy}) {
-  function onSubmit(values, actions) {
-    postStrategy(values);
-    actions.resetForm();
-  }
-
+export default function AddStrategyFormView({onSubmit}) {
   const {
     values,
     touched,
@@ -44,15 +39,10 @@ export default function AddStrategyFormView({postStrategy}) {
         onBlur={handleBlur}
         type="text"
         id="name"
-        label="Strategy Name"
+        label={errors.name ? errors.name : "Strategy Name"}
         variant="outlined"
         className={errors.name && touched.name ? "textfield-error" : ""}
       />
-      {errors.name && touched.name && (
-        <Typography sx={{marginLeft: 4, marginRight: 4}} variant="body2">
-          {errors.name}
-        </Typography>
-      )}
       <TextField
         sx={{width: 250}}
         value={values.description}
@@ -62,15 +52,7 @@ export default function AddStrategyFormView({postStrategy}) {
         id="description"
         label="Description"
         variant="outlined"
-        className={
-          errors.description && touched.description ? "textfield-error" : ""
-        }
       />
-      {errors.description && touched.description && (
-        <Typography sx={{marginLeft: 4, marginRight: 4}} variant="body2">
-          {errors.description}
-        </Typography>
-      )}
       <TextField
         sx={{width: 250}}
         value={values.budget}
@@ -78,15 +60,11 @@ export default function AddStrategyFormView({postStrategy}) {
         onBlur={handleBlur}
         type="number"
         id="budget"
-        label="Budget"
+        label={errors.budget ? errors.budget : "Budget"}
         variant="outlined"
         className={errors.budget && touched.budget ? "textfield-error" : ""}
       />
-      {errors.budget && touched.budget && (
-        <Typography sx={{marginLeft: 4, marginRight: 4}} variant="body2">
-          {errors.budget}
-        </Typography>
-      )}
+
       <Button
         variant="contained"
         sx={{
@@ -106,7 +84,7 @@ export default function AddStrategyFormView({postStrategy}) {
         disabled={isSubmitting}
         type="submit"
       >
-        Save
+        Add
       </Button>
     </form>
   );

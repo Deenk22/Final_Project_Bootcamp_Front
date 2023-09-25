@@ -1,8 +1,5 @@
 import {Box, Grid, Typography} from "@mui/material";
-import {useInView} from "react-intersection-observer";
 import "./styleCardSection.css";
-
-// Arreglar o utilizar ternaria para realizar el cambio correctamente.
 
 const chartColorsPalette = {
   orange: "rgba(255, 159, 64, 0.7)",
@@ -17,39 +14,24 @@ const chartColorsPalette = {
 };
 
 export default function CardsSections() {
-  const {ref: boxRef, inView: boxIsVisible} = useInView({
-    rootMargin: "8px",
-    threshold: 0,
-    triggerOnce: true,
-  });
-  const {ref: myRef, inView: textVisible} = useInView({
-    rootMargin: "8px",
-    threshold: 0,
-    triggerOnce: true,
-  });
-
   return (
     <Grid
       container
       justifyContent="space-evenly"
       alignItems={"center"}
       mt={12}
-      mb={8}
+      mb={16}
     >
-      <Grid item xs={10} sm={10} md={10} lg={5} ref={boxRef}>
-        <Box
-          className={`${boxIsVisible ? "box" : ""}`}
-          display={"flex"}
-          gap={1}
-          mb={4}
-        >
+      <Grid item xs={10} sm={10} md={10} lg={5}>
+        <Box className="animation-cards" display={"flex"} gap={1} mb={4}>
           <Box
             display={"flex"}
             flexDirection={"column"}
             justifyContent={"center"}
             alignItems={"center"}
-            width={"600px"}
+            width={"400px"}
             height={"150px"}
+            padding={1}
             border={"2px solid " + chartColorsPalette.tealBlue}
             sx={{borderTopLeftRadius: 32, borderBottomRightRadius: 32}}
           >
@@ -64,14 +46,13 @@ export default function CardsSections() {
               <Typography variant="body1">Profits</Typography>
             </Box>
             <Typography variant="h3" color={chartColorsPalette.tealBlue}>
-              + 9520$
+              9520$
             </Typography>
           </Box>
           <Box
             display={"flex"}
-            flexDirection={"row"}
             alignItems={"center"}
-            width={"600px"}
+            width={"400px"}
             height={"150px"}
             borderRadius={4}
             gap={2}
@@ -88,33 +69,8 @@ export default function CardsSections() {
             >
               Manage my Investment
             </Typography>
-            <Box
-              display={"flex"}
-              flexDirection={"column"}
-              gap={0.5}
-              padding={2}
-              color={chartColorsPalette.skyBlue}
-            >
-              <Typography
-                variant="body1"
-                display={"flex"}
-                alignItems={"center"}
-                gap={1}
-              >
-                Modifies Operations
-              </Typography>
-              <Typography
-                variant="body1"
-                display={"flex"}
-                alignItems={"center"}
-                gap={1}
-              >
-                Choose Strategy
-              </Typography>
-            </Box>
           </Box>
         </Box>
-
         <Box
           display={"flex"}
           justifyContent={"center"}
@@ -128,13 +84,8 @@ export default function CardsSections() {
           }}
         ></Box>
       </Grid>
-      <Grid item xs={10} sm={10} md={10} lg={3} ref={myRef}>
-        <Box
-          width={"100%"}
-          height={"20vh"}
-          mt={4}
-          className={`${textVisible ? "text" : ""}`}
-        >
+      <Grid item xs={10} sm={10} md={10} lg={3}>
+        <Box width={"100%"} height={"20vh"} mt={4}>
           <Typography
             component={"h1"}
             variant="h3"

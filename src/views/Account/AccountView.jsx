@@ -61,15 +61,7 @@ export default function AccountView() {
           </Box>
         </Grid>
         <Grid item xs={3}>
-          <Box
-            width={600}
-            height={300}
-            sx={{
-              backgroundImage: `url('../src/assets/buildings.jpg')`,
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-            }}
-          ></Box>
+          <Box width={600} height={300}></Box>
         </Grid>
       </Grid>
     </>

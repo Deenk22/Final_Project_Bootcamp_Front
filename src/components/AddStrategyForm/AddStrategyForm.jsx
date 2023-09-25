@@ -1,7 +1,12 @@
-import {useMutation} from "@tanstack/react-query";
-import {IM_INVESTING_KEY} from "../../const/IM_investingKey";
 import AddStrategyFormView from "./AddStrategyFormView";
+import {useMutation} from "@tanstack/react-query";
 import axios from "axios";
+import {IM_INVESTING_KEY} from "../../const/IM_investingKey";
+import {strategyFormFunction} from "../../const/strategyFormFunction";
+import {
+  doneNotification,
+  errorNotification,
+} from "../../notifications/notification";
 
 export default function AddStrategyForm() {
   const token = JSON.parse(localStorage.getItem(IM_INVESTING_KEY));
@@ -12,22 +17,26 @@ export default function AddStrategyForm() {
     },
   };
 
+  function onSubmit(values, actions) {
+    postStrategy(values);
+    actions.resetForm();
+  }
+
   const mutation = useMutation({
     mutationFn: async (values) => {
-      const {...strategy} = values;
       return await axios.post(
         `http://localhost:3000/strategy`,
-        {
-          name: strategy.name,
-          description: strategy.description ? strategy.description : null,
-          budget: strategy.budget ? strategy.budget : null,
-        },
+        strategyFormFunction(values),
         config
       );
     },
+
     onError: (err) => {
-      console.log(err);
+      if (err?.response.status === 500) {
+        errorNotification("Internal Server Error");
+      }
     },
+
     onSuccess: (data) => {
       return data;
     },
@@ -37,7 +46,8 @@ export default function AddStrategyForm() {
     try {
       const {data, status} = await mutation.mutateAsync(values);
       if (status === 200) {
-        console.log(data);
+        const message = data?.message;
+        doneNotification(message);
       }
     } catch (err) {
       throw new Error(err);
@@ -46,7 +56,7 @@ export default function AddStrategyForm() {
 
   return (
     <>
-      <AddStrategyFormView postStrategy={postStrategy} />
+      <AddStrategyFormView postStrategy={postStrategy} onSubmit={onSubmit} />
     </>
   );
 }

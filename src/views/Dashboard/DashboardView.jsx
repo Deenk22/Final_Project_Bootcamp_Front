@@ -1,55 +1,36 @@
-import {useState} from "react";
-import DoughnutData from "../../components/Charts/DoughnutData";
+// import DoughnutData from "../../components/Charts/DoughnutData";
 import BarData from "../../components/Charts/BarData";
+import BasicTable from "../../components/Tables/BasicTable";
+import DateForm from "../../components/DateForm/DateForm";
+import OperationsCard from "../../components/InfoCards/OperationsCard";
+import OperationDateSearchCard from "../../components/InfoCards/OperationDateSearchCard";
 import {Box, Grid, Typography} from "@mui/material";
-import InputLabel from "@mui/material/InputLabel";
-import MenuItem from "@mui/material/MenuItem";
-import FormControl from "@mui/material/FormControl";
-import Select from "@mui/material/Select";
 import "./styleDashboard.css";
+import OperationTabs from "../../components/Tabs/OperationTabs";
 
-const colorPalettes = {
-  blue: "#162938",
-  green: "#49726B",
-  skyBlue: "#D0E4E9",
-  tealBlue: "#367588",
-  yellow: "#eab308",
-  indigo: "#6366f1",
+const chartColorsPalette = {
+  orange: "rgba(255, 159, 64, 0.7)",
+  lightPink: "rgba(255, 99, 132, 0.7)",
+  lightYellow: "rgba(255, 205, 86, 0.7)",
+  shadowYellow: "rgba(255, 205, 86, 0.4)",
+  tealBlue2: "rgba(75, 192, 192, 0.7)",
+  shadowtealBlue2: "rgba(75, 192, 192, 0.4)",
+  blue: "rgba(22, 41, 56)",
+  skyBlue: "rgba(208, 228, 233)",
 };
 
-export default function DashboardView({allOperations}) {
-  const [operationSelected, setOperationSelected] = useState("");
-
-  const handleChange = (event) => {
-    const operationSelect = event.target.value;
-    setOperationSelected(operationSelect);
-  };
-
+export default function DashboardView({
+  startDate,
+  endDate,
+  allOperations,
+  operationsByDate,
+  handleSearchByDate,
+  handleEndDateChange,
+  handleStartDateChange,
+  getOperationDateError,
+}) {
   return (
     <main>
-      <Box display={"flex"} justifyContent={"center"} alignItems={"center"}>
-        <FormControl sx={{width: 350}}>
-          <InputLabel id="demo-simple-select-label">Operations</InputLabel>
-          <Select
-            size="small"
-            labelId="demo-simple-select-label"
-            id="demo-simple-select"
-            value={operationSelected}
-            label="Operation Type"
-            onChange={handleChange}
-          >
-            {allOperations?.map((operation) => {
-              const {id, operationType} = operation;
-              return (
-                <MenuItem key={id} value={operationType}>
-                  {operationType}
-                </MenuItem>
-              );
-            })}
-          </Select>
-        </FormControl>
-      </Box>
-
       <Grid
         container
         direction="row"
@@ -57,51 +38,139 @@ export default function DashboardView({allOperations}) {
         alignItems={"center"}
         mt={4}
         paddingY={16}
-        bgcolor={colorPalettes.blue}
+        bgcolor={chartColorsPalette.blue}
       >
         <Grid item xs={10} sm={10} md={10} lg={4}>
-          <Box display={"flex"} justifyContent={"center"}>
+          <Box
+            display={"flex"}
+            flexDirection={"column"}
+            justifyContent={"center"}
+          >
+            <Typography
+              textAlign={"center"}
+              variant="h4"
+              mb={4}
+              color={chartColorsPalette.skyBlue}
+            >
+              Last Operations Added
+            </Typography>
             <BarData allOperations={allOperations} />
           </Box>
         </Grid>
         <Grid item xs={10} sm={10} md={10} lg={4}>
-          <Box display={"flex"} justifyContent={"center"}>
-            <DoughnutData
-              allOperations={allOperations}
-              operationSelected={operationSelected}
-            />
+          <Box>
+            <OperationTabs allOperations={allOperations} />
           </Box>
         </Grid>
       </Grid>
       {/* Este grid deberia ir en una section fuera de aqui */}
+
       <Grid
         container
-        direction="row"
-        justifyContent="space-evenly"
-        alignItems="center"
-        bgcolor={colorPalettes.skyBlue}
+        direction={"row"}
+        display={"flex"}
+        justifyContent={"center"}
+        mt={14}
+        spacing={1}
       >
-        <Grid item xs={10} sm={10} md={6} mb={4}>
-          <Box mt={4} padding={16}>
-            <Typography variant="h4" color={colorPalettes.blue}>
-              Total Capital Invested
-            </Typography>
-            <Typography variant="body2" color={colorPalettes.blue}>
-              Improve your investment strategy with our Doughnut charts.
-              Streamline data management, merging key financial metrics to make
-              informed decisions. These visualisations provide valuable insights
-              for a data-driven investment approach.
-            </Typography>
+        {allOperations
+          ?.map((operation) => {
+            const {operationType, id, commission, takeProfit, stopLoss} =
+              operation;
+            return (
+              <Grid
+                className="animation-operation-cards"
+                item
+                xs={12}
+                sm={5}
+                md={3}
+                lg={2}
+                key={id}
+                display={"flex"}
+                flexDirection={"row"}
+                justifyContent={"center"}
+              >
+                <OperationsCard
+                  operationType={operationType}
+                  id={id}
+                  commission={commission}
+                  takeProfit={takeProfit}
+                  stopLoss={stopLoss}
+                />
+              </Grid>
+            );
+          })
+          .toSpliced(4)}
+      </Grid>
+      <Grid
+        container
+        direction={"row"}
+        display={"flex"}
+        justifyContent={"center"}
+        mt={8}
+      >
+        <Grid item>
+          <Box className="fade-table">
+            <BasicTable allOperations={allOperations} />
           </Box>
         </Grid>
-        <Grid item xs={10} sm={10} md={4}>
-          <Box
-            display={"flex"}
-            justifyContent={"center"}
-            padding={2}
-            className="blur-effect-doughnut-chart-right"
-          ></Box>
+        <Grid item>
+          <Box className="fade-table"></Box>
         </Grid>
+      </Grid>
+      <Grid
+        item
+        xs={10}
+        sm={10}
+        md={4}
+        display={"flex"}
+        flexDirection={"row"}
+        justifyContent={"center"}
+      >
+        <Box
+          display={"flex"}
+          flexDirection={"column"}
+          justifyContent={"center"}
+          alignItems={"center"}
+          padding={2}
+          className="blur-effect-doughnut-chart-right"
+        >
+          <Box mb={4}>
+            <DateForm
+              startDate={startDate}
+              endDate={endDate}
+              handleSearchByDate={handleSearchByDate}
+              handleEndDateChange={handleEndDateChange}
+              handleStartDateChange={handleStartDateChange}
+            />
+            {getOperationDateError === 400 ? (
+              <Typography variant="body2">
+                Try another range of dates
+              </Typography>
+            ) : null}
+          </Box>
+          <Box
+          // sx={{
+          //   display: "grid",
+          //   gridTemplateColumns: "repeat(2, 1fr)",
+          //   gap: 1,
+          // }}
+          >
+            {operationsByDate
+              ?.map((operationBydate) => {
+                const {id, operationType} = operationBydate;
+                return (
+                  <Box key={id}>
+                    <OperationDateSearchCard
+                      id={id}
+                      operationType={operationType}
+                    />
+                  </Box>
+                );
+              })
+              .toSpliced(4)}
+          </Box>
+        </Box>
       </Grid>
     </main>
   );

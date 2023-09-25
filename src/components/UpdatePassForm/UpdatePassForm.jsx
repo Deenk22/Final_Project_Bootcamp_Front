@@ -1,9 +1,9 @@
-import {useMutation} from "@tanstack/react-query";
-import {IM_INVESTING_KEY} from "../../const/IM_investingKey";
 import UpdatePassFormView from "./UpdatePassFormView";
+import {useMutation} from "@tanstack/react-query";
 import jwtDecode from "jwt-decode";
 import axios from "axios";
 import toastFunctions from "../../notifications/notificationService";
+import {IM_INVESTING_KEY} from "../../const/IM_investingKey";
 
 export default function UpdatePassForm() {
   const token = JSON.parse(localStorage.getItem(IM_INVESTING_KEY));
@@ -13,6 +13,11 @@ export default function UpdatePassForm() {
       Authorization: `Bearer ${token}`,
     },
   };
+
+  function onSubmit(values, actions) {
+    passPatch(values);
+    actions.resetForm();
+  }
 
   const mutation = useMutation({
     mutationFn: async (values) => {
@@ -54,7 +59,7 @@ export default function UpdatePassForm() {
 
   return (
     <>
-      <UpdatePassFormView passPatch={passPatch} />
+      <UpdatePassFormView passPatch={passPatch} onSubmit={onSubmit} />
     </>
   );
 }

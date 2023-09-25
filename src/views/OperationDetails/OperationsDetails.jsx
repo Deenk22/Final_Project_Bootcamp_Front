@@ -1,12 +1,11 @@
-import axios from "axios";
 import OperationDetailsView from "./OperationDetailsView";
-import {useQuery} from "@tanstack/react-query";
-import {IM_INVESTING_KEY} from "../../const/IM_investingKey";
 import {useParams} from "react-router-dom";
+import {useQuery} from "@tanstack/react-query";
+import axios from "axios";
+import {IM_INVESTING_KEY} from "../../const/IM_investingKey";
 
 export default function OperationDetails() {
   const {id} = useParams();
-  console.log(id);
   const token = JSON.parse(localStorage.getItem(IM_INVESTING_KEY));
   const config = {
     headers: {
@@ -20,17 +19,13 @@ export default function OperationDetails() {
       .then((res) => res.data);
   };
 
-  const {data, status} = useQuery({
+  const {data} = useQuery({
     queryKey: ["operationdetails"],
     queryFn: getOperationId,
     keepPreviousData: true,
   });
 
-  if (status === "loading") {
-    return <span>Loading...</span>;
-  }
   const operationDetailsInfo = data?.data;
-  console.log(operationDetailsInfo);
 
   return (
     <>
