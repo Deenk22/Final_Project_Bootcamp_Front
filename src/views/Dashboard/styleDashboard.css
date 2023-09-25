@@ -35,13 +35,11 @@
 
 /* blur-slide-effect > */
 
-
-.animation-operation-cards{
+.animation-operation-cards {
   animation: fadeMovement linear both;
   animation-timeline: view();
   animation-range: entry 5% cover 25%;
 }
-
 
 @keyframes fadeMovement {
   from {
@@ -67,7 +65,7 @@
   }
 }
 
-.fade-table{
+.fade-table {
   animation: fadeTable linear both;
   animation-timeline: view();
   animation-range: entry 5% cover 15%;
@@ -96,3 +94,15 @@
     transform: translate();
   }
 }
+
+/* @media (max-width: 300px) {
+  .grafica {
+    width: 60px;
+  }
+}
+
+@media (min-width: 301px) and (max-width: 800px) {
+  .grafica {
+    width: 600px;
+  }
+} */
