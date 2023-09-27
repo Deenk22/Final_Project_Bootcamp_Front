@@ -12,8 +12,8 @@ export default function Dashboard() {
   const [searchByDate, setSearchByDate] = useState(null);
   const [getOperationDateError, setGetOperationDateError] = useState("");
 
-  // get01
-  const url = "http://localhost:3000/operation/all";
+  // get01 getAllOperations
+  const allOperationsUrl = "http://localhost:3000/operation/all";
 
   const token = JSON.parse(localStorage.getItem(IM_INVESTING_KEY));
   const config = {
@@ -23,8 +23,8 @@ export default function Dashboard() {
   };
 
   const getAllOperations = async () => {
-    const res = await axios.get(url, config);
-    return res.data;
+    const {data} = await axios.get(allOperationsUrl, config);
+    return data;
   };
 
   const {data: operations} = useQuery({
@@ -37,7 +37,7 @@ export default function Dashboard() {
     // remove: () => void
   });
 
-  // get02
+  // get02 getOperationsBetween
   const urlDate = `http://localhost:3000/operation/date/${startDate}/${endDate}`;
 
   const handleStartDateChange = (e) => {
@@ -77,8 +77,46 @@ export default function Dashboard() {
     }
   }
 
+  // get03 getAllStrategies
+  const allStrategiesUrl = "http://localhost:3000/strategy/all";
+
+  const getAllStrategies = async () => {
+    const {data} = await axios.get(allStrategiesUrl, config);
+    return data;
+  };
+
+  const {data: strategies} = useQuery({
+    queryKey: ["allStrategies"],
+    queryFn: getAllStrategies,
+    cacheTime: 5 * 60 * 1000,
+    retry: 1,
+    // refetchOnWindowFocus: true,
+    // notifyOnChangeProps:
+    // remove: () => void
+  });
+
+  // get getAllStocks
+  const allStocksUrl = "http://localhost:3000/stock/all";
+
+  const getAllStocks = async () => {
+    const {data} = await axios.get(allStocksUrl, config);
+    return data;
+  };
+
+  const {data: stocks} = useQuery({
+    queryKey: ["allStocks"],
+    queryFn: getAllStocks,
+    cacheTime: 5 * 60 * 1000,
+    retry: 1,
+    // refetchOnWindowFocus: true,
+    // notifyOnChangeProps:
+    // remove: () => void
+  });
+
   const operationsByDate = searchByDate ? searchByDate.data : null;
   const allOperations = operations ? operations.data : null;
+  const allStrategies = strategies ? strategies.data : null;
+  const allStocks = stocks ? stocks.data : null;
 
   // const handleDeleteOperation = async (id) => {
   //   const res = await axios.delete(
@@ -99,6 +137,8 @@ export default function Dashboard() {
         startDate={startDate}
         endDate={endDate}
         allOperations={allOperations}
+        allStrategies={allStrategies}
+        allStocks={allStocks}
         operationsByDate={operationsByDate}
         handleSearchByDate={handleSearchByDate}
         handleEndDateChange={handleEndDateChange}

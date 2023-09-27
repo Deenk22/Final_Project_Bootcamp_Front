@@ -1,4 +1,4 @@
-import { Box, Switch, Typography } from '@mui/material';
+import {Box, Switch, Typography} from "@mui/material";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -7,9 +7,9 @@ import {
   Title,
   Tooltip,
   Legend,
-} from 'chart.js';
-import { useState } from 'react';
-import { Bar } from 'react-chartjs-2';
+} from "chart.js";
+import {useState} from "react";
+import {Bar} from "react-chartjs-2";
 
 ChartJS.register(
   CategoryScale,
@@ -21,20 +21,20 @@ ChartJS.register(
 );
 
 const chartColorsPalette = {
-  tealBlue2: 'rgba(75, 192, 192, 0.6)',
-  lightPink: 'rgba(255, 99, 132, 0.6)',
-  lightYellow: 'rgba(255, 205, 86, 0.6)',
-  tealBlueOpacity: 'rgba(75, 192, 192, 0.2)',
-  lightPinkOpacity: 'rgba(255, 99, 132, 0.2)',
-  lightYellowOpacity: 'rgba(255, 205, 86, 0.2)',
-  orange: 'rgba(255, 159, 64, 0.7)',
-  shadowYellow: 'rgba(255, 205, 86, 0.4)',
-  shadowtealBlue2: 'rgba(75, 192, 192, 0.4)',
-  blue: 'rgba(22, 41, 56)',
-  skyBlue: 'rgba(208, 228, 233)',
+  tealBlue2: "rgba(75, 192, 192, 0.6)",
+  lightPink: "rgba(255, 99, 132, 0.6)",
+  lightYellow: "rgba(255, 205, 86, 0.6)",
+  tealBlueOpacity: "rgba(75, 192, 192, 0.2)",
+  lightPinkOpacity: "rgba(255, 99, 132, 0.2)",
+  lightYellowOpacity: "rgba(255, 205, 86, 0.2)",
+  orange: "rgba(255, 159, 64, 0.7)",
+  shadowYellow: "rgba(255, 205, 86, 0.4)",
+  shadowtealBlue2: "rgba(75, 192, 192, 0.4)",
+  blue: "rgba(22, 41, 56)",
+  skyBlue: "rgba(208, 228, 233)",
 };
 
-export default function BarData({ allOperations }) {
+export default function BarData({allOperations}) {
   const [isCompare, setIsCompare] = useState(null);
 
   const lastOperations = allOperations ? allOperations.toSpliced(3) : null;
@@ -61,7 +61,7 @@ export default function BarData({ allOperations }) {
   const options = {
     plugins: {
       legend: {
-        position: 'top',
+        position: "top",
         labels: {
           font: {
             size: 12,
@@ -107,14 +107,14 @@ export default function BarData({ allOperations }) {
 
   return (
     <Box>
-      <Box width={600}>
+      <Box width={640}>
         <Bar data={data} options={options} />
       </Box>
       <Typography
-        display={'flex'}
-        flexDirection={'column'}
-        justifyContent={'center'}
-        alignItems={'center'}
+        display={"flex"}
+        flexDirection={"column"}
+        justifyContent={"center"}
+        alignItems={"center"}
         variant="body2"
         mt={4}
         onClick={handleCompare}

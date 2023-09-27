@@ -13,7 +13,7 @@ import axios from "axios";
 import {IM_INVESTING_KEY} from "../../const/IM_investingKey";
 import DeleteIcon from "@mui/icons-material/Delete";
 import {useState} from "react";
-import CustomModal from "../CustomModal/CustomModal";
+import StrategyModal from "../CustomModal/StrategyModal";
 
 const StyledTableCell = styled(TableCell)(({theme}) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -42,21 +42,27 @@ const config = {
   },
 };
 
-const handleDeleteOperation = async (id) => {
+const handleDeleteStrategy = async (id) => {
   const res = await axios.delete(
-    `http://localhost:3000/operation/${id}`,
+    `http://localhost:3000/strategy/${id}`,
     config
   );
   return res.data;
 };
 
-export default function CustomizedTables({allOperations}) {
+export default function StrategyTable({allStrategies}) {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
+
   const queryClient = useQueryClient();
 
   const mutation = useMutation({
-    mutationFn: handleDeleteOperation,
+    mutationKey: ["deleteStrategy"],
+    mutationFn: handleDeleteStrategy,
+
+    onError: (err) => {
+      console.log(err);
+    },
 
     onSuccess: () => {
       queryClient.invalidateQueries("allOperations");
@@ -73,72 +79,49 @@ export default function CustomizedTables({allOperations}) {
     setPage(0);
   };
 
-  const paginatedOperations = allOperations?.slice(
+  const paginatedOperations = allStrategies?.slice(
     page * rowsPerPage,
     page * rowsPerPage + rowsPerPage
   );
 
   return (
-    <TableContainer component={Paper} sx={{width: 800}}>
-      <Table sx={{minWidth: 900}} aria-label="customized table" size="small">
+    <TableContainer component={Paper}>
+      <Table aria-label="customized table" size="small">
         <TableHead>
           <TableRow>
-            <StyledTableCell>Operation Type</StyledTableCell>
-            <StyledTableCell align="right">Volume</StyledTableCell>
-            <StyledTableCell align="right">Price Open</StyledTableCell>
-            <StyledTableCell align="right">Stop Loss</StyledTableCell>
-            <StyledTableCell align="right">Take Profit</StyledTableCell>
-            <StyledTableCell align="right">Price Close</StyledTableCell>
-            <StyledTableCell align="right">Commission</StyledTableCell>
-            <StyledTableCell align="right">Swap</StyledTableCell>
-            <StyledTableCell align="right">Change Rate</StyledTableCell>
-            <StyledTableCell align="right">Operation Date</StyledTableCell>
-            <StyledTableCell align="right">Delete</StyledTableCell>
-            <StyledTableCell align="right">Edit</StyledTableCell>
+            <StyledTableCell>Strategy Name</StyledTableCell>
+            <StyledTableCell align="left">Description</StyledTableCell>
+            <StyledTableCell align="left">Budget</StyledTableCell>
+            <StyledTableCell align="left">Create Date</StyledTableCell>
+            <StyledTableCell align="center">Delete</StyledTableCell>
+            <StyledTableCell align="center">Edit</StyledTableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {paginatedOperations?.map((operation) => (
-            <StyledTableRow key={operation.id}>
+          {paginatedOperations?.map((strategy) => (
+            <StyledTableRow key={strategy.id}>
               <StyledTableCell component="th" scope="row">
-                {operation.operationType}
+                {strategy.name}
               </StyledTableCell>
-              <StyledTableCell align="right">
-                {operation.volume}
+              <StyledTableCell align="left">
+                {strategy.description}
               </StyledTableCell>
-              <StyledTableCell align="right">
-                {operation.priceOpen}
+              <StyledTableCell align="left">{strategy.budget}</StyledTableCell>
+
+              <StyledTableCell align="left">
+                {convertDate(strategy.createDate)}
               </StyledTableCell>
-              <StyledTableCell align="right">
-                {operation.stopLoss}
-              </StyledTableCell>
-              <StyledTableCell align="right">
-                {operation.takeProfit}
-              </StyledTableCell>
-              <StyledTableCell align="right">
-                {operation.priceClose}
-              </StyledTableCell>
-              <StyledTableCell align="right">
-                {operation.commission}
-              </StyledTableCell>
-              <StyledTableCell align="right">{operation.swap}</StyledTableCell>
-              <StyledTableCell align="right">
-                {operation.changeRate}
-              </StyledTableCell>
-              <StyledTableCell align="right">
-                {convertDate(operation.operationDate)}
-              </StyledTableCell>
-              <StyledTableCell align="right">
+              <StyledTableCell align="center">
                 <IconButton
                   aria-label="delete"
-                  onClick={() => mutation.mutate(operation.id)}
+                  onClick={() => mutation.mutate(strategy.id)}
                 >
                   <DeleteIcon />
                 </IconButton>
               </StyledTableCell>
-              <StyledTableCell align="right">
+              <StyledTableCell align="center">
                 <IconButton aria-label="delete">
-                  <CustomModal />
+                  <StrategyModal />
                 </IconButton>
               </StyledTableCell>
             </StyledTableRow>
@@ -148,7 +131,7 @@ export default function CustomizedTables({allOperations}) {
           <TableRow>
             <TablePagination
               rowsPerPageOptions={[5, 10]}
-              count={allOperations ? allOperations.length : 0}
+              count={allStrategies ? allStrategies.length : 0}
               rowsPerPage={rowsPerPage}
               page={page}
               onPageChange={handleChangePage}

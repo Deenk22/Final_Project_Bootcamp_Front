@@ -1,6 +1,7 @@
 import {Box, Grid, Typography} from "@mui/material";
 import AddOperationForm from "../../components/AddOperationForm/AddOperationForm";
 import OperationByTypeCard from "../../components/InfoCards/OperationByTypeCard";
+import OperationTable from "../../components/Tables/OperationTable";
 
 const chartColorsPalette = {
   orange: "rgba(255, 159, 64, 0.7)",
@@ -61,6 +62,13 @@ export default function AddOperationView({allOperations}) {
             );
           })
           .toSpliced(4)}
+      </Grid>
+      <Grid container direction={"column"}>
+        <Grid item>
+          <Box display={"flex"} justifyContent={"center"}>
+            <OperationTable allOperations={allOperations} />
+          </Box>
+        </Grid>
       </Grid>
     </>
   );

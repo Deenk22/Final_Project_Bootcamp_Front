@@ -23,15 +23,15 @@ export default function NavListDrawer({NavLink, setOpen, logout}) {
       path: "/dashboard",
     },
     {
-      title: "Add Operation",
+      title: "Manage Operations",
       path: "/addoperation",
     },
     {
-      title: "Add Stock",
+      title: "Manage Stocks",
       path: "/addstock",
     },
     {
-      title: "Add Strategy",
+      title: "Manage Strategies",
       path: "/addstrategy",
     },
     {

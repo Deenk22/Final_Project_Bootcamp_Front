@@ -1,6 +1,6 @@
 export const updateOperationFunction = (values) => {
   const {...operation} = values;
-  const newOperation = {
+  const updateOperation = {
     operationType: operation.operationType,
     volume: operation.volume ? operation.volume : "",
     priceOpen: operation.priceOpen ? operation.priceOpen : "",
@@ -11,5 +11,5 @@ export const updateOperationFunction = (values) => {
     swap: operation.swap ? operation.swap : "",
     changeRate: operation.changeRate ? operation.changeRate : "",
   };
-  return newOperation;
+  return updateOperation;
 };

@@ -1,28 +1,32 @@
 // import DoughnutData from "../../components/Charts/DoughnutData";
-import BarData from '../../components/Charts/BarData';
-import BasicTable from '../../components/Tables/BasicTable';
-import DateForm from '../../components/DateForm/DateForm';
-import OperationsCard from '../../components/InfoCards/OperationsCard';
-import OperationDateSearchCard from '../../components/InfoCards/OperationDateSearchCard';
-import { Box, Grid, Typography } from '@mui/material';
-import './styleDashboard.css';
-import OperationTabs from '../../components/Tabs/OperationTabs';
+import BarData from "../../components/Charts/BarData";
+import DateForm from "../../components/DateForm/DateForm";
+import OperationsCard from "../../components/InfoCards/OperationsCard";
+import OperationDateSearchCard from "../../components/InfoCards/OperationDateSearchCard";
+import {Box, Grid, Typography} from "@mui/material";
+import StrategySelect from "../../components/Select/StrategySelect";
+import DoughnutData from "../../components/Charts/DoughnutData";
+import StockSelect from "../../components/Select/StockSelect";
+import OperationSelect from "../../components/Select/OperationSelect";
+import "./styleDashboard.css";
 
 const chartColorsPalette = {
-  orange: 'rgba(255, 159, 64, 0.7)',
-  lightPink: 'rgba(255, 99, 132, 0.7)',
-  lightYellow: 'rgba(255, 205, 86, 0.7)',
-  shadowYellow: 'rgba(255, 205, 86, 0.4)',
-  tealBlue2: 'rgba(75, 192, 192, 0.7)',
-  shadowtealBlue2: 'rgba(75, 192, 192, 0.4)',
-  blue: 'rgba(22, 41, 56)',
-  skyBlue: 'rgba(208, 228, 233)',
+  orange: "rgba(255, 159, 64, 0.7)",
+  lightPink: "rgba(255, 99, 132, 0.7)",
+  lightYellow: "rgba(255, 205, 86, 0.7)",
+  shadowYellow: "rgba(255, 205, 86, 0.4)",
+  tealBlue2: "rgba(75, 192, 192, 0.7)",
+  shadowtealBlue2: "rgba(75, 192, 192, 0.4)",
+  blue: "rgba(22, 41, 56)",
+  skyBlue: "rgba(208, 228, 233)",
 };
 
 export default function DashboardView({
   startDate,
   endDate,
   allOperations,
+  allStrategies,
+  allStocks,
   operationsByDate,
   handleSearchByDate,
   handleEndDateChange,
@@ -31,19 +35,22 @@ export default function DashboardView({
 }) {
   return (
     <main>
+      <OperationSelect allOperations={allOperations} />
+      <StrategySelect allStrategies={allStrategies} />
+      <StockSelect allStocks={allStocks} />
       <Grid
         container
         direction="row"
         justifyContent="space-evenly"
-        alignItems={'center'}
+        alignItems={"center"}
         mt={4}
         paddingY={16}
         bgcolor={chartColorsPalette.blue}
       >
         <Grid
           item
-          display={'flex'}
-          justifyContent={'center'}
+          display={"flex"}
+          justifyContent={"center"}
           xs={10}
           sm={10}
           md={10}
@@ -51,21 +58,23 @@ export default function DashboardView({
         >
           <Box>
             <Typography
-              textAlign={'center'}
+              textAlign={"center"}
               variant="h4"
               mb={4}
               color={chartColorsPalette.skyBlue}
             >
               Last Operations Added
             </Typography>
-            <Box className="grafica">
+            {/* Ajustar MediaQueries */}
+            <Box display={"flex"} justifyContent={"center"}>
               <BarData allOperations={allOperations} />
             </Box>
           </Box>
         </Grid>
         <Grid item xs={10} sm={10} md={10} lg={4}>
-          <Box>
-            <OperationTabs allOperations={allOperations} />
+          {/* Ajustar MediaQueries */}
+          <Box display={"flex"} justifyContent={"center"}>
+            <DoughnutData />
           </Box>
         </Grid>
       </Grid>
@@ -73,15 +82,15 @@ export default function DashboardView({
 
       <Grid
         container
-        direction={'row'}
-        display={'flex'}
-        justifyContent={'center'}
+        direction={"row"}
+        display={"flex"}
+        justifyContent={"center"}
         mt={14}
         spacing={1}
       >
         {allOperations
           ?.map((operation) => {
-            const { operationType, id, commission, takeProfit, stopLoss } =
+            const {operationType, id, commission, takeProfit, stopLoss} =
               operation;
             return (
               <Grid
@@ -92,9 +101,9 @@ export default function DashboardView({
                 md={3}
                 lg={2}
                 key={id}
-                display={'flex'}
-                flexDirection={'row'}
-                justifyContent={'center'}
+                display={"flex"}
+                flexDirection={"row"}
+                justifyContent={"center"}
               >
                 <OperationsCard
                   operationType={operationType}
@@ -110,15 +119,13 @@ export default function DashboardView({
       </Grid>
       <Grid
         container
-        direction={'row'}
-        display={'flex'}
-        justifyContent={'center'}
+        direction={"row"}
+        display={"flex"}
+        justifyContent={"center"}
         mt={8}
       >
         <Grid item>
-          {/* <Box className="fade-table">
-            <BasicTable allOperations={allOperations} />
-          </Box> */}
+          <Box className="fade-table media-query"></Box>
         </Grid>
         <Grid item>
           <Box className="fade-table"></Box>
@@ -129,15 +136,15 @@ export default function DashboardView({
         xs={10}
         sm={10}
         md={4}
-        display={'flex'}
-        flexDirection={'row'}
-        justifyContent={'center'}
+        display={"flex"}
+        flexDirection={"row"}
+        justifyContent={"center"}
       >
         <Box
-          display={'flex'}
-          flexDirection={'column'}
-          justifyContent={'center'}
-          alignItems={'center'}
+          display={"flex"}
+          flexDirection={"column"}
+          justifyContent={"center"}
+          alignItems={"center"}
           padding={2}
           className="blur-effect-doughnut-chart-right"
         >
@@ -164,7 +171,7 @@ export default function DashboardView({
           >
             {operationsByDate
               ?.map((operationBydate) => {
-                const { id, operationType } = operationBydate;
+                const {id, operationType} = operationBydate;
                 return (
                   <Box key={id}>
                     <OperationDateSearchCard

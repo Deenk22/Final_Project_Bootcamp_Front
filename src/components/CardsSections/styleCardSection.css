@@ -107,3 +107,38 @@
     filter: blur(0px);
   }
 }
+
+.animation-cards-left-two{
+  animation: fadeRightTwo linear both;
+  animation-timeline: view();
+  animation-range: entry 5% cover 40%;
+}
+
+@keyframes fadeRightTwo {
+  from {
+    opacity: 0;
+    transform: translateX(-128px);
+    filter: blur(16px);
+  }
+
+  to {
+    opacity: 1;
+  }
+
+  0% {
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 1;
+    transform: translate();
+  }
+
+  100% {
+    transform: translate();
+    filter: blur(0px);
+  }
+}
+
+
+

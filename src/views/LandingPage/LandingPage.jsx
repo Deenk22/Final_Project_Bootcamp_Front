@@ -3,6 +3,7 @@ import LandingCards from "../../components/InfoCards/LandingCards";
 import CardsSections from "../../components/CardsSections/CardsSections";
 import {Box, Grid, Typography} from "@mui/material";
 import "./styleLanding.css";
+import LandingInfoCards from "../../components/InfoCards/LandingInfoCards";
 
 const colorPalettes = {
   blue: "#162938",
@@ -104,6 +105,7 @@ export default function LandingPage() {
         ></Box>
       </Grid>
       <CardsSections />
+      <LandingInfoCards />
     </>
   );
 }

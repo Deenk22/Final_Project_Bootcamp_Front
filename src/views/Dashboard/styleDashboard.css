@@ -95,6 +95,15 @@
   }
 }
 
+
+/* @media (max-width: 499px) {
+  main .media-query {
+    width: 800px;
+  }
+}
+ */
+
+
 /* @media (max-width: 300px) {
   .grafica {
     width: 60px;
