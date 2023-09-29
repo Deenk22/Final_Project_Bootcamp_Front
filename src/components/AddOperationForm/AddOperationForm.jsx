@@ -1,4 +1,4 @@
-import {useMutation} from "@tanstack/react-query";
+import {useMutation, useQuery, useQueryClient} from "@tanstack/react-query";
 import AddOperationView from "./AddOperationFormView";
 import axios from "axios";
 import {IM_INVESTING_KEY} from "../../const/IM_investingKey";
@@ -24,6 +24,7 @@ export default function AddOperationForm() {
     actions.resetForm();
   }
 
+  const queryClient = useQueryClient();
   const mutation = useMutation({
     mutationKey: ["newOperation"],
     mutationFn: async (values) => {
@@ -38,6 +39,7 @@ export default function AddOperationForm() {
     },
 
     onSuccess: (data) => {
+      queryClient.invalidateQueries("allOperations");
       return data;
     },
   });
@@ -54,5 +56,50 @@ export default function AddOperationForm() {
     }
   }
 
-  return <AddOperationView onSubmit={onSubmit} />;
+  // Tengo dudas sobre esto... me ha pillao un dia bastante cansao jeje.
+  const allStrategies = `http://localhost:3000/strategy/all`;
+
+  const getAllStrategies = async () => {
+    const {data} = await axios.get(allStrategies, config);
+    return data;
+  };
+
+  const {data: strategiesId} = useQuery({
+    queryKey: ["allStrategies"],
+    queryFn: getAllStrategies,
+    cacheTime: 5 * 60 * 1000,
+    retry: 1,
+    // refetchOnWindowFocus: true,
+    // notifyOnChangeProps: // Esto lo utilizaremos a la hora de hacer una busqueda (input search) se encargará de actualizar el estado o notificar que ha habido cambios y hará una llamada para actualizar los datos.
+    // remove: () => void
+  });
+
+  // Tengo dudas sobre esto... me ha pillao un dia bastante cansao jeje.
+  const allStocksUrl = "http://localhost:3000/stock/all";
+
+  const getAllStocks = async () => {
+    const {data} = await axios.get(allStocksUrl, config);
+    return data;
+  };
+
+  const {data: stocksId} = useQuery({
+    queryKey: ["allStocks"],
+    queryFn: getAllStocks,
+    cacheTime: 5 * 60 * 1000,
+    retry: 1,
+    // refetchOnWindowFocus: true,
+    // notifyOnChangeProps:
+    // remove: () => void
+  });
+
+  const stocks = stocksId ? stocksId.data : null;
+  const strategies = strategiesId ? strategiesId.data : null;
+
+  return (
+    <AddOperationView
+      onSubmit={onSubmit}
+      strategies={strategies}
+      stocks={stocks}
+    />
+  );
 }

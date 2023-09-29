@@ -1,3 +1,7 @@
+import {useState} from "react";
+import axios from "axios";
+import {useMutation, useQueryClient} from "@tanstack/react-query";
+import {IM_INVESTING_KEY} from "../../const/IM_investingKey";
 import {styled} from "@mui/material/styles";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -6,14 +10,14 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
+import DeleteIcon from "@mui/icons-material/Delete";
+import OperationModal from "../CustomModal/OperationModal";
+import {
+  doneNotification,
+  errorNotification,
+} from "../../notifications/notification";
 import {convertDate} from "../../const/convertDate";
 import {IconButton, TableFooter, TablePagination} from "@mui/material";
-import {useMutation, useQueryClient} from "@tanstack/react-query";
-import axios from "axios";
-import {IM_INVESTING_KEY} from "../../const/IM_investingKey";
-import DeleteIcon from "@mui/icons-material/Delete";
-import {useState} from "react";
-import OperationModal from "../CustomModal/OperationModal";
 
 const StyledTableCell = styled(TableCell)(({theme}) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -35,33 +39,41 @@ const StyledTableRow = styled(TableRow)(({theme}) => ({
 }));
 
 const token = JSON.parse(localStorage.getItem(IM_INVESTING_KEY));
-
 const config = {
   headers: {
     Authorization: `Bearer ${token}`,
   },
 };
 
-const handleDeleteOperation = async (id) => {
-  const res = await axios.delete(
-    `http://localhost:3000/operation/${id}`,
-    config
-  );
-  return res.data;
-};
-
 export default function OperationTable({allOperations}) {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
 
-  const queryClient = useQueryClient();
+  const handleDeleteOperation = async (id) => {
+    const res = await axios.delete(
+      `http://localhost:3000/operation/${id}`,
+      config
+    );
+    return res.data;
+  };
 
+  const queryClient = useQueryClient();
   const mutation = useMutation({
     mutationKey: ["deleteOperation"],
     mutationFn: handleDeleteOperation,
 
     onError: (err) => {
       console.log(err);
+    },
+
+    onSettled: (data, error) => {
+      if (error) {
+        const {message} = error.response.data;
+        errorNotification(message);
+      } else {
+        const {message} = data;
+        doneNotification(message);
+      }
     },
 
     onSuccess: () => {
@@ -134,6 +146,7 @@ export default function OperationTable({allOperations}) {
               </StyledTableCell>
               <StyledTableCell align="center">
                 <IconButton
+                  disableRipple
                   aria-label="delete"
                   onClick={() => mutation.mutate(operation.id)}
                 >
@@ -141,8 +154,8 @@ export default function OperationTable({allOperations}) {
                 </IconButton>
               </StyledTableCell>
               <StyledTableCell align="center">
-                <IconButton aria-label="delete">
-                  <OperationModal />
+                <IconButton disableRipple aria-label="delete">
+                  <OperationModal operation={operation} />
                 </IconButton>
               </StyledTableCell>
             </StyledTableRow>

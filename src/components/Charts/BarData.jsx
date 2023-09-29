@@ -107,7 +107,7 @@ export default function BarData({allOperations}) {
 
   return (
     <Box>
-      <Box width={640}>
+      <Box width={560}>
         <Bar data={data} options={options} />
       </Box>
       <Typography

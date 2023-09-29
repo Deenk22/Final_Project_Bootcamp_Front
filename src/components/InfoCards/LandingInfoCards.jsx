@@ -16,9 +16,7 @@ export default function LandingInfoCards() {
         }
       });
     });
-
     const hiddenElements = document.querySelectorAll(".hidden");
-    console.log(hiddenElements);
     hiddenElements.forEach((el) => observer.observe(el));
 
     return () => {

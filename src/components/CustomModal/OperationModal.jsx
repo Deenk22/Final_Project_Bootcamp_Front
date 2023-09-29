@@ -3,6 +3,7 @@ import {useState} from "react";
 import UpdateOperationForm from "../UpdateOperationForm/UpdateOperationForm";
 import EditIcon from "@mui/icons-material/Edit";
 import {Box, List, ListItem, ListItemIcon, Typography} from "@mui/material";
+import CloseIcon from "@mui/icons-material/Close";
 
 const chartColorsPalette = {
   orange: "rgba(255, 159, 64, 0.7)",
@@ -21,25 +22,25 @@ const style = {
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  width: "70%",
-  height: "80vh",
-  bgcolor: chartColorsPalette.skyBlue,
-
+  width: "56vw",
+  height: "56vh",
+  bgcolor: chartColorsPalette.blue,
   borderRadius: 8,
 };
 
-export default function OperationModal() {
+export default function OperationModal({operation}) {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  const {operationType} = operation;
 
   return (
     <Box>
       <EditIcon onClick={handleOpen} />
       <Modal
+        className="modal"
         keepMounted
         open={open}
-        // onClose={handleClose}
         aria-labelledby="keep-mounted-modal-title"
         aria-describedby="keep-mounted-modal-description"
       >
@@ -51,12 +52,13 @@ export default function OperationModal() {
         >
           <Typography
             variant="h4"
-            color={chartColorsPalette.blue}
+            color={chartColorsPalette.skyBlue}
             textAlign={"center"}
           >
-            Edit Data Operation Dialog Box
+            Edit Data <span className="operation-type">{operationType} </span>
+            Dialog Box
           </Typography>
-          <Box>
+          {/* <Box>
             <Typography>Como funciona</Typography>
             <List disablePadding>
               <ListItem disablePadding>
@@ -75,18 +77,28 @@ export default function OperationModal() {
                 </ListItemIcon>
               </ListItem>
             </List>
-          </Box>
-          <UpdateOperationForm />
-          <Box textAlign={"center"}>
-            <Typography
-              component={"button"}
+          </Box> */}
+          <UpdateOperationForm setOpen={setOpen} operation={operation} />
+          {open ? (
+            <CloseIcon
               onClick={handleClose}
-              width={"20%"}
-              textAlign={"center"}
-            >
-              Close
-            </Typography>
-          </Box>
+              sx={{
+                position: "relative",
+                bottom: 422,
+                left: 1032,
+                color: chartColorsPalette.blue,
+                bgcolor: chartColorsPalette.skyBlue,
+                borderBottomLeftRadius: 8,
+                transition: "0.5s",
+                transform: "rotate(180deg)",
+                "&:hover": {
+                  transform: "rotate(0deg)",
+                  color: chartColorsPalette.lightPink,
+                  borderTopRightRadius: 8,
+                },
+              }}
+            />
+          ) : null}
         </Box>
       </Modal>
     </Box>

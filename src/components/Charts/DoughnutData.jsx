@@ -80,7 +80,7 @@ export default function DoughnutData() {
   };
 
   return (
-    <Box width={448}>
+    <Box width={334}>
       <Pie data={data} options={options} />
     </Box>
   );

@@ -2,6 +2,8 @@ import {createContext, useContext} from "react";
 import {useMutation} from "@tanstack/react-query";
 import axios from "axios";
 import {toast} from "react-hot-toast";
+import success from "../assets/audio/success.mp3";
+import error from "../assets/audio/error.mp3";
 
 const url = "http://localhost:3000/user";
 
@@ -28,6 +30,14 @@ const UserRegisterContext = createContext({
 });
 
 export default function UserRegisterContextProvider({children}) {
+  function successPlay() {
+    new Audio(success).play();
+  }
+
+  function errorPlay() {
+    new Audio(error).play();
+  }
+
   const mutation = useMutation({
     mutationFn: async (values) => {
       const {name, surname, regEmail, regPassword} = values;
@@ -43,9 +53,11 @@ export default function UserRegisterContextProvider({children}) {
       if (err.response.status === 409) {
         const {message} = err.response.data;
         toast.error(message, toastStyles);
+        errorPlay();
       } else if (err.response.status === 500) {
         const {message} = err.response.data;
         toast.error(message, toastStyles);
+        errorPlay();
       }
     },
 
@@ -61,6 +73,7 @@ export default function UserRegisterContextProvider({children}) {
       if (status === 200) {
         const userWelcomeMessageReg = data?.message;
         toast.success(userWelcomeMessageReg, toastStyles);
+        successPlay();
       }
     } catch (err) {
       throw new Error(`something went wrong with the Sign-Up: ${err.message}`);

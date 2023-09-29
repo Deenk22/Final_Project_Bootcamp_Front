@@ -1,4 +1,6 @@
 export const initialValues = {
+  strategyId: "",
+  stockId: "",
   operationType: "",
   volume: "",
   priceOpen: "",

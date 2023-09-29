@@ -21,17 +21,18 @@ const style = {
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  width: "70%",
-  height: "80vh",
+  width: "64vw",
+  height: "72vh",
   bgcolor: chartColorsPalette.skyBlue,
 
   borderRadius: 8,
 };
 
-export default function StrategyModal() {
+export default function StrategyModal({strategy}) {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  const {name} = strategy;
 
   return (
     <Box>
@@ -54,9 +55,9 @@ export default function StrategyModal() {
             color={chartColorsPalette.blue}
             textAlign={"center"}
           >
-            Edit Data Strategy Dialog Box
+            Edit Data {name} Dialog Box
           </Typography>
-          <Box>
+          {/* <Box>
             <Typography>Como funciona</Typography>
             <List disablePadding>
               <ListItem disablePadding>
@@ -75,8 +76,8 @@ export default function StrategyModal() {
                 </ListItemIcon>
               </ListItem>
             </List>
-          </Box>
-          <UpdateStrategyForm />
+          </Box> */}
+          <UpdateStrategyForm strategy={strategy} setOpen={setOpen} />
           <Box textAlign={"center"}>
             <Typography
               component={"button"}

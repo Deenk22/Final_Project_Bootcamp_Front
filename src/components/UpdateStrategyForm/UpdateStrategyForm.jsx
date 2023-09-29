@@ -1,16 +1,15 @@
-import {useParams} from "react-router-dom";
-import {IM_INVESTING_KEY} from "../../const/IM_investingKey";
-import {useMutation} from "@tanstack/react-query";
+import UpdateStrategyFormView from "./UpdateStrategyFormView";
+import {useMutation, useQueryClient} from "@tanstack/react-query";
+import axios from "axios";
+import {updateStrategyFunction} from "../../const/updateStrategyFunction";
 import {
   doneNotification,
   errorNotification,
 } from "../../notifications/notification";
-import axios from "axios";
-import {updateStrategyFunction} from "../../const/updateStrategyFunction";
-import UpdateStrategyFormView from "./UpdateStrategyFormView";
+import {IM_INVESTING_KEY} from "../../const/IM_investingKey";
 
-export default function UpdateStrategyForm() {
-  const {id} = useParams();
+export default function UpdateStrategyForm({strategy, setOpen}) {
+  const {id} = strategy;
   const token = JSON.parse(localStorage.getItem(IM_INVESTING_KEY));
 
   const config = {
@@ -26,6 +25,7 @@ export default function UpdateStrategyForm() {
 
   const url = `http://localhost:3000/strategy/${id}`;
 
+  const queryClient = useQueryClient();
   const mutation = useMutation({
     mutationKey: ["updateStrategy"],
     mutationFn: async (values) => {
@@ -33,21 +33,20 @@ export default function UpdateStrategyForm() {
     },
 
     onError: (err) => {
-      console.log(err.response.status);
       if (err.response.status === 404) {
         const {message} = err.response.data;
         errorNotification(message);
       }
     },
 
-    onSuccess: (data) => {
-      return data;
+    onSuccess: () => {
+      queryClient.invalidateQueries("allStrategies");
     },
   });
 
-  async function updateStrategy(values) {
+  async function updateStrategy(id, values) {
     try {
-      const {data, status} = await mutation.mutateAsync(values);
+      const {data, status} = await mutation.mutateAsync(id, values);
       if (status === 200) {
         const {message} = data;
         doneNotification(message);
@@ -59,7 +58,7 @@ export default function UpdateStrategyForm() {
 
   return (
     <>
-      <UpdateStrategyFormView onSubmit={onSubmit} />
+      <UpdateStrategyFormView onSubmit={onSubmit} setOpen={setOpen} />
     </>
   );
 }

@@ -21,7 +21,7 @@ export default function AddStock() {
   };
 
   const {data: stocks} = useQuery({
-    queryKey: ["allStockss"],
+    queryKey: ["allStocks"],
     queryFn: getAllStocks,
     cacheTime: 5 * 60 * 1000,
     retry: 1,

@@ -14,6 +14,10 @@ import {IM_INVESTING_KEY} from "../../const/IM_investingKey";
 import DeleteIcon from "@mui/icons-material/Delete";
 import {useState} from "react";
 import StrategyModal from "../CustomModal/StrategyModal";
+import {
+  doneNotification,
+  errorNotification,
+} from "../../notifications/notification";
 
 const StyledTableCell = styled(TableCell)(({theme}) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -55,13 +59,22 @@ export default function StrategyTable({allStrategies}) {
   const [rowsPerPage, setRowsPerPage] = useState(5);
 
   const queryClient = useQueryClient();
-
   const mutation = useMutation({
     mutationKey: ["deleteStrategy"],
     mutationFn: handleDeleteStrategy,
 
     onError: (err) => {
       console.log(err);
+    },
+
+    onSettled: (data, error) => {
+      if (error) {
+        const {message} = error.response.data;
+        errorNotification(message);
+      } else {
+        const {message} = data;
+        doneNotification(message);
+      }
     },
 
     onSuccess: () => {
@@ -121,7 +134,7 @@ export default function StrategyTable({allStrategies}) {
               </StyledTableCell>
               <StyledTableCell align="center">
                 <IconButton aria-label="delete">
-                  <StrategyModal />
+                  <StrategyModal strategy={strategy} />
                 </IconButton>
               </StyledTableCell>
             </StyledTableRow>

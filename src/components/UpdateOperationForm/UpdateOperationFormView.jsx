@@ -15,7 +15,13 @@ const chartColorsPalette = {
   tealBlue: "#367588",
 };
 
-export default function UpdateOperationFormView({onSubmit}) {
+export default function UpdateOperationFormView({
+  onSubmit,
+  setOpen,
+  operation,
+}) {
+  const {operationType, priceOpen, priceClose} = operation;
+
   const {
     values,
     errors,
@@ -39,7 +45,7 @@ export default function UpdateOperationFormView({onSubmit}) {
         gap={2}
         padding={4}
       >
-        <Box display={"flex"} justifyContent={"center"} gap={4}>
+        <Box display={"flex"} justifyContent={"center"} gap={2}>
           <Box
             display={"flex"}
             flexDirection={"column"}
@@ -47,14 +53,17 @@ export default function UpdateOperationFormView({onSubmit}) {
             alignItems={"center"}
           >
             <TextField
-              sx={{width: 250}}
+              sx={{
+                width: 250,
+                bgcolor: chartColorsPalette.skyBlue,
+              }}
               value={values.operationType}
               onChange={handleChange}
               onBlur={handleBlur}
               type="text"
               id="operationType"
-              label="Operation Type"
-              variant="outlined"
+              label={operationType ? operationType : "Operation Type"}
+              variant="filled"
               className={
                 errors.operationType && touched.operationType
                   ? "textfield-error"
@@ -63,104 +72,131 @@ export default function UpdateOperationFormView({onSubmit}) {
             />
           </Box>
           <TextField
-            sx={{width: 250}}
+            sx={{
+              width: 250,
+              bgcolor: chartColorsPalette.skyBlue,
+            }}
             value={values.volume}
             onChange={handleChange}
             onBlur={handleBlur}
             type="number"
             id="volume"
             label="Volume"
-            variant="outlined"
+            variant="filled"
           />
           <TextField
-            sx={{width: 250}}
+            sx={{
+              width: 250,
+              bgcolor: chartColorsPalette.skyBlue,
+            }}
             value={values.priceOpen}
             onChange={handleChange}
             onBlur={handleBlur}
             type="number"
             id="priceOpen"
-            label="Price Open"
-            variant="outlined"
+            label={priceOpen ? priceOpen : "Price Open"}
+            variant="filled"
           />
         </Box>
-        <Box display={"flex"} justifyContent={"center"} gap={4}>
+        <Box display={"flex"} justifyContent={"center"} gap={2}>
           <TextField
-            sx={{width: 250}}
+            sx={{
+              width: 250,
+              bgcolor: chartColorsPalette.skyBlue,
+            }}
             value={values.stopLoss}
             onChange={handleChange}
             onBlur={handleBlur}
             type="number"
             id="stopLoss"
             label="Stop Loss"
-            variant="outlined"
+            variant="filled"
           />
           <TextField
-            sx={{width: 250}}
+            sx={{
+              width: 250,
+              bgcolor: chartColorsPalette.skyBlue,
+            }}
             value={values.takeProfit}
             onChange={handleChange}
             onBlur={handleBlur}
             type="number"
             id="takeProfit"
             label="Take Profit"
-            variant="outlined"
+            variant="filled"
           />
           <TextField
-            sx={{width: 250}}
+            sx={{
+              width: 250,
+              bgcolor: chartColorsPalette.skyBlue,
+            }}
             value={values.priceClose}
             onChange={handleChange}
             onBlur={handleBlur}
             type="number"
             id="priceClose"
-            label="Price Close"
-            variant="outlined"
+            label={priceClose ? priceClose : "Price Close"}
+            variant="filled"
           />
         </Box>
-        <Box display={"flex"} justifyContent={"center"} gap={4}>
+        <Box display={"flex"} justifyContent={"center"} gap={2}>
           <TextField
-            sx={{width: 250}}
+            sx={{
+              width: 250,
+              bgcolor: chartColorsPalette.skyBlue,
+            }}
             value={values.commission}
             onChange={handleChange}
             onBlur={handleBlur}
             type="number"
             id="commission"
             label="Commission"
-            variant="outlined"
+            variant="filled"
           />
           <TextField
-            sx={{width: 250}}
+            sx={{
+              width: 250,
+              bgcolor: chartColorsPalette.skyBlue,
+            }}
             value={values.swap}
             onChange={handleChange}
             onBlur={handleBlur}
             type="number"
             id="swap"
             label="Swap"
-            variant="outlined"
+            variant="filled"
           />
           <TextField
-            sx={{width: 250}}
+            sx={{
+              width: 250,
+              bgcolor: chartColorsPalette.skyBlue,
+            }}
             value={values.changeRate}
             onChange={handleChange}
             onBlur={handleBlur}
             type="number"
             id="changeRate"
             label="ChangeRate"
-            variant="outlined"
+            variant="filled"
           />
         </Box>
         <Box textAlign={"center"}>
           <Button
+            onClick={() => {
+              values.operationType ? setOpen(false) : null;
+            }}
             variant="contained"
             sx={{
+              width: 96,
               marginTop: 4,
-              color: chartColorsPalette.skyBlue,
-              bgcolor: chartColorsPalette.blue,
+              color: chartColorsPalette.blue,
+              bgcolor: chartColorsPalette.skyBlue,
               border: "2px solid " + chartColorsPalette.blue,
               borderTopLeftRadius: 16,
               borderBottomRightRadius: 16,
               ":hover": {
-                color: chartColorsPalette.blue,
-                bgcolor: chartColorsPalette.skyBlue,
-                boxShadow: "0px 5px 0px 0px" + chartColorsPalette.blue,
+                color: chartColorsPalette.skyBlue,
+                bgcolor: chartColorsPalette.tealBlue,
               },
             }}
             disabled={isSubmitting}

@@ -1,8 +1,6 @@
 // import DoughnutData from "../../components/Charts/DoughnutData";
 import BarData from "../../components/Charts/BarData";
-import DateForm from "../../components/DateForm/DateForm";
 import OperationsCard from "../../components/InfoCards/OperationsCard";
-import OperationDateSearchCard from "../../components/InfoCards/OperationDateSearchCard";
 import {Box, Grid, Typography} from "@mui/material";
 import StrategySelect from "../../components/Select/StrategySelect";
 import DoughnutData from "../../components/Charts/DoughnutData";
@@ -22,22 +20,17 @@ const chartColorsPalette = {
 };
 
 export default function DashboardView({
-  startDate,
-  endDate,
   allOperations,
   allStrategies,
   allStocks,
-  operationsByDate,
-  handleSearchByDate,
-  handleEndDateChange,
-  handleStartDateChange,
-  getOperationDateError,
 }) {
   return (
     <main>
-      <OperationSelect allOperations={allOperations} />
-      <StrategySelect allStrategies={allStrategies} />
-      <StockSelect allStocks={allStocks} />
+      <Box display={"flex"} justifyContent={"center"} gap={4}>
+        <OperationSelect allOperations={allOperations} />
+        <StrategySelect allStrategies={allStrategies} />
+        <StockSelect allStocks={allStocks} />
+      </Box>
       <Grid
         container
         direction="row"
@@ -85,8 +78,8 @@ export default function DashboardView({
         direction={"row"}
         display={"flex"}
         justifyContent={"center"}
-        mt={14}
         spacing={1}
+        my={16}
       >
         {allOperations
           ?.map((operation) => {
@@ -117,7 +110,7 @@ export default function DashboardView({
           })
           .toSpliced(4)}
       </Grid>
-      <Grid
+      {/* <Grid
         container
         direction={"row"}
         display={"flex"}
@@ -130,61 +123,7 @@ export default function DashboardView({
         <Grid item>
           <Box className="fade-table"></Box>
         </Grid>
-      </Grid>
-      <Grid
-        item
-        xs={10}
-        sm={10}
-        md={4}
-        display={"flex"}
-        flexDirection={"row"}
-        justifyContent={"center"}
-      >
-        <Box
-          display={"flex"}
-          flexDirection={"column"}
-          justifyContent={"center"}
-          alignItems={"center"}
-          padding={2}
-          className="blur-effect-doughnut-chart-right"
-        >
-          <Box mb={4}>
-            <DateForm
-              startDate={startDate}
-              endDate={endDate}
-              handleSearchByDate={handleSearchByDate}
-              handleEndDateChange={handleEndDateChange}
-              handleStartDateChange={handleStartDateChange}
-            />
-            {getOperationDateError === 400 ? (
-              <Typography variant="body2">
-                Try another range of dates
-              </Typography>
-            ) : null}
-          </Box>
-          <Box
-          // sx={{
-          //   display: "grid",
-          //   gridTemplateColumns: "repeat(2, 1fr)",
-          //   gap: 1,
-          // }}
-          >
-            {operationsByDate
-              ?.map((operationBydate) => {
-                const {id, operationType} = operationBydate;
-                return (
-                  <Box key={id}>
-                    <OperationDateSearchCard
-                      id={id}
-                      operationType={operationType}
-                    />
-                  </Box>
-                );
-              })
-              .toSpliced(4)}
-          </Box>
-        </Box>
-      </Grid>
+      </Grid> */}
     </main>
   );
 }

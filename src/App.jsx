@@ -10,6 +10,7 @@ import Login from "./views/Login/Login";
 import Account from "./views/Account/Account";
 import AddOperation from "./views/AddOperation/AddOperation";
 import OperationDetails from "./views/OperationDetails/OperationsDetails";
+import StrategyDetails from "./views/StrategyDetails/StrategyDetails";
 import AddStock from "./views/AddStock/AddStock";
 import AddStrategy from "./views/AddStrategy/AddStrategy";
 import Unauthorized from "./views/Unauthorized/Unauthorized";
@@ -82,6 +83,10 @@ function App() {
               >
                 <Route element={<Layout />}>
                   <Route index element={<AddStrategy />} />
+                  <Route
+                    path="strategydetails/:id"
+                    element={<StrategyDetails />}
+                  />
                 </Route>
               </Route>
             </Routes>

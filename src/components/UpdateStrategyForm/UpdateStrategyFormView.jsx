@@ -1,4 +1,4 @@
-import {Button, TextField} from "@mui/material";
+import {Box, Button, TextField} from "@mui/material";
 import {useFormik} from "formik";
 import {initialValues} from "./utils/updateStrategyIV";
 import {updateStrategySchema} from "./updateStrategySchema";
@@ -15,7 +15,7 @@ const chartColorsPalette = {
   tealBlue: "#367588",
 };
 
-export default function UpdateStrategyFormView({onSubmit}) {
+export default function UpdateStrategyFormView({onSubmit, setOpen}) {
   const {
     values,
     touched,
@@ -32,60 +32,73 @@ export default function UpdateStrategyFormView({onSubmit}) {
 
   return (
     <form onSubmit={handleSubmit}>
-      <TextField
-        sx={{width: 250}}
-        value={values.name}
-        onChange={handleChange}
-        onBlur={handleBlur}
-        type="text"
-        id="name"
-        label={errors.name ? errors.name : "Strategy Name"}
-        variant="outlined"
-        className={errors.name && touched.name ? "textfield-error" : ""}
-      />
-      <TextField
-        sx={{width: 250}}
-        value={values.description}
-        onChange={handleChange}
-        onBlur={handleBlur}
-        type="text"
-        id="description"
-        label="Description"
-        variant="outlined"
-      />
-      <TextField
-        sx={{width: 250}}
-        value={values.budget}
-        onChange={handleChange}
-        onBlur={handleBlur}
-        type="number"
-        id="budget"
-        label={errors.budget ? errors.budget : "Budget"}
-        variant="outlined"
-        className={errors.budget && touched.budget ? "textfield-error" : ""}
-      />
-
-      <Button
-        variant="contained"
-        sx={{
-          marginTop: 4,
-          color: chartColorsPalette.skyBlue,
-          bgcolor: chartColorsPalette.blue,
-          border: "2px solid " + chartColorsPalette.blue,
-          borderTopLeftRadius: 16,
-          borderBottomRightRadius: 16,
-          transition: "0.2s",
-          ":hover": {
-            color: chartColorsPalette.blue,
-            bgcolor: chartColorsPalette.skyBlue,
-            boxShadow: "0px 5px 0px 0px" + chartColorsPalette.blue,
-          },
-        }}
-        disabled={isSubmitting}
-        type="submit"
+      <Box
+        display={"flex"}
+        flexDirection={"column"}
+        justifyContent={"center"}
+        gap={2}
+        padding={4}
       >
-        Add
-      </Button>
+        <Box display={"flex"} justifyContent={"center"} gap={2}>
+          <TextField
+            sx={{width: 250}}
+            value={values.name}
+            onChange={handleChange}
+            onBlur={handleBlur}
+            type="text"
+            id="name"
+            label={errors.name ? errors.name : "Strategy Name"}
+            variant="outlined"
+            className={errors.name && touched.name ? "textfield-error" : ""}
+          />
+          <TextField
+            sx={{width: 250}}
+            value={values.description}
+            onChange={handleChange}
+            onBlur={handleBlur}
+            type="text"
+            id="description"
+            label="Description"
+            multiline
+            maxRows={6}
+            variant="outlined"
+          />
+          <TextField
+            sx={{width: 250}}
+            value={values.budget}
+            onChange={handleChange}
+            onBlur={handleBlur}
+            type="number"
+            id="budget"
+            label="Budget"
+            variant="outlined"
+          />
+        </Box>
+        <Box textAlign={"center"}>
+          <Button
+            onClick={() => setOpen(false)}
+            variant="contained"
+            sx={{
+              marginTop: 4,
+              color: chartColorsPalette.skyBlue,
+              bgcolor: chartColorsPalette.blue,
+              border: "2px solid " + chartColorsPalette.blue,
+              borderTopLeftRadius: 16,
+              borderBottomRightRadius: 16,
+              // transition: "0.2s",
+              ":hover": {
+                color: chartColorsPalette.blue,
+                bgcolor: chartColorsPalette.skyBlue,
+                boxShadow: "0px 5px 0px 0px" + chartColorsPalette.blue,
+              },
+            }}
+            disabled={isSubmitting}
+            type="submit"
+          >
+            Add
+          </Button>
+        </Box>
+      </Box>
     </form>
   );
 }

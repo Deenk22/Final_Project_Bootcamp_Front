@@ -1,5 +1,5 @@
 import AddStrategyFormView from "./AddStrategyFormView";
-import {useMutation} from "@tanstack/react-query";
+import {useMutation, useQueryClient} from "@tanstack/react-query";
 import axios from "axios";
 import {IM_INVESTING_KEY} from "../../const/IM_investingKey";
 import {strategyFormFunction} from "../../const/strategyFormFunction";
@@ -22,7 +22,9 @@ export default function AddStrategyForm() {
     actions.resetForm();
   }
 
+  const queryClient = useQueryClient();
   const mutation = useMutation({
+    mutationKey: ["newStrategy"],
     mutationFn: async (values) => {
       return await axios.post(
         `http://localhost:3000/strategy`,
@@ -38,6 +40,7 @@ export default function AddStrategyForm() {
     },
 
     onSuccess: (data) => {
+      queryClient.invalidateQueries("allStrategies");
       return data;
     },
   });

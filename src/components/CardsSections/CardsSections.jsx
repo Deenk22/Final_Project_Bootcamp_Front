@@ -54,7 +54,7 @@ export default function CardsSections() {
                 border={"2px solid " + chartColorsPalette.tealBlue}
                 zIndex={1}
                 sx={{
-                  background: `url('./src/assets/buildings.jpg')`,
+                  // background: `url('./src/assets/buildings.jpg')`,
                   backgroundSize: "cover",
                   backgroundPosition: "center",
                   borderTopLeftRadius: 64,
@@ -155,7 +155,7 @@ export default function CardsSections() {
                 border={"2px solid " + chartColorsPalette.tealBlue}
                 zIndex={1}
                 sx={{
-                  background: `url('./src/assets/buildings.jpg')`,
+                  // background: `url('./src/assets/buildings.jpg')`,
                   backgroundSize: "cover",
                   backgroundPosition: "center",
                   borderTopLeftRadius: 64,

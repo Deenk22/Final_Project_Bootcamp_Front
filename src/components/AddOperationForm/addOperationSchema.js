@@ -1,6 +1,8 @@
 import * as yup from "yup";
 
 export const addOperationSchema = yup.object().shape({
+  strategyId: yup.number().required("Required Field"),
+  stockId: yup.number(),
   operationType: yup.string().required("Required Field"),
   volume: yup.number(),
   priceOpen: yup.number(),

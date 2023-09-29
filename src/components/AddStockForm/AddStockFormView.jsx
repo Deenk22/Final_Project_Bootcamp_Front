@@ -1,7 +1,15 @@
 import {useFormik} from "formik";
 import {initialValues} from "./utils/addStockIV";
 import {addStockSchema} from "./addStockSchema";
-import {Button, TextField} from "@mui/material";
+import {
+  Box,
+  Button,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+  TextField,
+} from "@mui/material";
 
 const chartColorsPalette = {
   orange: "rgba(255, 159, 64, 0.7)",
@@ -15,7 +23,7 @@ const chartColorsPalette = {
   tealBlue: "#367588",
 };
 
-export default function AddStockFormView({onSubmit}) {
+export default function AddStockFormView({onSubmit, stockTypes}) {
   const {
     values,
     touched,
@@ -32,89 +40,118 @@ export default function AddStockFormView({onSubmit}) {
 
   return (
     <form onSubmit={handleSubmit}>
-      <TextField
-        sx={{width: 250}}
-        value={values.name}
-        onChange={handleChange}
-        onBlur={handleBlur}
-        type="text"
-        id="name"
-        label={errors.name ? errors.name : "Stock Name"}
-        variant="outlined"
-        className={errors.name && touched.name ? "textfield-error" : ""}
-      />
-      <TextField
-        sx={{width: 250}}
-        value={values.country}
-        onChange={handleChange}
-        onBlur={handleBlur}
-        type="text"
-        id="country"
-        label="Country"
-        variant="outlined"
-      />
-      <TextField
-        sx={{width: 250}}
-        value={values.ticker}
-        onChange={handleChange}
-        onBlur={handleBlur}
-        type="text"
-        id="ticker"
-        label={errors.ticker ? errors.ticker : "Ticker"}
-        variant="outlined"
-        className={errors.ticker && touched.ticker ? "textfield-error" : ""}
-      />
-      <TextField
-        sx={{width: 250}}
-        value={values.type}
-        onChange={handleChange}
-        onBlur={handleBlur}
-        type="text"
-        id="type"
-        label="Type"
-        variant="outlined"
-      />
-      <TextField
-        sx={{width: 250}}
-        value={values.sector}
-        onChange={handleChange}
-        onBlur={handleBlur}
-        type="text"
-        id="sector"
-        label="Sector"
-        variant="outlined"
-      />
-      <TextField
-        sx={{width: 250}}
-        value={values.industry}
-        onChange={handleChange}
-        onBlur={handleBlur}
-        type="text"
-        id="industry"
-        label="Industry"
-        variant="outlined"
-      />
-      <Button
-        variant="contained"
-        sx={{
-          marginTop: 4,
-          color: chartColorsPalette.skyBlue,
-          bgcolor: chartColorsPalette.blue,
-          border: "2px solid " + chartColorsPalette.blue,
-          borderTopLeftRadius: 16,
-          borderBottomRightRadius: 16,
-          transition: "0.2s",
-          ":hover": {
-            color: chartColorsPalette.blue,
-            bgcolor: chartColorsPalette.skyBlue,
-            boxShadow: "0px 5px 0px 0px" + chartColorsPalette.blue,
-          },
-        }}
-        disabled={isSubmitting}
-        type="submit"
+      <Box
+        display={"grid"}
+        gridTemplateColumns={"repeat(2, 1fr)"}
+        gap={2}
+        padding={2}
       >
-        Add
-      </Button>
+        <TextField
+          sx={{width: 250}}
+          value={values.name}
+          onChange={handleChange}
+          onBlur={handleBlur}
+          type="text"
+          id="name"
+          label={errors.name ? errors.name : "Stock Name"}
+          variant="outlined"
+          className={errors.name && touched.name ? "textfield-error" : ""}
+        />
+        <TextField
+          sx={{width: 250}}
+          value={values.country}
+          onChange={handleChange}
+          onBlur={handleBlur}
+          type="text"
+          id="country"
+          label="Country"
+          variant="outlined"
+        />
+        <TextField
+          sx={{width: 250}}
+          value={values.ticker}
+          onChange={handleChange}
+          onBlur={handleBlur}
+          type="text"
+          id="ticker"
+          label={errors.ticker ? errors.ticker : "Ticker"}
+          variant="outlined"
+          className={errors.ticker && touched.ticker ? "textfield-error" : ""}
+        />
+        <TextField
+          sx={{width: 250}}
+          value={values.type}
+          onChange={handleChange}
+          onBlur={handleBlur}
+          type="text"
+          id="type"
+          label="Type"
+          variant="outlined"
+        />
+        <TextField
+          sx={{width: 250}}
+          value={values.sector}
+          onChange={handleChange}
+          onBlur={handleBlur}
+          type="text"
+          id="sector"
+          label="Sector"
+          variant="outlined"
+        />
+        <TextField
+          sx={{width: 250}}
+          value={values.industry}
+          onChange={handleChange}
+          onBlur={handleBlur}
+          type="text"
+          id="industry"
+          label="Industry"
+          variant="outlined"
+        />
+      </Box>
+      <FormControl fullWidth>
+        <InputLabel id="stockTypeId">Stock Type</InputLabel>
+        <Select
+          labelId="stockTypeId"
+          id="stockTypeId"
+          name="stockTypeId"
+          label="Stock Type"
+          value={values.stockTypeId}
+          onChange={handleChange}
+          onBlur={handleBlur}
+        >
+          {stockTypes?.map((type) => {
+            return (
+              <MenuItem key={type.id} value={type.id ? type.id : null}>
+                {type.name}
+              </MenuItem>
+            );
+          })}
+        </Select>
+      </FormControl>
+      <Box textAlign={"center"}>
+        <Button
+          variant="contained"
+          sx={{
+            marginTop: 4,
+            color: chartColorsPalette.skyBlue,
+            bgcolor: chartColorsPalette.blue,
+            border: "2px solid " + chartColorsPalette.blue,
+            borderTopLeftRadius: 16,
+            borderBottomRightRadius: 16,
+            transition: "0.2s",
+            ":hover": {
+              color: chartColorsPalette.blue,
+              bgcolor: chartColorsPalette.skyBlue,
+              boxShadow: "0px 5px 0px 0px" + chartColorsPalette.blue,
+            },
+          }}
+          disabled={isSubmitting}
+          type="submit"
+        >
+          Add
+        </Button>
+      </Box>
     </form>
   );
 }

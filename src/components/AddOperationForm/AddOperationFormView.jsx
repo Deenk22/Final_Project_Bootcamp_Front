@@ -1,7 +1,15 @@
 import {useFormik} from "formik";
 import {initialValues} from "./utils/addOperationIV";
 import {addOperationSchema} from "./addOperationSchema";
-import {TextField, Button, Box} from "@mui/material";
+import {
+  TextField,
+  Button,
+  Box,
+  MenuItem,
+  FormControl,
+  InputLabel,
+  Select,
+} from "@mui/material";
 
 const chartColorsPalette = {
   orange: "rgba(255, 159, 64, 0.7)",
@@ -15,7 +23,7 @@ const chartColorsPalette = {
   tealBlue: "#367588",
 };
 
-export default function AddOperationView({onSubmit}) {
+export default function AddOperationView({onSubmit, strategies, stocks}) {
   const {
     values,
     errors,
@@ -37,9 +45,9 @@ export default function AddOperationView({onSubmit}) {
         flexDirection={"column"}
         justifyContent={"center"}
         gap={2}
-        padding={4}
+        padding={2}
       >
-        <Box display={"flex"} justifyContent={"center"} gap={4}>
+        <Box display={"flex"} justifyContent={"center"} gap={2}>
           <Box
             display={"flex"}
             flexDirection={"column"}
@@ -85,7 +93,7 @@ export default function AddOperationView({onSubmit}) {
             variant="outlined"
           />
         </Box>
-        <Box display={"flex"} justifyContent={"center"} gap={4}>
+        <Box display={"flex"} justifyContent={"center"} gap={2}>
           <TextField
             sx={{width: 250}}
             value={values.stopLoss}
@@ -117,7 +125,7 @@ export default function AddOperationView({onSubmit}) {
             variant="outlined"
           />
         </Box>
-        <Box display={"flex"} justifyContent={"center"} gap={4}>
+        <Box display={"flex"} justifyContent={"center"} gap={2}>
           <TextField
             sx={{width: 250}}
             value={values.commission}
@@ -148,6 +156,56 @@ export default function AddOperationView({onSubmit}) {
             label="ChangeRate"
             variant="outlined"
           />
+        </Box>
+        <Box
+          sx={{minWidth: 250}}
+          display={"flex"}
+          justifyContent={"center"}
+          gap={2}
+        >
+          <FormControl fullWidth>
+            <InputLabel id="strategyId">Strategy</InputLabel>
+            <Select
+              labelId="strategyId"
+              id="strategyId"
+              name="strategyId"
+              label="Strategy"
+              value={values.strategyId}
+              onChange={handleChange}
+              onBlur={handleBlur}
+            >
+              {strategies?.map((strategy) => {
+                return (
+                  <MenuItem
+                    key={strategy.id}
+                    value={strategy.id ? strategy.id : null}
+                  >
+                    {strategy.name}
+                  </MenuItem>
+                );
+              })}
+            </Select>
+          </FormControl>
+          <FormControl fullWidth>
+            <InputLabel id="stockId">Stock</InputLabel>
+            <Select
+              labelId="stockId"
+              id="stockId"
+              name="stockId"
+              label="Stock"
+              value={values.stockId}
+              onChange={handleChange}
+              onBlur={handleBlur}
+            >
+              {stocks?.map((stock) => {
+                return (
+                  <MenuItem key={stock.id} value={stock.id ? stock.id : null}>
+                    {stock.name}
+                  </MenuItem>
+                );
+              })}
+            </Select>
+          </FormControl>
         </Box>
         <Box textAlign={"center"}>
           <Button

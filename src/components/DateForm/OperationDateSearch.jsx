@@ -14,7 +14,7 @@ const chartColorsPalette = {
   skyBlue: "rgba(208, 228, 233)",
 };
 
-export default function DateForm({
+export default function OperationDateSearch({
   endDate,
   startDate,
   handleSearchByDate,

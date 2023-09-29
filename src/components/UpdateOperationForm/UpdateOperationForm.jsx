@@ -1,4 +1,4 @@
-import {useMutation} from "@tanstack/react-query";
+import {useMutation, useQueryClient} from "@tanstack/react-query";
 import {IM_INVESTING_KEY} from "../../const/IM_investingKey";
 import UpdateOperationFormView from "./UpdateOperationFormView";
 import axios from "axios";
@@ -7,10 +7,9 @@ import {
   doneNotification,
   errorNotification,
 } from "../../notifications/notification";
-import {useParams} from "react-router-dom";
 
-export default function UpdateOperationForm() {
-  const {id} = useParams();
+export default function UpdateOperationForm({operation, setOpen}) {
+  const {id} = operation;
   const token = JSON.parse(localStorage.getItem(IM_INVESTING_KEY));
 
   const config = {
@@ -26,6 +25,7 @@ export default function UpdateOperationForm() {
 
   const url = `http://localhost:3000/operation/${id}`;
 
+  const queryClient = useQueryClient();
   const mutation = useMutation({
     mutationKey: ["updateOperation"],
     mutationFn: async (values) => {
@@ -33,21 +33,20 @@ export default function UpdateOperationForm() {
     },
 
     onError: (err) => {
-      console.log(err.response.status);
       if (err.response.status === 404) {
         const {message} = err.response.data;
         errorNotification(message);
       }
     },
 
-    onSuccess: (data) => {
-      return data;
+    onSuccess: () => {
+      queryClient.invalidateQueries("allOperations");
     },
   });
 
-  async function updateOperation(values) {
+  async function updateOperation(id, values) {
     try {
-      const {data, status} = await mutation.mutateAsync(values);
+      const {data, status} = await mutation.mutateAsync(id, values);
       if (status === 200) {
         const {message} = data;
         doneNotification(message);
@@ -59,7 +58,11 @@ export default function UpdateOperationForm() {
 
   return (
     <>
-      <UpdateOperationFormView onSubmit={onSubmit} />
+      <UpdateOperationFormView
+        onSubmit={onSubmit}
+        setOpen={setOpen}
+        operation={operation}
+      />
     </>
   );
 }

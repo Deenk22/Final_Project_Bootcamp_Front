@@ -1,6 +1,7 @@
 export const stockFormFunction = (values) => {
   const {...stock} = values;
   const newStock = {
+    stockTypeId: stock.stockTypeId,
     name: stock.name,
     country: stock.country ? stock.country : null,
     ticker: stock.ticker ? stock.ticker : null,

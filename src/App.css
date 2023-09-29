@@ -56,10 +56,14 @@ body{
   text-decoration: none;
 }
 
-/* .logo{
-  position: absolute;
-  bottom: 0;
-  left: 0;
-} */
+.operation-type{
+  color:rgba(255, 99, 132, 0.7);
+}
+
+.modal{
+  background-color: rgba(22, 41, 56, 0.541);
+}
+
+
 
 

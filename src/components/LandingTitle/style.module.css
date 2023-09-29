@@ -1,0 +1,25 @@
+.trailsText {
+  font-family: "Bebas Neue";
+  position: relative;
+  width: 100%;
+  height: 80px;
+  line-height: 80px;
+  color: #162938;
+  font-size: 6em;
+  font-weight: 500;
+  will-change: transform, opacity;
+  overflow: hidden;
+  margin-bottom: 8px;
+}
+
+.trailsText>div {
+  padding-right: 0.05em;
+  overflow: hidden;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  justify-content: center;
+}

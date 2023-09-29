@@ -3,7 +3,10 @@ import {IM_INVESTING_KEY} from "../../const/IM_investingKey";
 import {useMutation} from "@tanstack/react-query";
 import jwtDecode from "jwt-decode";
 import axios from "axios";
-import toastFunctions from "../../notifications/notificationService";
+import {
+  doneNotification,
+  errorNotification,
+} from "../../notifications/notification";
 
 export default function UpdateForm() {
   const token = JSON.parse(localStorage.getItem(IM_INVESTING_KEY));
@@ -23,23 +26,24 @@ export default function UpdateForm() {
     mutationFn: async (values) => {
       const {name, surname, email} = values;
       const user = await jwtDecode(token);
-      console.log(user);
       return await axios.patch(
         `http://localhost:3000/user/${user.id}`,
         {
-          name: name,
-          surname: surname,
-          email: email,
+          name,
+          surname,
+          email,
         },
         config
       );
     },
     onError: (err) => {
       if (err.response.status === 409) {
-        toastFunctions.userAlreadyExists();
+        const {message} = err.response.data;
+        errorNotification(message);
       }
       if (err.response.status === 500) {
-        toastFunctions.internalServerError();
+        const {message} = err.response.data;
+        errorNotification(message);
       }
     },
     onSuccess: (data) => {
@@ -52,7 +56,7 @@ export default function UpdateForm() {
       const {data, status} = await mutation.mutateAsync(values);
       if (status === 200) {
         const {message} = data;
-        toastFunctions.userSuccessfullyUploaded(message);
+        doneNotification(message);
       }
     } catch (err) {
       console.log(err);

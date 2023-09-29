@@ -1,4 +1,4 @@
-import {Box, Typography} from "@mui/material";
+import {Box} from "@mui/material";
 import {useState} from "react";
 import Select from "react-select";
 
@@ -16,10 +16,11 @@ const chartColorsPalette = {
   skyBlue: "rgba(208, 228, 233)",
 };
 
-export default function StrategySelect({allStrategies}) {
+export default function StrategyIdSelect({strategies}) {
+  console.log(strategies);
   const [strategySelected, setStrategySelected] = useState("");
 
-  const strategyName = allStrategies?.map((strategy) => strategy.name);
+  const strategyName = strategies?.map((strategy) => strategy.name);
   const defaultValue = strategyName ? strategyName[0] : "";
 
   const handleSelectChange = (value) => {
@@ -29,17 +30,9 @@ export default function StrategySelect({allStrategies}) {
 
   return (
     <Box width={320}>
-      <Typography
-        variant="body2"
-        mb={1}
-        ml={0.5}
-        color={chartColorsPalette.blue}
-      >
-        Strategies Name
-      </Typography>
       <Select
         defaultValue={{label: defaultValue}}
-        options={allStrategies?.map((strategy) => ({
+        options={strategies?.map((strategy) => ({
           label: strategy.name,
           value: strategy.id,
         }))}

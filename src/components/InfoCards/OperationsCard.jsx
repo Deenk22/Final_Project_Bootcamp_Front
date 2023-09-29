@@ -25,7 +25,6 @@ export default function OperationsCard({
 }) {
   return (
     <Box
-      mb={4}
       sx={{
         bgcolor: chartColorsPalette.blue,
         boxShadow: 1,

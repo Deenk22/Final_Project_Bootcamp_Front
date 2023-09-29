@@ -1,5 +1,5 @@
 import AddStockFormView from "./AddStockFormView";
-import {useMutation} from "@tanstack/react-query";
+import {useMutation, useQuery, useQueryClient} from "@tanstack/react-query";
 import axios from "axios";
 import {IM_INVESTING_KEY} from "../../const/IM_investingKey";
 import {stockFormFunction} from "../../const/stockFormFunction";
@@ -22,7 +22,9 @@ export default function AddStockForm() {
     actions.resetForm();
   }
 
+  const queryClient = useQueryClient();
   const mutation = useMutation({
+    mutationKey: ["newStock"],
     mutationFn: async (values) => {
       return await axios.post(
         `http://localhost:3000/stock`,
@@ -38,6 +40,7 @@ export default function AddStockForm() {
     },
 
     onSuccess: (data) => {
+      queryClient.invalidateQueries("allStocks");
       return data;
     },
   });
@@ -54,5 +57,30 @@ export default function AddStockForm() {
     }
   }
 
-  return <AddStockFormView postStock={postStock} onSubmit={onSubmit} />;
+  const allStockTypeUrl = "http://localhost:3000/stocktype/all";
+
+  const getAllStockTypes = async () => {
+    const {data} = await axios.get(allStockTypeUrl, config);
+    return data;
+  };
+
+  const {data: stockTypesId} = useQuery({
+    queryKey: ["allStockTypes"],
+    queryFn: getAllStockTypes,
+    cacheTime: 5 * 60 * 1000,
+    retry: 1,
+    // refetchOnWindowFocus: true,
+    // notifyOnChangeProps:
+    // remove: () => void
+  });
+
+  const stockTypes = stockTypesId ? stockTypesId.data : null;
+
+  return (
+    <AddStockFormView
+      postStock={postStock}
+      onSubmit={onSubmit}
+      stockTypes={stockTypes}
+    />
+  );
 }

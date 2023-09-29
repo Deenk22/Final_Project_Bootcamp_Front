@@ -4,6 +4,7 @@ import axios from "axios";
 import jwtDecode from "jwt-decode";
 import {IM_INVESTING_KEY} from "../const/IM_investingKey";
 import {toast} from "react-hot-toast";
+import error from "../assets/audio/error.mp3";
 
 // Tareas pendientes > 1. / Modificar el código, eliminar TanStack del contexto.
 
@@ -35,8 +36,11 @@ const UserLoginContext = createContext({
 
 export default function UserLoginContextProvider({children}) {
   const userLogged = JSON.parse(localStorage.getItem(IM_INVESTING_KEY));
-
   const [user, setUser] = useState(userLogged ? jwtDecode(userLogged) : null);
+
+  function errorPlay() {
+    new Audio(error).play();
+  }
 
   const mutation = useMutation({
     mutationFn: async ({email, password}) => {
@@ -50,9 +54,11 @@ export default function UserLoginContextProvider({children}) {
       if (err.response.status === 401) {
         const {message} = err.response.data;
         toast.error(message, toastStyles);
+        errorPlay();
       } else if (err.response.status === 404) {
         const {message} = err.response.data;
         toast.error(message, toastStyles);
+        errorPlay();
       }
     },
 

@@ -22,15 +22,20 @@ import TaskIcon from "@mui/icons-material/Task";
 //   skyBlue: "rgba(208, 228, 233)",
 // };
 
-export default function OperationDateSearchCard({operationType, id}) {
+export default function StrategyDateSearchCard({name, id}) {
   return (
     <List disablePadding>
       <ListItem disablePadding>
-        <ListItemButton>
+        <ListItemButton
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+          }}
+        >
           <ListItemIcon>
             <TaskIcon />
-            <Link to={`operationdetails/${id}`}>
-              <Typography>{operationType}</Typography>
+            <Link to={`strategydetails/${id}`}>
+              <Typography>{name}</Typography>
             </Link>
           </ListItemIcon>
         </ListItemButton>

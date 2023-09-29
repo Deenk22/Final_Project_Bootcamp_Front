@@ -5,6 +5,6 @@ export const updateStrategySchema = yup.object().shape({
   description: yup
     .string()
     .min(2, "description must be at least 5 characters long")
-    .max(150, "Only a maximum of 25 words is allowed"),
+    .max(200, "Only a maximum of 25 words is allowed"),
   budget: yup.number(),
 });

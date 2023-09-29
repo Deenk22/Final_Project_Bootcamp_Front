@@ -2,7 +2,7 @@ import Modal from "@mui/material/Modal";
 import {useState} from "react";
 import EditIcon from "@mui/icons-material/Edit";
 import {Box, List, ListItem, ListItemIcon, Typography} from "@mui/material";
-import UpdateStrategyForm from "../UpdateStrategyForm/UpdateStrategyForm";
+import UpdateStockForm from "../UpdateStockForm/UpdateStockForm";
 
 const chartColorsPalette = {
   orange: "rgba(255, 159, 64, 0.7)",
@@ -21,17 +21,17 @@ const style = {
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  width: "70%",
-  height: "80vh",
+  width: "64vw",
+  height: "72vh",
   bgcolor: chartColorsPalette.skyBlue,
-
   borderRadius: 8,
 };
 
-export default function StockModal() {
+export default function StockModal({stock}) {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  const {name} = stock;
 
   return (
     <Box>
@@ -54,9 +54,9 @@ export default function StockModal() {
             color={chartColorsPalette.blue}
             textAlign={"center"}
           >
-            Edit Data Stock Dialog Box
+            Edit Data {name} Dialog Box
           </Typography>
-          <Box>
+          {/* <Box>
             <Typography>Como funciona</Typography>
             <List disablePadding>
               <ListItem disablePadding>
@@ -75,8 +75,8 @@ export default function StockModal() {
                 </ListItemIcon>
               </ListItem>
             </List>
-          </Box>
-          <UpdateStrategyForm />
+          </Box> */}
+          <UpdateStockForm stock={stock} setOpen={setOpen} />
           <Box textAlign={"center"}>
             <Typography
               component={"button"}

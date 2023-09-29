@@ -1,8 +1,11 @@
 import UpdatePassFormView from "./UpdatePassFormView";
-import {useMutation} from "@tanstack/react-query";
 import jwtDecode from "jwt-decode";
+import {useMutation} from "@tanstack/react-query";
 import axios from "axios";
-import toastFunctions from "../../notifications/notificationService";
+import {
+  doneNotification,
+  errorNotification,
+} from "../../notifications/notification";
 import {IM_INVESTING_KEY} from "../../const/IM_investingKey";
 
 export default function UpdatePassForm() {
@@ -26,18 +29,20 @@ export default function UpdatePassForm() {
       return await axios.patch(
         `http://localhost:3000/user/password/${user.id}`,
         {
-          currentPassword: currentPassword,
-          newPassword: newPassword,
+          currentPassword,
+          newPassword,
         },
         config
       );
     },
     onError: (err) => {
       if (err.response.status === 409) {
-        toastFunctions.errorPasswordMatch();
+        const {message} = err.response.data;
+        errorNotification(message);
       }
       if (err.response.status === 500) {
-        toastFunctions.internalServerError();
+        const {message} = err.response.data;
+        errorNotification(message);
       }
     },
     onSuccess: (data) => {
@@ -50,7 +55,7 @@ export default function UpdatePassForm() {
       const {data, status} = await mutation.mutateAsync(values);
       if (status === 200) {
         const {message} = data;
-        toastFunctions.passwordSuccessfullyUpdated(message);
+        doneNotification(message);
       }
     } catch (err) {
       throw new Error(err);

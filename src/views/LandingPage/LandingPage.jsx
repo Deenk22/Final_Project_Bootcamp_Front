@@ -2,8 +2,9 @@ import {Link} from "react-router-dom";
 import LandingCards from "../../components/InfoCards/LandingCards";
 import CardsSections from "../../components/CardsSections/CardsSections";
 import {Box, Grid, Typography} from "@mui/material";
-import "./styleLanding.css";
 import LandingInfoCards from "../../components/InfoCards/LandingInfoCards";
+import "./styleLanding.css";
+import LandingTitle from "../../components/LandingTitle/LandingTitle";
 
 const colorPalettes = {
   blue: "#162938",
@@ -27,13 +28,14 @@ export default function LandingPage() {
       >
         <Grid item xs={10} sm={10} md={3} lg={2}>
           <Box>
-            <Typography
+            {/* <Typography
               component={"h1"}
               variant="h1"
               color={colorPalettes.blue}
             >
               Smart Financial Service
-            </Typography>
+            </Typography> */}
+            <LandingTitle />
             <Typography
               width={"100%"}
               variant="body2"

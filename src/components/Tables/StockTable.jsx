@@ -6,15 +6,19 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import {convertDate} from "../../const/convertDate";
+
 import {IconButton, TableFooter, TablePagination} from "@mui/material";
 import {useMutation, useQueryClient} from "@tanstack/react-query";
 import axios from "axios";
 import {IM_INVESTING_KEY} from "../../const/IM_investingKey";
 import DeleteIcon from "@mui/icons-material/Delete";
 import {useState} from "react";
-import OperationModal from "../CustomModal/OperationModal";
+
 import StockModal from "../CustomModal/StockModal";
+import {
+  doneNotification,
+  errorNotification,
+} from "../../notifications/notification";
 
 const StyledTableCell = styled(TableCell)(({theme}) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -53,17 +57,26 @@ export default function StockTable({allStocks}) {
   const [rowsPerPage, setRowsPerPage] = useState(5);
 
   const queryClient = useQueryClient();
-
   const mutation = useMutation({
-    mutationKey: ["deleteOperation"],
+    mutationKey: ["deleteStock"],
     mutationFn: handleDeleteOperation,
 
     onError: (err) => {
       console.log(err);
     },
 
+    onSettled: (data, error) => {
+      if (error) {
+        const {message} = error.response.data;
+        errorNotification(message);
+      } else {
+        const {message} = data;
+        doneNotification(message);
+      }
+    },
+
     onSuccess: () => {
-      queryClient.invalidateQueries("allOperations");
+      queryClient.invalidateQueries("allStocks");
     },
   });
 
@@ -116,7 +129,7 @@ export default function StockTable({allStocks}) {
               </StyledTableCell>
               <StyledTableCell align="center">
                 <IconButton aria-label="delete">
-                  <StockModal />
+                  <StockModal stock={stock} />
                 </IconButton>
               </StyledTableCell>
             </StyledTableRow>
