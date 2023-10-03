@@ -1,4 +1,4 @@
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import Select from "react-select";
 import {Box, Typography} from "@mui/material";
 
@@ -16,17 +16,26 @@ const chartColorsPalette = {
   skyBlue: "rgba(208, 228, 233)",
 };
 
-export default function StockSelect({allStocks}) {
+export default function StockSelect({allStocks, onStockChange}) {
   const [stockSelected, setStockSelected] = useState("");
 
-  const stockName = allStocks?.map((stock) => stock.name);
+  useEffect(() => {
+    if (allStocks && allStocks.length > 0) {
+      setStockSelected(allStocks[0].name);
+    }
+  }, [allStocks]);
 
-  const defaultValue = stockName ? stockName[0] : "";
-
-  const handleSelectChange = (value) => {
-    setStockSelected(value);
-    console.log(stockSelected);
+  const handleSelectChange = (selectedOption) => {
+    setStockSelected(selectedOption.value);
+    onStockChange(selectedOption.value);
   };
+
+  const options =
+    allStocks?.map((stock) => ({
+      label: stock.name,
+      value: stock.id,
+    })) || [];
+
   return (
     <Box width={320}>
       <Typography
@@ -38,11 +47,8 @@ export default function StockSelect({allStocks}) {
         Stock Name
       </Typography>
       <Select
-        defaultValue={{label: defaultValue}}
-        options={allStocks?.map((stock) => ({
-          label: stock.name,
-          value: stock.id,
-        }))}
+        defaultValue={{label: stockSelected}}
+        options={options}
         onChange={handleSelectChange}
       />
     </Box>

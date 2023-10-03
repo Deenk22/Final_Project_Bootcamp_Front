@@ -4,20 +4,28 @@ import {regFormSchema} from "./regFormSchema";
 import {useUserRegisterContext} from "../../context/UserRegisterContext";
 
 import {Box, TextField, Typography, Button} from "@mui/material";
+import DropZone from "../Dropzone/Dropzone";
+import {useState} from "react";
 
-const colorPalettes = {
-  blue: "#162938",
-  green: "#49726B",
-  skyBlue: "#D0E4E9",
-  tealBlue: "#367588",
-  yellow: "#eab308",
-  indigo: "#6366f1",
+const chartColorsPalette = {
+  tealBlue2: "rgba(75, 192, 192, 0.6)",
+  lightPink: "rgba(255, 99, 132, 0.6)",
+  lightYellow: "rgba(255, 205, 86, 0.6)",
+  tealBlueOpacity: "rgba(75, 192, 192, 0.2)",
+  lightPinkOpacity: "rgba(255, 99, 132, 0.2)",
+  lightYellowOpacity: "rgba(255, 205, 86, 0.2)",
+  orange: "rgba(255, 159, 64, 0.7)",
+  shadowYellow: "rgba(255, 205, 86, 0.4)",
+  shadowtealBlue2: "rgba(75, 192, 192, 0.4)",
+  blue: "rgba(22, 41, 56)",
+  skyBlue: "rgba(208, 228, 233)",
 };
-
 export default function RegForm() {
+  const [avatar, setavatar] = useState(null);
   const {signUp} = useUserRegisterContext();
 
   function onSubmit(values, actions) {
+    values.avatar = avatar;
     signUp(values);
     actions.resetForm();
   }
@@ -48,65 +56,76 @@ export default function RegForm() {
         }}
       >
         <TextField
-          background={colorPalettes.tealBlue}
-          sx={{width: 250}}
+          sx={{width: 250, bgcolor: chartColorsPalette.skyBlue}}
           value={values.name}
           onChange={handleChange}
           onBlur={handleBlur}
           type="text"
           id="name"
           label="Name"
-          variant="outlined"
+          variant="filled"
           className={errors.name && touched.name ? "textfield-error" : ""}
         />
         {errors.name && touched.name && (
-          <Typography sx={{marginLeft: 4, marginRight: 4}} variant="body2">
+          <Typography
+            color={chartColorsPalette.skyBlue}
+            sx={{marginLeft: 4, marginRight: 4}}
+            variant="body2"
+          >
             {errors.name}
           </Typography>
         )}
         <TextField
-          sx={{width: 250}}
+          sx={{width: 250, bgcolor: chartColorsPalette.skyBlue}}
           value={values.surname}
           onChange={handleChange}
           onBlur={handleBlur}
           type="text"
           id="surname"
           label="Surname"
-          variant="outlined"
+          variant="filled"
           className={errors.surname && touched.surname ? "textfield-error" : ""}
         />
         {errors.surname && touched.surname && (
-          <Typography sx={{marginLeft: 4, marginRight: 4}} variant="body2">
+          <Typography
+            color={chartColorsPalette.skyBlue}
+            sx={{marginLeft: 4, marginRight: 4}}
+            variant="body2"
+          >
             {errors.surname}
           </Typography>
         )}
         <TextField
-          sx={{width: 250}}
+          sx={{width: 250, bgcolor: chartColorsPalette.skyBlue}}
           value={values.regEmail}
           onChange={handleChange}
           onBlur={handleBlur}
           type="email"
           id="regEmail"
           label="Email"
-          variant="outlined"
+          variant="filled"
           className={
             errors.regEmail && touched.regEmail ? "textfield-error" : ""
           }
         />
         {errors.regEmail && touched.regEmail && (
-          <Typography sx={{marginLeft: 4, marginRight: 4}} variant="body2">
+          <Typography
+            color={chartColorsPalette.skyBlue}
+            sx={{marginLeft: 4, marginRight: 4}}
+            variant="body2"
+          >
             {errors.regEmail}
           </Typography>
         )}
         <Box display={"flex"} alignItems={"center"}>
           <TextField
-            sx={{width: 250}}
+            sx={{width: 250, bgcolor: chartColorsPalette.skyBlue}}
             value={values.regPassword}
             onChange={handleChange}
             onBlur={handleBlur}
             type="password"
             id="regPassword"
-            variant="outlined"
+            variant="filled"
             className={
               errors.regPassword && touched.regPassword ? "textfield-error" : ""
             }
@@ -115,19 +134,23 @@ export default function RegForm() {
         </Box>
 
         {errors.regPassword && touched.regPassword && (
-          <Typography sx={{marginLeft: 4, marginRight: 4}} variant="body2">
+          <Typography
+            color={chartColorsPalette.skyBlue}
+            sx={{marginLeft: 4, marginRight: 4}}
+            variant="body2"
+          >
             {errors.regPassword}
           </Typography>
         )}
         <TextField
-          sx={{width: 250}}
+          sx={{width: 250, bgcolor: chartColorsPalette.skyBlue}}
           value={values.regConfirmPassword}
           onChange={handleChange}
           onBlur={handleBlur}
           type="password"
           id="regConfirmPassword"
           label="Confirm Password"
-          variant="outlined"
+          variant="filled"
           className={
             errors.regConfirmPassword && touched.regConfirmPassword
               ? "textfield-error"
@@ -135,25 +158,36 @@ export default function RegForm() {
           }
         />
         {errors.regConfirmPassword && touched.regConfirmPassword && (
-          <Typography sx={{marginLeft: 4, marginRight: 4}} variant="body2">
+          <Typography
+            color={chartColorsPalette.skyBlue}
+            sx={{marginLeft: 4, marginRight: 4}}
+            variant="body2"
+          >
             {errors.regConfirmPassword}
           </Typography>
         )}
+        <DropZone
+          id="avatar"
+          onChange={handleChange}
+          onBlur={handleBlur}
+          value={values.avatar}
+          onImagenSeleccionada={(avatar) => setavatar(avatar)}
+        />
       </Box>
       <Box textAlign="center">
         <Button
           variant="contained"
           sx={{
-            color: colorPalettes.skyBlue,
-            bgcolor: colorPalettes.blue,
-            border: "2px solid " + colorPalettes.blue,
+            color: chartColorsPalette.skyBlue,
+            bgcolor: chartColorsPalette.blue,
+            border: "2px solid " + chartColorsPalette.blue,
             borderTopLeftRadius: 16,
             borderBottomRightRadius: 16,
             transition: "0.2s",
             ":hover": {
-              color: colorPalettes.blue,
-              bgcolor: colorPalettes.skyBlue,
-              boxShadow: "0px 5px 0px 0px" + colorPalettes.blue,
+              color: chartColorsPalette.blue,
+              bgcolor: chartColorsPalette.skyBlue,
+              boxShadow: "0px 5px 0px 0px" + chartColorsPalette.blue,
             },
           }}
           disabled={isSubmitting}

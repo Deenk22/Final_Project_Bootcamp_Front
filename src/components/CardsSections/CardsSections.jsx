@@ -32,8 +32,8 @@ export default function CardsSections() {
           >
             <Box
               className="animation-cards-left"
-              width={400}
-              height={400}
+              width={384}
+              height={384}
               bgcolor={chartColorsPalette.blue}
               display={"flex"}
               justifyContent={"center"}
@@ -46,8 +46,8 @@ export default function CardsSections() {
               }}
             >
               <Box
-                width={350}
-                height={250}
+                width={352}
+                height={240}
                 position={"relative"}
                 right={120}
                 bgcolor={chartColorsPalette.skyBlue}
@@ -133,8 +133,8 @@ export default function CardsSections() {
           >
             <Box
               className="animation-cards-right"
-              width={400}
-              height={400}
+              width={384}
+              height={384}
               bgcolor={chartColorsPalette.blue}
               display={"flex"}
               justifyContent={"center"}
@@ -147,8 +147,8 @@ export default function CardsSections() {
               }}
             >
               <Box
-                width={350}
-                height={250}
+                width={352}
+                height={240}
                 position={"relative"}
                 left={120}
                 bgcolor={chartColorsPalette.skyBlue}

@@ -33,6 +33,22 @@
   }
 }
 
+.icon-added{
+  animation: icon-added 0.3s ease-in forwards;
+}
+
+@keyframes icon-added {
+  0% {
+    transform: translateX(8px) rotate(45deg);
+    opacity: 0.6;
+  }
+
+  100% {
+    transform: translateX(0px) rotate(0deg);
+    opacity: 1;
+  }
+}
+
 
 
 

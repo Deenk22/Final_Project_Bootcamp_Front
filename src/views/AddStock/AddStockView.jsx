@@ -2,7 +2,7 @@ import {Box, Grid, Typography} from "@mui/material";
 import AddStockForm from "../../components/AddStockForm/AddStockForm";
 import StockTable from "../../components/Tables/StockTable";
 
-export default function AddStockView({allStocks}) {
+export default function AddStockView({allStocks, stockDeleteMutation}) {
   return (
     <>
       <Grid
@@ -21,7 +21,10 @@ export default function AddStockView({allStocks}) {
         </Grid>
         <Grid item xs={10}>
           <Box>
-            <StockTable allStocks={allStocks} />
+            <StockTable
+              allStocks={allStocks}
+              stockDeleteMutation={stockDeleteMutation}
+            />
           </Box>
         </Grid>
       </Grid>

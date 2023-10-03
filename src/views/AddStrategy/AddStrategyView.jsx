@@ -12,6 +12,7 @@ export default function AddStrategyView({
   handleSearchByDate,
   handleEndDateChange,
   handleStartDateChange,
+  strategyDeleteMutation,
 }) {
   return (
     <>
@@ -31,7 +32,10 @@ export default function AddStrategyView({
         </Grid>
         <Grid item xs={10}>
           <Box>
-            <StrategyTable allStrategies={allStrategies} />
+            <StrategyTable
+              allStrategies={allStrategies}
+              strategyDeleteMutation={strategyDeleteMutation}
+            />
           </Box>
         </Grid>
       </Grid>

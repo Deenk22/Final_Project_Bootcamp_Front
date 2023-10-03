@@ -1,0 +1,81 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Flex:wght@300&display=swap');
+
+.toolbar{
+  background-color: rgba(22, 41, 56);
+  margin-bottom: 8px;
+  border-top-left-radius: 32px;
+  border-top-right-radius: 32px;
+}
+
+.icon-delete-animation {
+  z-index: 0;
+  animation: text-delete 0.2s ease-in forwards;
+  cursor: pointer;
+}
+
+@keyframes text-delete {
+  0%{
+    opacity: 0;
+    transform: translateX(-8px) rotate(45deg);
+  }
+  100%{
+    opacity: 1;
+    transform: translateX(0px) rotate(0deg);
+  }
+}
+
+.text-operation-animation{
+  z-index: 1;
+  animation: text-operation 0.2s ease-out forwards
+}
+
+@keyframes text-operation {
+  0% {
+    opacity: 0.5;
+    transform: translateX(32px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0px);
+  }
+}
+
+.class-search{
+  animation: input-movement 0.2s ease-in forwards;
+}
+
+@keyframes input-movement {
+  0% {
+      opacity: 0; 
+    }
+  
+    100% {
+      opacity: 1;
+    }
+}
+
+.input-search{
+  font-family: 'Roboto Flex', sans-serif;
+  width: 160px;
+  height: 32px;
+  border: none;
+  outline: none;
+  border-radius: 4px;
+  margin-right: 48px;
+  padding-left: 8px;
+}
+
+.link-csv{
+  text-decoration: none;
+}
+
+.csv{
+  text-decoration: none;
+  color: rgba(22, 41, 56);
+}
+
+
+
+
+

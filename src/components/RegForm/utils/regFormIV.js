@@ -4,4 +4,5 @@ export const initialValues = {
   regEmail: "",
   regPassword: "",
   regConfirmPassword: "",
+  avatar: "",
 };

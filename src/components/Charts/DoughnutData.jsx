@@ -6,7 +6,25 @@ import {
   Tooltip,
   Legend,
 } from "chart.js";
-import {Box} from "@mui/material";
+import {Box, Typography} from "@mui/material";
+import {useState} from "react";
+
+// const lastOperations = allOperations ? allOperations.toSpliced(3) : null;
+// const operationsValues = allOperations ? allOperations[0] : null;
+// const operationLabels = operationsValues
+//   ? Object.keys(operationsValues)
+//   : null;
+
+// const operationData = lastOperations
+//   ? lastOperations.map((operation) => Object.values(operation))
+//   : null;
+// const operationSelectedData = allOperations?.find(
+//   (operation) => operation.operationType === operationSelected
+// );
+
+// const labelsData = operationSelectedData
+//   ? Object.values(operationSelectedData)
+//   : null;
 
 const chartColorsPalette = {
   orange: "rgba(255, 159, 64, 0.7)",
@@ -21,36 +39,49 @@ const chartColorsPalette = {
 
 ChartJS.register(CategoryScale, ArcElement, Tooltip, Legend);
 
-export default function DoughnutData() {
-  // const lastOperations = allOperations ? allOperations.toSpliced(3) : null;
-  // const operationsValues = allOperations ? allOperations[0] : null;
-  // const operationLabels = operationsValues
-  //   ? Object.keys(operationsValues)
-  //   : null;
+export default function DoughnutData({allOperations, selectedStock}) {
+  const operationByStock = selectedStock
+    ? allOperations?.filter((operation) => operation.stockId === selectedStock)
+    : null;
 
-  // const operationData = lastOperations
-  //   ? lastOperations.map((operation) => Object.values(operation))
-  //   : null;
-  // const operationSelectedData = allOperations?.find(
-  //   (operation) => operation.operationType === operationSelected
-  // );
+  const operationLabel = operationByStock?.map(
+    (operation) => operation.operationType
+  );
 
-  // const labelsData = operationSelectedData
-  //   ? Object.values(operationSelectedData)
-  //   : null;
+  // c = close / o = open
+  const priceOpen = operationByStock?.map((o) => o.priceOpen);
+  const priceClose = operationByStock?.map((c) => c.priceClose);
+
+  const differences = priceOpen?.map((open, index) => open - priceClose[index]);
+
+  // const negativeResult = differences?.filter((result) => result < 0);
+
+  // Restamos PriceOpen - PriceClose = Resultado / priceOpen * 100
+  const percentageDifferences = differences?.map((difference, index) => {
+    const open = priceOpen[index];
+    const percentage = open !== 0 ? (difference / open) * 100 : 0;
+    return percentage.toFixed(2);
+  });
+
+  const negativeResults = percentageDifferences?.filter(
+    (percentage) => percentage <= 0
+  );
+
+  const totalNegativeResult = negativeResults?.length;
 
   const data = {
-    labels: ["01", "02", "03"],
+    labels: operationLabel,
     datasets: [
       {
-        label: ["01", "02", "03"],
-        data: ["01", "02", "03"],
+        label: "Percentage",
+        data: percentageDifferences,
         backgroundColor: [
           chartColorsPalette.lightPink,
           chartColorsPalette.lightYellow,
           chartColorsPalette.orange,
           chartColorsPalette.tealBlue2,
-          chartColorsPalette.lightYellow,
+          chartColorsPalette.shadowtealBlue2,
+          chartColorsPalette.skyBlue,
         ],
         hoverBorderColor: chartColorsPalette.skyBlue,
         borderColor: chartColorsPalette.blue,
@@ -80,8 +111,30 @@ export default function DoughnutData() {
   };
 
   return (
-    <Box width={334}>
-      <Pie data={data} options={options} />
+    <Box>
+      <Box width={430}>
+        <Pie data={data} options={options} />
+      </Box>
+      {selectedStock ? (
+        <Typography
+          variant="body2"
+          textAlign={"center"}
+          color={chartColorsPalette.skyBlue}
+        >
+          Negative Results: {totalNegativeResult}
+        </Typography>
+      ) : null}
+
+      {/* <Box display={"flex"} justifyContent={"center"}>
+        <Typography
+          textAlign={"center"}
+          variant="body2"
+          mt={4}
+          color={chartColorsPalette.skyBlue}
+        >
+          Operations By Stock
+        </Typography>
+      </Box> */}
     </Box>
   );
 }

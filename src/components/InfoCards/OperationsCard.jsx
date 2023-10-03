@@ -38,7 +38,7 @@ export default function OperationsCard({
         Profits
       </Typography>
 
-      <Box key={id}>
+      <Box key={id} className="pistacho">
         <Typography variant="h3" color={chartColorsPalette.skyBlue}>
           {operationType} / {takeProfit}
         </Typography>

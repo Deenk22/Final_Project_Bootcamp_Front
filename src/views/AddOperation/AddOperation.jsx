@@ -1,14 +1,12 @@
 import AddOperationView from "./AddOperationView";
 import axios from "axios";
-import {useQuery} from "@tanstack/react-query";
+import {useMutation, useQuery, useQueryClient} from "@tanstack/react-query";
 import {IM_INVESTING_KEY} from "../../const/IM_investingKey";
 import {useState} from "react";
 import {
   doneNotification,
   errorNotification,
 } from "../../notifications/notification";
-
-const url = "http://localhost:3000/operation/all";
 
 export default function AddOperation() {
   const [startDate, setStartDate] = useState("");
@@ -23,8 +21,11 @@ export default function AddOperation() {
   };
 
   const getAllOperations = async () => {
-    const res = await axios.get(url, config);
-    return res.data;
+    const {data} = await axios.get(
+      "http://localhost:3000/operation/all",
+      config
+    );
+    return data;
   };
 
   // Retry
@@ -64,6 +65,73 @@ export default function AddOperation() {
   //   return <span>Loading...</span>;
   // }
 
+  const deleteOperation = async (id) => {
+    const {data} = await axios.delete(
+      `http://localhost:3000/operation/${id}`,
+      config
+    );
+    return data;
+  };
+
+  const queryClient = useQueryClient();
+  const mutation = useMutation({
+    mutationKey: ["deleteOperation"],
+    mutationFn: deleteOperation,
+
+    onError: (err) => {
+      console.log(err);
+    },
+
+    onSettled: (data, error) => {
+      if (error) {
+        const {message} = error.response.data;
+        errorNotification(message);
+      } else {
+        const {message} = data;
+        doneNotification(message);
+      }
+    },
+
+    onSuccess: () => {
+      queryClient.invalidateQueries("allOperations");
+    },
+  });
+
+  const multipleDeletion = async (operationsId) => {
+    const {data} = await axios.post(
+      "http://localhost:3000/operation/multipledeletion",
+      {
+        operationsId,
+      },
+      config
+    );
+    return data;
+  };
+
+  const mutationDeleteMultiple = useMutation({
+    mutationKey: ["deleteOperationsById"],
+    mutationFn: multipleDeletion,
+
+    onError: (err) => {
+      console.log(err);
+    },
+
+    onSettled: (data, error) => {
+      if (error) {
+        const {message} = error.response.data;
+        errorNotification(message);
+      } else {
+        const {message} = data;
+        doneNotification(message);
+      }
+    },
+
+    onSuccess: () => {
+      queryClient.invalidateQueries("allOperations");
+    },
+  });
+
+  // GESTIONAR MEJOR ESTA LLAMADA POR FECHA... ESTA RARA Y LO SE.
   const urlDate = `http://localhost:3000/operation/date/${startDate}/${endDate}`;
 
   const handleStartDateChange = (e) => {
@@ -109,6 +177,8 @@ export default function AddOperation() {
   return (
     <>
       <AddOperationView
+        mutation={mutation}
+        mutationDeleteMultiple={mutationDeleteMultiple}
         startDate={startDate}
         endDate={endDate}
         allOperations={allOperations}

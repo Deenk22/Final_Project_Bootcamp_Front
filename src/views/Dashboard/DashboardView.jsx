@@ -1,12 +1,16 @@
 // import DoughnutData from "../../components/Charts/DoughnutData";
 import BarData from "../../components/Charts/BarData";
 import OperationsCard from "../../components/InfoCards/OperationsCard";
-import {Box, Grid, Typography} from "@mui/material";
+import {Box, Grid} from "@mui/material";
 import StrategySelect from "../../components/Select/StrategySelect";
 import DoughnutData from "../../components/Charts/DoughnutData";
 import StockSelect from "../../components/Select/StockSelect";
-import OperationSelect from "../../components/Select/OperationSelect";
+// import OperationSelect from "../../components/Select/OperationSelect";
 import "./styleDashboard.css";
+import {useState} from "react";
+// import LineData from "../../components/Charts/LineData";
+import BarChart from "../../components/Charts/BarChart";
+// import StockTypeSelect from "../../components/Select/StockTypesSelect";
 
 const chartColorsPalette = {
   orange: "rgba(255, 159, 64, 0.7)",
@@ -23,13 +27,33 @@ export default function DashboardView({
   allOperations,
   allStrategies,
   allStocks,
+  allStockTypes,
 }) {
+  const [selectedStock, setSelectedStock] = useState("");
+  const [selectedStrategy, setSelectedStrategy] = useState("");
+  // const [selectedStockType, setSelectedStockType] = useState("");
+
+  const handleStockChange = (selectedStock) => {
+    setSelectedStock(selectedStock);
+  };
+
+  const handleStrategyChange = (selectedStrategy) => {
+    setSelectedStrategy(selectedStrategy);
+  };
+
+  // const handleStockTypeChange = (selectedStockType) => {
+  //   setSelectedStockType(selectedStockType);
+  // };
+
   return (
     <main>
       <Box display={"flex"} justifyContent={"center"} gap={4}>
-        <OperationSelect allOperations={allOperations} />
-        <StrategySelect allStrategies={allStrategies} />
-        <StockSelect allStocks={allStocks} />
+        {/* <OperationSelect allOperations={allOperations} /> */}
+        <StockSelect allStocks={allStocks} onStockChange={handleStockChange} />
+        <StrategySelect
+          allStrategies={allStrategies}
+          onStrategyChange={handleStrategyChange}
+        />
       </Box>
       <Grid
         container
@@ -50,29 +74,42 @@ export default function DashboardView({
           lg={4}
         >
           <Box>
-            <Typography
-              textAlign={"center"}
-              variant="h4"
-              mb={4}
-              color={chartColorsPalette.skyBlue}
-            >
-              Last Operations Added
-            </Typography>
             {/* Ajustar MediaQueries */}
             <Box display={"flex"} justifyContent={"center"}>
-              <BarData allOperations={allOperations} />
+              <BarData
+                allOperations={allOperations}
+                selectedStock={selectedStock}
+                selectedStrategy={selectedStrategy}
+              />
             </Box>
           </Box>
         </Grid>
         <Grid item xs={10} sm={10} md={10} lg={4}>
           {/* Ajustar MediaQueries */}
           <Box display={"flex"} justifyContent={"center"}>
-            <DoughnutData />
+            <DoughnutData
+              allOperations={allOperations}
+              selectedStock={selectedStock}
+            />
           </Box>
         </Grid>
       </Grid>
       {/* Este grid deberia ir en una section fuera de aqui */}
-
+      <Box display={"flex"} justifyContent={"center"} mt={16}>
+        {/* <StockTypeSelect
+          allStockTypes={allStockTypes}
+          onStockTypeChange={handleStockTypeChange}
+        /> */}
+        <BarChart
+          allOperations={allOperations}
+          allStrategies={allStrategies}
+          allStockTypes={allStockTypes}
+          allStocks={allStocks}
+          selectedStrategy={selectedStrategy}
+          // selectedStockType={selectedStockType}
+        />
+        {/* <LineData /> */}
+      </Box>
       <Grid
         container
         direction={"row"}

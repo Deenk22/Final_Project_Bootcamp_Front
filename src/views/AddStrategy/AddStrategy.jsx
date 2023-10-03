@@ -1,6 +1,6 @@
 import axios from "axios";
 import AddStrategyView from "./AddStrategyView";
-import {useQuery} from "@tanstack/react-query";
+import {useMutation, useQuery, useQueryClient} from "@tanstack/react-query";
 import {IM_INVESTING_KEY} from "../../const/IM_investingKey";
 import {useState} from "react";
 import {
@@ -76,6 +76,38 @@ export default function AddStrategy() {
     }
   };
 
+  const handleDeleteStrategy = async (id) => {
+    const res = await axios.delete(
+      `http://localhost:3000/strategy/${id}`,
+      config
+    );
+    return res.data;
+  };
+
+  const queryClient = useQueryClient();
+  const strategyDeleteMutation = useMutation({
+    mutationKey: ["deleteStrategy"],
+    mutationFn: handleDeleteStrategy,
+
+    onError: (err) => {
+      console.log(err);
+    },
+
+    onSettled: (data, error) => {
+      if (error) {
+        const {message} = error.response.data;
+        errorNotification(message);
+      } else {
+        const {message} = data;
+        doneNotification(message);
+      }
+    },
+
+    onSuccess: () => {
+      queryClient.invalidateQueries("allOperations");
+    },
+  });
+
   const allStrategies = strategies ? strategies.data : null;
   const strategiesByDate = strategyByDate ? strategyByDate.data : null;
 
@@ -83,6 +115,7 @@ export default function AddStrategy() {
     <AddStrategyView
       startDate={startDate}
       endDate={endDate}
+      strategyDeleteMutation={strategyDeleteMutation}
       allStrategies={allStrategies}
       strategiesByDate={strategiesByDate}
       handleStartDateChange={handleStartDateChange}

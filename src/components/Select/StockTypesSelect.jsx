@@ -16,24 +16,24 @@ const chartColorsPalette = {
   skyBlue: "rgba(208, 228, 233)",
 };
 
-export default function StrategySelect({allStrategies, onStrategyChange}) {
-  const [strategySelected, setStrategySelected] = useState("");
+export default function StockTypeSelect({allStockTypes, onStockTypeChange}) {
+  const [stockTypeSelected, setStockTypeSelected] = useState("");
 
   useEffect(() => {
-    if (allStrategies && allStrategies.length > 0) {
-      setStrategySelected(allStrategies[0].label);
+    if (allStockTypes && allStockTypes.length > 0) {
+      setStockTypeSelected(allStockTypes[0].label);
     }
-  }, [allStrategies]);
+  }, [allStockTypes]);
 
   const handleSelectChange = (selectedOption) => {
-    setStrategySelected(selectedOption.value);
-    onStrategyChange(selectedOption.value);
+    setStockTypeSelected(selectedOption.value);
+    onStockTypeChange(selectedOption.value);
   };
 
   const options =
-    allStrategies?.map((strategy) => ({
-      label: strategy.name,
-      value: strategy.id,
+    allStockTypes?.map((type) => ({
+      label: type.name,
+      value: type.id,
     })) || [];
 
   return (
@@ -44,10 +44,10 @@ export default function StrategySelect({allStrategies, onStrategyChange}) {
         ml={0.5}
         color={chartColorsPalette.blue}
       >
-        Strategies Name
+        Stock Types
       </Typography>
       <Select
-        defaultValue={{label: strategySelected}}
+        defaultValue={{label: stockTypeSelected}}
         options={options}
         onChange={handleSelectChange}
       />

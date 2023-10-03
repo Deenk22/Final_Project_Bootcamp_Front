@@ -9,6 +9,8 @@ import {useEffect, useState} from "react";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 
 export default function AddOperationView({
+  mutationDeleteMultiple,
+  mutation,
   startDate,
   endDate,
   operationsByDate,
@@ -76,7 +78,11 @@ export default function AddOperationView({
         </Grid>
         <Grid item xs={10}>
           <Box>
-            <OperationTable allOperations={allOperations} />
+            <OperationTable
+              allOperations={allOperations}
+              mutation={mutation}
+              mutationDeleteMultiple={mutationDeleteMultiple}
+            />
           </Box>
         </Grid>
       </Grid>

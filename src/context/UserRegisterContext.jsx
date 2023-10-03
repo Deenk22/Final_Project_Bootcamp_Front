@@ -13,7 +13,20 @@ const colorPalettes = {
 };
 
 const toastStyles = {
-  duration: 2500,
+  duration: 2800,
+  position: "top-center",
+  style: {
+    marginTop: "64px",
+    margin: 0,
+    padding: 16,
+    fontFamily: "sans-serif",
+    backgroundColor: colorPalettes.blue,
+    color: colorPalettes.skyBlue,
+  },
+};
+
+const toastStylesPhoto = {
+  duration: 2800,
   position: "top-center",
   style: {
     marginTop: "64px",
@@ -40,12 +53,17 @@ export default function UserRegisterContextProvider({children}) {
 
   const mutation = useMutation({
     mutationFn: async (values) => {
-      const {name, surname, regEmail, regPassword} = values;
-      return await axios.post(url, {
-        name: name,
-        surname: surname,
-        email: regEmail,
-        password: regPassword,
+      const formData = new FormData();
+      formData.append("name", values.name);
+      formData.append("surname", values.surname);
+      formData.append("email", values.regEmail);
+      formData.append("password", values.regPassword);
+      formData.append("avatar", values.avatar);
+
+      return await axios.post(url, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
       });
     },
 
@@ -72,7 +90,12 @@ export default function UserRegisterContextProvider({children}) {
 
       if (status === 200) {
         const userWelcomeMessageReg = data?.message;
-        toast.success(userWelcomeMessageReg, toastStyles);
+        values.avatar
+          ? toast.success(userWelcomeMessageReg, toastStyles)
+          : toast.success(
+              "Done! Remember to Upload the Photo Later!",
+              toastStylesPhoto
+            );
         successPlay();
       }
     } catch (err) {

@@ -1,0 +1,26 @@
+.select-stock {
+  animation: movement-left 0.8s ease-in forwards;
+}
+
+@keyframes movement-left {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.icon-start {
+  animation: icon-movement 0.8s ease-in-out 0s infinite alternate;
+}
+
+@keyframes icon-movement {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}

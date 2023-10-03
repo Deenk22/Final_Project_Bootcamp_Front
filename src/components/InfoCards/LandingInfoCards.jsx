@@ -3,6 +3,15 @@ import {useLocation} from "react-router-dom";
 import {useEffect} from "react";
 import "./styleLandingCards.css";
 
+const colorPalettes = {
+  blue: "#162938",
+  green: "#49726B",
+  skyBlue: "#D0E4E9",
+  tealBlue: "#367588",
+  yellow: "#eab308",
+  indigo: "#6366f1",
+};
+
 export default function LandingInfoCards() {
   const location = useLocation();
 
@@ -26,8 +35,8 @@ export default function LandingInfoCards() {
 
   return (
     <section className="hidden">
-      <Typography mt={4} mb={4} variant="h6">
-        It´s Really Good
+      <Typography mt={8} mb={4} variant="h4" color={colorPalettes.tealBlue}>
+        Companies
       </Typography>
       <Box
         className="logos query"
@@ -38,16 +47,16 @@ export default function LandingInfoCards() {
         mt={2}
       >
         <Box className="logo hidden">
-          <img src="./src/assets/controlPanel.png" width={"100px"} alt="" />
+          <img src="./src/assets/svg/api.svg" width={"100px"} alt="" />
         </Box>
         <Box className="logo hidden">
-          <img src="./src/assets/settings.png" width={"100px"} alt="" />
+          <img src="./src/assets/svg/elliott.svg" width={"100px"} alt="" />
         </Box>
         <Box className="logo hidden">
-          <img src="./src/assets/controlPanel.png" width={"100px"} alt="" />
+          <img src="./src/assets/svg/enron.svg" width={"100px"} alt="" />
         </Box>
         <Box className="logo hidden">
-          <img src="./src/assets/settings.png" width={"100px"} alt="" />
+          <img src="./src/assets/svg/fnaim.svg" width={"100px"} alt="" />
         </Box>
       </Box>
     </section>

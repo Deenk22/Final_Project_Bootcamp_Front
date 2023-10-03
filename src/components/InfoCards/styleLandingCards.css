@@ -16,7 +16,11 @@
 
 .logos {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-around;
+}
+
+.logos img{
+  border-radius: 16px;
 }
 
 .logo:nth-child(2) {
@@ -39,3 +43,4 @@
     align-items: center;
   }
 }
+

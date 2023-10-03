@@ -22,8 +22,8 @@ const style = {
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  width: "56vw",
-  height: "56vh",
+  width: "1000px",
+  height: "576px",
   bgcolor: chartColorsPalette.blue,
   borderRadius: 8,
 };
@@ -84,8 +84,8 @@ export default function OperationModal({operation}) {
               onClick={handleClose}
               sx={{
                 position: "relative",
-                bottom: 422,
-                left: 1032,
+                bottom: 450,
+                left: 956,
                 color: chartColorsPalette.blue,
                 bgcolor: chartColorsPalette.skyBlue,
                 borderBottomLeftRadius: 8,
