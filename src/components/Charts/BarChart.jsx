@@ -1,4 +1,4 @@
-import {Box} from "@mui/material";
+import {Box, Typography} from "@mui/material";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -34,58 +34,44 @@ const chartColorsPalette = {
   skyBlue: "rgba(208, 228, 233)",
 };
 
-// const months = [
-//   "January",
-//   "February",
-//   "March",
-//   "April",
-//   "May",
-//   "June",
-//   "July",
-//   "August",
-//   "September",
-//   "October",
-//   "November",
-//   "December",
-// ];
-
 export default function BarChart({
   selectedStrategy,
   allOperations,
   allStockTypes,
   allStocks,
+  allStrategies,
   // selectedStockType,
 }) {
   // Seleccionamos una estrategia y como resultado <operationsByStrategy> todas las operaciones relacionadas.
-  const operationsByStrategy = allOperations?.filter(
-    (operation) => operation.strategyId === selectedStrategy
-  );
+  // const operationsByStrategy = allOperations?.filter(
+  //   (operation) => operation.strategyId === selectedStrategy
+  // );
 
-  const strategyLabel = operationsByStrategy?.map(
-    (label) => label.operationType
-  );
+  // const strategyLabel = operationsByStrategy?.map(
+  //   (label) => label.operationType
+  // );
 
   // Al seleccionar una estrategia y conseguir todas las operaciones relacionadas con dicha estrategia, recuperamos el stockId de cada operación. Solo recuperamos el ID del stock.
-  const stockIds = operationsByStrategy?.map((stock) => stock.stockId);
+  // const stockIds = operationsByStrategy?.map((stock) => stock.stockId);
 
   // Aqui al recuperar el stockId de las operaciones relacionadas con la estrategia seleccinada, recuperamos toda la información de los stocks.
-  const stockIdtoType = allStocks?.filter((stock) =>
-    stockIds.includes(stock.id)
-  );
+  // const stockIdtoType = allStocks?.filter((stock) =>
+  //   stockIds.includes(stock.id)
+  // );
 
   // Con toda la información ya recuperada de los stocks relacionados con las operaciones que a su vez, estas estan relacionadas con las estrategias, recuperamos el stockTypeId de los stocks para posteriormente recuperar el tipo de stock.
-  const stockTypeIds = stockIdtoType?.map((stock) => stock.stockTypeId);
+  // const stockTypeIds = stockIdtoType?.map((stock) => stock.stockTypeId);
 
   // Finalmente tenemos el tipo de stock. StockType.
-  const stockTypeByStrategy = allStockTypes?.filter((type) =>
-    stockTypeIds?.includes(type.id)
-  );
-  console.log(stockTypeByStrategy);
+  // const stockTypeByStrategy = allStockTypes?.filter((type) =>
+  //   stockTypeIds?.includes(type.id)
+  // );
+  // console.log(stockTypeByStrategy);
 
   // Hemos utilizado takeProfit a modo de prueba, debera ser la suma o el total por meses en años.
-  const takeProfit = operationsByStrategy?.map(
-    (operation) => operation.takeProfit
-  );
+  // const takeProfit = operationsByStrategy?.map(
+  //   (operation) => operation.takeProfit
+  // );
 
   // const stocks = operationsByStrategy?.map((stock) => stock.stockId);
 
@@ -111,6 +97,48 @@ export default function BarChart({
   // Tambien a la derecha % distribuido por tipo de activo.
   // const info = operationsByStrategy?.map((operation) => operation.takeProfit);
 
+  const strategies = allStrategies?.map((strategy) => strategy.name);
+  const strategyId = allOperations?.map((id) => id.strategyId);
+
+  // Buscamos la estrategia mas usada y veremos si ha tenido rentabilidad o no.
+  let countStrategyIds = {};
+  if (strategyId && strategyId.length > 0) {
+    countStrategyIds = strategyId.reduce((acc, curr) => {
+      if (acc[curr]) {
+        acc[curr]++;
+      } else {
+        acc[curr] = 1;
+      }
+      return acc;
+    }, {});
+  }
+
+  // Ordenamos y usamos Object.entries para obtener "clave-valor"
+  const orderlyStrategies = Object.entries(countStrategyIds).sort(
+    (most, least) => {
+      return least[1] - most[1];
+    }
+  );
+
+  // Conseguimos el id de la estrategia más usada.
+  const mostUsedId =
+    orderlyStrategies && orderlyStrategies[0] ? orderlyStrategies[0][0] : null;
+
+  // Total de estrategias usadas en las operaciones y le hemos cambiado el orden para sintonizarlas con la gráfica.
+  const totalStrategiesByOperations = Object.values(countStrategyIds);
+  const totalStrategiesReversed = totalStrategiesByOperations.reverse();
+
+  // Conseguimos todas las operaciones relacionadas con la estrategia mas usada.
+  const operationsByStrategy = allOperations?.filter(
+    (operation) => operation.strategyId === parseInt(mostUsedId)
+  );
+
+  // Conseguimos priceClose y priceOpen de las operaciones relacionadas con la estrategia mas usada hasta el momento.
+  const priceOpen = operationsByStrategy?.map((o) => o.priceOpen);
+  console.log(priceOpen);
+  const priceClose = operationsByStrategy?.map((c) => c.priceClose);
+  console.log(priceClose);
+
   const options = {
     scales: {
       x: {
@@ -134,11 +162,11 @@ export default function BarChart({
   };
 
   const data = {
-    labels: strategyLabel,
+    labels: strategies,
     datasets: [
       {
-        label: "Total amount per month",
-        data: takeProfit,
+        label: "Total times used",
+        data: totalStrategiesReversed,
         // grouped: isCompare ? false : true,
         borderRadius: 4,
         backgroundColor: chartColorsPalette.blue,
@@ -148,8 +176,13 @@ export default function BarChart({
   };
 
   return (
-    <Box width={768}>
-      <Bar data={data} options={options} />
+    <Box>
+      <Box width={768}>
+        <Bar data={data} options={options} />
+      </Box>
+      <Box>
+        <Typography>Estrategia mas usada {mostUsedId}</Typography>
+      </Box>
     </Box>
   );
 }

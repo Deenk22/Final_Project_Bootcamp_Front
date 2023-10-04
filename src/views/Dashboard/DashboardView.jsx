@@ -49,11 +49,11 @@ export default function DashboardView({
     <main>
       <Box display={"flex"} justifyContent={"center"} gap={4}>
         {/* <OperationSelect allOperations={allOperations} /> */}
-        <StockSelect allStocks={allStocks} onStockChange={handleStockChange} />
         <StrategySelect
           allStrategies={allStrategies}
           onStrategyChange={handleStrategyChange}
         />
+        <StockSelect allStocks={allStocks} onStockChange={handleStockChange} />
       </Box>
       <Grid
         container

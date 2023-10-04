@@ -83,9 +83,9 @@ export default function BarData({
 
   // Strategies
   const operationByStrategy = selectedStrategy
-    ? allOperations?.filter(
-        (operation) => operation.strategyId === selectedStrategy
-      )
+    ? allOperations
+        ?.filter((operation) => operation.strategyId === selectedStrategy)
+        .toSpliced(10)
     : null;
 
   const strategyLabel = operationByStrategy?.map(

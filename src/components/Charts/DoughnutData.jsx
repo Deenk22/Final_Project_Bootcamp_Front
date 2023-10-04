@@ -63,11 +63,11 @@ export default function DoughnutData({allOperations, selectedStock}) {
     return percentage.toFixed(2);
   });
 
-  const negativeResults = percentageDifferences?.filter(
-    (percentage) => percentage <= 0
-  );
+  // const negativeResults = percentageDifferences?.filter(
+  //   (percentage) => percentage <= 0
+  // );
 
-  const totalNegativeResult = negativeResults?.length;
+  // const totalNegativeResult = negativeResults?.length;
 
   const data = {
     labels: operationLabel,
@@ -115,7 +115,7 @@ export default function DoughnutData({allOperations, selectedStock}) {
       <Box width={430}>
         <Pie data={data} options={options} />
       </Box>
-      {selectedStock ? (
+      {/* {selectedStock ? (
         <Typography
           variant="body2"
           textAlign={"center"}
@@ -123,7 +123,7 @@ export default function DoughnutData({allOperations, selectedStock}) {
         >
           Negative Results: {totalNegativeResult}
         </Typography>
-      ) : null}
+      ) : null} */}
 
       {/* <Box display={"flex"} justifyContent={"center"}>
         <Typography

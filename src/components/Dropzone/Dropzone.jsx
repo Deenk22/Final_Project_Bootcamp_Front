@@ -178,6 +178,7 @@ export default function DropZone({onImagenSeleccionada}) {
             bgcolor={chartColorsPalette.blue}
             color={chartColorsPalette.skyBlue}
             sx={{cursor: "pointer"}}
+            mt={-1}
           >
             Remove
             <DeleteOutlineIcon
@@ -188,7 +189,7 @@ export default function DropZone({onImagenSeleccionada}) {
         )}
         {isPhotoRemoved !== true ? (
           <Typography variant="body2" color={chartColorsPalette.skyBlue}>
-            Remember, You can upload the photo later.
+            You can upload the photo later.
           </Typography>
         ) : null}
       </Box>
