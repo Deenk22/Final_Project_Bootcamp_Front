@@ -35,12 +35,13 @@
   transition-delay: 650ms;
 }
 
-@media (max-width: 799px) {
+
+/* @media (max-width: 799px) {
   section .query {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
   }
-}
+} */
 

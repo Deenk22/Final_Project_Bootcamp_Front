@@ -133,6 +133,7 @@ export default function StockTable({allStocks, stockDeleteMutation}) {
           <TableHead>
             <TableRow>
               <StyledTableCell align="center">Name</StyledTableCell>
+              <StyledTableCell align="center">Broker</StyledTableCell>
               <StyledTableCell align="center">Country</StyledTableCell>
               <StyledTableCell align="center">Ticker</StyledTableCell>
               <StyledTableCell align="center">Sector</StyledTableCell>
@@ -146,6 +147,9 @@ export default function StockTable({allStocks, stockDeleteMutation}) {
               <StyledTableRow key={stock.id}>
                 <StyledTableCell component="th" scope="row">
                   {stock.name}
+                </StyledTableCell>
+                <StyledTableCell align="center">
+                  {stock.brokerId}
                 </StyledTableCell>
                 <StyledTableCell align="center">
                   {stock.country}

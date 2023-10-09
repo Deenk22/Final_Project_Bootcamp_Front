@@ -9,13 +9,15 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import DeleteIcon from "@mui/icons-material/Delete";
 import OperationModal from "../CustomModal/OperationModal";
-import {convertDate} from "../../const/convertDate";
 import SearchIcon from "@mui/icons-material/Search";
-import EventBusyIcon from "@mui/icons-material/EventBusy";
+import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
+import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
+
 import {
   Box,
   Checkbox,
   IconButton,
+  Popover,
   TableFooter,
   TablePagination,
   Toolbar,
@@ -26,7 +28,7 @@ import DownloadFiles from "../DowloadFiles/DownloadFiles";
 
 const chartColorsPalette = {
   tealBlue2: "rgba(75, 192, 192, 0.6)",
-  lightPink: "rgba(255, 99, 132, 0.7)",
+  lightPink: "rgba(255, 99, 132, 0.9)",
   lightYellow: "rgba(255, 205, 86, 0.6)",
   tealBlueOpacity: "rgba(75, 192, 192, 0.2)",
   lightPinkOpacity: "rgba(255, 99, 132, 0.2)",
@@ -35,12 +37,14 @@ const chartColorsPalette = {
   shadowYellow: "rgba(255, 205, 86, 0.4)",
   shadowtealBlue2: "rgba(75, 192, 192, 0.4)",
   blue: "rgba(22, 41, 56)",
+  blueOpacity: "rgba(22, 41, 56, 0.1)",
   skyBlue: "rgba(208, 228, 233)",
+  green: "rgba(73, 184, 123, 1)",
 };
 
 const StyledTableContainer = styled(TableContainer)(() => ({
-  width: 1416,
-  height: 576,
+  width: 1296,
+  height: 608,
 }));
 
 const StyledTableCell = styled(TableCell)(() => ({
@@ -71,6 +75,10 @@ export default function OperationTable({
   const [selected, setSelected] = useState([]);
   const [search, setSearch] = useState("");
   const [filteredOperations, setFilteredOperations] = useState(allOperations);
+  const [hoverOperation, setHoverOperation] = useState(null);
+  const [anchorEl, setAnchorEl] = useState(null);
+
+  console.log(anchorEl);
 
   function onSearchOperations(e) {
     setPage(0);
@@ -79,7 +87,10 @@ export default function OperationTable({
 
   useEffect(() => {
     const filteredByName = allOperations?.filter((operation) => {
-      return operation.operationType.includes(search);
+      const strategyNameSearch = operation.strategyName.includes(search);
+      const brokerNameSearch = operation.brokerName.includes(search);
+      const stockNameSearch = operation.stockName.includes(search);
+      return strategyNameSearch || brokerNameSearch || stockNameSearch;
     });
     setFilteredOperations(filteredByName);
   }, [search, allOperations]);
@@ -108,6 +119,23 @@ export default function OperationTable({
     setSearch("");
   };
 
+  const handlePopoverOpen = (e, operation) => {
+    const ProfitOrLoss =
+      operation.volume * (operation.priceClose - operation.priceOpen) -
+      operation.commission -
+      operation.swap;
+    const resultsFixed = ProfitOrLoss.toFixed(2);
+    setAnchorEl(e.currentTarget);
+    setHoverOperation(parseFloat(resultsFixed));
+  };
+
+  const handlePopoverClose = () => {
+    setAnchorEl(null);
+    setHoverOperation(null);
+  };
+
+  const open = Boolean(anchorEl);
+
   const paginatedOperations = filteredOperations?.slice(
     page * rowsPerPage,
     page * rowsPerPage + rowsPerPage
@@ -134,7 +162,7 @@ export default function OperationTable({
                 paddingY={1}
                 paddingX={2}
                 borderRadius={1}
-                bgcolor={chartColorsPalette.tealBlue2}
+                bgcolor={chartColorsPalette.lightPink}
               >
                 {numSelected}
               </Typography>
@@ -204,6 +232,7 @@ export default function OperationTable({
               <StyledTableCell align="center">Operation Type</StyledTableCell>
               <StyledTableCell align="center">Stock</StyledTableCell>
               <StyledTableCell align="center">Strategy</StyledTableCell>
+              <StyledTableCell align="center">Broker</StyledTableCell>
               <StyledTableCell align="center">Volume</StyledTableCell>
               <StyledTableCell align="center">Price Open</StyledTableCell>
               <StyledTableCell align="center">Stop Loss</StyledTableCell>
@@ -212,7 +241,6 @@ export default function OperationTable({
               <StyledTableCell align="center">Commission</StyledTableCell>
               <StyledTableCell align="center">Swap</StyledTableCell>
               <StyledTableCell align="center">Change Rate</StyledTableCell>
-              <StyledTableCell align="center">Operation Date</StyledTableCell>
               <StyledTableCell align="center">Delete</StyledTableCell>
               <StyledTableCell align="center">Edit</StyledTableCell>
             </TableRow>
@@ -229,14 +257,23 @@ export default function OperationTable({
                     }
                   />
                 </StyledTableCell>
-                <StyledTableCell component="th" scope="row" align="center">
+                <StyledTableCell
+                  onMouseEnter={(e) => handlePopoverOpen(e, operation)}
+                  onMouseLeave={handlePopoverClose}
+                  component="th"
+                  scope="row"
+                  align="center"
+                >
                   {operation.operationType}
                 </StyledTableCell>
                 <StyledTableCell align="center">
-                  {operation.stockId}
+                  {operation.stockName}
                 </StyledTableCell>
                 <StyledTableCell align="center">
-                  {operation.strategyId}
+                  {operation.strategyName}
+                </StyledTableCell>
+                <StyledTableCell align="center">
+                  {operation.brokerName}
                 </StyledTableCell>
                 <StyledTableCell align="center">
                   {operation.volume}
@@ -261,9 +298,6 @@ export default function OperationTable({
                 </StyledTableCell>
                 <StyledTableCell align="center">
                   {operation.changeRate}
-                </StyledTableCell>
-                <StyledTableCell align="center">
-                  {convertDate(operation.operationDate)}
                 </StyledTableCell>
                 <StyledTableCell align="center">
                   <IconButton
@@ -295,9 +329,62 @@ export default function OperationTable({
             </TableRow>
           </TableFooter>
         </Table>
-        {allOperations ? (
-          <DownloadFiles selected={selected} allOperations={allOperations} />
-        ) : null}
+        <Box display={"flex"} justifyContent={"center"}>
+          {allOperations ? (
+            <DownloadFiles selected={selected} allOperations={allOperations} />
+          ) : null}
+        </Box>
+        {/* Se que podria llevarmo como componente pero no hay tiempo! jejej */}
+        <Popover
+          id="mouse-over-popover"
+          open={open}
+          anchorEl={anchorEl}
+          sx={{
+            pointerEvents: "none",
+          }}
+          anchorOrigin={{
+            vertical: "top",
+            horizontal: "left",
+          }}
+          transformOrigin={{
+            vertical: "top",
+            horizontal: "right",
+          }}
+          elevation={24}
+        >
+          {hoverOperation && (
+            <Box width={96} bgcolor={chartColorsPalette.blue}>
+              <Typography
+                display={"flex"}
+                justifyContent={"center"}
+                alignItems={"center"}
+                variant="body2"
+                color={
+                  hoverOperation < 0
+                    ? chartColorsPalette.lightPink
+                    : chartColorsPalette.skyBlue
+                }
+              >
+                {hoverOperation}
+                {hoverOperation > 0 ? (
+                  <ArrowDropUpIcon
+                    fontSize="large"
+                    sx={{
+                      color: chartColorsPalette.green,
+                    }}
+                  />
+                ) : (
+                  <ArrowDropDownIcon
+                    fontSize="large"
+                    sx={{
+                      color: chartColorsPalette.lightPink,
+                    }}
+                  />
+                )}
+              </Typography>
+            </Box>
+          )}
+        </Popover>
       </StyledTableContainer>
     </>
   );

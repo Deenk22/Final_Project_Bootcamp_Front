@@ -54,7 +54,7 @@ export default function UpdatePassFormView({onSubmit}) {
           type="password"
           id="currentPassword"
           label="Current Password"
-          variant="outlined"
+          variant="filled"
           className={
             errors.currentPassword && touched.currentPassword
               ? "textfield-error"
@@ -74,7 +74,7 @@ export default function UpdatePassFormView({onSubmit}) {
           type="password"
           id="newPassword"
           label="New Password"
-          variant="outlined"
+          variant="filled"
           className={
             errors.newPassword && touched.newPassword ? "textfield-error" : ""
           }
@@ -107,7 +107,7 @@ export default function UpdatePassFormView({onSubmit}) {
           type="password"
           id="retypePassword"
           label="Retype Password"
-          variant="outlined"
+          variant="filled"
           className={
             errors.retypePassword && touched.retypePassword
               ? "textfield-error"

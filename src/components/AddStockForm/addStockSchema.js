@@ -2,6 +2,7 @@ import * as yup from "yup";
 
 export const addStockSchema = yup.object().shape({
   stockTypeId: yup.number(),
+  brokerId: yup.number(),
   name: yup.string().required("Required Field"),
   country: yup.string(),
   ticker: yup.string(),

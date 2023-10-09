@@ -22,8 +22,17 @@ export default function OperationDateSearch({
   handleStartDateChange,
 }) {
   return (
-    <Box>
-      <Box display={"flex"} flexDirection={"column"} alignItems={"center"}>
+    <Box border={"2px solid black"} marginX={48} borderRadius={4} paddingY={4}>
+      <Typography textAlign={"center"} variant="h3" mb={2}>
+        search by date
+      </Typography>
+      <Box
+        display={"flex"}
+        flexDirection={"row"}
+        alignItems={"center"}
+        justifyContent={"center"}
+        gap={2}
+      >
         <TextField
           type="date"
           id="startDate"
@@ -31,7 +40,7 @@ export default function OperationDateSearch({
           value={startDate}
           onChange={handleStartDateChange}
           sx={{
-            background: chartColorsPalette.tealBlueOpacity,
+            background: chartColorsPalette.skyBlue,
           }}
         />
         <TextField
@@ -41,14 +50,24 @@ export default function OperationDateSearch({
           value={endDate}
           onChange={handleEndDateChange}
           sx={{
-            background: chartColorsPalette.tealBlueOpacity,
+            background: chartColorsPalette.skyBlue,
           }}
         />
+      </Box>
+      <Box textAlign={"center"}>
         <Typography
-          component={"button"}
-          variant="contained"
-          padding={2}
           onClick={handleSearchByDate}
+          component={"button"}
+          paddingX={2}
+          paddingY={0.5}
+          mt={2}
+          borderRadius={1}
+          sx={{
+            border: "none",
+            bgcolor: chartColorsPalette.blue,
+            color: chartColorsPalette.skyBlue,
+            cursor: "pointer",
+          }}
         >
           Search
         </Typography>

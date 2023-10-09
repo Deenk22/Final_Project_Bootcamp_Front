@@ -20,21 +20,14 @@ export default function UpdateOperationFormView({
   setOpen,
   operation,
 }) {
-  const {operationType, priceOpen, priceClose} = operation;
+  const {operationType, volume, priceOpen, priceClose} = operation;
 
-  const {
-    values,
-    errors,
-    touched,
-    handleChange,
-    handleBlur,
-    handleSubmit,
-    isSubmitting,
-  } = useFormik({
-    initialValues,
-    validationSchema: updateFormSchema,
-    onSubmit,
-  });
+  const {values, handleChange, handleBlur, handleSubmit, isSubmitting} =
+    useFormik({
+      initialValues,
+      validationSchema: updateFormSchema,
+      onSubmit,
+    });
 
   return (
     <form onSubmit={handleSubmit}>
@@ -64,11 +57,6 @@ export default function UpdateOperationFormView({
               id="operationType"
               label={operationType ? operationType : "Operation Type"}
               variant="filled"
-              className={
-                errors.operationType && touched.operationType
-                  ? "textfield-error"
-                  : ""
-              }
             />
           </Box>
           <TextField
@@ -81,7 +69,7 @@ export default function UpdateOperationFormView({
             onBlur={handleBlur}
             type="number"
             id="volume"
-            label="Volume"
+            label={volume ? volume : "Volume"}
             variant="filled"
           />
           <TextField
@@ -182,21 +170,15 @@ export default function UpdateOperationFormView({
         </Box>
         <Box textAlign={"center"}>
           <Button
-            onClick={() => {
-              values.operationType ? setOpen(false) : null;
-            }}
+            onClick={() => setOpen(false)}
             variant="contained"
             sx={{
-              width: 96,
               marginTop: 4,
               color: chartColorsPalette.blue,
               bgcolor: chartColorsPalette.skyBlue,
-              border: "2px solid " + chartColorsPalette.blue,
-              borderTopLeftRadius: 16,
-              borderBottomRightRadius: 16,
               ":hover": {
                 color: chartColorsPalette.skyBlue,
-                bgcolor: chartColorsPalette.tealBlue,
+                bgcolor: chartColorsPalette.lightPink,
               },
             }}
             disabled={isSubmitting}

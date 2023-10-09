@@ -41,18 +41,24 @@ export default function UpdateStrategyFormView({onSubmit, setOpen}) {
       >
         <Box display={"flex"} justifyContent={"center"} gap={2}>
           <TextField
-            sx={{width: 250}}
+            sx={{
+              width: 250,
+              bgcolor: chartColorsPalette.skyBlue,
+            }}
             value={values.name}
             onChange={handleChange}
             onBlur={handleBlur}
             type="text"
             id="name"
             label={errors.name ? errors.name : "Strategy Name"}
-            variant="outlined"
+            variant="filled"
             className={errors.name && touched.name ? "textfield-error" : ""}
           />
           <TextField
-            sx={{width: 250}}
+            sx={{
+              width: 250,
+              bgcolor: chartColorsPalette.skyBlue,
+            }}
             value={values.description}
             onChange={handleChange}
             onBlur={handleBlur}
@@ -61,17 +67,20 @@ export default function UpdateStrategyFormView({onSubmit, setOpen}) {
             label="Description"
             multiline
             maxRows={6}
-            variant="outlined"
+            variant="filled"
           />
           <TextField
-            sx={{width: 250}}
+            sx={{
+              width: 250,
+              bgcolor: chartColorsPalette.skyBlue,
+            }}
             value={values.budget}
             onChange={handleChange}
             onBlur={handleBlur}
             type="number"
             id="budget"
             label="Budget"
-            variant="outlined"
+            variant="filled"
           />
         </Box>
         <Box textAlign={"center"}>
@@ -80,16 +89,11 @@ export default function UpdateStrategyFormView({onSubmit, setOpen}) {
             variant="contained"
             sx={{
               marginTop: 4,
-              color: chartColorsPalette.skyBlue,
-              bgcolor: chartColorsPalette.blue,
-              border: "2px solid " + chartColorsPalette.blue,
-              borderTopLeftRadius: 16,
-              borderBottomRightRadius: 16,
-              // transition: "0.2s",
+              color: chartColorsPalette.blue,
+              bgcolor: chartColorsPalette.skyBlue,
               ":hover": {
-                color: chartColorsPalette.blue,
-                bgcolor: chartColorsPalette.skyBlue,
-                boxShadow: "0px 5px 0px 0px" + chartColorsPalette.blue,
+                color: chartColorsPalette.skyBlue,
+                bgcolor: chartColorsPalette.lightPink,
               },
             }}
             disabled={isSubmitting}

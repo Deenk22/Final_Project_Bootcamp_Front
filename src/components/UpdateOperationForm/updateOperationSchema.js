@@ -1,7 +1,7 @@
 import * as yup from "yup";
 
 export const updateFormSchema = yup.object().shape({
-  operationType: yup.string().required("Required Field"),
+  operationType: yup.string(),
   volume: yup.number(),
   priceOpen: yup.number(),
   stopLoss: yup.number(),

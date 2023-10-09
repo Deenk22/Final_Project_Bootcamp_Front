@@ -92,14 +92,34 @@ export default function AddOperationForm() {
     // remove: () => void
   });
 
+  // Tengo dudas sobre esto... me ha pillao un dia bastante cansao jeje.
+  const allBrokersUrl = "http://localhost:3000/broker/all";
+
+  const getAllBrokers = async () => {
+    const {data} = await axios.get(allBrokersUrl, config);
+    return data;
+  };
+
+  const {data: brokersId} = useQuery({
+    queryKey: ["allBrokers"],
+    queryFn: getAllBrokers,
+    cacheTime: 5 * 60 * 1000,
+    retry: 1,
+    // refetchOnWindowFocus: true,
+    // notifyOnChangeProps:
+    // remove: () => void
+  });
+
   const stocks = stocksId ? stocksId.data : null;
   const strategies = strategiesId ? strategiesId.data : null;
+  const brokers = brokersId ? brokersId.data : null;
 
   return (
     <AddOperationView
       onSubmit={onSubmit}
       strategies={strategies}
       stocks={stocks}
+      brokers={brokers}
     />
   );
 }

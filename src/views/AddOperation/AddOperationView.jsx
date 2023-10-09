@@ -1,5 +1,4 @@
 import AddOperationForm from "../../components/AddOperationForm/AddOperationForm";
-import OperationByTypeCard from "../../components/InfoCards/OperationByTypeCard";
 import OperationTable from "../../components/Tables/OperationTable";
 import OperationDateSearchCard from "../../components/InfoCards/OperationDateSearchCard";
 import OperationDateSearch from "../../components/DateForm/OperationDateSearch";
@@ -7,25 +6,42 @@ import {Box, Grid, Typography} from "@mui/material";
 import AddStrategyForm from "../../components/AddStrategyForm/AddStrategyForm";
 import {useEffect, useState} from "react";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
+import DetailCards from "../../components/InfoCards/DetailCards";
+
+const chartColorsPalette = {
+  tealBlue2: "rgba(75, 192, 192, 0.6)",
+  lightPink: "rgba(255, 99, 132, 0.6)",
+  lightYellow: "rgba(255, 205, 86, 0.6)",
+  tealBlueOpacity: "rgba(75, 192, 192, 0.2)",
+  lightPinkOpacity: "rgba(255, 99, 132, 0.2)",
+  lightYellowOpacity: "rgba(255, 205, 86, 0.2)",
+  orange: "rgba(255, 159, 64, 0.7)",
+  shadowYellow: "rgba(255, 205, 86, 0.4)",
+  shadowtealBlue2: "rgba(75, 192, 192, 0.4)",
+  blue: "rgba(22, 41, 56)",
+  blueOpacity: "rgba(22, 41, 56, 0.2)",
+  skyBlue: "rgba(208, 228, 233)",
+  skyBlueOpacity: "rgba(208, 228, 233, 0.2)",
+};
 
 export default function AddOperationView({
-  mutationDeleteMultiple,
+  endDate,
   mutation,
   startDate,
-  endDate,
-  operationsByDate,
   allOperations,
+  operationsByDate,
   handleSearchByDate,
   handleEndDateChange,
   handleStartDateChange,
+  mutationDeleteMultiple,
 }) {
   const [isVisibleStrategyForm, setIsVisibleStrategyForm] = useState(false);
-  const [message, setMessage] = useState("Perfecto!");
+  const [message, setMessage] = useState("Perfect!");
 
   useEffect(() => {
     if (isVisibleStrategyForm) {
       const timeout = setTimeout(() => {
-        setMessage("¡Vamos allá!");
+        setMessage("¡Let's create it!");
       }, 1000);
 
       return () => clearTimeout(timeout);
@@ -44,26 +60,65 @@ export default function AddOperationView({
         justifyContent={"center"}
         alignItems={"center"}
       >
-        <Grid item mb={10} xs={10}>
+        <Grid item mb={8} xs={10}>
           <Box>
-            <Typography textAlign={"center"} variant="h3" mb={6}>
+            <Typography textAlign={"center"} variant="h3" mb={2}>
               Operation Control Panel
             </Typography>
             <AddOperationForm />
-            {isVisibleStrategyForm ? (
-              <Typography textAlign={"center"} mt={2}>
-                {message}
-              </Typography>
-            ) : (
-              <Typography textAlign={"center"} mt={2}>
-                Aun no tienes la estrategia ni el stock? ¿Quieres crearlos?
-                Modal o link to
-              </Typography>
-            )}
-            <Box display={"flex"} alignItems={"center"} gap={1}>
-              <Typography>Add Strategy</Typography>
-              <AddCircleIcon onClick={handleChangeVisible} />
+          </Box>
+          <Box
+            className="form-container"
+            display={"flex"}
+            flexDirection={"column"}
+            justifyContent={"center"}
+            padding={2}
+            paddingY={8}
+            borderRadius={2}
+            mt={4}
+            bgcolor={chartColorsPalette.blueOpacity}
+          >
+            <Box>
+              {isVisibleStrategyForm ? (
+                <Typography textAlign={"center"} variant="body2">
+                  {message}
+                </Typography>
+              ) : (
+                <Box>
+                  <Typography textAlign={"center"} variant="body2">
+                    Can´t find the strategy you are looking for?
+                  </Typography>
+                </Box>
+              )}
             </Box>
+            {isVisibleStrategyForm ? (
+              <Box
+                display={"flex"}
+                justifyContent={"center"}
+                alignItems={"center"}
+                gap={1}
+                mt={2}
+              >
+                <AddCircleIcon
+                  onClick={handleChangeVisible}
+                  sx={{cursor: "pointer"}}
+                />
+              </Box>
+            ) : (
+              <Box
+                display={"flex"}
+                justifyContent={"center"}
+                alignItems={"center"}
+                gap={1}
+                mt={2}
+              >
+                <AddCircleIcon
+                  onClick={handleChangeVisible}
+                  sx={{cursor: "pointer"}}
+                />
+                <Typography variant="body2">Add New Strategy</Typography>
+              </Box>
+            )}
 
             {isVisibleStrategyForm ? (
               <Box
@@ -86,12 +141,6 @@ export default function AddOperationView({
           </Box>
         </Grid>
       </Grid>
-      {/* <Box color={chartColorsPalette.blue}>
-        <Typography variant="h3" textAlign={"center"} mt={2}>
-          Last Operation Added
-        </Typography>
-      </Box> */}
-
       <Box my={8}>
         <OperationDateSearch
           startDate={startDate}
@@ -101,24 +150,20 @@ export default function AddOperationView({
           handleStartDateChange={handleStartDateChange}
         />
       </Box>
-      <Grid
-        container
-        spacing={1}
-        mt={4}
-        mb={8}
-        sx={{
-          display: "grid",
-          gridTemplateColumns: "repeat(4, 1fr)",
-          placeItems: "center",
-          alignItems: "left",
-          gap: 1,
-        }}
-      >
+      <Grid container spacing={1} mb={8}>
         {operationsByDate
           ?.map((operationBydate) => {
             const {id, operationType} = operationBydate;
             return (
-              <Grid item key={id} xs={10} sm={5} md={5} lg={3}>
+              <Grid
+                display={"flex"}
+                justifyContent={"center"}
+                item
+                key={id}
+                xs={10}
+                sm={5}
+                md={4}
+              >
                 <OperationDateSearchCard
                   id={id}
                   operationType={operationType}
@@ -128,29 +173,47 @@ export default function AddOperationView({
           })
           .toSpliced(8)}
       </Grid>
-      <Grid
-        container
-        direction={"row"}
-        justifyContent={"center"}
-        spacing={2}
-        mt={4}
-        mb={8}
-      >
+      {/* <Box>
+        <Box>
+          <Typography
+            textAlign={"center"}
+            variant="h3"
+            color={chartColorsPalette.blue}
+            mb={4}
+          >
+            Last Operations Added
+          </Typography>
+        </Box>
+      </Box> */}
+      {/* <Grid container direction={"row"} mb={8} spacing={1}>
         {allOperations
-          ?.map((operationByType) => {
-            const {...props} = operationByType;
-            const {id} = props;
+          ?.map((operation) => {
+            const {id, operationType, strategyName, brokerName, stockName} =
+              operation;
             return (
-              <Grid item key={id} xs={10} sm={5} md={5} lg={3}>
-                <OperationByTypeCard
-                  props={props}
-                  allOperations={allOperations}
+              <Grid
+                item
+                key={id}
+                xs={10}
+                sm={5}
+                md={5}
+                lg={3}
+                display={"flex"}
+                justifyContent={"space-evenly"}
+              >
+                <DetailCards
+                  type={"operation"}
+                  id={id}
+                  operationType={operationType}
+                  strategyName={strategyName}
+                  brokerName={brokerName}
+                  stockName={stockName}
                 />
               </Grid>
             );
           })
           .toSpliced(4)}
-      </Grid>
+      </Grid> */}
     </>
   );
 }

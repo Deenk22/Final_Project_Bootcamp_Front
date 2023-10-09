@@ -23,7 +23,7 @@ const chartColorsPalette = {
   tealBlue: "#367588",
 };
 
-export default function AddStockFormView({onSubmit, stockTypes}) {
+export default function AddStockFormView({onSubmit, stockTypes, brokers}) {
   const {
     values,
     touched,
@@ -54,7 +54,7 @@ export default function AddStockFormView({onSubmit, stockTypes}) {
           type="text"
           id="name"
           label={errors.name ? errors.name : "Stock Name"}
-          variant="outlined"
+          variant="filled"
           className={errors.name && touched.name ? "textfield-error" : ""}
         />
         <TextField
@@ -65,7 +65,7 @@ export default function AddStockFormView({onSubmit, stockTypes}) {
           type="text"
           id="country"
           label="Country"
-          variant="outlined"
+          variant="filled"
         />
         <TextField
           sx={{width: 250}}
@@ -75,7 +75,7 @@ export default function AddStockFormView({onSubmit, stockTypes}) {
           type="text"
           id="ticker"
           label={errors.ticker ? errors.ticker : "Ticker"}
-          variant="outlined"
+          variant="filled"
           className={errors.ticker && touched.ticker ? "textfield-error" : ""}
         />
         <TextField
@@ -86,7 +86,7 @@ export default function AddStockFormView({onSubmit, stockTypes}) {
           type="text"
           id="type"
           label="Type"
-          variant="outlined"
+          variant="filled"
         />
         <TextField
           sx={{width: 250}}
@@ -96,7 +96,7 @@ export default function AddStockFormView({onSubmit, stockTypes}) {
           type="text"
           id="sector"
           label="Sector"
-          variant="outlined"
+          variant="filled"
         />
         <TextField
           sx={{width: 250}}
@@ -106,29 +106,56 @@ export default function AddStockFormView({onSubmit, stockTypes}) {
           type="text"
           id="industry"
           label="Industry"
-          variant="outlined"
+          variant="filled"
         />
       </Box>
-      <FormControl fullWidth>
-        <InputLabel id="stockTypeId">Stock Type</InputLabel>
-        <Select
-          labelId="stockTypeId"
-          id="stockTypeId"
-          name="stockTypeId"
-          label="Stock Type"
-          value={values.stockTypeId}
-          onChange={handleChange}
-          onBlur={handleBlur}
-        >
-          {stockTypes?.map((type) => {
-            return (
-              <MenuItem key={type.id} value={type.id ? type.id : null}>
-                {type.name}
-              </MenuItem>
-            );
-          })}
-        </Select>
-      </FormControl>
+      <Box
+        display={"grid"}
+        gridTemplateColumns={"repeat(2, 1fr)"}
+        gap={2}
+        paddingX={2}
+      >
+        <FormControl fullWidth variant="filled">
+          <InputLabel id="stockTypeId">Stock Type</InputLabel>
+          <Select
+            labelId="stockTypeId"
+            id="stockTypeId"
+            name="stockTypeId"
+            label="Stock Type"
+            value={values.stockTypeId}
+            onChange={handleChange}
+            onBlur={handleBlur}
+          >
+            {stockTypes?.map((type) => {
+              return (
+                <MenuItem key={type.id} value={type.id ? type.id : null}>
+                  {type.name}
+                </MenuItem>
+              );
+            })}
+          </Select>
+        </FormControl>
+        <FormControl fullWidth variant="filled">
+          <InputLabel id="brokerId">Broker</InputLabel>
+          <Select
+            labelId="brokerId"
+            id="brokerId"
+            name="brokerId"
+            label="Broker"
+            value={values.brokerId}
+            onChange={handleChange}
+            onBlur={handleBlur}
+          >
+            {brokers?.map((broker) => {
+              return (
+                <MenuItem key={broker.id} value={broker.id ? broker.id : null}>
+                  {broker.name}
+                </MenuItem>
+              );
+            })}
+          </Select>
+        </FormControl>
+      </Box>
       <Box textAlign={"center"}>
         <Button
           variant="contained"

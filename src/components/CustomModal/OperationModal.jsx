@@ -12,7 +12,7 @@ const chartColorsPalette = {
   shadowYellow: "rgba(255, 205, 86, 0.4)",
   tealBlue2: "rgba(75, 192, 192, 0.7)",
   shadowtealBlue2: "rgba(75, 192, 192, 0.4)",
-  blue: "rgba(22, 41, 56)",
+  blue: "rgba(22, 40, 52, 0.9)",
   skyBlue: "rgba(208, 228, 233)",
   tealBlue: "#367588",
 };
@@ -55,7 +55,7 @@ export default function OperationModal({operation}) {
             color={chartColorsPalette.skyBlue}
             textAlign={"center"}
           >
-            Edit Data <span className="operation-type">{operationType} </span>
+            Edit Data <span className="span-modal">{operationType} </span>
             Dialog Box
           </Typography>
           {/* <Box>
@@ -86,15 +86,12 @@ export default function OperationModal({operation}) {
                 position: "relative",
                 bottom: 450,
                 left: 956,
-                color: chartColorsPalette.blue,
-                bgcolor: chartColorsPalette.skyBlue,
-                borderBottomLeftRadius: 8,
-                transition: "0.5s",
+                color: chartColorsPalette.skyBlue,
+                transition: "0.3s",
                 transform: "rotate(180deg)",
                 "&:hover": {
                   transform: "rotate(0deg)",
                   color: chartColorsPalette.lightPink,
-                  borderTopRightRadius: 8,
                 },
               }}
             />

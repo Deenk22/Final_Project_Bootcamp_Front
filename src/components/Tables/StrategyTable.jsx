@@ -6,7 +6,6 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import {convertDate} from "../../const/convertDate";
 import {
   Box,
   IconButton,
@@ -131,9 +130,9 @@ export default function StrategyTable({allStrategies, strategyDeleteMutation}) {
           <TableHead>
             <TableRow>
               <StyledTableCell>Strategy Name</StyledTableCell>
+              <StyledTableCell align="left">Broker</StyledTableCell>
               <StyledTableCell align="left">Description</StyledTableCell>
               <StyledTableCell align="left">Budget</StyledTableCell>
-              <StyledTableCell align="left">Create Date</StyledTableCell>
               <StyledTableCell align="center">Delete</StyledTableCell>
               <StyledTableCell align="center">Edit</StyledTableCell>
             </TableRow>
@@ -145,14 +144,13 @@ export default function StrategyTable({allStrategies, strategyDeleteMutation}) {
                   {strategy.name}
                 </StyledTableCell>
                 <StyledTableCell align="left">
+                  {strategy.brokerId}
+                </StyledTableCell>
+                <StyledTableCell align="left">
                   {strategy.description}
                 </StyledTableCell>
                 <StyledTableCell align="left">
                   {strategy.budget}
-                </StyledTableCell>
-
-                <StyledTableCell align="left">
-                  {convertDate(strategy.createDate)}
                 </StyledTableCell>
                 <StyledTableCell align="center">
                   <IconButton

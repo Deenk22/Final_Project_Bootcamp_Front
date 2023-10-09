@@ -41,57 +41,75 @@ export default function UpdateStockFormView({onSubmit, setOpen}) {
       >
         <Box display={"flex"} justifyContent={"center"} gap={2}>
           <TextField
-            sx={{width: 250}}
+            sx={{
+              width: 250,
+              bgcolor: chartColorsPalette.skyBlue,
+            }}
             value={values.name}
             onChange={handleChange}
             onBlur={handleBlur}
             type="text"
             id="name"
             label={errors.name ? errors.name : "Stock Name"}
-            variant="outlined"
+            variant="filled"
             className={errors.name && touched.name ? "textfield-error" : ""}
           />
           <TextField
-            sx={{width: 250}}
+            sx={{
+              width: 250,
+              bgcolor: chartColorsPalette.skyBlue,
+            }}
             value={values.country}
             onChange={handleChange}
             onBlur={handleBlur}
             type="text"
             id="country"
             label="Country"
-            variant="outlined"
+            variant="filled"
           />
+        </Box>
+        <Box display={"flex"} justifyContent={"center"} gap={2}>
           <TextField
-            sx={{width: 250}}
+            sx={{
+              width: 250,
+              bgcolor: chartColorsPalette.skyBlue,
+            }}
             value={values.ticker}
             onChange={handleChange}
             onBlur={handleBlur}
             type="text"
             id="ticker"
             label="Ticker"
-            variant="outlined"
+            variant="filled"
           />
-        </Box>
-        <Box display={"flex"} justifyContent={"center"} gap={2}>
+
           <TextField
-            sx={{width: 250}}
+            sx={{
+              width: 250,
+              bgcolor: chartColorsPalette.skyBlue,
+            }}
             value={values.sector}
             onChange={handleChange}
             onBlur={handleBlur}
             type="text"
             id="sector"
             label="Sector"
-            variant="outlined"
+            variant="filled"
           />
+        </Box>
+        <Box display={"flex"} justifyContent={"center"} gap={2}>
           <TextField
-            sx={{width: 250}}
+            sx={{
+              width: "55%",
+              bgcolor: chartColorsPalette.skyBlue,
+            }}
             value={values.industry}
             onChange={handleChange}
             onBlur={handleBlur}
             type="text"
             id="industry"
             label="Industry"
-            variant="outlined"
+            variant="filled"
           />
         </Box>
         <Box textAlign={"center"}>
@@ -100,16 +118,11 @@ export default function UpdateStockFormView({onSubmit, setOpen}) {
             variant="contained"
             sx={{
               marginTop: 4,
-              color: chartColorsPalette.skyBlue,
-              bgcolor: chartColorsPalette.blue,
-              border: "2px solid " + chartColorsPalette.blue,
-              borderTopLeftRadius: 16,
-              borderBottomRightRadius: 16,
-              // transition: "0.2s",
+              color: chartColorsPalette.blue,
+              bgcolor: chartColorsPalette.skyBlue,
               ":hover": {
-                color: chartColorsPalette.blue,
-                bgcolor: chartColorsPalette.skyBlue,
-                boxShadow: "0px 5px 0px 0px" + chartColorsPalette.blue,
+                color: chartColorsPalette.skyBlue,
+                bgcolor: chartColorsPalette.lightPink,
               },
             }}
             disabled={isSubmitting}

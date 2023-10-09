@@ -6,8 +6,7 @@ import {
   Tooltip,
   Legend,
 } from "chart.js";
-import {Box, Typography} from "@mui/material";
-import {useState} from "react";
+import {Box} from "@mui/material";
 
 // const lastOperations = allOperations ? allOperations.toSpliced(3) : null;
 // const operationsValues = allOperations ? allOperations[0] : null;
@@ -39,29 +38,56 @@ const chartColorsPalette = {
 
 ChartJS.register(CategoryScale, ArcElement, Tooltip, Legend);
 
-export default function DoughnutData({allOperations, selectedStock}) {
-  const operationByStock = selectedStock
+export default function DoughnutData({
+  allOperations,
+  selectedStock,
+  selectedStrategy,
+  selectedBroker,
+  BrokersJoinOperationsData,
+  allBrokers,
+}) {
+  // BROKERS
+  const brokerName = allBrokers?.map((broker) => broker.name);
+
+  const totalAmountAllBrokers = BrokersJoinOperationsData?.reduce(
+    (total, operation) => {
+      const operationAmount =
+        (operation.priceClose - operation.priceOpen) * operation.volume -
+        operation.commission -
+        operation.swap;
+      return total + operationAmount;
+    },
+    0
+  );
+  console.log(totalAmountAllBrokers);
+
+  // STOCKS
+  const operationsByStock = selectedStock
     ? allOperations?.filter((operation) => operation.stockId === selectedStock)
     : null;
 
-  const operationLabel = operationByStock?.map(
+  const operationStockLabel = operationsByStock?.map(
     (operation) => operation.operationType
   );
 
   // c = close / o = open
-  const priceOpen = operationByStock?.map((o) => o.priceOpen);
-  const priceClose = operationByStock?.map((c) => c.priceClose);
+  const priceOpenByStock = operationsByStock?.map((o) => o.priceOpen);
+  const priceCloseByStock = operationsByStock?.map((c) => c.priceClose);
 
-  const differences = priceOpen?.map((open, index) => open - priceClose[index]);
+  const stockDifferences = priceOpenByStock?.map(
+    (open, index) => open - priceCloseByStock[index]
+  );
 
   // const negativeResult = differences?.filter((result) => result < 0);
 
   // Restamos PriceOpen - PriceClose = Resultado / priceOpen * 100
-  const percentageDifferences = differences?.map((difference, index) => {
-    const open = priceOpen[index];
-    const percentage = open !== 0 ? (difference / open) * 100 : 0;
-    return percentage.toFixed(2);
-  });
+  const percentageStockDifferences = stockDifferences?.map(
+    (difference, index) => {
+      const open = priceOpenByStock[index];
+      const percentage = open !== 0 ? (difference / open) * 100 : 0;
+      return percentage.toFixed(2);
+    }
+  );
 
   // const negativeResults = percentageDifferences?.filter(
   //   (percentage) => percentage <= 0
@@ -69,26 +95,31 @@ export default function DoughnutData({allOperations, selectedStock}) {
 
   // const totalNegativeResult = negativeResults?.length;
 
-  const data = {
-    labels: operationLabel,
-    datasets: [
-      {
-        label: "Percentage",
-        data: percentageDifferences,
-        backgroundColor: [
-          chartColorsPalette.lightPink,
-          chartColorsPalette.lightYellow,
-          chartColorsPalette.orange,
-          chartColorsPalette.tealBlue2,
-          chartColorsPalette.shadowtealBlue2,
-          chartColorsPalette.skyBlue,
-        ],
-        hoverBorderColor: chartColorsPalette.skyBlue,
-        borderColor: chartColorsPalette.blue,
-        borderWidth: 2,
-      },
-    ],
-  };
+  // STRATEGIES
+  const operationsByStrategy = selectedStrategy
+    ? allOperations
+        ?.filter((operation) => operation.strategyId === selectedStrategy)
+        .toSpliced(10)
+    : null;
+
+  const operationStrategyLabel = operationsByStrategy?.map(
+    (operation) => operation.operationType
+  );
+
+  const priceOpenByStrategy = operationsByStrategy?.map((o) => o.priceOpen);
+  const priceCloseByStrategy = operationsByStrategy?.map((c) => c.priceClose);
+
+  const strategyDifferences = priceOpenByStrategy?.map(
+    (open, index) => open - priceCloseByStrategy[index]
+  );
+
+  const percentageStrategyDifferences = strategyDifferences?.map(
+    (difference, index) => {
+      const open = priceOpenByStrategy[index];
+      const percentage = open !== 0 ? (difference / open) * 100 : 0;
+      return percentage.toFixed(2);
+    }
+  );
 
   const options = {
     plugins: {
@@ -110,11 +141,64 @@ export default function DoughnutData({allOperations, selectedStock}) {
     },
   };
 
+  const stockData = {
+    labels: brokerName,
+    datasets: [
+      {
+        label: "Percentage",
+        data: [totalAmountAllBrokers],
+        backgroundColor: [
+          chartColorsPalette.lightPink,
+          chartColorsPalette.lightYellow,
+          chartColorsPalette.orange,
+          chartColorsPalette.tealBlue2,
+          chartColorsPalette.shadowtealBlue2,
+          chartColorsPalette.skyBlue,
+        ],
+        hoverBorderColor: chartColorsPalette.skyBlue,
+        borderColor: chartColorsPalette.blue,
+        borderWidth: 2,
+      },
+    ],
+  };
+
+  // const strategyData = {
+  //   labels: months,
+  //   datasets: [
+  //     {
+  //       label: "Percentage",
+  //       data: percentageStrategyDifferences,
+  //       backgroundColor: [
+  //         chartColorsPalette.lightPink,
+  //         chartColorsPalette.lightYellow,
+  //         chartColorsPalette.orange,
+  //         chartColorsPalette.tealBlue2,
+  //         chartColorsPalette.shadowtealBlue2,
+  //         chartColorsPalette.skyBlue,
+  //       ],
+  //       hoverBorderColor: chartColorsPalette.skyBlue,
+  //       borderColor: chartColorsPalette.blue,
+  //       borderWidth: 2,
+  //     },
+  //   ],
+  // };
+
   return (
     <Box>
-      <Box width={430}>
-        <Pie data={data} options={options} />
+      <Box width={400}>
+        <Pie data={stockData} options={options} />
       </Box>
+      {/* {isSelected
+        ? selectedStock && (
+            <Box width={400}>
+              <Pie data={stockData} options={options} />
+            </Box>
+          )
+        : selectedStrategy && (
+            <Box width={400}>
+              <Pie data={strategyData} options={options} />
+            </Box>
+          )} */}
       {/* {selectedStock ? (
         <Typography
           variant="body2"

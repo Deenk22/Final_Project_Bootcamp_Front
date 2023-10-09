@@ -12,6 +12,7 @@ const colorPalettes = {
   indigo: "#6366f1",
 };
 
+// Estas Cards hacen un efecto de transición justo al final de la landingPage
 export default function LandingInfoCards() {
   const location = useLocation();
 

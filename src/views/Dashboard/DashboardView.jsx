@@ -1,16 +1,25 @@
 // import DoughnutData from "../../components/Charts/DoughnutData";
-import BarData from "../../components/Charts/BarData";
-import OperationsCard from "../../components/InfoCards/OperationsCard";
-import {Box, Grid} from "@mui/material";
-import StrategySelect from "../../components/Select/StrategySelect";
-import DoughnutData from "../../components/Charts/DoughnutData";
-import StockSelect from "../../components/Select/StockSelect";
+// import OperationsCard from "../../components/InfoCards/OperationsCard";
 // import OperationSelect from "../../components/Select/OperationSelect";
-import "./styleDashboard.css";
-import {useState} from "react";
+// import DoughnutData from "../../components/Charts/DoughnutData";
 // import LineData from "../../components/Charts/LineData";
+// import BrokersBarChart from "../../components/CStockTypeSelectharts/BrokersBarChart";
+// import BrokerBar from "../../components/Charts/BrokerBar";
+// import BarData from "../../components/Charts/BarData";
+import StrategySelect from "../../components/Select/StrategySelect";
+import {useState} from "react";
 import BarChart from "../../components/Charts/BarChart";
-// import StockTypeSelect from "../../components/Select/StockTypesSelect";
+import BrokerSelect from "../../components/Select/BrokerSelect";
+import BrokerPieChart from "../../components/Charts/BrokerPieChart";
+import BrokerSelectedBarChart from "../../components/Charts/BrokerSelectedBarChart";
+import ScatterPlotIcon from "@mui/icons-material/ScatterPlot";
+import {Box, Grid} from "@mui/material";
+import StrategiesBarChart from "../../components/Charts/StrategiesBarChart";
+import StrategiesPieChart from "../../components/Charts/StrategiesPieChart";
+import "./styleDashboard.css";
+import StockTypesBarChart from "../../components/Charts/StockTypesBarChart";
+import BrokersChart from "../../components/Charts/BrokersChart";
+import StockTypePieChart from "../../components/Charts/StockTypePieChart";
 
 const chartColorsPalette = {
   orange: "rgba(255, 159, 64, 0.7)",
@@ -24,47 +33,77 @@ const chartColorsPalette = {
 };
 
 export default function DashboardView({
+  allStocks,
+  allBrokers,
   allOperations,
   allStrategies,
-  allStocks,
   allStockTypes,
+  onIdBrokerChange,
+  onIdStrategyChange,
+  totalAmountByBroker,
+  totalAmountByStrategy,
+  totalBrokerAmountPerYear,
+  brokersJoinOperationsData,
+  strategyJoinOperationData,
+  totalStockTypesAmountPerYear,
+  totalPerStrategyByYearStockType,
+  onOperationPerBrokerAndYearChange,
 }) {
-  const [selectedStock, setSelectedStock] = useState("");
+  // Es el ID del BROKER.
+  const [selectedBroker, setSelectedBroker] = useState("");
+  // Es el ID de la ESTRATEGIA.
   const [selectedStrategy, setSelectedStrategy] = useState("");
-  // const [selectedStockType, setSelectedStockType] = useState("");
+  // CAMBIO DE VISTA UNA GRÁFICA U OTRA. NO SE ESTA USANDO.
+  const [isBrokerGraphicSelected, setIsBrokerGraphicSelected] = useState(true);
+  // Cambiamos los años de la gráfica del total de euros por BROKER, tanto BarChart como PieChart.
+  const [selectedYear, setSelectedYear] = useState(2021);
+  const [selectedYearStockType, setSelectedYearStockType] = useState(2021);
+  // Con este useState cuando seleccionamos el selector de Broker, podremos observar la gráfica por broker.
+  const [isTotalPerBrokerVisible, setIsTotalPerBrokerVisible] = useState(false);
 
-  const handleStockChange = (selectedStock) => {
-    setSelectedStock(selectedStock);
+  // Selector Broker.
+  const handleBrokerChange = (selectedBroker) => {
+    setSelectedBroker(selectedBroker);
+    onIdBrokerChange(selectedBroker);
   };
 
+  // Selector Strategy.
   const handleStrategyChange = (selectedStrategy) => {
     setSelectedStrategy(selectedStrategy);
+    onIdStrategyChange(selectedStrategy);
   };
 
-  // const handleStockTypeChange = (selectedStockType) => {
-  //   setSelectedStockType(selectedStockType);
-  // };
+  function toggleChangeBar() {
+    setIsBrokerGraphicSelected(!isBrokerGraphicSelected);
+  }
+
+  // Cambia la vista de la gráfica mostrando el dinero total por broker.
+  function toggleChangeTotalAmountPerBroker() {
+    setIsTotalPerBrokerVisible(!isTotalPerBrokerVisible);
+  }
 
   return (
     <main>
       <Box display={"flex"} justifyContent={"center"} gap={4}>
-        {/* <OperationSelect allOperations={allOperations} /> */}
+        <BrokerSelect
+          allBrokers={allBrokers}
+          onBrokerChange={handleBrokerChange}
+        />
         <StrategySelect
           allStrategies={allStrategies}
           onStrategyChange={handleStrategyChange}
         />
-        <StockSelect allStocks={allStocks} onStockChange={handleStockChange} />
       </Box>
       <Grid
         container
         direction="row"
         justifyContent="space-evenly"
         alignItems={"center"}
-        mt={4}
         paddingY={16}
         bgcolor={chartColorsPalette.blue}
       >
         <Grid
+          className="graphics"
           item
           display={"flex"}
           justifyContent={"center"}
@@ -74,91 +113,117 @@ export default function DashboardView({
           lg={4}
         >
           <Box>
-            {/* Ajustar MediaQueries */}
             <Box display={"flex"} justifyContent={"center"}>
-              <BarData
+              {/* ESTAS FUNCIONAN! */}
+              {/* {selectedBroker === "" ? (
+                <BrokersChart
+                  selectedYear={selectedYear}
+                  setSelectedYear={setSelectedYear}
+                  totalBrokerAmountPerYear={totalBrokerAmountPerYear}
+                />
+              ) : (
+                <BrokerSelectedBarChart
+                  allOperations={allOperations}
+                  selectedBroker={selectedBroker}
+                />
+              )} */}
+              {/* <StrategiesBarChart
+                strategyJoinOperationData={strategyJoinOperationData}
+                totalPerStrategyByYearStockType={
+                  totalPerStrategyByYearStockType
+                }
+              /> */}
+              <StockTypesBarChart
+                selectedYearStockType={selectedYearStockType}
+                setSelectedYearStockType={setSelectedYearStockType}
+                totalStockTypesAmountPerYear={totalStockTypesAmountPerYear}
+              />
+              {/* {De aqui hacia abajo no se!!!} */}
+              {/* <BarData
                 allOperations={allOperations}
                 selectedStock={selectedStock}
                 selectedStrategy={selectedStrategy}
-              />
+                isSelected={isSelected}
+                allBrokers={allBrokers}
+              /> */}
+              {/* <BrokerBar
+                totalAmountByBroker={totalAmountByBroker}
+                isBrokerGraphicSelected={isBrokerGraphicSelected}
+              /> */}
+              {/* <BrokersBarChart
+                brokersJoinOperationsData={brokersJoinOperationsData}
+                strategyJoinOperationData={strategyJoinOperationData}
+                allStrategies={allStrategies}
+                selectedBroker={selectedBroker}
+                isBrokerGraphicSelected={isBrokerGraphicSelected}
+              /> */}
+              {/* <TotalAmountBrokerChart
+                allBrokers={allBrokers}
+                allOperations={allOperations}
+              /> */}
             </Box>
           </Box>
         </Grid>
-        <Grid item xs={10} sm={10} md={10} lg={4}>
-          {/* Ajustar MediaQueries */}
+        <Grid className="graphics" item xs={10} sm={10} md={10} lg={4}>
           <Box display={"flex"} justifyContent={"center"}>
-            <DoughnutData
+            {/* Buena!! */}
+            {/* <BrokerPieChart
+              totalBrokerAmountPerYear={totalBrokerAmountPerYear}
+              toggleChangeTotalAmountPerBroker={
+                toggleChangeTotalAmountPerBroker
+              }
+              totalAmountByBroker={totalAmountByBroker}
+              selectedYear={selectedYear}
+              isTotalPerBrokerVisible={isTotalPerBrokerVisible}
+            /> */}
+            <StockTypePieChart
+              totalStockTypesAmountPerYear={totalStockTypesAmountPerYear}
+              selectedYearStockType={selectedYearStockType}
+            />
+            {/* <StrategiesPieChart
+              totalPerStrategyByYearStockType={totalPerStrategyByYearStockType}
+            /> */}
+            {/* <DoughnutData
+              BrokersJoinOperationsData={BrokersJoinOperationsData}
+              selectedBroker={selectedBroker}
               allOperations={allOperations}
               selectedStock={selectedStock}
-            />
+              selectedStrategy={selectedStrategy}
+              allBrokers={allBrokers}
+              // isSelected={isSelected}
+            /> */}
           </Box>
+          {/* <Button onClick={toggleChangeBar}>Cambia a Estrategia</Button> */}
         </Grid>
       </Grid>
-      {/* Este grid deberia ir en una section fuera de aqui */}
-      <Box display={"flex"} justifyContent={"center"} mt={16}>
-        {/* <StockTypeSelect
-          allStockTypes={allStockTypes}
-          onStockTypeChange={handleStockTypeChange}
-        /> */}
-        <BarChart
-          allOperations={allOperations}
-          allStrategies={allStrategies}
-          allStockTypes={allStockTypes}
-          allStocks={allStocks}
-          selectedStrategy={selectedStrategy}
-          // selectedStockType={selectedStockType}
-        />
-        {/* <LineData /> */}
-      </Box>
-      <Grid
-        container
-        direction={"row"}
-        display={"flex"}
-        justifyContent={"center"}
-        spacing={1}
-        my={16}
-      >
-        {allOperations
-          ?.map((operation) => {
-            const {operationType, id, commission, takeProfit, stopLoss} =
-              operation;
-            return (
-              <Grid
-                className="animation-operation-cards"
-                item
-                xs={12}
-                sm={5}
-                md={3}
-                lg={2}
-                key={id}
-                display={"flex"}
-                flexDirection={"row"}
-                justifyContent={"center"}
-              >
-                <OperationsCard
-                  operationType={operationType}
-                  id={id}
-                  commission={commission}
-                  takeProfit={takeProfit}
-                  stopLoss={stopLoss}
-                />
-              </Grid>
-            );
-          })
-          .toSpliced(4)}
+      <BarChart
+        allOperations={allOperations}
+        allStrategies={allStrategies}
+        allStockTypes={allStockTypes}
+        allStocks={allStocks}
+        selectedStrategy={selectedStrategy}
+      />
+      <Grid container>
+        <Grid item></Grid>
+        <Grid item></Grid>
       </Grid>
+
       {/* <Grid
         container
         direction={"row"}
         display={"flex"}
-        justifyContent={"center"}
+        justifyContent={"space-evenly"}
         mt={8}
       >
         <Grid item>
-          <Box className="fade-table media-query"></Box>
+          <Box>
+            <LineData />
+          </Box>
         </Grid>
         <Grid item>
-          <Box className="fade-table"></Box>
+          <Box>
+            <LineData />
+          </Box>
         </Grid>
       </Grid> */}
     </main>

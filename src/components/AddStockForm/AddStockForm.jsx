@@ -74,13 +74,32 @@ export default function AddStockForm() {
     // remove: () => void
   });
 
+  const allBrokersUrl = "http://localhost:3000/broker/all";
+
+  const getAllBrokers = async () => {
+    const {data} = await axios.get(allBrokersUrl, config);
+    return data;
+  };
+
+  const {data: brokersId} = useQuery({
+    queryKey: ["allBrokers"],
+    queryFn: getAllBrokers,
+    cacheTime: 5 * 60 * 1000,
+    retry: 1,
+    // refetchOnWindowFocus: true,
+    // notifyOnChangeProps:
+    // remove: () => void
+  });
+
   const stockTypes = stockTypesId ? stockTypesId.data : null;
+  const brokers = brokersId ? brokersId.data : null;
 
   return (
     <AddStockFormView
       postStock={postStock}
       onSubmit={onSubmit}
       stockTypes={stockTypes}
+      brokers={brokers}
     />
   );
 }

@@ -16,24 +16,24 @@ const chartColorsPalette = {
   skyBlue: "rgba(208, 228, 233)",
 };
 
-export default function StockTypeSelect({allStockTypes, onStockTypeChange}) {
-  const [stockTypeSelected, setStockTypeSelected] = useState("");
+export default function BrokerSelect({allBrokers, onBrokerChange}) {
+  const [brokerSelected, setBrokerSelected] = useState("");
 
   useEffect(() => {
-    if (allStockTypes && allStockTypes.length > 0) {
-      setStockTypeSelected(allStockTypes[0].label);
+    if (allBrokers && allBrokers.length > 0) {
+      setBrokerSelected(allBrokers[0].label);
     }
-  }, [allStockTypes]);
+  }, [allBrokers]);
 
   const handleSelectChange = (selectedOption) => {
-    setStockTypeSelected(selectedOption.value);
-    onStockTypeChange(selectedOption.value);
+    setBrokerSelected(selectedOption.value);
+    onBrokerChange(selectedOption.value);
   };
 
   const options =
-    allStockTypes?.map((type) => ({
-      label: type.name,
-      value: type.id,
+    allBrokers?.map((strategy) => ({
+      label: strategy.name,
+      value: strategy.id,
     })) || [];
 
   return (
@@ -44,10 +44,10 @@ export default function StockTypeSelect({allStockTypes, onStockTypeChange}) {
         ml={0.5}
         color={chartColorsPalette.blue}
       >
-        Stock Types
+        Broker Name
       </Typography>
       <Select
-        defaultValue={{label: stockTypeSelected}}
+        defaultValue={{label: "Select Broker"}}
         options={options}
         onChange={handleSelectChange}
       />

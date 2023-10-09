@@ -23,7 +23,12 @@ const chartColorsPalette = {
   tealBlue: "#367588",
 };
 
-export default function AddOperationView({onSubmit, strategies, stocks}) {
+export default function AddOperationView({
+  onSubmit,
+  strategies,
+  stocks,
+  brokers,
+}) {
   const {
     values,
     errors,
@@ -64,7 +69,7 @@ export default function AddOperationView({onSubmit, strategies, stocks}) {
               label={
                 errors.operationType ? errors.operationType : "Operation Type"
               }
-              variant="outlined"
+              variant="filled"
               className={
                 errors.operationType && touched.operationType
                   ? "textfield-error"
@@ -80,7 +85,7 @@ export default function AddOperationView({onSubmit, strategies, stocks}) {
             type="number"
             id="volume"
             label="Volume"
-            variant="outlined"
+            variant="filled"
           />
           <TextField
             sx={{width: 250}}
@@ -90,7 +95,7 @@ export default function AddOperationView({onSubmit, strategies, stocks}) {
             type="number"
             id="priceOpen"
             label="Price Open"
-            variant="outlined"
+            variant="filled"
           />
         </Box>
         <Box display={"flex"} justifyContent={"center"} gap={2}>
@@ -102,7 +107,7 @@ export default function AddOperationView({onSubmit, strategies, stocks}) {
             type="number"
             id="stopLoss"
             label="Stop Loss"
-            variant="outlined"
+            variant="filled"
           />
           <TextField
             sx={{width: 250}}
@@ -112,7 +117,7 @@ export default function AddOperationView({onSubmit, strategies, stocks}) {
             type="number"
             id="takeProfit"
             label="Take Profit"
-            variant="outlined"
+            variant="filled"
           />
           <TextField
             sx={{width: 250}}
@@ -122,7 +127,7 @@ export default function AddOperationView({onSubmit, strategies, stocks}) {
             type="number"
             id="priceClose"
             label="Price Close"
-            variant="outlined"
+            variant="filled"
           />
         </Box>
         <Box display={"flex"} justifyContent={"center"} gap={2}>
@@ -134,7 +139,7 @@ export default function AddOperationView({onSubmit, strategies, stocks}) {
             type="number"
             id="commission"
             label="Commission"
-            variant="outlined"
+            variant="filled"
           />
           <TextField
             sx={{width: 250}}
@@ -144,7 +149,7 @@ export default function AddOperationView({onSubmit, strategies, stocks}) {
             type="number"
             id="swap"
             label="Swap"
-            variant="outlined"
+            variant="filled"
           />
           <TextField
             sx={{width: 250}}
@@ -154,7 +159,7 @@ export default function AddOperationView({onSubmit, strategies, stocks}) {
             type="number"
             id="changeRate"
             label="ChangeRate"
-            variant="outlined"
+            variant="filled"
           />
         </Box>
         <Box
@@ -163,7 +168,7 @@ export default function AddOperationView({onSubmit, strategies, stocks}) {
           justifyContent={"center"}
           gap={2}
         >
-          <FormControl fullWidth>
+          <FormControl fullWidth variant="filled">
             <InputLabel id="strategyId">Strategy</InputLabel>
             <Select
               labelId="strategyId"
@@ -186,7 +191,7 @@ export default function AddOperationView({onSubmit, strategies, stocks}) {
               })}
             </Select>
           </FormControl>
-          <FormControl fullWidth>
+          <FormControl fullWidth variant="filled">
             <InputLabel id="stockId">Stock</InputLabel>
             <Select
               labelId="stockId"
@@ -201,6 +206,29 @@ export default function AddOperationView({onSubmit, strategies, stocks}) {
                 return (
                   <MenuItem key={stock.id} value={stock.id ? stock.id : null}>
                     {stock.name}
+                  </MenuItem>
+                );
+              })}
+            </Select>
+          </FormControl>
+          <FormControl fullWidth variant="filled">
+            <InputLabel id="brokerId">Broker</InputLabel>
+            <Select
+              labelId="brokerId"
+              id="brokerId"
+              name="brokerId"
+              label="Broker"
+              value={values.brokerId}
+              onChange={handleChange}
+              onBlur={handleBlur}
+            >
+              {brokers?.map((broker) => {
+                return (
+                  <MenuItem
+                    key={broker.id}
+                    value={broker.id ? broker.id : null}
+                  >
+                    {broker.name}
                   </MenuItem>
                 );
               })}

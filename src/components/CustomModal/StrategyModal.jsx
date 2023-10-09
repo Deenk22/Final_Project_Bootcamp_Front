@@ -3,6 +3,7 @@ import {useState} from "react";
 import EditIcon from "@mui/icons-material/Edit";
 import {Box, List, ListItem, ListItemIcon, Typography} from "@mui/material";
 import UpdateStrategyForm from "../UpdateStrategyForm/UpdateStrategyForm";
+import CloseIcon from "@mui/icons-material/Close";
 
 const chartColorsPalette = {
   orange: "rgba(255, 159, 64, 0.7)",
@@ -11,7 +12,7 @@ const chartColorsPalette = {
   shadowYellow: "rgba(255, 205, 86, 0.4)",
   tealBlue2: "rgba(75, 192, 192, 0.7)",
   shadowtealBlue2: "rgba(75, 192, 192, 0.4)",
-  blue: "rgba(22, 41, 56)",
+  blue: "rgba(22, 40, 52, 0.9)",
   skyBlue: "rgba(208, 228, 233)",
   tealBlue: "#367588",
 };
@@ -21,9 +22,9 @@ const style = {
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  width: "64vw",
-  height: "72vh",
-  bgcolor: chartColorsPalette.skyBlue,
+  width: "1000px",
+  height: "576px",
+  bgcolor: chartColorsPalette.blue,
 
   borderRadius: 8,
 };
@@ -52,10 +53,11 @@ export default function StrategyModal({strategy}) {
         >
           <Typography
             variant="h4"
-            color={chartColorsPalette.blue}
+            color={chartColorsPalette.skyBlue}
             textAlign={"center"}
           >
-            Edit Data {name} Dialog Box
+            Edit Data <span className="span-modal">{name} </span>
+            Dialog Box
           </Typography>
           {/* <Box>
             <Typography>Como funciona</Typography>
@@ -78,16 +80,23 @@ export default function StrategyModal({strategy}) {
             </List>
           </Box> */}
           <UpdateStrategyForm strategy={strategy} setOpen={setOpen} />
-          <Box textAlign={"center"}>
-            <Typography
-              component={"button"}
+          {open ? (
+            <CloseIcon
               onClick={handleClose}
-              width={"20%"}
-              textAlign={"center"}
-            >
-              Close
-            </Typography>
-          </Box>
+              sx={{
+                position: "relative",
+                bottom: 376,
+                left: 956,
+                color: chartColorsPalette.skyBlue,
+                transition: "0.3s",
+                transform: "rotate(180deg)",
+                "&:hover": {
+                  transform: "rotate(0deg)",
+                  color: chartColorsPalette.lightPink,
+                },
+              }}
+            />
+          ) : null}
         </Box>
       </Modal>
     </Box>

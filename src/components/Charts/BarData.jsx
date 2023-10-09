@@ -12,9 +12,6 @@ import {useState} from "react";
 import {Bar} from "react-chartjs-2";
 import LensIcon from "@mui/icons-material/Lens";
 import ArrowRightAltIcon from "@mui/icons-material/ArrowRightAlt";
-import NotificationImportantIcon from "@mui/icons-material/NotificationImportant";
-import ArrowRightIcon from "@mui/icons-material/ArrowRight";
-import "./styleCharts.css";
 
 ChartJS.register(
   CategoryScale,
@@ -56,11 +53,19 @@ export default function BarData({
   allOperations,
   selectedStock,
   selectedStrategy,
+  isSelected,
 }) {
   const [isCompare, setIsCompare] = useState(null);
-  const [isSelected, setIsSelected] = useState(true);
 
-  // Stocks
+  const handleMouseEnter = (e) => {
+    console.log("Mouse enter event:", e);
+  };
+
+  const handleMouseLeave = (e) => {
+    console.log("Mouse leave event:", e);
+  };
+
+  // STOCKS
   const operationByStock = selectedStock
     ? allOperations?.filter((operation) => operation.stockId === selectedStock)
     : null;
@@ -69,11 +74,9 @@ export default function BarData({
     (operation) => operation.operationType
   );
 
-  // c = close / o = open
   const priceOpenByStock = operationByStock?.map((o) => o.priceOpen);
   const priceCloseByStock = operationByStock?.map((c) => c.priceClose);
 
-  // Buscar max & min
   const maxValuePriceOpen = priceOpenByStock
     ? Math.max(...priceOpenByStock)
     : null;
@@ -81,7 +84,7 @@ export default function BarData({
     ? Math.max(...priceCloseByStock)
     : null;
 
-  // Strategies
+  // STRATEGIES
   const operationByStrategy = selectedStrategy
     ? allOperations
         ?.filter((operation) => operation.strategyId === selectedStrategy)
@@ -107,10 +110,6 @@ export default function BarData({
     setIsCompare(!isCompare);
   }
 
-  function handleChangeBar() {
-    setIsSelected(!isSelected);
-  }
-
   const options = {
     scales: {
       x: {
@@ -134,7 +133,7 @@ export default function BarData({
   };
 
   const stockData = {
-    labels: stockLabel,
+    labels: ["Broker1", "Broker2", "Broker3", "Broker4"],
     datasets: [
       {
         label: ["Price Open"],
@@ -179,68 +178,19 @@ export default function BarData({
 
   return (
     <Box>
-      {operationByStock === null ? (
-        <Typography
-          display={"flex"}
-          alignItems={"center"}
-          className="select-stock"
-          textAlign={"center"}
-          variant="body2"
-          color={chartColorsPalette.skyBlue}
-        >
-          Select a Stock to Start
-          <ArrowRightIcon
-            className="icon-start"
-            fontSize="small"
-            sx={{position: "relative", bottom: 1}}
-          />
-        </Typography>
-      ) : (
-        <Typography
-          textAlign={"center"}
-          variant="h4"
-          mb={4}
-          color={chartColorsPalette.skyBlue}
-        >
-          {isSelected ? "Operations By Stock" : "Operations By Strategy"}
-        </Typography>
-      )}
-      {operationByStock !== null ? (
-        <Box
-          onClick={handleChangeBar}
-          display={"flex"}
-          justifyContent={"center"}
-          mb={1}
-        >
-          {isSelected ? (
-            <Typography
-              border={"none"}
-              component={"button"}
-              variant="body2"
-              padding={1}
-            >
-              Go to Strategy
-            </Typography>
-          ) : (
-            <Typography
-              border={"none"}
-              component={"button"}
-              variant="body2"
-              padding={1}
-            >
-              Go to Stock
-            </Typography>
-          )}
-        </Box>
-      ) : null}
       {isSelected
         ? selectedStock && (
-            <Box width={560}>
-              <Bar data={stockData} options={options} />
+            <Box width={544}>
+              <Bar
+                data={stockData}
+                options={options}
+                onMouseEnter={handleMouseEnter}
+                onMouseOut={handleMouseLeave}
+              />
             </Box>
           )
         : selectedStrategy && (
-            <Box width={560}>
+            <Box width={544}>
               <Bar data={strategyData} options={options} />
             </Box>
           )}
@@ -298,19 +248,6 @@ export default function BarData({
           >
             <Switch color="primary" size="lg" variant="outlined" />
             Visual Assessment
-          </Typography>
-          <Typography
-            display={"flex"}
-            justifyContent={"center"}
-            alignItems={"center"}
-            variant="body2"
-            textAlign={"center"}
-            color={chartColorsPalette.skyBlue}
-            mt={4}
-            gap={0.5}
-          >
-            <NotificationImportantIcon fontSize="small" />
-            The Pie graphic is only available from Stock
           </Typography>
         </>
       ) : null}

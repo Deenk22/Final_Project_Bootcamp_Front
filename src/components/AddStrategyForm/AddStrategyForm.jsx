@@ -1,5 +1,5 @@
 import AddStrategyFormView from "./AddStrategyFormView";
-import {useMutation, useQueryClient} from "@tanstack/react-query";
+import {useMutation, useQuery, useQueryClient} from "@tanstack/react-query";
 import axios from "axios";
 import {IM_INVESTING_KEY} from "../../const/IM_investingKey";
 import {strategyFormFunction} from "../../const/strategyFormFunction";
@@ -57,9 +57,32 @@ export default function AddStrategyForm() {
     }
   }
 
+  const allBrokersUrl = "http://localhost:3000/broker/all";
+
+  const getAllBrokers = async () => {
+    const {data} = await axios.get(allBrokersUrl, config);
+    return data;
+  };
+
+  const {data: brokersId} = useQuery({
+    queryKey: ["allBrokers"],
+    queryFn: getAllBrokers,
+    cacheTime: 5 * 60 * 1000,
+    retry: 1,
+    // refetchOnWindowFocus: true,
+    // notifyOnChangeProps:
+    // remove: () => void
+  });
+
+  const brokers = brokersId ? brokersId.data : null;
+
   return (
     <>
-      <AddStrategyFormView postStrategy={postStrategy} onSubmit={onSubmit} />
+      <AddStrategyFormView
+        postStrategy={postStrategy}
+        onSubmit={onSubmit}
+        brokers={brokers}
+      />
     </>
   );
 }

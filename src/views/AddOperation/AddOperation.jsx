@@ -135,12 +135,10 @@ export default function AddOperation() {
   const urlDate = `http://localhost:3000/operation/date/${startDate}/${endDate}`;
 
   const handleStartDateChange = (e) => {
-    console.log(e.target.value);
     setStartDate(e.target.value);
   };
 
   const handleEndDateChange = (e) => {
-    console.log(e.target.value);
     setEndDate(e.target.value);
   };
 
@@ -173,19 +171,20 @@ export default function AddOperation() {
 
   const allOperations = operations ? operations.data : null;
   const operationsByDate = operationByDate ? operationByDate.data : null;
+  console.log(allOperations);
 
   return (
     <>
       <AddOperationView
-        mutation={mutation}
-        mutationDeleteMultiple={mutationDeleteMultiple}
-        startDate={startDate}
         endDate={endDate}
+        mutation={mutation}
+        startDate={startDate}
         allOperations={allOperations}
         operationsByDate={operationsByDate}
         handleSearchByDate={handleSearchByDate}
         handleEndDateChange={handleEndDateChange}
         handleStartDateChange={handleStartDateChange}
+        mutationDeleteMultiple={mutationDeleteMultiple}
       />
     </>
   );

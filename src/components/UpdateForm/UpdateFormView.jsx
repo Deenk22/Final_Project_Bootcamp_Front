@@ -49,7 +49,7 @@ export default function UpdateFormView({onSubmit}) {
           type="text"
           id="name"
           label="Name"
-          variant="outlined"
+          variant="filled"
           className={errors.name && touched.name ? "textfield-error" : ""}
         />
         {errors.name && touched.name && (
@@ -65,7 +65,7 @@ export default function UpdateFormView({onSubmit}) {
           type="text"
           id="surname"
           label="Surname"
-          variant="outlined"
+          variant="filled"
           className={errors.surname && touched.surname ? "textfield-error" : ""}
         />
         {errors.surname && touched.surname && (
@@ -81,7 +81,7 @@ export default function UpdateFormView({onSubmit}) {
           type="email"
           id="email"
           label="Email"
-          variant="outlined"
+          variant="filled"
           className={errors.email && touched.email ? "textfield-error" : ""}
         />
         {errors.email && touched.email && (

@@ -1,4 +1,4 @@
-import {Box, Typography} from "@mui/material";
+import {Box, Grid, Typography} from "@mui/material";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -9,6 +9,8 @@ import {
   Legend,
 } from "chart.js";
 import {Bar} from "react-chartjs-2";
+import OperationsCard from "../InfoCards/OperationsCard";
+import LensIcon from "@mui/icons-material/Lens";
 
 ChartJS.register(
   CategoryScale,
@@ -32,7 +34,15 @@ const chartColorsPalette = {
   blue: "rgba(22, 41, 56)",
   blueOpacity: "rgba(22, 41, 56, 0.7)",
   skyBlue: "rgba(208, 228, 233)",
+  tealBlue: "#367588",
 };
+
+// const statisticsInfo = [
+//   {
+//     icon: <LensIcon />,
+//     title: <Typography>Titulo Para Mañana</Typography>
+//   },
+// ];
 
 export default function BarChart({
   selectedStrategy,
@@ -124,24 +134,44 @@ export default function BarChart({
   const mostUsedId =
     orderlyStrategies && orderlyStrategies[0] ? orderlyStrategies[0][0] : null;
 
+  const strategyIdMostUsed = mostUsedId ? mostUsedId : null;
+
+  const getStrategyByIdMostUsed = allStrategies?.filter(
+    (strategy) => strategy.id === parseInt(strategyIdMostUsed)
+  );
+
+  const nameStrategyMostUsed = getStrategyByIdMostUsed?.map(
+    (strategy) => strategy.name
+  );
+
+  // Conseguimos todas las operaciones relacionadas con la estrategia ganadora! la más usada.
+  const operationsByStrategyIdMostUsed = allOperations?.filter(
+    (operation) => operation.strategyId === parseInt(mostUsedId)
+  );
+
   // Total de estrategias usadas en las operaciones y le hemos cambiado el orden para sintonizarlas con la gráfica.
   const totalStrategiesByOperations = Object.values(countStrategyIds);
   const totalStrategiesReversed = totalStrategiesByOperations.reverse();
 
   // Conseguimos todas las operaciones relacionadas con la estrategia mas usada.
-  const operationsByStrategy = allOperations?.filter(
-    (operation) => operation.strategyId === parseInt(mostUsedId)
-  );
+  // const operationsByStrategy = allOperations?.filter(
+  //   (operation) => operation.strategyId === parseInt(mostUsedId)
+  // );
 
   // Conseguimos priceClose y priceOpen de las operaciones relacionadas con la estrategia mas usada hasta el momento.
-  const priceOpen = operationsByStrategy?.map((o) => o.priceOpen);
-  console.log(priceOpen);
-  const priceClose = operationsByStrategy?.map((c) => c.priceClose);
-  console.log(priceClose);
+  // const priceOpen = operationsByStrategy?.map((o) => o.priceOpen);
+  // console.log(priceOpen);
+  // const priceClose = operationsByStrategy?.map((c) => c.priceClose);
+  // console.log(priceClose);
 
   const options = {
     scales: {
       x: {
+        ticks: {
+          color: chartColorsPalette.blue,
+        },
+      },
+      y: {
         ticks: {
           color: chartColorsPalette.blue,
         },
@@ -165,7 +195,7 @@ export default function BarChart({
     labels: strategies,
     datasets: [
       {
-        label: "Total times used",
+        label: "Most Used Strategy",
         data: totalStrategiesReversed,
         // grouped: isCompare ? false : true,
         borderRadius: 4,
@@ -176,13 +206,142 @@ export default function BarChart({
   };
 
   return (
-    <Box>
-      <Box width={768}>
-        <Bar data={data} options={options} />
-      </Box>
-      <Box>
-        <Typography>Estrategia mas usada {mostUsedId}</Typography>
-      </Box>
-    </Box>
+    <section>
+      <Grid container direction={"column"} mt={8}>
+        <Grid
+          item
+          display={"flex"}
+          justifyContent={"center"}
+          alignItems={"center"}
+        >
+          <Box width={768}>
+            <Bar data={data} options={options} />
+          </Box>
+        </Grid>
+        <Grid item>
+          <Box
+            display={"flex"}
+            flexDirection={"row"}
+            justifyContent={"center"}
+            gap={4}
+            mt={2}
+          >
+            <Box display={"flex"} alignItems={"center"} gap={1}>
+              <LensIcon
+                fontSize="1rem"
+                sx={{color: chartColorsPalette.lightPink}}
+              />
+              <Typography
+                display={"flex"}
+                alignItems={"center"}
+                gap={1}
+                variant="body2"
+                color={chartColorsPalette.blue}
+              >
+                Max Value
+              </Typography>
+            </Box>
+            <Box display={"flex"} alignItems={"center"} gap={1}>
+              <LensIcon
+                fontSize="1rem"
+                sx={{color: chartColorsPalette.lightPink}}
+              />
+              <Typography
+                display={"flex"}
+                alignItems={"center"}
+                gap={1}
+                variant="body2"
+                color={chartColorsPalette.blue}
+              >
+                Max Value
+              </Typography>
+            </Box>
+            <Box display={"flex"} alignItems={"center"} gap={1}>
+              <LensIcon
+                fontSize="1rem"
+                sx={{color: chartColorsPalette.lightPink}}
+              />
+              <Typography
+                display={"flex"}
+                alignItems={"center"}
+                gap={1}
+                variant="body2"
+                color={chartColorsPalette.blue}
+              >
+                Max Value
+              </Typography>
+            </Box>
+            <Box display={"flex"} alignItems={"center"} gap={1}>
+              <LensIcon
+                fontSize="1rem"
+                sx={{color: chartColorsPalette.lightPink}}
+              />
+              <Typography
+                display={"flex"}
+                alignItems={"center"}
+                gap={1}
+                variant="body2"
+                color={chartColorsPalette.blue}
+              >
+                Max Value
+              </Typography>
+            </Box>
+            {/* <Typography textAlign={"center"} variant="h3">
+              {nameStrategyMostUsed}
+            </Typography> */}
+          </Box>
+          {/* <Box>
+            <Box position={"relative"} right={240}>
+              <Typography
+                textAlign={"center"}
+                variant="h3"
+                position={"relative"}
+                right={70}
+              >
+                Strategy
+              </Typography>
+          
+            </Box>
+          </Box> */}
+        </Grid>
+      </Grid>
+      <Grid
+        container
+        direction={"row"}
+        display={"flex"}
+        justifyContent={"center"}
+        my={4}
+        spacing={1}
+      >
+        {operationsByStrategyIdMostUsed
+          ?.map((operation) => {
+            const {id, operationType, priceClose, priceOpen} = operation;
+            return (
+              <Grid
+                className="animation-operation-cards"
+                item
+                xs={10}
+                sm={10}
+                md={5}
+                lg={3}
+                xl={2}
+                key={id}
+                display={"flex"}
+                flexDirection={"row"}
+                justifyContent={"center"}
+              >
+                <OperationsCard
+                  operationType={operationType}
+                  id={id}
+                  priceClose={priceClose}
+                  priceOpen={priceOpen}
+                />
+              </Grid>
+            );
+          })
+
+          .toSpliced(4)}
+      </Grid>
+    </section>
   );
 }

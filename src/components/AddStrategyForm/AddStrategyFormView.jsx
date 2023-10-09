@@ -1,7 +1,15 @@
 import {useFormik} from "formik";
 import {initialValues} from "./utils/addStrategy";
 import {addStrategySchema} from "./addStrategySchema";
-import {Box, Button, TextField} from "@mui/material";
+import {
+  Box,
+  Button,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+  TextField,
+} from "@mui/material";
 
 const chartColorsPalette = {
   orange: "rgba(255, 159, 64, 0.7)",
@@ -15,7 +23,7 @@ const chartColorsPalette = {
   tealBlue: "#367588",
 };
 
-export default function AddStrategyFormView({onSubmit}) {
+export default function AddStrategyFormView({onSubmit, brokers}) {
   const {
     values,
     touched,
@@ -32,7 +40,7 @@ export default function AddStrategyFormView({onSubmit}) {
 
   return (
     <form onSubmit={handleSubmit}>
-      <Box display={"flex"} flexDirection={"column"} gap={2} padding={2}>
+      <Box display={"flex"} gap={2} padding={2}>
         <TextField
           sx={{width: 250}}
           value={values.name}
@@ -41,7 +49,7 @@ export default function AddStrategyFormView({onSubmit}) {
           type="text"
           id="name"
           label={errors.name ? errors.name : "Strategy Name"}
-          variant="outlined"
+          variant="filled"
           className={errors.name && touched.name ? "textfield-error" : ""}
         />
         <TextField
@@ -52,7 +60,7 @@ export default function AddStrategyFormView({onSubmit}) {
           type="text"
           id="description"
           label="Description"
-          variant="outlined"
+          variant="filled"
           multiline
           maxRows={5}
         />
@@ -64,8 +72,30 @@ export default function AddStrategyFormView({onSubmit}) {
           type="number"
           id="budget"
           label="Budget"
-          variant="outlined"
+          variant="filled"
         />
+      </Box>
+      <Box paddingX={2}>
+        <FormControl fullWidth variant="filled">
+          <InputLabel id="brokerId">Broker</InputLabel>
+          <Select
+            labelId="brokerId"
+            id="brokerId"
+            name="brokerId"
+            label="Broker"
+            value={values.brokerId}
+            onChange={handleChange}
+            onBlur={handleBlur}
+          >
+            {brokers?.map((broker) => {
+              return (
+                <MenuItem key={broker.id} value={broker.id ? broker.id : null}>
+                  {broker.name}
+                </MenuItem>
+              );
+            })}
+          </Select>
+        </FormControl>
       </Box>
       <Box textAlign={"center"}>
         <Button

@@ -1,13 +1,15 @@
 import {Box, Typography} from "@mui/material";
 import DownloadIcon from "@mui/icons-material/Download";
 import {CSVLink} from "react-csv";
+import "./style.css";
 
 export default function DownloadFiles({allOperations}) {
   const operationData = allOperations?.map((operation) => {
     const {
       operationType,
-      stockId,
-      strategyId,
+      stockName,
+      strategyName,
+      brokerName,
       volume,
       priceOpen,
       stopLoss,
@@ -20,8 +22,9 @@ export default function DownloadFiles({allOperations}) {
     } = operation;
     return {
       OperationType: operationType,
-      StockId: stockId,
-      StrategyId: strategyId,
+      Stock: stockName,
+      Strategy: strategyName,
+      Broker: brokerName,
       Volume: volume,
       PriceOpen: priceOpen,
       StopLoss: stopLoss,
@@ -36,8 +39,9 @@ export default function DownloadFiles({allOperations}) {
 
   const headers = [
     {label: "OperationType", key: "OperationType"},
-    {label: "StockId", key: "StockId"},
-    {label: "StrategyId", key: "StrategyId"},
+    {label: "Stock", key: "Stock"},
+    {label: "Strategy", key: "Strategy"},
+    {label: "Broker", key: "Broker"},
     {label: "Volume", key: "Volume"},
     {label: "PriceOpen", key: "PriceOpen"},
     {label: "StopLoss", key: "StopLoss"},
@@ -59,7 +63,6 @@ export default function DownloadFiles({allOperations}) {
       filename={"operaciones.csv"}
     >
       <Box
-        className="csv"
         display={"flex"}
         justifyContent={"center"}
         alignItems={"center"}

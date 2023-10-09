@@ -3,6 +3,7 @@ import AddStrategyForm from "../../components/AddStrategyForm/AddStrategyForm";
 import StrategyTable from "../../components/Tables/StrategyTable";
 import StrategyDateSearch from "../../components/DateForm/StrategyDateSearch";
 import StrategyDateSearchCard from "../../components/InfoCards/StrategyDateSearchCards";
+import DetailCards from "../../components/InfoCards/DetailCards";
 
 export default function AddStrategyView({
   allStrategies,
@@ -48,30 +49,51 @@ export default function AddStrategyView({
           handleStartDateChange={handleStartDateChange}
         />
       </Box>
-      <Grid
+      <Grid container spacing={1} mb={8}>
+        {strategiesByDate
+          ?.map((strategy) => {
+            const {id, name} = strategy;
+            return (
+              <Grid
+                display={"flex"}
+                justifyContent={"center"}
+                item
+                key={id}
+                xs={10}
+                sm={5}
+                md={4}
+              >
+                <StrategyDateSearchCard id={id} name={name} />
+              </Grid>
+            );
+          })
+          .toSpliced(9)}
+      </Grid>
+      {/* <Grid
         container
         direction={"row"}
         justifyContent={"center"}
         spacing={2}
         mt={4}
         mb={8}
-        // sx={{
-        //   display: "grid",
-        //   gridTemplateColumns: "repeat(2, 1fr)",
-        //   gap: 1,
-        // }}
       >
-        {strategiesByDate
-          ?.map((strategy) => {
-            const {id, name} = strategy;
+        {allStrategies
+          ?.map((operationByType) => {
+            const {id, name, budget, createDate} = operationByType;
             return (
               <Grid item key={id} xs={10} sm={5} md={5} lg={3}>
-                <StrategyDateSearchCard id={id} name={name} />
+                <DetailCards
+                  type={"strategy"}
+                  id={id}
+                  name={name}
+                  budget={budget}
+                  createDate={createDate}
+                />
               </Grid>
             );
           })
-          .toSpliced(8)}
-      </Grid>
+          .toSpliced(4)}
+      </Grid> */}
     </>
   );
 }

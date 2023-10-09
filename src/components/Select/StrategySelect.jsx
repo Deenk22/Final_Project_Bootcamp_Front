@@ -47,7 +47,7 @@ export default function StrategySelect({allStrategies, onStrategyChange}) {
         Strategies Name
       </Typography>
       <Select
-        defaultValue={{label: strategySelected}}
+        defaultValue={{label: "Select Strategy"}}
         options={options}
         onChange={handleSelectChange}
       />
