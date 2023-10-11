@@ -2,6 +2,10 @@ import {Box, Grid, Typography} from "@mui/material";
 import UpdateForm from "../../components/UpdateForm/UpdateForm";
 import UpdatePassForm from "../../components/UpdatePassForm/UpdatePassForm";
 import {useState} from "react";
+import AccountBoxIcon from "@mui/icons-material/AccountBox";
+import EmailIcon from "@mui/icons-material/Email";
+import EditCalendarIcon from "@mui/icons-material/EditCalendar";
+import "./Style.css";
 
 const chartColorsPalette = {
   orange: "rgba(255, 159, 64, 0.7)",
@@ -15,8 +19,15 @@ const chartColorsPalette = {
   tealBlue: "#367588",
 };
 
-export default function AccountView() {
+export default function AccountView({
+  name,
+  surname,
+  correctDate,
+  avatar,
+  email,
+}) {
   const [isSettingsVisible, setIsSettingsVisible] = useState(false);
+
   return (
     <>
       <Grid
@@ -24,9 +35,8 @@ export default function AccountView() {
         direction={"row"}
         justifyContent={"space-evenly"}
         alignItems={"center"}
-        textAlign={"center"}
       >
-        <Grid item xs={3}>
+        <Grid item xs={10} sm={10} md={3} textAlign={"center"}>
           <Box>
             <Typography
               component={"button"}
@@ -60,8 +70,71 @@ export default function AccountView() {
             {isSettingsVisible ? <UpdatePassForm /> : <UpdateForm />}
           </Box>
         </Grid>
-        <Grid item xs={3}>
-          <Box width={600} height={300}></Box>
+        <Grid
+          item
+          xs={10}
+          sm={10}
+          md={5}
+          display={"flex"}
+          justifyContent={"center"}
+          flexDirection={"column"}
+        >
+          <Box
+            display={"flex"}
+            flexDirection={"row"}
+            alignItems={"center"}
+            gap={4}
+            padding={2}
+            bgcolor={chartColorsPalette.tealBlueOpacity}
+            boxShadow={"8px 4px 8px 2px rgba(54, 117, 136, 0.2)"}
+            border={"1px solid rgba(54, 117, 136, 0.2)"}
+            sx={{
+              borderBottomLeftRadius: 16,
+              borderTopLeftRadius: 16,
+              borderBottomRightRadius: 64,
+            }}
+          >
+            <img
+              className="img-avatar"
+              src="./src/assets/avatarControlPanel.jpg"
+              alt=""
+              width={224}
+            />
+            <Box
+              display={"flex"}
+              flexDirection={"column"}
+              justifyContent={"left"}
+              gap={1}
+            >
+              <Typography
+                display={"flex"}
+                alignItems={"center"}
+                gap={1}
+                variant="body2"
+              >
+                <AccountBoxIcon />
+                Name: {name} {surname}
+              </Typography>
+              <Typography
+                display={"flex"}
+                alignItems={"center"}
+                gap={1}
+                variant="body2"
+              >
+                <EmailIcon />
+                Email: {email}
+              </Typography>
+              <Typography
+                display={"flex"}
+                alignItems={"center"}
+                gap={1}
+                variant="body2"
+              >
+                <EditCalendarIcon />
+                Register Date: {correctDate}
+              </Typography>
+            </Box>
+          </Box>
         </Grid>
       </Grid>
     </>

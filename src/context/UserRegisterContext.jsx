@@ -93,7 +93,7 @@ export default function UserRegisterContextProvider({children}) {
         values.avatar
           ? toast.success(userWelcomeMessageReg, toastStyles)
           : toast.success(
-              "Done! Remember to Upload the Photo Later!",
+              "Done! Remember to Upload the Photo!",
               toastStylesPhoto
             );
         successPlay();

@@ -45,8 +45,6 @@ export default function StrategiesBarChart({totalPerStrategyByYearStockType}) {
     (strategy) => strategy.strategyName
   );
 
-  console.log(totalPerStrategyByYearStockType);
-
   const handleMouseEnter = (e) => {
     console.log("Mouse enter event:", e);
   };

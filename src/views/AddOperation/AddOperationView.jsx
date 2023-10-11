@@ -6,7 +6,7 @@ import {Box, Grid, Typography} from "@mui/material";
 import AddStrategyForm from "../../components/AddStrategyForm/AddStrategyForm";
 import {useEffect, useState} from "react";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
-import DetailCards from "../../components/InfoCards/DetailCards";
+// import DetailCards from "../../components/InfoCards/DetailCards";
 
 const chartColorsPalette = {
   tealBlue2: "rgba(75, 192, 192, 0.6)",
@@ -59,10 +59,16 @@ export default function AddOperationView({
         direction={"column"}
         justifyContent={"center"}
         alignItems={"center"}
+        mt={8}
       >
         <Grid item mb={8} xs={10}>
           <Box>
-            <Typography textAlign={"center"} variant="h3" mb={2}>
+            <Typography
+              color={chartColorsPalette.blue}
+              textAlign={"center"}
+              variant="h3"
+              mb={1}
+            >
               Operation Control Panel
             </Typography>
             <AddOperationForm />

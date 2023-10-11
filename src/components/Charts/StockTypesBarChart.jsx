@@ -1,4 +1,4 @@
-import {Box, Button, Grid} from "@mui/material";
+import {Box, Button, Grid, Typography} from "@mui/material";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -9,6 +9,7 @@ import {
   Legend,
 } from "chart.js";
 import {Bar} from "react-chartjs-2";
+import StatisticsStockTypesCard from "../StatisticsCards/StatisticsStockTypesCard";
 
 ChartJS.register(
   CategoryScale,
@@ -31,7 +32,7 @@ const chartColorsPalette = {
   shadowtealBlue2: "rgba(75, 192, 192, 0.4)",
   blue: "rgba(22, 41, 56)",
   skyBlue: "rgba(208, 228, 233)",
-  skyBlueOpacity: "rgba(208, 228, 233, 0.2)",
+  skyBlueOpacity: "rgba(208, 228, 233, 0.1)",
 };
 
 export default function StockTypesBarChart({
@@ -39,6 +40,14 @@ export default function StockTypesBarChart({
   selectedYearStockType,
   setSelectedYearStockType,
 }) {
+  // Props to Cards
+  // const strategyName = [
+  //   ...new Set(
+  //     totalStockTypesAmountPerYear?.map((strategy) => strategy.strategyName)
+  //   ),
+  // ];
+  // console.log(strategyName);
+
   const uniqueYears = [
     ...new Set(
       totalStockTypesAmountPerYear?.map((stockType) => stockType.year)
@@ -62,6 +71,9 @@ export default function StockTypesBarChart({
         };
       })
     : null;
+
+  const year = selectedYearStockType;
+  const objectsInYear = groupedByYear ? groupedByYear[year] : null;
 
   const groupedByStockType = yearData?.reduce((acc, entry) => {
     const {stockTypeName, totalAmount} = entry;
@@ -116,7 +128,7 @@ export default function StockTypesBarChart({
       const expenses = ctx.raw;
       const color =
         expenses > standard
-          ? chartColorsPalette.skyBlue
+          ? chartColorsPalette.lightPink
           : expenses <= standard
           ? chartColorsPalette.lightPink
           : chartColorsPalette.blue;
@@ -168,7 +180,7 @@ export default function StockTypesBarChart({
 
     datasets: [
       {
-        label: "Total Per Year",
+        label: "Total Amount / " + year,
         data: totalValue,
         // grouped: isCompare ? false : true,
         borderRadius: 4,
@@ -179,26 +191,37 @@ export default function StockTypesBarChart({
   };
 
   return (
-    <Grid>
-      <Grid>
-        <Box width={704}>
-          <Bar
-            data={data}
-            options={options}
-            onMouseEnter={handleMouseEnter}
-            onMouseOut={handleMouseLeave}
-          />
-        </Box>
+    <Box display={"flex"} flexDirection={"column"}>
+      <Grid container direction={"column"}>
+        <Grid item>
+          <Box width={608}>
+            <Bar
+              data={data}
+              options={options}
+              onMouseEnter={handleMouseEnter}
+              onMouseOut={handleMouseLeave}
+            />
+          </Box>
+        </Grid>
+        <Grid item>
+          <Box display={"flex"} justifyContent={"center"} gap={2} mt={2}>
+            {uniqueYears?.map((year) => (
+              <Typography
+                key={year}
+                variant="body2"
+                borderRadius={1}
+                component={"button"}
+                paddingX={2}
+                onClick={() => setSelectedYearStockType(year)}
+                bgcolor={chartColorsPalette.skyBlue}
+                sx={{border: "none", cursor: "pointer"}}
+              >
+                {year}
+              </Typography>
+            ))}
+          </Box>
+        </Grid>
       </Grid>
-      <Grid>
-        <Box>
-          {uniqueYears?.map((year) => (
-            <Button key={year} onClick={() => setSelectedYearStockType(year)}>
-              {year}
-            </Button>
-          ))}
-        </Box>
-      </Grid>
-    </Grid>
+    </Box>
   );
 }

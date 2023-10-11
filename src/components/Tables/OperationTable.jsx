@@ -44,7 +44,7 @@ const chartColorsPalette = {
 
 const StyledTableContainer = styled(TableContainer)(() => ({
   width: 1296,
-  height: 608,
+  height: 600,
 }));
 
 const StyledTableCell = styled(TableCell)(() => ({

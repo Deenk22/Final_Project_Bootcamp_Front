@@ -127,7 +127,7 @@ export default function StockTable({allStocks, stockDeleteMutation}) {
       </Box>
       <StyledTableContainer
         component={Paper}
-        sx={{borderBottomLeftRadius: 32, borderBottomRightRadius: 32, mb: 32}}
+        sx={{borderBottomLeftRadius: 32, borderBottomRightRadius: 32}}
       >
         <Table aria-label="customized table" size="small">
           <TableHead>

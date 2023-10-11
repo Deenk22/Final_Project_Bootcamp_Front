@@ -32,6 +32,23 @@ export default function Dashboard() {
     // remove: () => void
   });
 
+  const totalBenefitsByOperationsUrl =
+    "http://localhost:3000/operation/totalbenefits";
+  const getTotalBenefits = async () => {
+    const {data} = await axios.get(totalBenefitsByOperationsUrl, config);
+    return data;
+  };
+
+  const {data: totalBenefits} = useQuery({
+    queryKey: ["totalBenefits"],
+    queryFn: getTotalBenefits,
+    cacheTime: 5 * 60 * 1000,
+    retry: 1,
+    // refetchOnWindowFocus: true,
+    // notifyOnChangeProps:
+    // remove: () => void
+  });
+
   // ALL STRATEGIES
   const allStrategiesUrl = "http://localhost:3000/strategy/all";
   const getAllStrategies = async () => {
@@ -211,9 +228,36 @@ export default function Dashboard() {
   const totalStockTypesAmountPerYear = totalAmountPerYearByStockTypes
     ? totalAmountPerYearByStockTypes.data
     : null;
+  const totalBenefitsByOperation = totalBenefits ? totalBenefits.data : null;
+
+  const totalOperationBenefits = totalBenefitsByOperation?.map((operation) =>
+    parseFloat(operation.totalBenefits).toFixed(3)
+  );
+
+  const benefitsLastOperationAdded =
+    allOperations && allOperations.length > 0
+      ? [allOperations[0]].map((operation) => {
+          const {priceClose, priceOpen, volume, swap, commission} = operation;
+          const benefits =
+            volume * (priceClose - priceOpen) - commission - swap;
+          return benefits;
+        })
+      : [];
+
+  const filter2022ByBroker = totalBrokerAmountPerYear?.filter(
+    (operation) => operation.yr === 2022
+  );
+
+  const totalAmount2022 = filter2022ByBroker
+    ?.reduce((total, operation) => total + parseFloat(operation.totalAmount), 0)
+    .toFixed(3);
+
   return (
     <>
       <DashboardView
+        totalOperationBenefits={totalOperationBenefits}
+        benefitsLastOperationAdded={benefitsLastOperationAdded}
+        totalAmount2022={totalAmount2022}
         allStocks={allStocks}
         allBrokers={allBrokers}
         allOperations={allOperations}
@@ -221,6 +265,7 @@ export default function Dashboard() {
         allStrategies={allStrategies}
         totalAmountByBroker={totalAmountByBroker}
         onIdBrokerChange={(id) => setSelectedBrokerId(id)}
+        totalBenefitsByOperation={totalBenefitsByOperation}
         totalBrokerAmountPerYear={totalBrokerAmountPerYear}
         strategyJoinOperationData={strategyJoinOperationData}
         brokersJoinOperationsData={brokersJoinOperationsData}

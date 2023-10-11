@@ -5,7 +5,7 @@ import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 
 const chartColorsPalette = {
   tealBlue2: "rgba(75, 192, 192, 0.6)",
-  lightPink: "rgba(255, 99, 132, 0.6)",
+  lightPink: "rgba(255, 99, 132, 0.8)",
   lightYellow: "rgba(255, 205, 86, 0.6)",
   tealBlueOpacity: "rgba(75, 192, 192, 0.2)",
   lightPinkOpacity: "rgba(255, 99, 132, 0.2)",
@@ -29,9 +29,16 @@ export default function OperationsCard({operationType, priceClose, priceOpen}) {
         bgcolor: chartColorsPalette.blue,
         boxShadow: 1,
         borderRadius: 2,
-        p: 2.5,
+        p: 2,
         width: 224,
         height: 128,
+        backgroundImage: `url(${
+          percentage < 0
+            ? "./src/assets/svg/charts/redChart.svg"
+            : "./src/assets/svg/charts/greenChart.svg"
+        })`,
+        backgroundSize: "cover",
+        backgroundPosition: "top right",
       }}
     >
       <Typography
@@ -69,13 +76,12 @@ export default function OperationsCard({operationType, priceClose, priceOpen}) {
           />
         )}
       </Typography>
-
       <Box
         display={"flex"}
         flexDirection={"row"}
         alignItems={"center"}
         gap={1}
-        mt={1}
+        mt={2}
       >
         <Typography
           variant="body1"

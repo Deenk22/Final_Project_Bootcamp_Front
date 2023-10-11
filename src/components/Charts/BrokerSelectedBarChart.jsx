@@ -129,7 +129,7 @@ export default function BrokerSelectedBarChart({
       const expenses = ctx.raw;
       const color =
         expenses > standard
-          ? chartColorsPalette.tealBlue2
+          ? chartColorsPalette.tealBlueOpacity
           : expenses <= standard
           ? chartColorsPalette.lightPink
           : chartColorsPalette.blue;

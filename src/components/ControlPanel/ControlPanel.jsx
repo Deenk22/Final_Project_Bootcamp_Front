@@ -1,5 +1,6 @@
 import ArrowLeftIcon from "@mui/icons-material/ArrowLeft";
 import {Box, Typography} from "@mui/material";
+import {useUserLoginContext} from "../../context/UserLoginContext";
 
 const chartColorsPalette = {
   orange: "rgba(255, 159, 64, 0.7)",
@@ -13,6 +14,7 @@ const chartColorsPalette = {
 };
 
 export default function ControlPanel({setOpen}) {
+  const {user} = useUserLoginContext();
   return (
     <>
       <ArrowLeftIcon
@@ -44,24 +46,30 @@ export default function ControlPanel({setOpen}) {
           width={120}
           height={120}
           borderRadius={4}
-          boxShadow={"0px 0px 32px rgba(75, 192, 192, 0.4)"}
+          border={"1px solid rgba(208, 228, 233)"}
+          boxShadow={"0px 0px 16px 4px rgba(208, 228, 233, 0.4)"}
           mt={4}
           sx={{
-            backgroundImage: `url('../src/assets/controlPanel.png')`,
+            backgroundImage: `url('../src/assets/avatarControlPanel.jpg')`,
             backgroundSize: "cover",
           }}
         ></Box>
-        <Typography mt={2} variant="h6" color={chartColorsPalette.skyBlue}>
-          Control Panel
+        <Typography
+          mt={2}
+          mb={4}
+          variant="h6"
+          color={chartColorsPalette.skyBlue}
+        >
+          {user.name}
         </Typography>
-        <Box
+        {/* <Box
           display={"flex"}
           flexDirection={"row"}
           alignItems={"left"}
           mt={2}
           padding={2}
           gap={1}
-        ></Box>
+        ></Box> */}
       </Box>
     </>
   );

@@ -3,8 +3,8 @@ import {useEffect, useState} from "react";
 import Select from "react-select";
 
 const chartColorsPalette = {
-  tealBlue2: "rgba(75, 192, 192, 0.6)",
-  lightPink: "rgba(255, 99, 132, 0.6)",
+  tealBlue2: "rgba(75, 192, 192, 0.1)",
+  lightPink: "rgba(255, 99, 132, 0.1)",
   lightYellow: "rgba(255, 205, 86, 0.6)",
   tealBlueOpacity: "rgba(75, 192, 192, 0.2)",
   lightPinkOpacity: "rgba(255, 99, 132, 0.2)",
@@ -13,6 +13,7 @@ const chartColorsPalette = {
   shadowYellow: "rgba(255, 205, 86, 0.4)",
   shadowtealBlue2: "rgba(75, 192, 192, 0.4)",
   blue: "rgba(22, 41, 56)",
+  blueOpacity: "rgba(22, 41, 56, 0.1)",
   skyBlue: "rgba(208, 228, 233)",
 };
 
@@ -37,16 +38,33 @@ export default function StrategySelect({allStrategies, onStrategyChange}) {
     })) || [];
 
   return (
-    <Box width={320}>
-      <Typography
-        variant="body2"
-        mb={1}
-        ml={0.5}
-        color={chartColorsPalette.blue}
-      >
-        Strategies Name
-      </Typography>
+    <Box width={256} position={"relative"} bottom={16}>
       <Select
+        styles={{
+          control: (baseStyles, state) => ({
+            ...baseStyles,
+            backgroundColor: state.isFocused
+              ? chartColorsPalette.skyBlue
+              : chartColorsPalette.skyBlue,
+            fontSize: "14px",
+            fontFamily: "Roboto, sans-serif",
+            border: "1px solid " + chartColorsPalette.blue,
+            borderRadius: "8px",
+          }),
+          option: (baseStyles, state) => ({
+            ...baseStyles,
+            fontSize: "14px",
+            fontFamily: "Roboto, sans-serif",
+            color: state.isSelected
+              ? chartColorsPalette.skyBlue
+              : baseStyles.color,
+            backgroundColor: state.isSelected
+              ? chartColorsPalette.blue
+              : state.isFocused
+              ? chartColorsPalette.blueOpacity
+              : baseStyles.backgroundColor,
+          }),
+        }}
         defaultValue={{label: "Select Strategy"}}
         options={options}
         onChange={handleSelectChange}

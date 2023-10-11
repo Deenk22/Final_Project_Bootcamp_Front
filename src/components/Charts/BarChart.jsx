@@ -143,6 +143,7 @@ export default function BarChart({
   const nameStrategyMostUsed = getStrategyByIdMostUsed?.map(
     (strategy) => strategy.name
   );
+  console.log(nameStrategyMostUsed);
 
   // Conseguimos todas las operaciones relacionadas con la estrategia ganadora! la más usada.
   const operationsByStrategyIdMostUsed = allOperations?.filter(
@@ -310,7 +311,7 @@ export default function BarChart({
         direction={"row"}
         display={"flex"}
         justifyContent={"center"}
-        my={4}
+        my={8}
         spacing={1}
       >
         {operationsByStrategyIdMostUsed
