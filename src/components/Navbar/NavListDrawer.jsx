@@ -5,56 +5,56 @@ import {
   ListItemButton,
   ListItemIcon,
   Typography,
-} from "@mui/material";
-import ControlPanel from "../ControlPanel/ControlPanel";
+} from '@mui/material';
+import ControlPanel from '../ControlPanel/ControlPanel';
 // import {useState} from "react";
-import DashboardIcon from "@mui/icons-material/Dashboard";
-import DataThresholdingIcon from "@mui/icons-material/DataThresholding";
-import AnalyticsIcon from "@mui/icons-material/Analytics";
-import PsychologyAltIcon from "@mui/icons-material/PsychologyAlt";
-import AccountBoxIcon from "@mui/icons-material/AccountBox";
-import ExitToAppIcon from "@mui/icons-material/ExitToApp";
+import DashboardIcon from '@mui/icons-material/Dashboard';
+import DataThresholdingIcon from '@mui/icons-material/DataThresholding';
+import AnalyticsIcon from '@mui/icons-material/Analytics';
+import PsychologyAltIcon from '@mui/icons-material/PsychologyAlt';
+import AccountBoxIcon from '@mui/icons-material/AccountBox';
+import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 
 // import {useUserLoginContext} from "../../context/UserLoginContext";
 // import WavingHandRoundedIcon from "@mui/icons-material/WavingHandRounded";
 
 const chartColorsPalette = {
-  orange: "rgba(255, 159, 64, 0.7)",
-  lightPink: "rgba(255, 99, 132, 0.7)",
-  lightYellow: "rgba(255, 205, 86, 0.7)",
-  shadowYellow: "rgba(255, 205, 86, 0.4)",
-  tealBlue2: "rgba(75, 192, 192, 0.7)",
-  shadowtealBlue2: "rgba(75, 192, 192, 0.4)",
-  blue: "rgba(22, 41, 56)",
-  skyBlue: "rgba(208, 228, 233)",
+  orange: 'rgba(255, 159, 64, 0.7)',
+  lightPink: 'rgba(255, 99, 132, 0.7)',
+  lightYellow: 'rgba(255, 205, 86, 0.7)',
+  shadowYellow: 'rgba(255, 205, 86, 0.4)',
+  tealBlue2: 'rgba(75, 192, 192, 0.7)',
+  shadowtealBlue2: 'rgba(75, 192, 192, 0.4)',
+  blue: 'rgba(22, 41, 56)',
+  skyBlue: 'rgba(208, 228, 233)',
 };
 
-export default function NavListDrawer({NavLink, setOpen, logout}) {
+export default function NavListDrawer({ NavLink, setOpen, logout }) {
   const drawerLinks = [
     {
       icon: <DashboardIcon />,
-      title: "Dashboard",
-      path: "/dashboard",
+      title: 'Dashboard',
+      path: '/dashboard',
     },
     {
       icon: <DataThresholdingIcon />,
-      title: "Manage Operations",
-      path: "/addoperation",
+      title: 'Manage Operations',
+      path: '/addoperation',
     },
     {
       icon: <AnalyticsIcon />,
-      title: "Manage Stocks",
-      path: "/addstock",
+      title: 'Manage Stocks',
+      path: '/addstock',
     },
     {
       icon: <PsychologyAltIcon />,
-      title: "Manage Strategies",
-      path: "/addstrategy",
+      title: 'Manage Strategies',
+      path: '/addstrategy',
     },
     {
       icon: <AccountBoxIcon />,
-      title: "My Account",
-      path: "/account",
+      title: 'My Account',
+      path: '/account',
     },
   ];
 
@@ -62,7 +62,7 @@ export default function NavListDrawer({NavLink, setOpen, logout}) {
     <Box
       sx={{
         width: 300,
-        height: "100%",
+        height: '100%',
       }}
       bgcolor={chartColorsPalette.blue}
     >
@@ -70,11 +70,11 @@ export default function NavListDrawer({NavLink, setOpen, logout}) {
         <ControlPanel setOpen={setOpen} />
         <List
           sx={{
-            display: "flex",
-            flexDirection: "column",
+            display: 'flex',
+            flexDirection: 'column',
             gap: 1,
             color: chartColorsPalette.skyBlue,
-            marginTop: 8,
+            marginTop: 4,
           }}
         >
           {drawerLinks.map((item) => (
@@ -86,8 +86,8 @@ export default function NavListDrawer({NavLink, setOpen, logout}) {
               >
                 <ListItemIcon
                   sx={{
-                    display: "flex",
-                    alignItems: "center",
+                    display: 'flex',
+                    alignItems: 'center',
                     gap: 1,
                     color: chartColorsPalette.skyBlue,
                   }}
@@ -106,8 +106,8 @@ export default function NavListDrawer({NavLink, setOpen, logout}) {
           <ListItemButton onClick={() => logout()}>
             <ListItemIcon
               sx={{
-                display: "flex",
-                alignItems: "center",
+                display: 'flex',
+                alignItems: 'center',
                 gap: 1,
                 color: chartColorsPalette.skyBlue,
               }}

@@ -65,11 +65,10 @@
   }
 }
 
-
 .animation-operation-cards {
   animation: fadeMovement linear both;
   animation-timeline: view();
-  animation-range: entry 5% cover 25%;
+  animation-range: entry 5% cover 24%;
 }
 
 @keyframes fadeMovement {
@@ -126,14 +125,12 @@
   }
 }
 
-
 /* @media (max-width: 499px) {
   main .media-query {
     width: 800px;
   }
 }
  */
-
 
 /* @media (max-width: 300px) {
   .grafica {
@@ -198,4 +195,3 @@
     opacity: 1;
   }
 }
-
