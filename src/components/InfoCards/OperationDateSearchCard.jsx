@@ -28,7 +28,7 @@ export default function OperationDateSearchCard({operationType, id}) {
   return (
     <List disablePadding sx={{textAlign: "center"}}>
       <ListItem disablePadding>
-        <Link className="allLinks" to={`operationdetails/${id}`}>
+        <Link className="allLinks" to={`/addoperation/operationdetails/${id}`}>
           <ListItemButton
             divider
             sx={{
@@ -54,11 +54,9 @@ export default function OperationDateSearchCard({operationType, id}) {
               <ArrowRightOutlinedIcon
                 sx={{color: chartColorsPalette.lightPink}}
               />
-              <Link to={`operationdetails/${id}`}>
-                <Typography variant="body2" color={chartColorsPalette.skyBlue}>
-                  {operationType}
-                </Typography>
-              </Link>
+              <Typography variant="body2" color={chartColorsPalette.skyBlue}>
+                {operationType}
+              </Typography>
             </ListItemIcon>
           </ListItemButton>
         </Link>

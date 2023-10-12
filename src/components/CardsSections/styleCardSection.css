@@ -53,7 +53,7 @@
 .animation-cards-left {
   animation: fadeLeft linear both;
   animation-timeline: view();
-  animation-range: entry 5% cover 25%;
+  animation-range: entry 5% cover 30%;
 }
 
 @keyframes fadeLeft {
@@ -82,7 +82,7 @@
 .animation-cards-right {
   animation: fadeRight linear both;
   animation-timeline: view();
-  animation-range: entry 5% cover 25%;
+  animation-range: entry 5% cover 30%;
 }
 
 @keyframes fadeRight {

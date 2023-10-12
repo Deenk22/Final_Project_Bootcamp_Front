@@ -13,19 +13,20 @@ export default function OperationDetails() {
     },
   };
 
-  const getOperationId = () => {
-    return axios
-      .get(`http://localhost:3000/operation/id/${id}`, config)
-      .then((res) => res.data);
+  const urlId = `http://localhost:3000/operation/operationdetails/${id}`;
+  const getOperationbyId = async () => {
+    const {data} = await axios.get(urlId, config);
+    return data;
   };
 
   const {data} = useQuery({
     queryKey: ["operationdetails"],
-    queryFn: getOperationId,
+    queryFn: getOperationbyId,
     keepPreviousData: true,
   });
 
   const operationDetailsInfo = data?.data;
+  console.log(operationDetailsInfo);
 
   return (
     <>

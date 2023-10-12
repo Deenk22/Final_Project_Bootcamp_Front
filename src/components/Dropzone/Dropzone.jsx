@@ -51,9 +51,6 @@ export default function DropZone({onImagenSeleccionada}) {
   const [isUploading, setIsUploading] = useState(null);
   const [isPhotoRemoved, setIsPhotoRemoved] = useState(false);
 
-  console.log(isPhotoRemoved);
-  console.log(isUploading);
-
   const handleCancelUpload = () => {
     setIsUploading(false);
     setIsPhotoRemoved(!isPhotoRemoved);

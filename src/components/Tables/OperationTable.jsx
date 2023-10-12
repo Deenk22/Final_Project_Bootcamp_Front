@@ -29,6 +29,7 @@ import DownloadFiles from "../DowloadFiles/DownloadFiles";
 const chartColorsPalette = {
   tealBlue2: "rgba(75, 192, 192, 0.6)",
   lightPink: "rgba(255, 99, 132, 0.9)",
+  lightPinkDelete: "rgba(255, 99, 132, 0.7)",
   lightYellow: "rgba(255, 205, 86, 0.6)",
   tealBlueOpacity: "rgba(75, 192, 192, 0.2)",
   lightPinkOpacity: "rgba(255, 99, 132, 0.2)",
@@ -162,7 +163,7 @@ export default function OperationTable({
                 paddingY={1}
                 paddingX={2}
                 borderRadius={1}
-                bgcolor={chartColorsPalette.lightPink}
+                bgcolor={chartColorsPalette.lightPinkDelete}
               >
                 {numSelected}
               </Typography>

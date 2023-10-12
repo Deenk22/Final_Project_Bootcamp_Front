@@ -6,14 +6,14 @@
 // import BrokersBarChart from "../../components/CStockTypeSelectharts/BrokersBarChart";
 // import BrokerBar from "../../components/Charts/BrokerBar";
 // import BarData from "../../components/Charts/BarData";
-import StrategySelect from '../../components/Select/StrategySelect';
-import { useState } from 'react';
-import BarChart from '../../components/Charts/BarChart';
-import BrokerSelect from '../../components/Select/BrokerSelect';
-import BrokerPieChart from '../../components/Charts/BrokerPieChart';
-import BrokerSelectedBarChart from '../../components/Charts/BrokerSelectedBarChart';
-import ScatterPlotIcon from '@mui/icons-material/ScatterPlot';
-import LooksOneIcon from '@mui/icons-material/LooksOne';
+import StrategySelect from "../../components/Select/StrategySelect";
+import {useState} from "react";
+import BarChart from "../../components/Charts/BarChart";
+import BrokerSelect from "../../components/Select/BrokerSelect";
+import BrokerPieChart from "../../components/Charts/BrokerPieChart";
+import BrokerSelectedBarChart from "../../components/Charts/BrokerSelectedBarChart";
+import ScatterPlotIcon from "@mui/icons-material/ScatterPlot";
+import LooksOneIcon from "@mui/icons-material/LooksOne";
 import {
   Box,
   Grid,
@@ -23,31 +23,32 @@ import {
   ListItemIcon,
   ListItemText,
   Typography,
-} from '@mui/material';
-import StrategiesBarChart from '../../components/Charts/StrategiesBarChart';
-import StrategiesPieChart from '../../components/Charts/StrategiesPieChart';
-import './styleDashboard.css';
-import StockTypesBarChart from '../../components/Charts/StockTypesBarChart';
-import BrokersChart from '../../components/Charts/BrokersChart';
-import StockTypePieChart from '../../components/Charts/StockTypePieChart';
-import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
-import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
-import EditNoteIcon from '@mui/icons-material/EditNote';
+} from "@mui/material";
+import StrategiesBarChart from "../../components/Charts/StrategiesBarChart";
+import StrategiesPieChart from "../../components/Charts/StrategiesPieChart";
+import "./styleDashboard.css";
+import StockTypesBarChart from "../../components/Charts/StockTypesBarChart";
+import BrokersChart from "../../components/Charts/BrokersChart";
+import StockTypePieChart from "../../components/Charts/StockTypePieChart";
+import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
+import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
+import EditNoteIcon from "@mui/icons-material/EditNote";
 
 const chartColorsPalette = {
-  orange: 'rgba(255, 159, 64, 0.7)',
-  lightPink: 'rgba(255, 99, 132, 0.7)',
-  lightPinkOpacity: 'rgba(255, 99, 132, 0.1)',
-  lightYellow: 'rgba(255, 205, 86, 0.7)',
-  shadowYellow: 'rgba(255, 205, 86, 0.4)',
-  shadowtealBlue2: 'rgba(75, 192, 192, 0.4)',
-  blue: 'rgba(22, 41, 56)',
-  blueOpacity: 'rgba(22, 41, 56, 0.2)',
-  blueOpacityTwo: 'rgba(22, 41, 56, 0.6)',
-  skyBlue: 'rgba(208, 228, 233)',
-  tealBlue: 'rgba(54, 117, 136, 1)',
-  tealBlueOpacity: 'rgba(54, 117, 136, 0.1)',
-  green: 'rgba(73, 184, 123, 1)',
+  orange: "rgba(255, 159, 64, 0.7)",
+  lightPink: "rgba(255, 99, 132, 0.7)",
+  red: "rgba(200, 15, 00, 0.7)",
+  lightPinkOpacity: "rgba(255, 99, 132, 0.1)",
+  lightYellow: "rgba(255, 205, 86, 0.7)",
+  shadowYellow: "rgba(255, 205, 86, 0.4)",
+  shadowtealBlue2: "rgba(75, 192, 192, 0.4)",
+  blue: "rgba(22, 41, 56)",
+  blueOpacity: "rgba(22, 41, 56, 0.2)",
+  blueOpacityTwo: "rgba(22, 41, 56, 0.6)",
+  skyBlue: "rgba(208, 228, 233)",
+  tealBlue: "rgba(54, 117, 136, 1)",
+  tealBlueOpacity: "rgba(54, 117, 136, 0.1)",
+  green: "rgba(73, 184, 123, 1)",
 };
 
 export default function DashboardView({
@@ -73,9 +74,9 @@ export default function DashboardView({
 }) {
   console.log(totalAmountByBroker);
   // Es el ID del BROKER.
-  const [selectedBroker, setSelectedBroker] = useState('');
+  const [selectedBroker, setSelectedBroker] = useState("");
   // Es el ID de la ESTRATEGIA.
-  const [selectedStrategy, setSelectedStrategy] = useState('');
+  const [selectedStrategy, setSelectedStrategy] = useState("");
   // CAMBIO DE VISTA UNA GRÁFICA U OTRA. NO SE ESTA USANDO.
   const [isBrokerGraphicSelected, setIsBrokerGraphicSelected] = useState(true);
   // Cambiamos los años de la gráfica del total de euros por BROKER, tanto BarChart como PieChart.
@@ -112,16 +113,16 @@ export default function DashboardView({
       {/* PORTFOLIO */}
       <Grid
         container
-        justifyContent={'space-evenly'}
-        direction={'row'}
-        alignItems={'center'}
-        mt={10}
-        mb={8}
+        justifyContent={"space-evenly"}
+        direction={"row"}
+        alignItems={"center"}
+        mt={16}
+        mb={16}
       >
         <Grid item xs={10} sm={10} md={5} lg={5}>
           <Typography
             variant="h2"
-            component={'h1'}
+            component={"h1"}
             color={chartColorsPalette.blue}
           >
             Track Your Portfolio
@@ -132,78 +133,78 @@ export default function DashboardView({
             investment decisions and identify opportunities for our client.
           </Typography>
           <Box
-            display={'flex'}
-            alignItems={'center'}
-            flexDirection={'row'}
-            justifyContent={'space-evenly'}
+            display={"flex"}
+            alignItems={"center"}
+            flexDirection={"row"}
+            justifyContent={"space-evenly"}
             mt={4}
             padding={2}
             borderRadius={4}
             bgcolor={chartColorsPalette.tealBlueOpacity}
-            boxShadow={'8px 4px 8px 2px rgba(54, 117, 136, 0.2)'}
-            border={'1px solid rgba(54, 117, 136, 0.2)'}
+            boxShadow={"8px 4px 8px 2px rgba(54, 117, 136, 0.2)"}
+            border={"1px solid rgba(54, 117, 136, 0.2)"}
           >
             <Box
-              display={'flex'}
-              flexDirection={'column'}
-              justifyContent={'center'}
-              alignItems={'center'}
+              display={"flex"}
+              flexDirection={"column"}
+              justifyContent={"center"}
+              alignItems={"center"}
             >
-              {benefitsLastOperationAdded > 0 ? (
-                <ArrowDropUpIcon sx={{ color: chartColorsPalette.green }} />
+              {totalOperationBenefits > 0 ? (
+                <ArrowDropUpIcon sx={{color: chartColorsPalette.green}} />
               ) : (
-                <ArrowDropDownIcon />
+                <ArrowDropDownIcon sx={{color: chartColorsPalette.red}} />
               )}
               <Typography
                 variant="h3"
-                fontFamily={'Comfortaa'}
+                fontFamily={"Comfortaa"}
                 color={chartColorsPalette.blue}
               >
-                {totalOperationBenefits}
+                {totalOperationBenefits}€
               </Typography>
               <Typography variant="body2" color={chartColorsPalette.blue}>
                 Total Profits or Losses
               </Typography>
             </Box>
             <Box
-              display={'flex'}
-              flexDirection={'column'}
-              justifyContent={'center'}
-              alignItems={'center'}
+              display={"flex"}
+              flexDirection={"column"}
+              justifyContent={"center"}
+              alignItems={"center"}
             >
               {benefitsLastOperationAdded > 0 ? (
-                <ArrowDropUpIcon sx={{ color: chartColorsPalette.green }} />
+                <ArrowDropUpIcon sx={{color: chartColorsPalette.green}} />
               ) : (
-                <ArrowDropDownIcon />
+                <ArrowDropDownIcon sx={{color: chartColorsPalette.red}} />
               )}
               <Typography
                 variant="h3"
-                fontFamily={'Comfortaa'}
+                fontFamily={"Comfortaa"}
                 color={chartColorsPalette.blue}
               >
-                {benefitsLastOperationAdded}
+                {benefitsLastOperationAdded}€
               </Typography>
               <Typography variant="body2" color={chartColorsPalette.blue}>
                 Last Operation Added
               </Typography>
             </Box>
             <Box
-              display={'flex'}
-              flexDirection={'column'}
-              justifyContent={'center'}
-              alignItems={'center'}
+              display={"flex"}
+              flexDirection={"column"}
+              justifyContent={"center"}
+              alignItems={"center"}
             >
               {totalAmount2022 > 0 ? (
-                <ArrowDropUpIcon sx={{ color: chartColorsPalette.green }} />
+                <ArrowDropUpIcon sx={{color: chartColorsPalette.green}} />
               ) : (
-                <ArrowDropDownIcon />
+                <ArrowDropDownIcon sx={{color: chartColorsPalette.red}} />
               )}
               <Typography
                 variant="h3"
-                fontFamily={'Comfortaa'}
+                fontFamily={"Comfortaa"}
                 color={chartColorsPalette.blue}
               >
-                {totalAmount2022}
+                {totalAmount2022}€
               </Typography>
               <Typography variant="body2" color={chartColorsPalette.blue}>
                 Profits or Losses / Last Year
@@ -212,8 +213,8 @@ export default function DashboardView({
           </Box>
           <Typography
             variant="body2"
-            display={'flex'}
-            justifyContent={'center'}
+            display={"flex"}
+            justifyContent={"center"}
             color={chartColorsPalette.blue}
             mt={4}
             gap={0.5}
@@ -221,7 +222,7 @@ export default function DashboardView({
             <EditNoteIcon
               fontSize="large"
               sx={{
-                position: 'relative',
+                position: "relative",
                 bottom: 4,
                 color: chartColorsPalette.lightPink,
               }}
@@ -234,14 +235,14 @@ export default function DashboardView({
         {/* MANAGE */}
         <Grid item xs={10} sm={10} md={4} lg={4}>
           <Box
-            display={'flex'}
-            flexDirection={'column'}
-            justifyContent={'center'}
+            display={"flex"}
+            flexDirection={"column"}
+            justifyContent={"center"}
           >
             <Box
-              display={'flex'}
-              justifyContent={'space-evenly'}
-              alignItems={'center'}
+              display={"flex"}
+              justifyContent={"space-evenly"}
+              alignItems={"center"}
             >
               <img
                 src="./src/assets/controlPanel.png"
@@ -249,18 +250,18 @@ export default function DashboardView({
                 width={140}
               />
               <Box
-                width={'100%'}
+                width={"100%"}
                 height={100}
                 borderRadius={4}
-                display={'flex'}
-                justifyContent={'right'}
-                alignItems={'center'}
+                display={"flex"}
+                justifyContent={"right"}
+                alignItems={"center"}
                 bgcolor={chartColorsPalette.tealBlueOpacity}
               >
                 <Box
-                  display={'flex'}
-                  justifyContent={'right'}
-                  alignItems={'center'}
+                  display={"flex"}
+                  justifyContent={"right"}
+                  alignItems={"center"}
                   gap={2}
                   mr={2}
                 >
@@ -269,12 +270,12 @@ export default function DashboardView({
                     height={80}
                     borderRadius={4}
                     bgcolor={chartColorsPalette.blue}
-                    display={'flex'}
-                    justifyContent={'center'}
-                    alignItems={'center'}
+                    display={"flex"}
+                    justifyContent={"center"}
+                    alignItems={"center"}
                     sx={{
                       backgroundImage: `url('./src/assets/svg/charts/skyBlue.svg')`,
-                      backgroundSize: 'cover',
+                      backgroundSize: "cover",
                     }}
                   ></Box>
                   <Box
@@ -282,35 +283,32 @@ export default function DashboardView({
                     height={80}
                     borderRadius={4}
                     bgcolor={chartColorsPalette.blue}
-                    display={'flex'}
-                    justifyContent={'center'}
-                    alignItems={'center'}
-                    flexDirection={'column'}
+                    display={"flex"}
+                    justifyContent={"center"}
+                    alignItems={"center"}
+                    flexDirection={"column"}
                     sx={{
                       backgroundImage: `url('./src/assets/svg/charts/greenChart.svg')`,
-                      backgroundSize: 'cover',
+                      backgroundSize: "cover",
                     }}
                   >
                     <Typography
                       variant="body2"
-                      fontSize={'0.75rem'}
+                      fontSize={"0.75rem"}
                       color={chartColorsPalette.skyBlue}
                     >
                       Profitability
                     </Typography>
                     <Typography
-                      display={'flex'}
-                      alignItems={'center'}
-                      fontFamily={'Comfortaa'}
+                      display={"flex"}
+                      alignItems={"center"}
+                      fontFamily={"Comfortaa"}
+                      justifyContent={"center"}
                       color={chartColorsPalette.skyBlue}
                       variant="h6"
-                      fontSize={'1rem'}
+                      fontSize={"1rem"}
                     >
-                      <ArrowDropUpIcon
-                        fontSize="small"
-                        sx={{ color: chartColorsPalette.green }}
-                      />
-                      521.96
+                      521,969€
                     </Typography>
                   </Box>
                 </Box>
@@ -328,17 +326,17 @@ export default function DashboardView({
             </Typography>
           </Box>
           <Box
-            display={'flex'}
-            justifyContent={'center'}
+            display={"flex"}
+            justifyContent={"center"}
             gap={2}
-            alignItems={'center'}
+            alignItems={"center"}
           >
             <Box
               width={100}
               height={100}
-              display={'flex'}
-              justifyContent={'center'}
-              alignItems={'center'}
+              display={"flex"}
+              justifyContent={"center"}
+              alignItems={"center"}
             >
               <img
                 src="./src/assets/svg/icons/inbestMe_logo-black.svg"
@@ -349,9 +347,9 @@ export default function DashboardView({
             <Box
               width={100}
               height={100}
-              display={'flex'}
-              justifyContent={'center'}
-              alignItems={'center'}
+              display={"flex"}
+              justifyContent={"center"}
+              alignItems={"center"}
             >
               <img
                 src="./src/assets/svg/icons/logo.8ba43bf4.svg"
@@ -362,9 +360,9 @@ export default function DashboardView({
             <Box
               width={100}
               height={100}
-              display={'flex'}
-              justifyContent={'center'}
-              alignItems={'center'}
+              display={"flex"}
+              justifyContent={"center"}
+              alignItems={"center"}
             >
               <img
                 src="./src/assets/svg/icons/urbanitae-logo-verde.svg"
@@ -376,16 +374,24 @@ export default function DashboardView({
         </Grid>
       </Grid>
       <Box
-        display={'flex'}
-        justifyContent={'center'}
-        position={'relative'}
+        display={"flex"}
+        justifyContent={"center"}
+        position={"relative"}
         top={64}
         gap={2}
-        marginX={48}
+        marginX={64}
         paddingTop={8}
         bgcolor={chartColorsPalette.skyBlue}
-        sx={{ borderBottomLeftRadius: 16, borderBottomRightRadius: 16 }}
+        sx={{borderBottomLeftRadius: 16, borderBottomRightRadius: 16}}
       >
+        <Box
+          width={50}
+          height={64}
+          bgcolor={chartColorsPalette.blue}
+          position={"relative"}
+          right={110}
+          sx={{borderTopRightRadius: 64}}
+        ></Box>
         <BrokerSelect
           allBrokers={allBrokers}
           onBrokerChange={handleBrokerChange}
@@ -394,26 +400,34 @@ export default function DashboardView({
           allStrategies={allStrategies}
           onStrategyChange={handleStrategyChange}
         />
+        <Box
+          width={50}
+          height={64}
+          bgcolor={chartColorsPalette.blue}
+          position={"relative"}
+          left={110}
+          sx={{borderTopLeftRadius: 64}}
+        ></Box>
       </Box>
       <Grid
         container
         direction="row"
-        alignItems={'center'}
+        alignItems={"center"}
         justifyContent="space-evenly"
         paddingY={16}
         bgcolor={chartColorsPalette.blue}
       >
         <Grid
           className="graphics"
-          display={'flex'}
-          justifyContent={'center'}
+          display={"flex"}
+          justifyContent={"center"}
           item
           xs={10}
           sm={10}
           md={10}
           lg={4}
         >
-          <Box display={'flex'} justifyContent={'center'}>
+          <Box display={"flex"} justifyContent={"center"}>
             {/* ESTAS FUNCIONAN! */}
             {/* {selectedBroker === "" ? (
                 <BrokersChart
@@ -464,7 +478,7 @@ export default function DashboardView({
           </Box>
         </Grid>
         <Grid className="graphics" item xs={10} sm={10} md={10} lg={4}>
-          <Box display={'flex'} justifyContent={'center'}>
+          <Box display={"flex"} justifyContent={"center"}>
             {/* Buena!! */}
             {/* <BrokerPieChart
               totalBrokerAmountPerYear={totalBrokerAmountPerYear}
@@ -497,9 +511,9 @@ export default function DashboardView({
       </Grid>
       <Grid
         container
-        direction={'row'}
-        alignItems={'center'}
-        justifyContent={'space-evenly'}
+        direction={"row"}
+        alignItems={"center"}
+        justifyContent={"space-evenly"}
         mt={16}
         mb={8}
       >
@@ -518,16 +532,16 @@ export default function DashboardView({
         </Grid>
         <Grid item xs={10} sm={10} md={4} lg={2}>
           <Box
-            display={'flex'}
-            flexDirection={'row'}
-            alignItems={'center'}
-            justifyContent={'center'}
+            display={"flex"}
+            flexDirection={"row"}
+            alignItems={"center"}
+            justifyContent={"center"}
             gap={4}
           >
             <img
               src="./src/assets/dashboard.png"
               alt="controlPanel"
-              width={256}
+              width={160}
             />
             {/* <Box display={"flex"} flexDirection={"column"}>
               <Typography variant="body1">

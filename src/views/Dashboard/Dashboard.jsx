@@ -1,12 +1,12 @@
-import { useQuery } from '@tanstack/react-query';
-import DashboardView from './DashboardView';
-import axios from 'axios';
-import { IM_INVESTING_KEY } from '../../const/IM_investingKey';
-import { useState } from 'react';
+import {useQuery} from "@tanstack/react-query";
+import DashboardView from "./DashboardView";
+import axios from "axios";
+import {IM_INVESTING_KEY} from "../../const/IM_investingKey";
+import {useState} from "react";
 
 export default function Dashboard() {
-  const [selectedBrokerId, setSelectedBrokerId] = useState('');
-  const [selectedStrategyId, setSelectedStrategyId] = useState('');
+  const [selectedBrokerId, setSelectedBrokerId] = useState("");
+  const [selectedStrategyId, setSelectedStrategyId] = useState("");
 
   const token = JSON.parse(localStorage.getItem(IM_INVESTING_KEY));
   const config = {
@@ -16,14 +16,14 @@ export default function Dashboard() {
   };
 
   // ALL OPERATIONS
-  const allOperationsUrl = 'http://localhost:3000/operation/all';
+  const allOperationsUrl = "http://localhost:3000/operation/all";
   const getAllOperations = async () => {
-    const { data } = await axios.get(allOperationsUrl, config);
+    const {data} = await axios.get(allOperationsUrl, config);
     return data;
   };
 
-  const { data: operations } = useQuery({
-    queryKey: ['allOperations'],
+  const {data: operations} = useQuery({
+    queryKey: ["allOperations"],
     queryFn: getAllOperations,
     cacheTime: 5 * 60 * 1000,
     retry: 1,
@@ -33,14 +33,14 @@ export default function Dashboard() {
   });
 
   const totalBenefitsByOperationsUrl =
-    'http://localhost:3000/operation/totalbenefits';
+    "http://localhost:3000/operation/totalbenefits";
   const getTotalBenefits = async () => {
-    const { data } = await axios.get(totalBenefitsByOperationsUrl, config);
+    const {data} = await axios.get(totalBenefitsByOperationsUrl, config);
     return data;
   };
 
-  const { data: totalBenefits } = useQuery({
-    queryKey: ['totalBenefits'],
+  const {data: totalBenefits} = useQuery({
+    queryKey: ["totalBenefits"],
     queryFn: getTotalBenefits,
     cacheTime: 5 * 60 * 1000,
     retry: 1,
@@ -50,14 +50,14 @@ export default function Dashboard() {
   });
 
   // ALL STRATEGIES
-  const allStrategiesUrl = 'http://localhost:3000/strategy/all';
+  const allStrategiesUrl = "http://localhost:3000/strategy/all";
   const getAllStrategies = async () => {
-    const { data } = await axios.get(allStrategiesUrl, config);
+    const {data} = await axios.get(allStrategiesUrl, config);
     return data;
   };
 
-  const { data: strategies } = useQuery({
-    queryKey: ['allStrategies'],
+  const {data: strategies} = useQuery({
+    queryKey: ["allStrategies"],
     queryFn: getAllStrategies,
     cacheTime: 5 * 60 * 1000,
     retry: 1,
@@ -70,12 +70,12 @@ export default function Dashboard() {
   const strategyId = selectedStrategyId ? selectedStrategyId : null;
   const allStrategiesJoinOperations = `http://localhost:3000/strategy/operationsbystrategy/${strategyId}`;
   const getAllStrategiesJoinOperations = async () => {
-    const { data } = await axios.get(allStrategiesJoinOperations, config);
+    const {data} = await axios.get(allStrategiesJoinOperations, config);
     return data;
   };
 
-  const { data: allStrategiesJoinOperationsData } = useQuery(
-    ['allStrategiesJoinOperationsData', selectedStrategyId],
+  const {data: allStrategiesJoinOperationsData} = useQuery(
+    ["allStrategiesJoinOperationsData", selectedStrategyId],
     getAllStrategiesJoinOperations,
     {
       retry: 1,
@@ -87,11 +87,11 @@ export default function Dashboard() {
   const strategyPerYearId = selectedStrategyId ? selectedStrategyId : null;
   const totalAmountPerStrategyByYearUrl = `http://localhost:3000/strategy/totalperyear/${strategyPerYearId}`;
   const getTotalAmountPerYearByStrategyStockType = async () => {
-    const { data } = await axios.get(totalAmountPerStrategyByYearUrl, config);
+    const {data} = await axios.get(totalAmountPerStrategyByYearUrl, config);
     return data;
   };
-  const { data: totalAmountPerStrategyByYearStockType } = useQuery(
-    ['totalAmountPerStrategyByYearStockType', selectedStrategyId],
+  const {data: totalAmountPerStrategyByYearStockType} = useQuery(
+    ["totalAmountPerStrategyByYearStockType", selectedStrategyId],
     getTotalAmountPerYearByStrategyStockType,
     {
       retry: 0,
@@ -100,14 +100,14 @@ export default function Dashboard() {
   );
 
   // ALL STOCKS
-  const allStocksUrl = 'http://localhost:3000/stock/all';
+  const allStocksUrl = "http://localhost:3000/stock/all";
   const getAllStocks = async () => {
-    const { data } = await axios.get(allStocksUrl, config);
+    const {data} = await axios.get(allStocksUrl, config);
     return data;
   };
 
-  const { data: stocks } = useQuery({
-    queryKey: ['allStocks'],
+  const {data: stocks} = useQuery({
+    queryKey: ["allStocks"],
     queryFn: getAllStocks,
     cacheTime: 5 * 60 * 1000,
     retry: 1,
@@ -117,14 +117,14 @@ export default function Dashboard() {
   });
 
   // ALL STOCKTYPES
-  const allStockTypesUrl = 'http://localhost:3000/stocktype/all';
+  const allStockTypesUrl = "http://localhost:3000/stocktype/all";
   const getAllStockTypes = async () => {
-    const { data } = await axios.get(allStockTypesUrl, config);
+    const {data} = await axios.get(allStockTypesUrl, config);
     return data;
   };
 
-  const { data: stockTypes } = useQuery({
-    queryKey: ['allStockTypes'],
+  const {data: stockTypes} = useQuery({
+    queryKey: ["allStockTypes"],
     queryFn: getAllStockTypes,
     cacheTime: 5 * 60 * 1000,
     retry: 1,
@@ -132,28 +132,28 @@ export default function Dashboard() {
 
   // STOCKTYPES PER YEAR
   const totalAmountPerYearByStockTypesUrl =
-    'http://localhost:3000/stocktype/totalperyear';
+    "http://localhost:3000/stocktype/totalperyear";
   const getTotalAmountPerYearByStockTypes = async () => {
-    const { data } = await axios.get(totalAmountPerYearByStockTypesUrl, config);
+    const {data} = await axios.get(totalAmountPerYearByStockTypesUrl, config);
     return data;
   };
 
-  const { data: totalAmountPerYearByStockTypes } = useQuery({
-    queryKey: ['totalAmountPerYearByStockTypes'],
+  const {data: totalAmountPerYearByStockTypes} = useQuery({
+    queryKey: ["totalAmountPerYearByStockTypes"],
     queryFn: getTotalAmountPerYearByStockTypes,
     cacheTime: 5 * 60 * 1000,
     retry: 1,
   });
 
   // ALL BROKERS
-  const allBrokersUrl = 'http://localhost:3000/broker/all';
+  const allBrokersUrl = "http://localhost:3000/broker/all";
   const getAllBrokers = async () => {
-    const { data } = await axios.get(allBrokersUrl, config);
+    const {data} = await axios.get(allBrokersUrl, config);
     return data;
   };
 
-  const { data: brokers } = useQuery({
-    queryKey: ['allBrokers'],
+  const {data: brokers} = useQuery({
+    queryKey: ["allBrokers"],
     queryFn: getAllBrokers,
     cacheTime: 5 * 60 * 1000,
     retry: 1,
@@ -163,12 +163,12 @@ export default function Dashboard() {
   const brokerId = selectedBrokerId ? selectedBrokerId : null;
   const allBrokersJoinOperations = `http://localhost:3000/broker/operationsbybroker/${brokerId}`;
   const getAllBrokersJoinOperations = async () => {
-    const { data } = await axios.get(allBrokersJoinOperations, config);
+    const {data} = await axios.get(allBrokersJoinOperations, config);
     return data;
   };
 
-  const { data: allBrokersJoinOperationsData } = useQuery(
-    ['allBrokersJoinOperations', selectedBrokerId],
+  const {data: allBrokersJoinOperationsData} = useQuery(
+    ["allBrokersJoinOperations", selectedBrokerId],
     getAllBrokersJoinOperations,
     {
       retry: 1,
@@ -177,14 +177,14 @@ export default function Dashboard() {
   );
 
   // TOTAL AMOUNT BY BROKERS
-  const totalAmountPerBrokerUrl = 'http://localhost:3000/broker/totalamount';
+  const totalAmountPerBrokerUrl = "http://localhost:3000/broker/totalamount";
   const getTotalAmountPerBroker = async () => {
-    const { data } = await axios.get(totalAmountPerBrokerUrl, config);
+    const {data} = await axios.get(totalAmountPerBrokerUrl, config);
     return data;
   };
 
-  const { data: totalAmountPerBroker } = useQuery({
-    queryKey: ['totalAmountPerBroker'],
+  const {data: totalAmountPerBroker} = useQuery({
+    queryKey: ["totalAmountPerBroker"],
     queryFn: getTotalAmountPerBroker,
     cacheTime: 5 * 60 * 1000,
     retry: 1,
@@ -192,14 +192,14 @@ export default function Dashboard() {
 
   // TOTAL AMOUNT PER BROKERS BY YEAR
   const totalAmountPerBrokerByYearUrl =
-    'http://localhost:3000/broker/totalperyear';
+    "http://localhost:3000/broker/totalperyear";
   const getTotalAmountPerBrokerByYear = async () => {
-    const { data } = await axios.get(totalAmountPerBrokerByYearUrl, config);
+    const {data} = await axios.get(totalAmountPerBrokerByYearUrl, config);
     return data;
   };
 
-  const { data: totalAmountPerBrokerByYear } = useQuery({
-    queryKey: ['totalAmountPerBrokerByYear'],
+  const {data: totalAmountPerBrokerByYear} = useQuery({
+    queryKey: ["totalAmountPerBrokerByYear"],
     queryFn: getTotalAmountPerBrokerByYear,
     cacheTime: 5 * 60 * 1000,
     retry: 1,
@@ -237,7 +237,7 @@ export default function Dashboard() {
   const benefitsLastOperationAdded =
     allOperations && allOperations.length > 0
       ? [allOperations[0]].map((operation) => {
-          const { priceClose, priceOpen, volume, swap, commission } = operation;
+          const {priceClose, priceOpen, volume, swap, commission} = operation;
           const benefits =
             volume * (priceClose - priceOpen) - commission - swap;
           return parseFloat(benefits).toFixed(3);
