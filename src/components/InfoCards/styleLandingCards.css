@@ -1,3 +1,9 @@
+/* .bg-color {
+  background-color: rgba(22, 41, 56);
+  border-top-right-radius: 64px;
+  border-top-left-radius: 64px;
+} */
+
 .hidden {
   display: flex;
   flex-direction: column;
@@ -5,7 +11,7 @@
   opacity: 0;
   filter: blur(32px);
   transform: translateX(-100%);
-  transition: all 1.0s;
+  transition: all 0.5s;
 }
 
 .show {
@@ -19,22 +25,21 @@
   justify-content: space-around;
 }
 
-.logos img{
+.logos img {
   border-radius: 16px;
 }
 
 .logo:nth-child(2) {
-  transition-delay: 150ms;
+  transition-delay: 100ms;
 }
 
 .logo:nth-child(3) {
-  transition-delay: 400ms;
+  transition-delay: 250ms;
 }
 
 .logo:nth-child(4) {
-  transition-delay: 650ms;
+  transition-delay: 400ms;
 }
-
 
 /* @media (max-width: 799px) {
   section .query {
@@ -44,4 +49,3 @@
     align-items: center;
   }
 } */
-

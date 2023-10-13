@@ -1,17 +1,16 @@
 /* < login-button */
 
-.to-login{
-  color: #D0E4E9;
+.to-login {
+  color: #d0e4e9;
   background-color: #162938;
   transition: 0.2s;
 }
 
-.to-login:hover{
+.to-login:hover {
   color: #367588;
-  background-color: #D0E4E9;
+  background-color: #d0e4e9;
   box-shadow: 0 6px 0 0 #162938;
 }
-
 
 /* login-button > */
 
@@ -33,4 +32,3 @@
 } */
 
 /* blur-slide-effect > */
-
