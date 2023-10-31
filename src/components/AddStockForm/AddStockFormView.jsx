@@ -21,6 +21,7 @@ const chartColorsPalette = {
   blue: "rgba(22, 41, 56)",
   skyBlue: "rgba(208, 228, 233)",
   tealBlue: "#367588",
+  blueButtonOpacity: "rgba(22, 41, 56, 0.9)",
 };
 
 export default function AddStockFormView({onSubmit, stockTypes, brokers}) {
@@ -41,143 +42,152 @@ export default function AddStockFormView({onSubmit, stockTypes, brokers}) {
   return (
     <form onSubmit={handleSubmit}>
       <Box
-        display={"grid"}
-        gridTemplateColumns={"repeat(2, 1fr)"}
-        gap={2}
-        padding={2}
+        padding={8}
+        border={"1px solid rgba(22, 41, 56, 0.4)"}
+        borderRadius={4}
       >
-        <TextField
-          sx={{width: 250}}
-          value={values.name}
-          onChange={handleChange}
-          onBlur={handleBlur}
-          type="text"
-          id="name"
-          label={errors.name ? errors.name : "Stock Name"}
-          variant="filled"
-          className={errors.name && touched.name ? "textfield-error" : ""}
-        />
-        <TextField
-          sx={{width: 250}}
-          value={values.country}
-          onChange={handleChange}
-          onBlur={handleBlur}
-          type="text"
-          id="country"
-          label="Country"
-          variant="filled"
-        />
-        <TextField
-          sx={{width: 250}}
-          value={values.ticker}
-          onChange={handleChange}
-          onBlur={handleBlur}
-          type="text"
-          id="ticker"
-          label={errors.ticker ? errors.ticker : "Ticker"}
-          variant="filled"
-          className={errors.ticker && touched.ticker ? "textfield-error" : ""}
-        />
-        <TextField
-          sx={{width: 250}}
-          value={values.type}
-          onChange={handleChange}
-          onBlur={handleBlur}
-          type="text"
-          id="type"
-          label="Type"
-          variant="filled"
-        />
-        <TextField
-          sx={{width: 250}}
-          value={values.sector}
-          onChange={handleChange}
-          onBlur={handleBlur}
-          type="text"
-          id="sector"
-          label="Sector"
-          variant="filled"
-        />
-        <TextField
-          sx={{width: 250}}
-          value={values.industry}
-          onChange={handleChange}
-          onBlur={handleBlur}
-          type="text"
-          id="industry"
-          label="Industry"
-          variant="filled"
-        />
-      </Box>
-      <Box
-        display={"grid"}
-        gridTemplateColumns={"repeat(2, 1fr)"}
-        gap={2}
-        paddingX={2}
-      >
-        <FormControl fullWidth variant="filled">
-          <InputLabel id="stockTypeId">Stock Type</InputLabel>
-          <Select
-            labelId="stockTypeId"
-            id="stockTypeId"
-            name="stockTypeId"
-            label="Stock Type"
-            value={values.stockTypeId}
-            onChange={handleChange}
-            onBlur={handleBlur}
-          >
-            {stockTypes?.map((type) => {
-              return (
-                <MenuItem key={type.id} value={type.id ? type.id : null}>
-                  {type.name}
-                </MenuItem>
-              );
-            })}
-          </Select>
-        </FormControl>
-        <FormControl fullWidth variant="filled">
-          <InputLabel id="brokerId">Broker</InputLabel>
-          <Select
-            labelId="brokerId"
-            id="brokerId"
-            name="brokerId"
-            label="Broker"
-            value={values.brokerId}
-            onChange={handleChange}
-            onBlur={handleBlur}
-          >
-            {brokers?.map((broker) => {
-              return (
-                <MenuItem key={broker.id} value={broker.id ? broker.id : null}>
-                  {broker.name}
-                </MenuItem>
-              );
-            })}
-          </Select>
-        </FormControl>
-      </Box>
-      <Box textAlign={"center"}>
-        <Button
-          variant="contained"
-          sx={{
-            marginTop: 4,
-            color: chartColorsPalette.skyBlue,
-            bgcolor: chartColorsPalette.blue,
-            border: "2px solid " + chartColorsPalette.blue,
-            borderTopLeftRadius: 16,
-            borderBottomRightRadius: 16,
-            transition: "0.2s",
-            ":hover": {
-              color: chartColorsPalette.blue,
-              bgcolor: chartColorsPalette.skyBlue,
-              boxShadow: "0px 5px 0px 0px" + chartColorsPalette.blue,
-            },
-          }}
-          disabled={isSubmitting}
-          type="submit"
+        <Box
+          display={"grid"}
+          gridTemplateColumns={"repeat(2, 1fr)"}
+          gap={2}
+          padding={2}
         >
-          Add
-        </Button>
+          <TextField
+            sx={{width: 250}}
+            value={values.name}
+            onChange={handleChange}
+            onBlur={handleBlur}
+            type="text"
+            id="name"
+            label={errors.name ? errors.name : "Stock Name"}
+            variant="filled"
+            className={errors.name && touched.name ? "textfield-error" : ""}
+          />
+          <TextField
+            sx={{width: 250}}
+            value={values.country}
+            onChange={handleChange}
+            onBlur={handleBlur}
+            type="text"
+            id="country"
+            label="Country"
+            variant="filled"
+          />
+          <TextField
+            sx={{width: 250}}
+            value={values.ticker}
+            onChange={handleChange}
+            onBlur={handleBlur}
+            type="text"
+            id="ticker"
+            label={errors.ticker ? errors.ticker : "Ticker"}
+            variant="filled"
+            className={errors.ticker && touched.ticker ? "textfield-error" : ""}
+          />
+          <TextField
+            sx={{width: 250}}
+            value={values.type}
+            onChange={handleChange}
+            onBlur={handleBlur}
+            type="text"
+            id="type"
+            label="Type"
+            variant="filled"
+          />
+          <TextField
+            sx={{width: 250}}
+            value={values.sector}
+            onChange={handleChange}
+            onBlur={handleBlur}
+            type="text"
+            id="sector"
+            label="Sector"
+            variant="filled"
+          />
+          <TextField
+            sx={{width: 250}}
+            value={values.industry}
+            onChange={handleChange}
+            onBlur={handleBlur}
+            type="text"
+            id="industry"
+            label="Industry"
+            variant="filled"
+          />
+        </Box>
+        <Box
+          display={"grid"}
+          gridTemplateColumns={"repeat(2, 1fr)"}
+          gap={2}
+          paddingX={2}
+        >
+          <FormControl fullWidth variant="filled">
+            <InputLabel id="stockTypeId">Stock Type</InputLabel>
+            <Select
+              labelId="stockTypeId"
+              id="stockTypeId"
+              name="stockTypeId"
+              label="Stock Type"
+              value={values.stockTypeId}
+              onChange={handleChange}
+              onBlur={handleBlur}
+            >
+              {stockTypes?.map((type) => {
+                return (
+                  <MenuItem key={type.id} value={type.id ? type.id : null}>
+                    {type.name}
+                  </MenuItem>
+                );
+              })}
+            </Select>
+          </FormControl>
+          <FormControl fullWidth variant="filled">
+            <InputLabel id="brokerId">Broker</InputLabel>
+            <Select
+              labelId="brokerId"
+              id="brokerId"
+              name="brokerId"
+              label="Broker"
+              value={values.brokerId}
+              onChange={handleChange}
+              onBlur={handleBlur}
+            >
+              {brokers?.map((broker) => {
+                return (
+                  <MenuItem
+                    key={broker.id}
+                    value={broker.id ? broker.id : null}
+                  >
+                    {broker.name}
+                  </MenuItem>
+                );
+              })}
+            </Select>
+          </FormControl>
+        </Box>
+
+        <Box textAlign={"center"}>
+          <Button
+            variant="contained"
+            sx={{
+              marginTop: 4,
+              color: chartColorsPalette.skyBlue,
+              bgcolor: chartColorsPalette.blue,
+              border: "2px solid " + chartColorsPalette.blue,
+              borderTopLeftRadius: 16,
+              borderBottomRightRadius: 16,
+              transition: "0.2s",
+              ":hover": {
+                bgcolor: chartColorsPalette.blueButtonOpacity,
+                boxShadow: "0px 5px 0px 0px" + chartColorsPalette.blue,
+              },
+            }}
+            disabled={isSubmitting}
+            type="submit"
+          >
+            Add
+          </Button>
+        </Box>
       </Box>
     </form>
   );

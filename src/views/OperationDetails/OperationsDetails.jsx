@@ -26,7 +26,6 @@ export default function OperationDetails() {
   });
 
   const operationDetailsInfo = data?.data;
-  console.log(operationDetailsInfo);
 
   return (
     <>

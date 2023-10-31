@@ -16,6 +16,7 @@ const chartColorsPalette = {
   blue: "rgba(22, 41, 56)",
   skyBlue: "rgba(208, 228, 233)",
   tealBlue: "#367588",
+  blueButtonOpacity: "rgba(22, 41, 56, 0.9)",
 };
 
 export default function UpdatePassFormView({onSubmit}) {
@@ -42,7 +43,7 @@ export default function UpdatePassFormView({onSubmit}) {
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
-          padding: 8,
+          padding: 6,
           gap: 2,
         }}
       >
@@ -122,7 +123,7 @@ export default function UpdatePassFormView({onSubmit}) {
         <Button
           variant="contained"
           sx={{
-            marginTop: 4,
+            marginTop: 2,
             color: chartColorsPalette.skyBlue,
             bgcolor: chartColorsPalette.blue,
             border: "2px solid " + chartColorsPalette.blue,
@@ -130,8 +131,7 @@ export default function UpdatePassFormView({onSubmit}) {
             borderBottomRightRadius: 16,
             transition: "0.2s",
             ":hover": {
-              color: chartColorsPalette.blue,
-              bgcolor: chartColorsPalette.skyBlue,
+              bgcolor: chartColorsPalette.blueButtonOpacity,
               boxShadow: "0px 5px 0px 0px" + chartColorsPalette.blue,
             },
           }}

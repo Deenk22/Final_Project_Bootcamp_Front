@@ -38,13 +38,13 @@
 .movement-manage-strategies {
   animation: fadeIn linear both;
   animation-timeline: view();
-  animation-range: entry 5% cover 35%;
+  animation-range: entry 5% cover 40%;
 }
 
 @keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translateX(-128px);
+    transform: translateY(128px);
   }
 
   to {
@@ -193,5 +193,37 @@
 
   100% {
     opacity: 1;
+  }
+}
+
+.up-transition-howToUse {
+  animation: up-fade linear both;
+  animation-timeline: view();
+  animation-range: entry 5% cover 40%;
+}
+
+@keyframes up-fade {
+  from {
+    opacity: 0;
+    transform: translateY(128px);
+    filter: blur(2px);
+  }
+
+  to {
+    opacity: 1;
+  }
+
+  0% {
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 1;
+    transform: translate();
+  }
+
+  100% {
+    transform: translate();
+    filter: blur(0px);
   }
 }

@@ -135,6 +135,7 @@ export default function BarChart({
     orderlyStrategies && orderlyStrategies[0] ? orderlyStrategies[0][0] : null;
 
   const strategyIdMostUsed = mostUsedId ? mostUsedId : null;
+  console.log(strategyIdMostUsed);
 
   const getStrategyByIdMostUsed = allStrategies?.filter(
     (strategy) => strategy.id === parseInt(strategyIdMostUsed)
@@ -143,7 +144,6 @@ export default function BarChart({
   const nameStrategyMostUsed = getStrategyByIdMostUsed?.map(
     (strategy) => strategy.name
   );
-  console.log(nameStrategyMostUsed);
 
   // Conseguimos todas las operaciones relacionadas con la estrategia ganadora! la más usada.
   const operationsByStrategyIdMostUsed = allOperations?.filter(
@@ -239,7 +239,7 @@ export default function BarChart({
                 variant="body2"
                 color={chartColorsPalette.blue}
               >
-                Max Value
+                {nameStrategyMostUsed}
               </Typography>
             </Box>
             <Box display={"flex"} alignItems={"center"} gap={1}>
@@ -254,37 +254,7 @@ export default function BarChart({
                 variant="body2"
                 color={chartColorsPalette.blue}
               >
-                Max Value
-              </Typography>
-            </Box>
-            <Box display={"flex"} alignItems={"center"} gap={1}>
-              <LensIcon
-                fontSize="1rem"
-                sx={{color: chartColorsPalette.lightPink}}
-              />
-              <Typography
-                display={"flex"}
-                alignItems={"center"}
-                gap={1}
-                variant="body2"
-                color={chartColorsPalette.blue}
-              >
-                Max Value
-              </Typography>
-            </Box>
-            <Box display={"flex"} alignItems={"center"} gap={1}>
-              <LensIcon
-                fontSize="1rem"
-                sx={{color: chartColorsPalette.lightPink}}
-              />
-              <Typography
-                display={"flex"}
-                alignItems={"center"}
-                gap={1}
-                variant="body2"
-                color={chartColorsPalette.blue}
-              >
-                Max Value
+                CrowdFunding
               </Typography>
             </Box>
             {/* <Typography textAlign={"center"} variant="h3">
@@ -306,12 +276,22 @@ export default function BarChart({
           </Box> */}
         </Grid>
       </Grid>
+      <Typography
+        textAlign="center"
+        variant="h4"
+        color={chartColorsPalette.blue}
+        mt={8}
+      >
+        Last operations added concerning the
+        <span className="posicionamiento"> {nameStrategyMostUsed} </span>
+        strategy
+      </Typography>
       <Grid
         container
         direction={"row"}
         display={"flex"}
         justifyContent={"center"}
-        my={8}
+        my={6}
         spacing={1}
       >
         {operationsByStrategyIdMostUsed

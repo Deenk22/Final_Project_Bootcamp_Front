@@ -37,7 +37,7 @@ export default function UpdateStrategyFormView({onSubmit, setOpen}) {
         flexDirection={"column"}
         justifyContent={"center"}
         gap={2}
-        padding={4}
+        padding={2}
       >
         <Box display={"flex"} justifyContent={"center"} gap={2}>
           <TextField
@@ -88,7 +88,7 @@ export default function UpdateStrategyFormView({onSubmit, setOpen}) {
             onClick={() => setOpen(false)}
             variant="contained"
             sx={{
-              marginTop: 4,
+              marginTop: 3,
               color: chartColorsPalette.blue,
               bgcolor: chartColorsPalette.skyBlue,
               ":hover": {
@@ -99,7 +99,7 @@ export default function UpdateStrategyFormView({onSubmit, setOpen}) {
             disabled={isSubmitting}
             type="submit"
           >
-            Add
+            Save
           </Button>
         </Box>
       </Box>

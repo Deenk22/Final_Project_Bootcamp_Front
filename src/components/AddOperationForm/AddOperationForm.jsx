@@ -8,8 +8,6 @@ import {
   errorNotification,
 } from "../../notifications/notification";
 
-const url = "http://localhost:3000/operation";
-
 export default function AddOperationForm() {
   const token = JSON.parse(localStorage.getItem(IM_INVESTING_KEY));
 
@@ -25,6 +23,8 @@ export default function AddOperationForm() {
   }
 
   const queryClient = useQueryClient();
+
+  const url = "http://localhost:3000/operation";
   const mutation = useMutation({
     mutationKey: ["newOperation"],
     mutationFn: async (values) => {
@@ -56,9 +56,7 @@ export default function AddOperationForm() {
     }
   }
 
-  // Tengo dudas sobre esto... me ha pillao un dia bastante cansao jeje.
   const allStrategies = `http://localhost:3000/strategy/all`;
-
   const getAllStrategies = async () => {
     const {data} = await axios.get(allStrategies, config);
     return data;
@@ -74,9 +72,7 @@ export default function AddOperationForm() {
     // remove: () => void
   });
 
-  // Tengo dudas sobre esto... me ha pillao un dia bastante cansao jeje.
   const allStocksUrl = "http://localhost:3000/stock/all";
-
   const getAllStocks = async () => {
     const {data} = await axios.get(allStocksUrl, config);
     return data;
@@ -94,7 +90,6 @@ export default function AddOperationForm() {
 
   // Tengo dudas sobre esto... me ha pillao un dia bastante cansao jeje.
   const allBrokersUrl = "http://localhost:3000/broker/all";
-
   const getAllBrokers = async () => {
     const {data} = await axios.get(allBrokersUrl, config);
     return data;

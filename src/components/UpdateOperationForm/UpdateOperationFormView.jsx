@@ -36,7 +36,7 @@ export default function UpdateOperationFormView({
         flexDirection={"column"}
         justifyContent={"center"}
         gap={2}
-        padding={4}
+        padding={2}
       >
         <Box display={"flex"} justifyContent={"center"} gap={2}>
           <Box
@@ -69,7 +69,7 @@ export default function UpdateOperationFormView({
             onBlur={handleBlur}
             type="number"
             id="volume"
-            label={volume ? volume : "Volume"}
+            label="Volume"
             variant="filled"
           />
           <TextField
@@ -82,7 +82,7 @@ export default function UpdateOperationFormView({
             onBlur={handleBlur}
             type="number"
             id="priceOpen"
-            label={priceOpen ? priceOpen : "Price Open"}
+            label="Price Open"
             variant="filled"
           />
         </Box>
@@ -123,7 +123,7 @@ export default function UpdateOperationFormView({
             onBlur={handleBlur}
             type="number"
             id="priceClose"
-            label={priceClose ? priceClose : "Price Close"}
+            label="Price Close"
             variant="filled"
           />
         </Box>
@@ -173,7 +173,7 @@ export default function UpdateOperationFormView({
             onClick={() => setOpen(false)}
             variant="contained"
             sx={{
-              marginTop: 4,
+              marginTop: 3,
               color: chartColorsPalette.blue,
               bgcolor: chartColorsPalette.skyBlue,
               ":hover": {
@@ -184,7 +184,7 @@ export default function UpdateOperationFormView({
             disabled={isSubmitting}
             type="submit"
           >
-            Add
+            Save
           </Button>
         </Box>
       </Box>

@@ -113,7 +113,7 @@ export default function StockTypesBarChart({
       const expenses = ctx.raw;
       const color =
         expenses > standard
-          ? chartColorsPalette.lightPink
+          ? chartColorsPalette.lightPinkOpacity
           : expenses <= standard
           ? chartColorsPalette.lightPinkOpacity
           : "yellow";
@@ -192,6 +192,17 @@ export default function StockTypesBarChart({
 
   return (
     <Box display={"flex"} flexDirection={"column"}>
+      <Typography
+        mb={3}
+        mt={-4}
+        paddingY={2}
+        textAlign={"center"}
+        variant="body2"
+        color={chartColorsPalette.skyBlue}
+        borderBottom={"1px solid rgba(208, 228, 233, 0.5)"}
+      >
+        Total Amount By SotckType
+      </Typography>
       <Grid container direction={"column"}>
         <Grid item>
           <Box width={608}>

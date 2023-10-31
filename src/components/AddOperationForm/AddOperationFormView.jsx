@@ -21,6 +21,7 @@ const chartColorsPalette = {
   blue: "rgba(22, 41, 56)",
   skyBlue: "rgba(208, 228, 233)",
   tealBlue: "#367588",
+  blueButtonOpacity: "rgba(22, 41, 56, 0.9)",
 };
 
 export default function AddOperationView({
@@ -50,7 +51,9 @@ export default function AddOperationView({
         flexDirection={"column"}
         justifyContent={"center"}
         gap={2}
-        padding={2}
+        padding={8}
+        border={"1px solid rgba(22, 41, 56, 0.4)"}
+        borderRadius={4}
       >
         <Box display={"flex"} justifyContent={"center"} gap={2}>
           <Box
@@ -239,7 +242,7 @@ export default function AddOperationView({
           <Button
             variant="contained"
             sx={{
-              marginTop: 4,
+              marginTop: 2,
               color: chartColorsPalette.skyBlue,
               bgcolor: chartColorsPalette.blue,
               border: "2px solid " + chartColorsPalette.blue,
@@ -247,8 +250,7 @@ export default function AddOperationView({
               borderBottomRightRadius: 16,
               transition: "0.2s",
               ":hover": {
-                color: chartColorsPalette.blue,
-                bgcolor: chartColorsPalette.skyBlue,
+                bgcolor: chartColorsPalette.blueButtonOpacity,
                 boxShadow: "0px 5px 0px 0px" + chartColorsPalette.blue,
               },
             }}

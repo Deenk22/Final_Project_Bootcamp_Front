@@ -13,9 +13,10 @@ const chartColorsPalette = {
   blue: "rgba(22, 41, 56)",
   skyBlue: "rgba(208, 228, 233)",
   tealBlue: "#367588",
+  blueButtonOpacity: "rgba(22, 41, 56, 0.9)",
 };
 
-export default function UpdateFormView({onSubmit}) {
+export default function UpdateFormView({onSubmit, name, surname, email}) {
   const {
     values,
     touched,
@@ -37,7 +38,7 @@ export default function UpdateFormView({onSubmit}) {
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
-          padding: 8,
+          paddingY: 6,
           gap: 2,
         }}
       >
@@ -48,7 +49,7 @@ export default function UpdateFormView({onSubmit}) {
           onBlur={handleBlur}
           type="text"
           id="name"
-          label="Name"
+          label={name ? name : "Name"}
           variant="filled"
           className={errors.name && touched.name ? "textfield-error" : ""}
         />
@@ -57,14 +58,14 @@ export default function UpdateFormView({onSubmit}) {
             {errors.name}
           </Typography>
         )}
-        <TextField
+        {/* <TextField
           sx={{width: 250}}
           value={values.surname}
           onChange={handleChange}
           onBlur={handleBlur}
           type="text"
           id="surname"
-          label="Surname"
+          label={surname ? surname : "Surname"}
           variant="filled"
           className={errors.surname && touched.surname ? "textfield-error" : ""}
         />
@@ -72,7 +73,7 @@ export default function UpdateFormView({onSubmit}) {
           <Typography sx={{marginLeft: 4, marginRight: 4}} variant="body2">
             {errors.surname}
           </Typography>
-        )}
+        )} */}
         <TextField
           sx={{width: 250}}
           value={values.email}
@@ -80,7 +81,7 @@ export default function UpdateFormView({onSubmit}) {
           onBlur={handleBlur}
           type="email"
           id="email"
-          label="Email"
+          label={email ? email : "Email"}
           variant="filled"
           className={errors.email && touched.email ? "textfield-error" : ""}
         />
@@ -92,7 +93,7 @@ export default function UpdateFormView({onSubmit}) {
         <Button
           variant="contained"
           sx={{
-            marginTop: 4,
+            marginTop: 2,
             color: chartColorsPalette.skyBlue,
             bgcolor: chartColorsPalette.blue,
             border: "2px solid " + chartColorsPalette.blue,
@@ -100,8 +101,7 @@ export default function UpdateFormView({onSubmit}) {
             borderBottomRightRadius: 16,
             transition: "0.2s",
             ":hover": {
-              color: chartColorsPalette.blue,
-              bgcolor: chartColorsPalette.skyBlue,
+              bgcolor: chartColorsPalette.blueButtonOpacity,
               boxShadow: "0px 5px 0px 0px" + chartColorsPalette.blue,
             },
           }}

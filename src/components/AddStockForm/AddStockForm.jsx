@@ -23,14 +23,12 @@ export default function AddStockForm() {
   }
 
   const queryClient = useQueryClient();
+
+  const url = "http://localhost:3000/stock";
   const mutation = useMutation({
     mutationKey: ["newStock"],
     mutationFn: async (values) => {
-      return await axios.post(
-        `http://localhost:3000/stock`,
-        stockFormFunction(values),
-        config
-      );
+      return await axios.post(url, stockFormFunction(values), config);
     },
 
     onError: (err) => {
@@ -58,7 +56,6 @@ export default function AddStockForm() {
   }
 
   const allStockTypeUrl = "http://localhost:3000/stocktype/all";
-
   const getAllStockTypes = async () => {
     const {data} = await axios.get(allStockTypeUrl, config);
     return data;
@@ -75,7 +72,6 @@ export default function AddStockForm() {
   });
 
   const allBrokersUrl = "http://localhost:3000/broker/all";
-
   const getAllBrokers = async () => {
     const {data} = await axios.get(allBrokersUrl, config);
     return data;

@@ -1,3 +1,5 @@
+
+
 .wrapper-loginview {
   animation: slideIn 0.2s ease-out forwards;
 }
@@ -48,6 +50,13 @@
     opacity: 1;
   }
 }
+
+.login-reg-container{
+  background-image: url(../../assets/background.jpg);
+  background-size: cover;
+  background-position: top;
+}
+
 
 
 

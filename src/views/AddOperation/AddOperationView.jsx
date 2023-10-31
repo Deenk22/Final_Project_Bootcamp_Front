@@ -65,15 +65,16 @@ export default function AddOperationView({
           <Box>
             <Typography
               color={chartColorsPalette.blue}
-              textAlign={"center"}
+              textAlign={"left"}
               variant="h3"
               mb={1}
+              ml={2}
             >
               Operation Control Panel
             </Typography>
             <AddOperationForm />
           </Box>
-          <Box
+          {/* <Box
             className="form-container"
             display={"flex"}
             flexDirection={"column"}
@@ -135,7 +136,7 @@ export default function AddOperationView({
                 <AddStrategyForm />
               </Box>
             ) : null}
-          </Box>
+          </Box> */}
         </Grid>
         <Grid item xs={10}>
           <Box>
@@ -163,7 +164,7 @@ export default function AddOperationView({
             return (
               <Grid
                 display={"flex"}
-                justifyContent={"center"}
+                justifyContent={"space-evenly"}
                 item
                 key={id}
                 xs={10}
@@ -177,7 +178,7 @@ export default function AddOperationView({
               </Grid>
             );
           })
-          .toSpliced(9)}
+          .toSpliced(6)}
       </Grid>
       {/* <Box>
         <Box>

@@ -22,7 +22,12 @@ export default function OperationDateSearch({
   handleStartDateChange,
 }) {
   return (
-    <Box border={"2px solid black"} marginX={48} borderRadius={4} paddingY={4}>
+    <Box
+      border={"1px solid rgba(22, 41, 56, 0.4)"}
+      marginX={40}
+      borderRadius={4}
+      paddingY={4}
+    >
       <Typography textAlign={"center"} variant="h3" mb={2}>
         search by date
       </Typography>

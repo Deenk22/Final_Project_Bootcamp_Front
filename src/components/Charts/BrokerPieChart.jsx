@@ -1,4 +1,4 @@
-import {Box, Button, Grid} from "@mui/material";
+import {Box, Button, Grid, Typography} from "@mui/material";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -19,6 +19,9 @@ const chartColorsPalette = {
   shadowtealBlue2: "rgba(75, 192, 192, 0.4)",
   blue: "rgba(22, 41, 56)",
   skyBlue: "rgba(208, 228, 233)",
+  gray: "#517890",
+  greenBlue: "#93B1A7",
+  lastColor: "#94C9A1",
 };
 
 // GRÁFICA QUE MUESTRA EL TOTAL DE EUROS POR BROKER AGRUPADOS POR AÑO. DE INICIO MUESTRA EL TOAL DE EUROS DE TOOS LOS AÑOS.
@@ -108,7 +111,9 @@ export default function BrokerPieChart({
           chartColorsPalette.orange,
           chartColorsPalette.tealBlue2,
           chartColorsPalette.shadowtealBlue2,
-          chartColorsPalette.skyBlue,
+          chartColorsPalette.gray,
+          chartColorsPalette.greenBlue,
+          chartColorsPalette.lastColor,
         ],
         hoverBorderColor: chartColorsPalette.skyBlue,
         borderColor: chartColorsPalette.blue,
@@ -120,16 +125,33 @@ export default function BrokerPieChart({
   return (
     <Grid container justifyContent={"center"}>
       <Grid item>
-        <Box width={504}>
+        <Box width={488}>
           <Pie data={data} options={options} />
         </Box>
       </Grid>
       <Grid item>
-        <Box>
-          <Button onClick={toggleChangeTotalAmountPerBroker}>
+        {/* <Box>
+          <Typography
+            padding={1}
+            borderRadius={1}
+            variant="body2"
+            component={"button"}
+            bgcolor={chartColorsPalette.skyBlue}
+            sx={{
+              border: "none",
+              cursor: "pointer",
+              transition: "0.3s",
+              ":hover": {
+                color: chartColorsPalette.skyBlue,
+                bgcolor: chartColorsPalette.blueOpacity,
+                boxShadow: "0px 0px 2px 1px rgba(208, 228, 233, 0.8)",
+              },
+            }}
+            onClick={toggleChangeTotalAmountPerBroker}
+          >
             Total Amount Per Broker
-          </Button>
-        </Box>
+          </Typography>
+        </Box> */}
       </Grid>
     </Grid>
   );

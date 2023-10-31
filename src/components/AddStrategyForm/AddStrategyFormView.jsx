@@ -21,6 +21,7 @@ const chartColorsPalette = {
   blue: "rgba(22, 41, 56)",
   skyBlue: "rgba(208, 228, 233)",
   tealBlue: "#367588",
+  blueButtonOpacity: "rgba(22, 41, 56, 0.9)",
 };
 
 export default function AddStrategyFormView({onSubmit, brokers}) {
@@ -40,85 +41,93 @@ export default function AddStrategyFormView({onSubmit, brokers}) {
 
   return (
     <form onSubmit={handleSubmit}>
-      <Box display={"flex"} gap={2} padding={2}>
-        <TextField
-          sx={{width: 250}}
-          value={values.name}
-          onChange={handleChange}
-          onBlur={handleBlur}
-          type="text"
-          id="name"
-          label={errors.name ? errors.name : "Strategy Name"}
-          variant="filled"
-          className={errors.name && touched.name ? "textfield-error" : ""}
-        />
-        <TextField
-          sx={{width: 250}}
-          value={values.description}
-          onChange={handleChange}
-          onBlur={handleBlur}
-          type="text"
-          id="description"
-          label="Description"
-          variant="filled"
-          multiline
-          maxRows={5}
-        />
-        <TextField
-          sx={{width: 250}}
-          value={values.budget}
-          onChange={handleChange}
-          onBlur={handleBlur}
-          type="number"
-          id="budget"
-          label="Budget"
-          variant="filled"
-        />
-      </Box>
-      <Box paddingX={2}>
-        <FormControl fullWidth variant="filled">
-          <InputLabel id="brokerId">Broker</InputLabel>
-          <Select
-            labelId="brokerId"
-            id="brokerId"
-            name="brokerId"
-            label="Broker"
-            value={values.brokerId}
+      <Box
+        padding={8}
+        border={"1px solid rgba(22, 41, 56, 0.4)"}
+        borderRadius={4}
+      >
+        <Box display={"flex"} gap={2} padding={2}>
+          <TextField
+            sx={{width: 250}}
+            value={values.name}
             onChange={handleChange}
             onBlur={handleBlur}
+            type="text"
+            id="name"
+            label={errors.name ? errors.name : "Strategy Name"}
+            variant="filled"
+            className={errors.name && touched.name ? "textfield-error" : ""}
+          />
+          <TextField
+            sx={{width: 250}}
+            value={values.description}
+            onChange={handleChange}
+            onBlur={handleBlur}
+            type="text"
+            id="description"
+            label="Description"
+            variant="filled"
+            multiline
+            maxRows={5}
+          />
+          <TextField
+            sx={{width: 250}}
+            value={values.budget}
+            onChange={handleChange}
+            onBlur={handleBlur}
+            type="number"
+            id="budget"
+            label="Budget"
+            variant="filled"
+          />
+        </Box>
+        <Box paddingX={2}>
+          <FormControl fullWidth variant="filled">
+            <InputLabel id="brokerId">Broker</InputLabel>
+            <Select
+              labelId="brokerId"
+              id="brokerId"
+              name="brokerId"
+              label="Broker"
+              value={values.brokerId}
+              onChange={handleChange}
+              onBlur={handleBlur}
+            >
+              {brokers?.map((broker) => {
+                return (
+                  <MenuItem
+                    key={broker.id}
+                    value={broker.id ? broker.id : null}
+                  >
+                    {broker.name}
+                  </MenuItem>
+                );
+              })}
+            </Select>
+          </FormControl>
+        </Box>
+        <Box textAlign={"center"}>
+          <Button
+            variant="contained"
+            sx={{
+              marginTop: 3,
+              color: chartColorsPalette.skyBlue,
+              bgcolor: chartColorsPalette.blue,
+              border: "2px solid " + chartColorsPalette.blue,
+              borderTopLeftRadius: 16,
+              borderBottomRightRadius: 16,
+              transition: "0.2s",
+              ":hover": {
+                bgcolor: chartColorsPalette.blueButtonOpacity,
+                boxShadow: "0px 5px 0px 0px" + chartColorsPalette.blue,
+              },
+            }}
+            disabled={isSubmitting}
+            type="submit"
           >
-            {brokers?.map((broker) => {
-              return (
-                <MenuItem key={broker.id} value={broker.id ? broker.id : null}>
-                  {broker.name}
-                </MenuItem>
-              );
-            })}
-          </Select>
-        </FormControl>
-      </Box>
-      <Box textAlign={"center"}>
-        <Button
-          variant="contained"
-          sx={{
-            marginTop: 4,
-            color: chartColorsPalette.skyBlue,
-            bgcolor: chartColorsPalette.blue,
-            border: "2px solid " + chartColorsPalette.blue,
-            borderTopLeftRadius: 16,
-            borderBottomRightRadius: 16,
-            transition: "0.2s",
-            ":hover": {
-              color: chartColorsPalette.blue,
-              bgcolor: chartColorsPalette.skyBlue,
-              boxShadow: "0px 5px 0px 0px" + chartColorsPalette.blue,
-            },
-          }}
-          disabled={isSubmitting}
-          type="submit"
-        >
-          Add
-        </Button>
+            Add
+          </Button>
+        </Box>
       </Box>
     </form>
   );

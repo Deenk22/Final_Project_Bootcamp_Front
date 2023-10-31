@@ -23,14 +23,12 @@ export default function AddStrategyForm() {
   }
 
   const queryClient = useQueryClient();
+
+  const url = "http://localhost:3000/strategy";
   const mutation = useMutation({
     mutationKey: ["newStrategy"],
     mutationFn: async (values) => {
-      return await axios.post(
-        `http://localhost:3000/strategy`,
-        strategyFormFunction(values),
-        config
-      );
+      return await axios.post(url, strategyFormFunction(values), config);
     },
 
     onError: (err) => {

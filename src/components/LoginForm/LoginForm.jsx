@@ -3,6 +3,7 @@ import {initialValues} from "./utils/loginFormIV";
 import {loginFormSchema} from "./loginFormSchema";
 import {useUserLoginContext} from "../../context/UserLoginContext";
 import {Box, TextField, Typography, Button} from "@mui/material";
+import ErrorIcon from "@mui/icons-material/Error";
 
 const chartColorsPalette = {
   tealBlue2: "rgba(75, 192, 192, 0.6)",
@@ -49,8 +50,9 @@ export default function LoginForm() {
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
-          padding: 8,
+          padding: 4,
           gap: 2,
+          width: 384,
         }}
       >
         <TextField
@@ -64,16 +66,6 @@ export default function LoginForm() {
           sx={{width: 250, bgcolor: chartColorsPalette.skyBlue}}
           className={errors.email && touched.email ? "textfield-error" : ""}
         />
-
-        {errors.email && touched.email && (
-          <Typography
-            color={chartColorsPalette.skyBlue}
-            sx={{marginLeft: 4, marginRight: 4}}
-            variant="body2"
-          >
-            {errors.email}
-          </Typography>
-        )}
         <TextField
           type="password"
           id="password"
@@ -87,16 +79,6 @@ export default function LoginForm() {
             errors.password && touched.password ? "textfield-error" : ""
           }
         />
-
-        {errors.password && touched.password && (
-          <Typography
-            color={chartColorsPalette.skyBlue}
-            sx={{marginLeft: 4, marginRight: 4}}
-            variant="body2"
-          >
-            {errors.password}
-          </Typography>
-        )}
       </Box>
       <Box textAlign="center">
         <Button
@@ -119,6 +101,46 @@ export default function LoginForm() {
         >
           Submit
         </Button>
+      </Box>
+      <Box
+        display={"flex"}
+        justifyContent={"center"}
+        flexDirection={"column"}
+        height={16}
+        mt={4}
+      >
+        {errors.email && touched.email && (
+          <Typography
+            color={chartColorsPalette.skyBlue}
+            sx={{marginLeft: 4, marginRight: 4}}
+            variant="body2"
+            fontSize={"0.75rem"}
+            display={"flex"}
+            alignItems={"center"}
+            justifyContent={"center"}
+            gap={1}
+            mb={1}
+          >
+            <ErrorIcon fontSize="small" />
+            {errors.email}
+          </Typography>
+        )}
+        {errors.password && touched.password && (
+          <Typography
+            color={chartColorsPalette.skyBlue}
+            sx={{marginLeft: 4, marginRight: 4}}
+            variant="body2"
+            fontSize={"0.75rem"}
+            display={"flex"}
+            alignItems={"center"}
+            justifyContent={"center"}
+            gap={1}
+            mb={1}
+          >
+            <ErrorIcon fontSize="small" />
+            {errors.password}
+          </Typography>
+        )}
       </Box>
       {/* <pre>{JSON.stringify({values, errors}, null, 1)}</pre> */}
     </form>

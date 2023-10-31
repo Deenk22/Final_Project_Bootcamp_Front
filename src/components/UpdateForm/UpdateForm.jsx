@@ -8,7 +8,7 @@ import {
   errorNotification,
 } from "../../notifications/notification";
 
-export default function UpdateForm() {
+export default function UpdateForm({name, surname, email}) {
   const token = JSON.parse(localStorage.getItem(IM_INVESTING_KEY));
 
   const config = {
@@ -63,5 +63,13 @@ export default function UpdateForm() {
     }
   }
 
-  return <UpdateFormView userPatch={userPatch} onSubmit={onSubmit} />;
+  return (
+    <UpdateFormView
+      userPatch={userPatch}
+      onSubmit={onSubmit}
+      name={name}
+      surname={surname}
+      email={email}
+    />
+  );
 }

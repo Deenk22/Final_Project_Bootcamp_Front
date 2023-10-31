@@ -9,9 +9,6 @@ export const loginFormSchema = yup.object().shape({
     .required("Email is required"),
   password: yup
     .string()
-    .matches(
-      passwordRules,
-      "Remember, password must contain at least one number and uppercase letter"
-    )
+    .matches(passwordRules, "Remember, one number and uppercase letter")
     .required("Password is required"),
 });

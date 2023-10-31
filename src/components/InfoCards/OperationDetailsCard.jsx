@@ -31,7 +31,7 @@ export default function OperationDetailCard({
   return (
     <Grid
       container
-      mt={8}
+      mt={14}
       mb={8}
       display={"flex"}
       justifyContent={"center"}
@@ -47,7 +47,7 @@ export default function OperationDetailCard({
         sm={8}
         md={5}
       >
-        <Box width={224} height={128} bgcolor={chartColorsPalette.blue}>
+        <Box width={224} height={96} bgcolor={chartColorsPalette.blue}>
           <Typography
             variant="body2"
             position={"relative"}
@@ -58,21 +58,49 @@ export default function OperationDetailCard({
             Broker
           </Typography>
           <Typography
+            textAlign={"center"}
             variant="h4"
-            mt={-2}
-            ml={1}
+            mt={-1}
             color={chartColorsPalette.skyBlue}
           >
             {brokerName}
           </Typography>
         </Box>
-        <Box width={224} height={128} bgcolor={chartColorsPalette.blue}>
-          <Typography variant="h4" color={chartColorsPalette.skyBlue}>
+        <Box width={224} height={96} bgcolor={chartColorsPalette.blue}>
+          <Typography
+            variant="body2"
+            position={"relative"}
+            bottom={40}
+            padding={1}
+            bgcolor={chartColorsPalette.blueOpacity}
+          >
+            Strategy
+          </Typography>
+          <Typography
+            textAlign={"center"}
+            variant="h4"
+            mt={-1}
+            color={chartColorsPalette.skyBlue}
+          >
             {strategyName}
           </Typography>
         </Box>
-        <Box width={224} height={128} bgcolor={chartColorsPalette.blue}>
-          <Typography variant="h4" color={chartColorsPalette.skyBlue}>
+        <Box width={224} height={96} bgcolor={chartColorsPalette.blue}>
+          <Typography
+            variant="body2"
+            position={"relative"}
+            bottom={40}
+            padding={1}
+            bgcolor={chartColorsPalette.blueOpacity}
+          >
+            Stock Type
+          </Typography>
+          <Typography
+            textAlign={"center"}
+            variant="h4"
+            mt={-1}
+            color={chartColorsPalette.skyBlue}
+          >
             {stockTypeName}
           </Typography>
         </Box>
@@ -86,31 +114,67 @@ export default function OperationDetailCard({
         sm={8}
         md={5}
       >
-        <Box width={224} height={128} bgcolor={chartColorsPalette.blue}>
+        <Box width={224} height={96} bgcolor={chartColorsPalette.blue}>
           <Typography
+            variant="body2"
+            position={"relative"}
+            bottom={40}
+            padding={1}
+            bgcolor={chartColorsPalette.blueOpacity}
+          >
+            Price Open
+          </Typography>
+          <Typography
+            textAlign={"center"}
             fontFamily={"Comfortaa"}
             variant="h3"
+            mt={-1}
+            fontSize={"2.16rem"}
             color={chartColorsPalette.skyBlue}
           >
-            {priceClose}
+            {priceOpen}€
           </Typography>
         </Box>
-        <Box width={224} height={128} bgcolor={chartColorsPalette.blue}>
+        <Box width={224} height={96} bgcolor={chartColorsPalette.blue}>
           <Typography
+            variant="body2"
+            position={"relative"}
+            bottom={40}
+            padding={1}
+            bgcolor={chartColorsPalette.blueOpacity}
+          >
+            Price Close
+          </Typography>
+          <Typography
+            textAlign={"center"}
             fontFamily={"Comfortaa"}
             variant="h3"
+            mt={-1}
+            fontSize={"2.16rem"}
             color={chartColorsPalette.skyBlue}
           >
-            {priceOpen}
+            {priceClose}€
           </Typography>
         </Box>
-        <Box width={224} height={128} bgcolor={chartColorsPalette.blue}>
+        <Box width={224} height={96} bgcolor={chartColorsPalette.blue}>
           <Typography
+            variant="body2"
+            position={"relative"}
+            bottom={40}
+            padding={1}
+            bgcolor={chartColorsPalette.blueOpacity}
+          >
+            Commission
+          </Typography>
+          <Typography
+            textAlign={"center"}
             fontFamily={"Comfortaa"}
             variant="h3"
+            fontSize={"2.16rem"}
+            mt={-1}
             color={chartColorsPalette.skyBlue}
           >
-            {commission}
+            {commission}€
           </Typography>
         </Box>
       </Grid>

@@ -33,6 +33,7 @@ const chartColorsPalette = {
   blue: "rgba(22, 41, 56)",
   skyBlue: "rgba(208, 228, 233)",
   skyBlueOpacity: "rgba(208, 228, 233, 0.2)",
+  blueOpacity: "rgba(22, 41, 56, 0.2)",
 };
 
 export default function BrokerSelectedBarChart({
@@ -57,7 +58,6 @@ export default function BrokerSelectedBarChart({
     };
     return fields;
   });
-  console.log(bestFields);
 
   // const keysName = bestFields?.map((keys) => Object.keys(keys).toSpliced(3));
 
@@ -129,7 +129,7 @@ export default function BrokerSelectedBarChart({
       const expenses = ctx.raw;
       const color =
         expenses > standard
-          ? chartColorsPalette.tealBlueOpacity
+          ? chartColorsPalette.lightPink
           : expenses <= standard
           ? chartColorsPalette.lightPink
           : chartColorsPalette.blue;
@@ -143,7 +143,7 @@ export default function BrokerSelectedBarChart({
       const expenses = ctx.raw;
       const color =
         expenses > standard
-          ? chartColorsPalette.lightPink
+          ? chartColorsPalette.shadowtealBlue2
           : expenses <= standard
           ? chartColorsPalette.lightPink
           : chartColorsPalette.blue;
@@ -213,9 +213,20 @@ export default function BrokerSelectedBarChart({
     ],
   };
   return (
-    <Grid container>
+    <Grid container direction={"column"}>
+      <Typography
+        mb={3}
+        mt={-4}
+        paddingY={2}
+        textAlign={"center"}
+        variant="body2"
+        color={chartColorsPalette.skyBlue}
+        borderBottom={"1px solid rgba(208, 228, 233, 0.5)"}
+      >
+        Operation Details by Broker
+      </Typography>
       <Grid item>
-        <Box width={704}>
+        <Box width={608}>
           <Bar
             data={data}
             options={options}
@@ -224,16 +235,86 @@ export default function BrokerSelectedBarChart({
           />
         </Box>
       </Grid>
-      <Grid item>
-        <Box>
+      <Box>
+        {isSellOperationsVisible ? (
+          <Typography
+            mt={1}
+            borderRadius={1}
+            variant="body2"
+            component={"button"}
+            width={"24%"}
+            sx={{
+              border: "none",
+              cursor: "pointer",
+              transition: "0.3s",
+              ":hover": {
+                color: chartColorsPalette.skyBlue,
+                bgcolor: chartColorsPalette.blueOpacity,
+                boxShadow: "0px 0px 2px 1px rgba(208, 228, 233, 0.8)",
+              },
+            }}
+            bgcolor={chartColorsPalette.skyBlue}
+            paddingY={1}
+            onClick={toggleIsSellOperationsVisible}
+          >
+            Go to Buy operations
+          </Typography>
+        ) : (
+          <Typography
+            mt={1}
+            borderRadius={1}
+            variant="body2"
+            component={"button"}
+            width={"24%"}
+            sx={{
+              border: "none",
+              cursor: "pointer",
+              transition: "0.3s",
+              ":hover": {
+                color: chartColorsPalette.skyBlue,
+                bgcolor: chartColorsPalette.blueOpacity,
+                boxShadow: "0px 0px 2px 1px rgba(208, 228, 233, 0.8)",
+              },
+            }}
+            bgcolor={chartColorsPalette.skyBlue}
+            paddingY={1}
+            onClick={toggleIsSellOperationsVisible}
+          >
+            Go to Sell operations
+          </Typography>
+        )}
+      </Box>
+      {/* <Grid item>
+        <Box textAlign={"center"}>
           {isSellOperationsVisible ? (
-            <Button onClick={toggleIsSellOperationsVisible}>
+            <Typography
+              borderRadius={1}
+              variant="body2"
+              component={"button"}
+              width={"24%"}
+              sx={{
+                border: "none",
+                cursor: "pointer",
+                transition: "0.3s",
+                ":hover": {
+                  color: chartColorsPalette.skyBlue,
+                  bgcolor: chartColorsPalette.blueOpacity,
+                  boxShadow: "0px 0px 2px 1px rgba(208, 228, 233, 0.8)",
+                },
+              }}
+              bgcolor={chartColorsPalette.skyBlue}
+              paddingY={1}
+              onClick={toggleIsSellOperationsVisible}
+            >
               Go to Buy operations
-            </Button>
+            </Typography>
           ) : (
-            <Button onClick={toggleIsSellOperationsVisible}>
+            <Typography
+              component={"button"}
+              onClick={toggleIsSellOperationsVisible}
+            >
               Go to Sell operations
-            </Button>
+            </Typography>
           )}
         </Box>
         <Box>
@@ -251,7 +332,7 @@ export default function BrokerSelectedBarChart({
             Visual Assessment
           </Typography>
         </Box>
-      </Grid>
+      </Grid> */}
     </Grid>
   );
 }

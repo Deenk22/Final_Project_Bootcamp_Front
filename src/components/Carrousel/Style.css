@@ -23,10 +23,10 @@
       background: url('../../assets/c02.jpg') no-repeat 50% / cover;
     }
     &:nth-of-type(3) {
-      background: url('') no-repeat 50% / cover;
+      background: url('../../assets/tablet-foto.jpg') no-repeat 50% / cover;
     }
     &:nth-of-type(4) {
-      background: url('') no-repeat 50% / cover;
+      background: url('../../assets/tablet-foto02.jpg') no-repeat 50% / cover;
     }
 
     .content {

@@ -84,8 +84,9 @@ export default function StrategyModal({strategy}) {
             <CloseIcon
               onClick={handleClose}
               sx={{
+                cursor: "pointer",
                 position: "relative",
-                bottom: 376,
+                bottom: 360,
                 left: 956,
                 color: chartColorsPalette.skyBlue,
                 transition: "0.3s",

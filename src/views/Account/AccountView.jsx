@@ -5,6 +5,7 @@ import {useState} from "react";
 import AccountBoxIcon from "@mui/icons-material/AccountBox";
 import EmailIcon from "@mui/icons-material/Email";
 import EditCalendarIcon from "@mui/icons-material/EditCalendar";
+import ChangeCircleIcon from "@mui/icons-material/ChangeCircle";
 import "./Style.css";
 
 const chartColorsPalette = {
@@ -15,6 +16,7 @@ const chartColorsPalette = {
   tealBlue2: "rgba(75, 192, 192, 0.7)",
   shadowtealBlue2: "rgba(75, 192, 192, 0.4)",
   blue: "rgba(22, 41, 56)",
+  blueButtonOpacity: "rgba(22, 41, 56, 0.8)",
   skyBlue: "rgba(208, 228, 233)",
   tealBlue: "#367588",
 };
@@ -37,37 +39,117 @@ export default function AccountView({
         alignItems={"center"}
       >
         <Grid item xs={10} sm={10} md={3} textAlign={"center"}>
-          <Box>
-            <Typography
-              component={"button"}
-              variant="body2"
-              fontSize={"0.65rem"}
-              mb={2}
-              padding={1}
-              borderRadius={2}
-              border={"none"}
-              bgcolor={chartColorsPalette.blue}
-              color={chartColorsPalette.skyBlue}
-              onClick={() => setIsSettingsVisible(!isSettingsVisible)}
-              sx={{}}
-            >
-              Change View
-            </Typography>
+          <Box
+            sx={{borderTopLeftRadius: 32, borderBottomRightRadius: 32}}
+            border={"2px solid rgba(22, 41, 56, 0.8)"}
+            padding={2}
+            mb={8}
+            mt={8}
+          >
             {isSettingsVisible ? (
-              <Typography variant="h4">Change Your Password</Typography>
+              <Typography
+                color={chartColorsPalette.tealBlue}
+                variant="h4"
+                mt={2}
+              >
+                Change Your Password
+              </Typography>
             ) : (
-              <Typography variant="h4">Account Settings</Typography>
+              <Typography
+                color={chartColorsPalette.tealBlue}
+                variant="h4"
+                mt={2}
+              >
+                Account Settings
+              </Typography>
             )}
             {isSettingsVisible ? (
-              <Typography variant="body2">
+              <Typography variant="body2" color={chartColorsPalette.blue}>
                 We recommend that you choose a unique password.
               </Typography>
             ) : (
-              <Typography variant="body2">
+              <Typography variant="body2" color={chartColorsPalette.blue}>
                 Manage your account´s details.
               </Typography>
             )}
-            {isSettingsVisible ? <UpdatePassForm /> : <UpdateForm />}
+            {isSettingsVisible ? (
+              <UpdatePassForm />
+            ) : (
+              <UpdateForm name={name} surname={surname} email={email} />
+            )}
+            <Box>
+              {isSettingsVisible ? (
+                <Box
+                  display={"flex"}
+                  justifyContent={"center"}
+                  alignItems={"center"}
+                  gap={1}
+                  mb={2}
+                  borderBottom={"1px solid rgba(22, 41, 56, 0.2)"}
+                  paddingY={1}
+                  marginX={2}
+                >
+                  <Typography
+                    variant="body2"
+                    color={chartColorsPalette.blue}
+                    mb={2}
+                  >
+                    Go to Account Settings
+                  </Typography>
+                  <ChangeCircleIcon
+                    onClick={() => setIsSettingsVisible(!isSettingsVisible)}
+                    sx={{
+                      cursor: "pointer",
+                      color: chartColorsPalette.tealBlue,
+                      marginBottom: 2,
+                    }}
+                  />
+                </Box>
+              ) : (
+                <Box
+                  display={"flex"}
+                  justifyContent={"center"}
+                  alignItems={"center"}
+                  gap={1}
+                  mb={2}
+                  borderBottom={"1px solid rgba(22, 41, 56, 0.2)"}
+                  paddingY={1}
+                  marginX={2}
+                >
+                  <Typography
+                    variant="body2"
+                    color={chartColorsPalette.blue}
+                    mb={2}
+                  >
+                    Go to Manage Password Change
+                  </Typography>
+                  <ChangeCircleIcon
+                    onClick={() => setIsSettingsVisible(!isSettingsVisible)}
+                    sx={{
+                      cursor: "pointer",
+                      color: chartColorsPalette.tealBlue,
+                      marginBottom: 2,
+                    }}
+                  />
+                </Box>
+              )}
+
+              {/* <Typography
+                component={"button"}
+                variant="body2"
+                fontSize={"0.65rem"}
+                mb={2}
+                padding={1}
+                borderRadius={2}
+                border={"none"}
+                bgcolor={chartColorsPalette.blue}
+                color={chartColorsPalette.skyBlue}
+                onClick={() => setIsSettingsVisible(!isSettingsVisible)}
+                sx={{cursor: "pointer"}}
+              >
+                Change View
+              </Typography> */}
+            </Box>
           </Box>
         </Grid>
         <Grid
@@ -79,6 +161,9 @@ export default function AccountView({
           justifyContent={"center"}
           flexDirection={"column"}
         >
+          <Typography variant="h2" color={chartColorsPalette.tealBlue} mb={1}>
+            My Account
+          </Typography>
           <Box
             display={"flex"}
             flexDirection={"row"}
@@ -112,7 +197,7 @@ export default function AccountView({
                 gap={1}
                 variant="body2"
               >
-                <AccountBoxIcon />
+                <AccountBoxIcon sx={{color: chartColorsPalette.tealBlue}} />
                 Name: {name} {surname}
               </Typography>
               <Typography
@@ -121,7 +206,7 @@ export default function AccountView({
                 gap={1}
                 variant="body2"
               >
-                <EmailIcon />
+                <EmailIcon sx={{color: chartColorsPalette.tealBlue}} />
                 Email: {email}
               </Typography>
               <Typography
@@ -130,7 +215,7 @@ export default function AccountView({
                 gap={1}
                 variant="body2"
               >
-                <EditCalendarIcon />
+                <EditCalendarIcon sx={{color: chartColorsPalette.tealBlue}} />
                 Register Date: {correctDate}
               </Typography>
             </Box>

@@ -6,6 +6,7 @@ import {useUserRegisterContext} from "../../context/UserRegisterContext";
 import {Box, TextField, Typography, Button} from "@mui/material";
 import DropZone from "../Dropzone/Dropzone";
 import {useState} from "react";
+import ErrorIcon from "@mui/icons-material/Error";
 
 const chartColorsPalette = {
   tealBlue2: "rgba(75, 192, 192, 0.6)",
@@ -49,9 +50,9 @@ export default function RegForm() {
       <Box
         sx={{
           display: "flex",
-          flexDirection: "column",
+          flexDirection: "row",
           alignItems: "center",
-          padding: 8,
+          paddingY: 2,
           gap: 2,
         }}
       >
@@ -66,16 +67,7 @@ export default function RegForm() {
           variant="filled"
           className={errors.name && touched.name ? "textfield-error" : ""}
         />
-        {errors.name && touched.name && (
-          <Typography
-            color={chartColorsPalette.skyBlue}
-            sx={{marginLeft: 4, marginRight: 4}}
-            variant="body2"
-          >
-            {errors.name}
-          </Typography>
-        )}
-        <TextField
+        {/* <TextField
           sx={{width: 250, bgcolor: chartColorsPalette.skyBlue}}
           value={values.surname}
           onChange={handleChange}
@@ -85,16 +77,7 @@ export default function RegForm() {
           label="Surname"
           variant="filled"
           className={errors.surname && touched.surname ? "textfield-error" : ""}
-        />
-        {errors.surname && touched.surname && (
-          <Typography
-            color={chartColorsPalette.skyBlue}
-            sx={{marginLeft: 4, marginRight: 4}}
-            variant="body2"
-          >
-            {errors.surname}
-          </Typography>
-        )}
+        /> */}
         <TextField
           sx={{width: 250, bgcolor: chartColorsPalette.skyBlue}}
           value={values.regEmail}
@@ -108,40 +91,29 @@ export default function RegForm() {
             errors.regEmail && touched.regEmail ? "textfield-error" : ""
           }
         />
-        {errors.regEmail && touched.regEmail && (
-          <Typography
-            color={chartColorsPalette.skyBlue}
-            sx={{marginLeft: 4, marginRight: 4}}
-            variant="body2"
-          >
-            {errors.regEmail}
-          </Typography>
-        )}
-        <Box display={"flex"} alignItems={"center"}>
-          <TextField
-            sx={{width: 250, bgcolor: chartColorsPalette.skyBlue}}
-            value={values.regPassword}
-            onChange={handleChange}
-            onBlur={handleBlur}
-            type="password"
-            id="regPassword"
-            variant="filled"
-            className={
-              errors.regPassword && touched.regPassword ? "textfield-error" : ""
-            }
-            label="password"
-          />
-        </Box>
-
-        {errors.regPassword && touched.regPassword && (
-          <Typography
-            color={chartColorsPalette.skyBlue}
-            sx={{marginLeft: 4, marginRight: 4}}
-            variant="body2"
-          >
-            {errors.regPassword}
-          </Typography>
-        )}
+      </Box>
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "center",
+          alignItems: "center",
+          gap: 2,
+        }}
+      >
+        <TextField
+          sx={{width: 250, bgcolor: chartColorsPalette.skyBlue}}
+          value={values.regPassword}
+          onChange={handleChange}
+          onBlur={handleBlur}
+          type="password"
+          id="regPassword"
+          variant="filled"
+          className={
+            errors.regPassword && touched.regPassword ? "textfield-error" : ""
+          }
+          label="password"
+        />
         <TextField
           sx={{width: 250, bgcolor: chartColorsPalette.skyBlue}}
           value={values.regConfirmPassword}
@@ -157,27 +129,19 @@ export default function RegForm() {
               : ""
           }
         />
-        {errors.regConfirmPassword && touched.regConfirmPassword && (
-          <Typography
-            color={chartColorsPalette.skyBlue}
-            sx={{marginLeft: 4, marginRight: 4}}
-            variant="body2"
-          >
-            {errors.regConfirmPassword}
-          </Typography>
-        )}
-        <DropZone
-          id="avatar"
-          onChange={handleChange}
-          onBlur={handleBlur}
-          value={values.avatar}
-          onImagenSeleccionada={(avatar) => setavatar(avatar)}
-        />
       </Box>
+      <DropZone
+        id="avatar"
+        onChange={handleChange}
+        onBlur={handleBlur}
+        value={values.avatar}
+        onImagenSeleccionada={(avatar) => setavatar(avatar)}
+      />
       <Box textAlign="center">
         <Button
           variant="contained"
           sx={{
+            marginTop: 2,
             color: chartColorsPalette.skyBlue,
             bgcolor: chartColorsPalette.blue,
             border: "2px solid " + chartColorsPalette.blue,
@@ -195,6 +159,79 @@ export default function RegForm() {
         >
           Submit
         </Button>
+      </Box>
+      <Box
+        display={"flex"}
+        justifyContent={"center"}
+        flexDirection={"column"}
+        textAlign={"center"}
+        mt={4}
+        height={16}
+      >
+        {errors.name && touched.name && (
+          <Typography
+            color={chartColorsPalette.skyBlue}
+            sx={{marginLeft: 4, marginRight: 4}}
+            variant="body2"
+            fontSize={"0.75rem"}
+            display={"flex"}
+            alignItems={"center"}
+            justifyContent={"center"}
+            gap={1}
+            mb={1}
+          >
+            <ErrorIcon fontSize="small" />
+            {errors.name}
+          </Typography>
+        )}
+        {errors.regEmail && touched.regEmail && (
+          <Typography
+            color={chartColorsPalette.skyBlue}
+            sx={{marginLeft: 4, marginRight: 4}}
+            variant="body2"
+            fontSize={"0.75rem"}
+            display={"flex"}
+            alignItems={"center"}
+            justifyContent={"center"}
+            gap={1}
+            mb={1}
+          >
+            <ErrorIcon fontSize="small" />
+            {errors.regEmail}
+          </Typography>
+        )}
+        {errors.regPassword && touched.regPassword && (
+          <Typography
+            color={chartColorsPalette.skyBlue}
+            sx={{marginLeft: 4, marginRight: 4}}
+            variant="body2"
+            fontSize={"0.75rem"}
+            display={"flex"}
+            alignItems={"center"}
+            justifyContent={"center"}
+            gap={1}
+            mb={1}
+          >
+            <ErrorIcon fontSize="small" />
+            {errors.regPassword}
+          </Typography>
+        )}
+        {errors.regConfirmPassword && touched.regConfirmPassword && (
+          <Typography
+            color={chartColorsPalette.skyBlue}
+            sx={{marginLeft: 4, marginRight: 4}}
+            variant="body2"
+            fontSize={"0.75rem"}
+            display={"flex"}
+            alignItems={"center"}
+            justifyContent={"center"}
+            gap={1}
+            mb={1}
+          >
+            <ErrorIcon fontSize="small" />
+            {errors.regConfirmPassword}
+          </Typography>
+        )}
       </Box>
       {/* <pre>{JSON.stringify({values, errors}, null, 1)}</pre> */}
     </form>

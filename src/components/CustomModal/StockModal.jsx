@@ -83,6 +83,7 @@ export default function StockModal({stock}) {
             <CloseIcon
               onClick={handleClose}
               sx={{
+                cursor: "pointer",
                 position: "relative",
                 bottom: 450,
                 left: 956,

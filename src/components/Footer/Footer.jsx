@@ -1,5 +1,4 @@
 import {Box, Grid, Typography} from "@mui/material";
-import BubbleChartIcon from "@mui/icons-material/BubbleChart";
 
 const colorPalettes = {
   blue: "#162938",
@@ -17,41 +16,31 @@ export default function Footer() {
         container
         direction={"row"}
         justifyContent={"space-evenly"}
+        alignItems={"center"}
         sx={{
           bgcolor: colorPalettes.blue,
         }}
+        mt={16}
       >
         <Grid item xs={12} sm={6} md={4}>
-          <Box padding={8}>
-            <Typography
-              variant="h5"
-              display={"flex"}
-              alignItems={"center"}
-              gap={1}
-              mb={2}
-              color={colorPalettes.skyBlue}
-            >
-              <BubbleChartIcon />
-              IM Investing
-            </Typography>
-            <Typography color={colorPalettes.skyBlue} variant="body2">
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eius
-              consequuntur, error veniam illo ab quisquam, dolores alias
-              dignissimos recusandae molestiae vel rerum. Voluptates facere
-              doloremque provident maxime velit ipsam cumque!
-            </Typography>
+          <Box>
+            <img
+              src="./src/assets/logo-fonto-transparente.png"
+              alt="Logo"
+              width={256}
+            />
           </Box>
         </Grid>
-        <Grid item xs={12} sm={6} md={4}>
-          <Box padding={8}>
-            <Typography mb={2} variant="h5" color={colorPalettes.skyBlue}>
-              Footer Info
+        <Grid item xs={12} sm={6} md={3}>
+          <Box>
+            <Typography variant="h5" color={colorPalettes.skyBlue}>
+              IM
             </Typography>
             <Typography color={colorPalettes.skyBlue} variant="body2">
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eius
-              consequuntur, error veniam illo ab quisquam, dolores alias
-              dignissimos recusandae molestiae vel rerum. Voluptates facere
-              doloremque provident maxime velit ipsam cumque!
+              The platform provides investors with the ability to manage their
+              portfolios and investments efficiently. With an intuitive design.
+              It offers complete control and organization to maximize financial
+              potential.
             </Typography>
           </Box>
         </Grid>

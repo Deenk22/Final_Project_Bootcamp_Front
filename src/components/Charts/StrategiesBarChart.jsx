@@ -137,7 +137,7 @@ export default function StrategiesBarChart({totalPerStrategyByYearStockType}) {
     ],
   };
   return (
-    <Box width={704}>
+    <Box width={608}>
       <Bar
         data={data}
         options={options}

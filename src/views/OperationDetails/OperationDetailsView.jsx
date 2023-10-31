@@ -1,5 +1,6 @@
 import {Box, Grid, Typography} from "@mui/material";
 import OperationDetailCard from "../../components/InfoCards/OperationDetailsCard";
+import Carrousel from "../../components/Carrousel/Carrousel";
 
 const chartColorsPalette = {
   tealBlue2: "rgba(75, 192, 192, 0.6)",
@@ -25,6 +26,7 @@ export default function OperationDetailsView({operationDetailsInfo}) {
         direction={"row"}
         display={"flex"}
         justifyContent={"space-evenly"}
+        mt={16}
       >
         <Grid item xs={10} sm={10} md={5}>
           <Box>
@@ -35,40 +37,16 @@ export default function OperationDetailsView({operationDetailsInfo}) {
             >
               Operation Details
             </Typography>
-            <Typography>
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Deserunt
-              consectetur deleniti, quo obcaecati tenetur nulla velit voluptate
-              quam illo beatae accusantium hic, reiciendis aspernatur natus quod
-              nemo quae. Numquam, officia.
+            <Typography variant="body2" color={chartColorsPalette.blue}>
+              Explore our trading platform, where accuracy meets simplicity.
+              With a simple glance, you have access to a complete overview of
+              your trades. Flawlessly designed, this feature provides investors
+              with effortless information, ensuring they make informed decisions
+              in the complex world of investing.
             </Typography>
           </Box>
         </Grid>
-        <Grid item xs={10} sm={10} md={5}>
-          <Box
-            display={"flex"}
-            flexDirection={"row"}
-            alignItems={"center"}
-            justifyContent={"center"}
-            gap={4}
-          >
-            <img
-              src="../src/assets/dashboard.png"
-              alt="controlPanel"
-              width={160}
-            />
-            {/* <Box display={"flex"} flexDirection={"column"}>
-              <Typography variant="body1">
-                Interacted with the charts
-              </Typography>
-              <Typography variant="body1">
-                Quickly find what you need
-              </Typography>
-              <Typography variant="body1">
-                Manage your transactions meticulously
-              </Typography>
-            </Box> */}
-          </Box>
-        </Grid>
+        <Grid item xs={10} sm={10} md={5}></Grid>
       </Grid>
       {operationDetailsInfo?.map((operation) => {
         const {
@@ -100,6 +78,7 @@ export default function OperationDetailsView({operationDetailsInfo}) {
           />
         );
       })}
+      <Carrousel />
     </>
   );
 }

@@ -117,7 +117,7 @@ export default function UpdateStockFormView({onSubmit, setOpen}) {
             onClick={() => setOpen(false)}
             variant="contained"
             sx={{
-              marginTop: 4,
+              marginTop: 3,
               color: chartColorsPalette.blue,
               bgcolor: chartColorsPalette.skyBlue,
               ":hover": {
@@ -128,7 +128,7 @@ export default function UpdateStockFormView({onSubmit, setOpen}) {
             disabled={isSubmitting}
             type="submit"
           >
-            Add
+            Save
           </Button>
         </Box>
       </Box>

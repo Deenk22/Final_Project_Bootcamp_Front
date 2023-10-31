@@ -1,4 +1,4 @@
-import {Box, Button, Grid} from "@mui/material";
+import {Box, Button, Grid, Typography} from "@mui/material";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -82,7 +82,7 @@ export default function BrokersChart({
       const expenses = ctx.raw;
       const color =
         expenses > standard
-          ? chartColorsPalette.lightPink
+          ? chartColorsPalette.lightPinkOpacity
           : expenses <= standard
           ? chartColorsPalette.lightPinkOpacity
           : "yellow";
@@ -97,7 +97,7 @@ export default function BrokersChart({
       const expenses = ctx.raw;
       const color =
         expenses > standard
-          ? chartColorsPalette.skyBlue
+          ? chartColorsPalette.lightPink
           : expenses <= standard
           ? chartColorsPalette.lightPink
           : chartColorsPalette.blue;
@@ -149,7 +149,7 @@ export default function BrokersChart({
 
     datasets: [
       {
-        label: "Total Per Year",
+        label: "Total Amount / " + selectedYear,
         data: totalAmount,
         // grouped: isCompare ? false : true,
         borderRadius: 4,
@@ -159,26 +159,48 @@ export default function BrokersChart({
     ],
   };
   return (
-    <Grid>
-      <Grid>
-        <Box width={704}>
-          <Bar
-            data={data}
-            options={options}
-            onMouseEnter={handleMouseEnter}
-            onMouseOut={handleMouseLeave}
-          />
-        </Box>
+    <Box display={"flex"} flexDirection={"column"}>
+      <Typography
+        mb={3}
+        mt={-4}
+        paddingY={2}
+        textAlign={"center"}
+        variant="body2"
+        color={chartColorsPalette.skyBlue}
+        borderBottom={"1px solid rgba(208, 228, 233, 0.5)"}
+      >
+        Total Amount By Broker
+      </Typography>
+      <Grid container direction={"column"}>
+        <Grid item>
+          <Box width={608}>
+            <Bar
+              data={data}
+              options={options}
+              onMouseEnter={handleMouseEnter}
+              onMouseOut={handleMouseLeave}
+            />
+          </Box>
+        </Grid>
+        <Grid item>
+          <Box display={"flex"} justifyContent={"center"} gap={2} mt={2}>
+            {uniqueYears?.map((year) => (
+              <Typography
+                key={year}
+                variant="body2"
+                borderRadius={1}
+                component={"button"}
+                paddingX={2}
+                onClick={() => setSelectedYear(year)}
+                bgcolor={chartColorsPalette.skyBlue}
+                sx={{border: "none", cursor: "pointer"}}
+              >
+                {year}
+              </Typography>
+            ))}
+          </Box>
+        </Grid>
       </Grid>
-      <Grid>
-        <Box>
-          {uniqueYears?.map((year) => (
-            <Button key={year} onClick={() => setSelectedYear(year)}>
-              {year}
-            </Button>
-          ))}
-        </Box>
-      </Grid>
-    </Grid>
+    </Box>
   );
 }

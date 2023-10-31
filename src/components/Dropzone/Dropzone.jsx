@@ -24,16 +24,15 @@ const chartColorsPalette = {
 };
 
 const baseStyle = {
-  width: 250,
+  width: "100%",
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
   padding: "12px",
-  gap: 8,
   borderWidth: 2,
-  borderRadius: 4,
-  borderColor: chartColorsPalette.skyBlue,
-  borderStyle: "solid",
+  borderRadius: 2,
+  borderColor: chartColorsPalette.lightPink,
+  borderStyle: "inset",
   color: chartColorsPalette.skyBlue,
   outline: "none",
   transition: "border .24s ease-in-out",
@@ -110,7 +109,12 @@ export default function DropZone({onImagenSeleccionada}) {
 
   return (
     <>
-      <Box className="container" sx={{cursor: "cell"}}>
+      <Box
+        mt={2}
+        display={"flex"}
+        justifyContent={"center"}
+        sx={{cursor: "cell"}}
+      >
         <Box {...getRootProps({style})}>
           <input {...getInputProps()} />
           {acceptedFiles.length > 0 && isUploading === true ? (
@@ -149,15 +153,11 @@ export default function DropZone({onImagenSeleccionada}) {
             </Typography>
           )}
         </Box>
-        {/* <Typography
-          sx={{fontFamily: "sans-serif", textAlign: "center", marginBottom: 1}}
-          variant="body1"
-        >
-          {files}
-        </Typography> */}
       </Box>
       <Box
-        textAlign={"center"}
+        mt={2}
+        display={"flex"}
+        justifyContent={"center"}
         className={isPhotoRemoved !== true ? "dropzone" : null}
       >
         {isUploading && (

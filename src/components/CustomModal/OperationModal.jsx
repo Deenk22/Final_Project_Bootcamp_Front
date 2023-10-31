@@ -83,8 +83,9 @@ export default function OperationModal({operation}) {
             <CloseIcon
               onClick={handleClose}
               sx={{
+                cursor: "pointer",
                 position: "relative",
-                bottom: 450,
+                bottom: 428,
                 left: 956,
                 color: chartColorsPalette.skyBlue,
                 transition: "0.3s",
