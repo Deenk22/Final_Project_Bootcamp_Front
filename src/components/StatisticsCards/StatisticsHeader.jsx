@@ -1,7 +1,4 @@
 import {Box, Typography} from "@mui/material";
-import BarChartIcon from "@mui/icons-material/BarChart";
-import PieChartIcon from "@mui/icons-material/PieChart";
-import BubbleChartIcon from "@mui/icons-material/BubbleChart";
 
 const chartColorsPalette = {
   orange: "rgba(255, 159, 64, 0.7)",

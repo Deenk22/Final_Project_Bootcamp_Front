@@ -39,10 +39,6 @@ export default function LoginForm() {
     onSubmit,
   });
 
-  // Dudas
-  // Si utilizamos la propiedad helperText o no en los inputs.
-  // Si utilizamos la propiedad disabled en los inputs.
-
   return (
     <form onSubmit={handleSubmit}>
       <Box

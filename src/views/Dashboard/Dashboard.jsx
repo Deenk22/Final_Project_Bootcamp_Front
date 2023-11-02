@@ -1,8 +1,8 @@
-import {useQuery} from "@tanstack/react-query";
 import DashboardView from "./DashboardView";
 import axios from "axios";
-import {IM_INVESTING_KEY} from "../../const/IM_investingKey";
+import {useQuery} from "@tanstack/react-query";
 import {useState} from "react";
+import {IM_INVESTING_KEY} from "../../const/IM_investingKey";
 
 export default function Dashboard() {
   const [selectedBrokerId, setSelectedBrokerId] = useState("");
@@ -15,7 +15,6 @@ export default function Dashboard() {
     },
   };
 
-  // ALL OPERATIONS
   const allOperationsUrl = "http://localhost:3000/operation/all";
   const getAllOperations = async () => {
     const {data} = await axios.get(allOperationsUrl, config);
@@ -274,10 +273,6 @@ export default function Dashboard() {
         onIdStrategyChange={(id) => setSelectedStrategyId(id)}
         totalStockTypesAmountPerYear={totalStockTypesAmountPerYear}
         totalPerStrategyByYearStockType={totalPerStrategyByYearStockType}
-        // handleSearchByDate={handleSearchByDate}
-        // handleEndDateChange={handleEndDateChange}
-        // handleStartDateChange={handleStartDateChange}
-        // handleDeleteOperation={handleDeleteOperation}
       />
     </>
   );

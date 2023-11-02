@@ -19,13 +19,13 @@ export default function OperationDetails() {
     return data;
   };
 
-  const {data} = useQuery({
+  const {data: operationDetails} = useQuery({
     queryKey: ["operationdetails"],
     queryFn: getOperationbyId,
     keepPreviousData: true,
   });
 
-  const operationDetailsInfo = data?.data;
+  const operationDetailsInfo = operationDetails?.data;
 
   return (
     <>

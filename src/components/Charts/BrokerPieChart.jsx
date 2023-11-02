@@ -1,4 +1,4 @@
-import {Box, Button, Grid, Typography} from "@mui/material";
+import {Box, Grid} from "@mui/material";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -24,15 +24,12 @@ const chartColorsPalette = {
   lastColor: "#94C9A1",
 };
 
-// GRÁFICA QUE MUESTRA EL TOTAL DE EUROS POR BROKER AGRUPADOS POR AÑO. DE INICIO MUESTRA EL TOAL DE EUROS DE TOOS LOS AÑOS.
 export default function BrokerPieChart({
-  toggleChangeTotalAmountPerBroker,
   totalBrokerAmountPerYear,
   isTotalPerBrokerVisible,
   totalAmountByBroker,
   selectedYear,
 }) {
-  // Total por Broker en %.
   const brokerNamePercentage = totalAmountByBroker?.map(
     (operation) => operation.brokerName
   );
@@ -64,7 +61,6 @@ export default function BrokerPieChart({
       })
     : null;
 
-  // Total por Broker en % por años.
   const brokerNamePerYear = yearData?.map((broker) => broker.brokerName);
   const totalAmountPerYear = yearData?.map((total) =>
     parseFloat(total.totalAmount)
@@ -129,30 +125,7 @@ export default function BrokerPieChart({
           <Pie data={data} options={options} />
         </Box>
       </Grid>
-      <Grid item>
-        {/* <Box>
-          <Typography
-            padding={1}
-            borderRadius={1}
-            variant="body2"
-            component={"button"}
-            bgcolor={chartColorsPalette.skyBlue}
-            sx={{
-              border: "none",
-              cursor: "pointer",
-              transition: "0.3s",
-              ":hover": {
-                color: chartColorsPalette.skyBlue,
-                bgcolor: chartColorsPalette.blueOpacity,
-                boxShadow: "0px 0px 2px 1px rgba(208, 228, 233, 0.8)",
-              },
-            }}
-            onClick={toggleChangeTotalAmountPerBroker}
-          >
-            Total Amount Per Broker
-          </Typography>
-        </Box> */}
-      </Grid>
+      <Grid item></Grid>
     </Grid>
   );
 }

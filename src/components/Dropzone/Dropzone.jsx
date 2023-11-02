@@ -19,7 +19,6 @@ const chartColorsPalette = {
   blue: "rgba(22, 41, 56)",
   blueOpacity: "rgba(22, 41, 56, 0.7)",
   skyBlue: "rgba(208, 228, 233)",
-  // green: "#1CAC88",
   green: "#49726B",
 };
 
@@ -88,15 +87,6 @@ export default function DropZone({onImagenSeleccionada}) {
     onDrop,
     maxFiles: 1,
   });
-
-  // const files = acceptedFiles?.map((file) => (
-  //   <ListItem
-  //     sx={{display: "block", textAlign: "center", fontFamily: "sans-serif"}}
-  //     key={file.name}
-  //   >
-  //     {file.name}
-  //   </ListItem>
-  // ));
 
   const style = useMemo(
     () => ({

@@ -31,14 +31,6 @@ export default function DetailCards(props) {
           color={chartColorsPalette.skyBlue}
           bgcolor={chartColorsPalette.blue}
         >
-          {/* {Object.entries(props)
-            .map(([key, brokerName, strategyName]) => (
-              <Box key={key}>
-                <Typography variant="body2">{brokerName}</Typography>
-                <Typography variant="body2">{brokerName}</Typography>
-              </Box>
-            ))
-            .toSpliced(0, 2)} */}
           <Typography variant="body2">
             Operation Type: {operationType}
           </Typography>

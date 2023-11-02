@@ -1,4 +1,4 @@
-import {Box, Button, Grid, Typography} from "@mui/material";
+import {Box, Grid, Typography} from "@mui/material";
 
 const chartColorsPalette = {
   tealBlue2: "rgba(75, 192, 192, 0.6)",
@@ -20,13 +20,9 @@ export default function OperationDetailCard({
   brokerName,
   strategyName,
   stockTypeName,
-  stockName,
   priceClose,
   priceOpen,
   commission,
-  swap,
-  operationDate,
-  operationType,
 }) {
   return (
     <Grid

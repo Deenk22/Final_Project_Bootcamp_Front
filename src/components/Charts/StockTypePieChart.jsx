@@ -28,7 +28,6 @@ export default function StockTypePieChart({
   totalStockTypesAmountPerYear,
   selectedYearStockType,
 }) {
-  // Dividimos por años.
   const groupedByYear = totalStockTypesAmountPerYear?.reduce((acc, total) => {
     const year = total.year.toString();
     if (!acc[year]) {
@@ -38,7 +37,6 @@ export default function StockTypePieChart({
     return acc;
   }, {});
 
-  // Cogemos lo que nos interesa cada vez que seleccionamos un año.
   const yearData = groupedByYear
     ? groupedByYear[selectedYearStockType]?.map((entry) => {
         return {
@@ -48,7 +46,6 @@ export default function StockTypePieChart({
       })
     : null;
 
-  // Agrupamos por nombre de estrategia y sumamos el total de cada una de ellas.
   const groupedByStrategyName = yearData?.reduce((acc, entry) => {
     const {strategyName, totalAmount} = entry;
     if (!acc[strategyName]) {
@@ -58,7 +55,6 @@ export default function StockTypePieChart({
     return acc;
   }, {});
 
-  // Sumamos el total de los valores.
   const totalSum = groupedByStrategyName
     ? Object.values(groupedByStrategyName).reduce(
         (acc, value) => acc + value,
@@ -66,7 +62,6 @@ export default function StockTypePieChart({
       )
     : null;
 
-  // Sacamos el % de cada estrategia usada con los tipos de stocks.
   const percentages = {};
   groupedByStrategyName
     ? Object.keys(groupedByStrategyName).forEach((key) => {

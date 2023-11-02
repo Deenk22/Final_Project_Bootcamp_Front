@@ -110,7 +110,6 @@ export default function BrokerBar({
         beginAtZero: true,
         grid: {
           color: (context) => {
-            // console.log(context);
             const zeroLine = context.tick.value;
             const barColor =
               zeroLine === 0
@@ -138,7 +137,6 @@ export default function BrokerBar({
     },
   };
 
-  // Coger los años de la base de datos.
   const brokerData = {
     labels: brokerName ? brokerName : null,
 

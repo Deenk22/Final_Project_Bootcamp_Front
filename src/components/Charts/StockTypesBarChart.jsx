@@ -1,4 +1,4 @@
-import {Box, Button, Grid, Typography} from "@mui/material";
+import {Box, Grid, Typography} from "@mui/material";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -9,7 +9,6 @@ import {
   Legend,
 } from "chart.js";
 import {Bar} from "react-chartjs-2";
-import StatisticsStockTypesCard from "../StatisticsCards/StatisticsStockTypesCard";
 
 ChartJS.register(
   CategoryScale,
@@ -40,14 +39,6 @@ export default function StockTypesBarChart({
   selectedYearStockType,
   setSelectedYearStockType,
 }) {
-  // Props to Cards
-  // const strategyName = [
-  //   ...new Set(
-  //     totalStockTypesAmountPerYear?.map((strategy) => strategy.strategyName)
-  //   ),
-  // ];
-  // console.log(strategyName);
-
   const uniqueYears = [
     ...new Set(
       totalStockTypesAmountPerYear?.map((stockType) => stockType.year)

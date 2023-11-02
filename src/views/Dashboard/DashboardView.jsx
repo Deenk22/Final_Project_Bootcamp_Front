@@ -920,24 +920,6 @@ export default function DashboardView({
         allStocks={allStocks}
         selectedStrategy={selectedStrategy}
       />
-      {/* <Grid
-        container
-        direction={"row"}
-        display={"flex"}
-        justifyContent={"space-evenly"}
-        mt={8}
-      >
-        <Grid item>
-          <Box>
-            <LineData />
-          </Box>
-        </Grid>
-        <Grid item>
-          <Box>
-            <LineData />
-          </Box>
-        </Grid>
-      </Grid> */}
     </main>
   );
 }

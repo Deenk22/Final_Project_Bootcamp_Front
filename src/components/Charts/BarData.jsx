@@ -22,19 +22,6 @@ ChartJS.register(
   Legend
 );
 
-// const lastOperations = allOperations ? allOperations.toSpliced(3) : null;
-// const operationsValues = allOperations ? allOperations[0] : null;
-
-// const operationData = lastOperations
-//   ? lastOperations.map((operation) => Object.values(operation))
-//   : null;
-
-// const operationNameLabel = lastOperations
-//   ? lastOperations.map((operation) => Object.keys(operation))
-//   : null;
-
-// const hola = [...new Set(allOperations?.map((type) => type.operationType))];
-
 const chartColorsPalette = {
   tealBlue2: "rgba(75, 192, 192, 0.6)",
   lightPink: "rgba(255, 99, 132, 0.6)",
@@ -69,10 +56,6 @@ export default function BarData({
   const operationByStock = selectedStock
     ? allOperations?.filter((operation) => operation.stockId === selectedStock)
     : null;
-
-  const stockLabel = operationByStock?.map(
-    (operation) => operation.operationType
-  );
 
   const priceOpenByStock = operationByStock?.map((o) => o.priceOpen);
   const priceCloseByStock = operationByStock?.map((c) => c.priceClose);

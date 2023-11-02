@@ -13,11 +13,6 @@ const colorPalettes = {
   indigo: "#6366f1",
 };
 
-// Pasar cantidades de la base de datos, reales.
-// Iconos representativos y en sintonía con la información.
-// Redactar texto relacionado e informativo con algunos ${}.
-// Un Grid que solo envuelva otro Grid... creo que no tiene mucho sentido.
-
 const smallCard = [
   {
     icon: <AddchartIcon fontSize="small" />,
@@ -81,7 +76,6 @@ export default function LandingCards() {
               </Box>
               <Box color={colorPalettes.skyBlue} padding={1}>
                 <Typography variant="body2">{card.title}</Typography>
-                {/* <Typography variant="h5">{card.title2}</Typography> */}
               </Box>
             </Box>
           </Grid>

@@ -80,26 +80,6 @@ export default function UpdatePassFormView({onSubmit}) {
             errors.newPassword && touched.newPassword ? "textfield-error" : ""
           }
         />
-        {/* {isPasswordVisible ? (
-          <LockOpenIcon
-            sx={{position: "relative", top: -58, left: 90}}
-            onClick={() =>
-              setIsPasswordVisible((currentState) => !currentState)
-            }
-          />
-        ) : (
-          <LockPersonOutlinedIcon
-            sx={{position: "relative", top: -58, left: 90}}
-            onClick={() =>
-              setIsPasswordVisible((currentState) => !currentState)
-            }
-          />
-        )}
-        {errors.newPassword && touched.newPassword && (
-          <Typography sx={{marginLeft: 4, marginRight: 4}} variant="body2">
-            {errors.newPassword}
-          </Typography>
-        )} */}
         <TextField
           sx={{width: 250}}
           value={values.retypePassword}

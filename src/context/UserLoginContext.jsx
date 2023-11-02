@@ -2,10 +2,8 @@ import {createContext, useState, useContext} from "react";
 import {useMutation} from "@tanstack/react-query";
 import axios from "axios";
 import jwtDecode from "jwt-decode";
-import {IM_INVESTING_KEY} from "../const/IM_investingKey";
 import {toast} from "react-hot-toast";
-
-// Tareas pendientes > 1. / Modificar el código, eliminar TanStack del contexto.
+import {IM_INVESTING_KEY} from "../const/IM_investingKey";
 
 const url = "http://localhost:3000/user/login";
 
@@ -36,10 +34,6 @@ const UserLoginContext = createContext({
 export default function UserLoginContextProvider({children}) {
   const userLogged = JSON.parse(localStorage.getItem(IM_INVESTING_KEY));
   const [user, setUser] = useState(userLogged ? jwtDecode(userLogged) : null);
-
-  // function errorPlay() {
-  //   new Audio(error).play();
-  // }
 
   const mutation = useMutation({
     mutationFn: async ({email, password}) => {

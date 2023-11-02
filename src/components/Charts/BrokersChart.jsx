@@ -34,7 +34,6 @@ const chartColorsPalette = {
   skyBlueOpacity: "rgba(208, 228, 233, 0.2)",
 };
 
-// GRÁFICA QUE MUESTRA EL TOTAL DE EUROS POR BROKER AGRUPADOS POR AÑO.
 export default function BrokersChart({
   totalBrokerAmountPerYear,
   setSelectedYear,
@@ -64,8 +63,6 @@ export default function BrokersChart({
 
   const brokerName = yearData?.map((broker) => broker.brokerName);
   const totalAmount = yearData?.map((total) => total.totalAmount);
-  console.log(brokerName);
-  console.log(totalAmount);
 
   const handleMouseEnter = (e) => {
     console.log("Mouse enter event:", e);
@@ -77,7 +74,6 @@ export default function BrokersChart({
 
   const colorHover = () => {
     return (ctx) => {
-      // console.log(ctx.raw);
       const standard = 0;
       const expenses = ctx.raw;
       const color =
@@ -92,7 +88,6 @@ export default function BrokersChart({
 
   const barColor = () => {
     return (ctx) => {
-      // console.log(ctx.raw);
       const standard = 0;
       const expenses = ctx.raw;
       const color =
@@ -116,7 +111,6 @@ export default function BrokersChart({
       y: {
         grid: {
           color: (context) => {
-            // console.log(context);
             const zeroLine = context.tick.value;
             const barColor =
               zeroLine === 0

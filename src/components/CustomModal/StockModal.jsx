@@ -1,7 +1,7 @@
 import Modal from "@mui/material/Modal";
 import {useState} from "react";
 import EditIcon from "@mui/icons-material/Edit";
-import {Box, List, ListItem, ListItemIcon, Typography} from "@mui/material";
+import {Box, Typography} from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import UpdateStockForm from "../UpdateStockForm/UpdateStockForm";
 
@@ -58,26 +58,6 @@ export default function StockModal({stock}) {
           >
             Edit Data <span className="span-modal">{name} </span> Dialog Box
           </Typography>
-          {/* <Box>
-            <Typography>Como funciona</Typography>
-            <List disablePadding>
-              <ListItem disablePadding>
-                <ListItemIcon>
-                  <Typography>01</Typography>
-                </ListItemIcon>
-              </ListItem>
-              <ListItem disablePadding>
-                <ListItemIcon>
-                  <Typography>01</Typography>
-                </ListItemIcon>
-              </ListItem>
-              <ListItem disablePadding>
-                <ListItemIcon>
-                  <Typography>01</Typography>
-                </ListItemIcon>
-              </ListItem>
-            </List>
-          </Box> */}
           <UpdateStockForm stock={stock} setOpen={setOpen} />
           {open ? (
             <CloseIcon

@@ -1,6 +1,4 @@
 import {toast} from "react-hot-toast";
-// import success from "../assets/audio/success.mp3";
-// import error from "../assets/audio/error.mp3";
 
 const chartColorsPalette = {
   tealBlue2: "rgba(75, 192, 192, 0.6)",
@@ -30,16 +28,8 @@ const toastStylesError = {
   },
 };
 
-// function successPlay() {
-//   new Audio(success).play();
-// }
-// function errorPlay() {
-//   new Audio(error).play();
-// }
-
 export const errorNotification = (message) => {
   toast.error(message, toastStylesError);
-  // errorPlay();
 };
 
 const toastStylesSuccess = {
@@ -58,5 +48,4 @@ const toastStylesSuccess = {
 
 export const doneNotification = (message) => {
   toast.success(message, toastStylesSuccess);
-  // successPlay();
 };

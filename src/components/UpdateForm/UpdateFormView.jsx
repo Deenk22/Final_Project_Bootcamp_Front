@@ -58,22 +58,6 @@ export default function UpdateFormView({onSubmit, name, surname, email}) {
             {errors.name}
           </Typography>
         )}
-        {/* <TextField
-          sx={{width: 250}}
-          value={values.surname}
-          onChange={handleChange}
-          onBlur={handleBlur}
-          type="text"
-          id="surname"
-          label={surname ? surname : "Surname"}
-          variant="filled"
-          className={errors.surname && touched.surname ? "textfield-error" : ""}
-        />
-        {errors.surname && touched.surname && (
-          <Typography sx={{marginLeft: 4, marginRight: 4}} variant="body2">
-            {errors.surname}
-          </Typography>
-        )} */}
         <TextField
           sx={{width: 250}}
           value={values.email}

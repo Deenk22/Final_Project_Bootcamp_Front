@@ -1,8 +1,8 @@
-import Modal from "@mui/material/Modal";
-import {useState} from "react";
 import UpdateOperationForm from "../UpdateOperationForm/UpdateOperationForm";
+import {useState} from "react";
+import {Box, Typography} from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
-import {Box, List, ListItem, ListItemIcon, Typography} from "@mui/material";
+import Modal from "@mui/material/Modal";
 import CloseIcon from "@mui/icons-material/Close";
 
 const chartColorsPalette = {
@@ -58,26 +58,6 @@ export default function OperationModal({operation}) {
             Edit Data <span className="span-modal">{operationType} </span>
             Dialog Box
           </Typography>
-          {/* <Box>
-            <Typography>Como funciona</Typography>
-            <List disablePadding>
-              <ListItem disablePadding>
-                <ListItemIcon>
-                  <Typography>01</Typography>
-                </ListItemIcon>
-              </ListItem>
-              <ListItem disablePadding>
-                <ListItemIcon>
-                  <Typography>01</Typography>
-                </ListItemIcon>
-              </ListItem>
-              <ListItem disablePadding>
-                <ListItemIcon>
-                  <Typography>01</Typography>
-                </ListItemIcon>
-              </ListItem>
-            </List>
-          </Box> */}
           <UpdateOperationForm setOpen={setOpen} operation={operation} />
           {open ? (
             <CloseIcon

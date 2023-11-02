@@ -21,13 +21,7 @@ const chartColorsPalette = {
   tealBlue: "#367588",
 };
 
-export default function AccountView({
-  name,
-  surname,
-  correctDate,
-  avatar,
-  email,
-}) {
+export default function AccountView({name, surname, correctDate, email}) {
   const [isSettingsVisible, setIsSettingsVisible] = useState(false);
 
   return (
@@ -133,22 +127,6 @@ export default function AccountView({
                   />
                 </Box>
               )}
-
-              {/* <Typography
-                component={"button"}
-                variant="body2"
-                fontSize={"0.65rem"}
-                mb={2}
-                padding={1}
-                borderRadius={2}
-                border={"none"}
-                bgcolor={chartColorsPalette.blue}
-                color={chartColorsPalette.skyBlue}
-                onClick={() => setIsSettingsVisible(!isSettingsVisible)}
-                sx={{cursor: "pointer"}}
-              >
-                Change View
-              </Typography> */}
             </Box>
           </Box>
         </Grid>

@@ -1,4 +1,4 @@
-import {Box, Button, Grid, Switch, Typography} from "@mui/material";
+import {Box, Grid, Typography} from "@mui/material";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -46,7 +46,6 @@ export default function BrokerSelectedBarChart({
     (operation) => operation.brokerId === selectedBroker
   );
 
-  // VAMOS POR AQUI!!!!
   const bestFields = operationByBrokerSelected?.map((operation) => {
     const fields = {
       priceOpen: operation.priceOpen,
@@ -58,8 +57,6 @@ export default function BrokerSelectedBarChart({
     };
     return fields;
   });
-
-  // const keysName = bestFields?.map((keys) => Object.keys(keys).toSpliced(3));
 
   // Sell Operations
   const filterBySellOperations = bestFields?.filter(
@@ -104,10 +101,6 @@ export default function BrokerSelectedBarChart({
   const handleMouseLeave = (e) => {
     console.log("Mouse leave event:", e);
   };
-
-  function handleCompare() {
-    setIsCompare(!isCompare);
-  }
 
   const colorHover = () => {
     return (ctx) => {
@@ -284,55 +277,6 @@ export default function BrokerSelectedBarChart({
           </Typography>
         )}
       </Box>
-      {/* <Grid item>
-        <Box textAlign={"center"}>
-          {isSellOperationsVisible ? (
-            <Typography
-              borderRadius={1}
-              variant="body2"
-              component={"button"}
-              width={"24%"}
-              sx={{
-                border: "none",
-                cursor: "pointer",
-                transition: "0.3s",
-                ":hover": {
-                  color: chartColorsPalette.skyBlue,
-                  bgcolor: chartColorsPalette.blueOpacity,
-                  boxShadow: "0px 0px 2px 1px rgba(208, 228, 233, 0.8)",
-                },
-              }}
-              bgcolor={chartColorsPalette.skyBlue}
-              paddingY={1}
-              onClick={toggleIsSellOperationsVisible}
-            >
-              Go to Buy operations
-            </Typography>
-          ) : (
-            <Typography
-              component={"button"}
-              onClick={toggleIsSellOperationsVisible}
-            >
-              Go to Sell operations
-            </Typography>
-          )}
-        </Box>
-        <Box>
-          <Typography
-            display={"flex"}
-            flexDirection={"column"}
-            justifyContent={"center"}
-            alignItems={"center"}
-            variant="body2"
-            mt={4}
-            onClick={handleCompare}
-            color={chartColorsPalette.skyBlue}
-          >
-            <Switch color="primary" size="lg" variant="outlined" />
-            Visual Assessment
-          </Typography>
-        </Box>
-      </Grid> */}
     </Grid>
   );
 }

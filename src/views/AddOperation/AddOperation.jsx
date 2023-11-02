@@ -20,15 +20,12 @@ export default function AddOperation() {
     },
   };
 
+  const url = "http://localhost:3000/operation/all";
   const getAllOperations = async () => {
-    const {data} = await axios.get(
-      "http://localhost:3000/operation/all",
-      config
-    );
+    const {data} = await axios.get(url, config);
     return data;
   };
 
-  // Retry
   const {data: operations} = useQuery({
     queryKey: ["allOperations"],
     queryFn: getAllOperations,
@@ -37,33 +34,6 @@ export default function AddOperation() {
     // notifyOnChangeProps:
     // remove: () => void
   });
-
-  // const getOperationByType = async () => {
-  //   const operationType = "OperacionDemo";
-  //   const res = await axios.get(
-  //     `http://localhost:3000/operation/types/${operationType}`,
-  //     config
-  //   );
-  //   return res.data;
-  // };
-
-  // const {
-  //   data,
-  //   status,
-  // isError: allOperationsError,
-  // status: allOperationsStatus,
-  // } = useQuery({
-  //   queryKey: ["allOperations"],
-  //   queryFn: getOperationByType,
-  //   cacheTime: 5 * 60 * 1000,
-  // refetchOnWindowFocus: true,
-  // notifyOnChangeProps:
-  // remove: () => void
-  // });
-
-  // if (status === "loading") {
-  //   return <span>Loading...</span>;
-  // }
 
   const deleteOperation = async (id) => {
     const {data} = await axios.delete(
@@ -131,9 +101,7 @@ export default function AddOperation() {
     },
   });
 
-  // GESTIONAR MEJOR ESTA LLAMADA POR FECHA... ESTA RARA Y LO SE.
   const urlDate = `http://localhost:3000/operation/date/${startDate}/${endDate}`;
-
   const handleStartDateChange = (e) => {
     setStartDate(e.target.value);
   };

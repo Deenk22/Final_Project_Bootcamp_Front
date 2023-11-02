@@ -1,7 +1,7 @@
 import Modal from "@mui/material/Modal";
 import {useState} from "react";
 import EditIcon from "@mui/icons-material/Edit";
-import {Box, List, ListItem, ListItemIcon, Typography} from "@mui/material";
+import {Box, Typography} from "@mui/material";
 import UpdateStrategyForm from "../UpdateStrategyForm/UpdateStrategyForm";
 import CloseIcon from "@mui/icons-material/Close";
 
@@ -59,26 +59,6 @@ export default function StrategyModal({strategy}) {
             Edit Data <span className="span-modal">{name} </span>
             Dialog Box
           </Typography>
-          {/* <Box>
-            <Typography>Como funciona</Typography>
-            <List disablePadding>
-              <ListItem disablePadding>
-                <ListItemIcon>
-                  <Typography>01</Typography>
-                </ListItemIcon>
-              </ListItem>
-              <ListItem disablePadding>
-                <ListItemIcon>
-                  <Typography>01</Typography>
-                </ListItemIcon>
-              </ListItem>
-              <ListItem disablePadding>
-                <ListItemIcon>
-                  <Typography>01</Typography>
-                </ListItemIcon>
-              </ListItem>
-            </List>
-          </Box> */}
           <UpdateStrategyForm strategy={strategy} setOpen={setOpen} />
           {open ? (
             <CloseIcon
