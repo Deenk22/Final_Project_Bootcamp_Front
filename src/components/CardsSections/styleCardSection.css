@@ -8,7 +8,6 @@
   from {
     opacity: 0;
     transform: translateX(-128px);
-    filter: blur(2px);
   }
 
   to {
@@ -23,7 +22,6 @@
   }
   100% {
     transform: translate();
-    filter: blur(0px);
   }
 }
 
@@ -37,7 +35,6 @@
   from {
     opacity: 0;
     transform: translateX(144px);
-    filter: blur(2px);
   }
 
   to {
@@ -52,8 +49,12 @@
   }
   100% {
     transform: translate();
-    filter: blur(0px);
   }
+}
+
+.strong-label strong{
+  color: #367588;
+  word-spacing: 4px;
 }
 
 /* .animation-cards-left-two {

@@ -1,19 +1,8 @@
-import {Box, Grid, Typography} from "@mui/material";
+import {Box, Grid, Typography, useTheme} from "@mui/material";
 import "./styleCardSection.css";
 
-const chartColorsPalette = {
-  orange: "rgba(255, 159, 64, 0.7)",
-  lightPink: "rgba(255, 99, 132, 0.7)",
-  lightYellow: "rgba(255, 205, 86, 0.7)",
-  shadowYellow: "rgba(255, 205, 86, 0.4)",
-  tealBlue2: "rgba(75, 192, 192, 0.7)",
-  shadowtealBlue2: "rgba(75, 192, 192, 0.4)",
-  blue: "rgba(22, 41, 56)",
-  skyBlue: "rgba(208, 228, 233)",
-  tealBlue: "#367588",
-};
-
 export default function CardsSections() {
+  const theme = useTheme();
   return (
     <>
       <section>
@@ -37,7 +26,7 @@ export default function CardsSections() {
             <Box
               width={384}
               height={384}
-              bgcolor={chartColorsPalette.blue}
+              bgcolor={"secondary.main"}
               display={"flex"}
               justifyContent={"center"}
               alignItems={"center"}
@@ -53,7 +42,7 @@ export default function CardsSections() {
                 height={256}
                 position={"relative"}
                 right={96}
-                border={"2px solid " + chartColorsPalette.skyBlue}
+                border={`4px solid ${theme.palette.primary.main}`}
                 zIndex={1}
                 sx={{
                   background: `url('./src/assets/photo01C.jpg')`,
@@ -66,7 +55,7 @@ export default function CardsSections() {
               ></Box>
             </Box>
           </Grid>
-          <Grid item xs={10} sm={10} md={10} lg={4}>
+          <Grid item xs={10} sm={10} md={10} lg={5}>
             <Box
               width={"100%"}
               mt={4}
@@ -77,7 +66,7 @@ export default function CardsSections() {
               <Typography
                 component={"h1"}
                 variant="h3"
-                color={chartColorsPalette.tealBlue}
+                color={"secondary"}
                 fontFamily={"Bebas Neue"}
                 textAlign={"left"}
                 mb={1}
@@ -86,14 +75,16 @@ export default function CardsSections() {
               </Typography>
               <Typography
                 variant="body1"
-                color={chartColorsPalette.blue}
+                color={"secondary"}
                 textAlign={"left"}
+                className="strong-label"
               >
-                Investment Management Solution is a comprehensive tool designed
-                to streamline and optimize investment and portfolio management.
-                This powerful solution empowers investors and financial
-                professionals to track, analyze, and make informed decisions
-                about their financial assets.
+                <strong>Investment Management Solution </strong>
+                is a comprehensive tool designed to streamline and optimize
+                investment and <strong>portfolio management</strong>. This
+                <strong> powerful solution</strong> empowers investors and
+                financial professionals to track, analyze, and make informed
+                decisions about their financial assets.
               </Typography>
             </Box>
           </Grid>
@@ -106,7 +97,7 @@ export default function CardsSections() {
           alignItems={"center"}
           mb={8}
         >
-          <Grid item xs={10} sm={10} md={10} lg={4}>
+          <Grid item xs={10} sm={10} md={10} lg={5}>
             <Box
               width={"100%"}
               mt={4}
@@ -117,7 +108,7 @@ export default function CardsSections() {
               <Typography
                 component={"h1"}
                 variant="h3"
-                color={chartColorsPalette.tealBlue}
+                color={"secondary"}
                 fontFamily={"Bebas Neue"}
                 textAlign={"left"}
                 mb={1}
@@ -126,14 +117,16 @@ export default function CardsSections() {
               </Typography>
               <Typography
                 variant="body1"
-                color={chartColorsPalette.blue}
+                color={"secondary"}
                 textAlign={"left"}
+                className="strong-label"
               >
-                Our application provides you with an incredible dashboard and
-                intuitive graphs that give you a comprehensive overview of your
-                financial landscape. With real-time data at your fingertips, you
-                can identify trends, spot opportunities, and anticipate
-                challenges before they arise.
+                Our application provides you with an
+                <strong> incredible dashboard</strong> and intuitive graphs that
+                give you a comprehensive overview of your financial landscape.
+                With <strong>real-time</strong> data at your fingertips, you can
+                <strong> identify trends, spot opportunities,</strong> and
+                <strong> anticipate challenges</strong> before they arise.
               </Typography>
             </Box>
           </Grid>
@@ -152,7 +145,7 @@ export default function CardsSections() {
             <Box
               width={384}
               height={384}
-              bgcolor={chartColorsPalette.blue}
+              bgcolor={"secondary.main"}
               display={"flex"}
               justifyContent={"center"}
               alignItems={"center"}
@@ -168,7 +161,7 @@ export default function CardsSections() {
                 height={256}
                 position={"relative"}
                 left={96}
-                border={"2px solid " + chartColorsPalette.skyBlue}
+                border={`4px solid ${theme.palette.primary.main}`}
                 zIndex={1}
                 sx={{
                   background: `url('./src/assets/photo02C.jpg')`,

@@ -5,11 +5,11 @@ import styles from "./style.module.css";
 const Trail = ({open, children}) => {
   const items = React.Children.toArray(children);
   const trail = useTrail(items.length, {
-    config: {mass: 5, tension: 2000, friction: 200},
-    opacity: open ? 1 : 0,
-    x: open ? 0 : 20,
-    height: open ? 110 : 0,
-    from: {opacity: 0, x: 20, height: 0},
+    config: {mass: 10, tension: 2500, friction: 300},
+    opacity: open ? 1 : 0.6,
+    x: open ? 0 : 0,
+    height: open ? 300 : 0,
+    from: {opacity: 0, x: 64, height: 0},
   });
   return (
     <div>

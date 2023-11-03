@@ -12,6 +12,13 @@
   box-shadow: 0 6px 0 0 #162938;
 }
 
+.split-background-colors{
+  border-top-left-radius: 64px;
+  background-image: linear-gradient(#d0e4e9 40%, #162938 25%);
+}
+
+
+
 /* login-button > */
 
 /* < blur-slide-effect @KEYFRAMES */

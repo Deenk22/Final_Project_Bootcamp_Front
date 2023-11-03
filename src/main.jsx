@@ -4,8 +4,6 @@ import App from "./App.jsx";
 import {QueryClient, QueryClientProvider} from "@tanstack/react-query";
 import {ReactQueryDevtools} from "@tanstack/react-query-devtools";
 import {BrowserRouter} from "react-router-dom";
-import {colour} from "./const/colourPalette.js";
-import {ThemeProvider} from "@mui/material";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -19,9 +17,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <BrowserRouter>
       <QueryClientProvider client={queryClient}>
-        <ThemeProvider theme={colour}>
-          <App />
-        </ThemeProvider>
+        <App />
         <ReactQueryDevtools initialIsOpen={false} />
       </QueryClientProvider>
     </BrowserRouter>

@@ -1,18 +1,16 @@
-import {createTheme} from "@mui/material/styles";
-
-export const colour = createTheme({
+export const colour = {
   palette: {
     primary: {
-      light: "#757ce8",
-      main: "#367588",
-      dark: "#002884",
-      contrastText: "#fff",
+      main: "#162938",
+      mediumOpacity: "rgba(22, 41, 56, 0.6)",
+      lowOpacity: "rgba(22, 41, 56, 0.2)",
     },
     secondary: {
-      light: "#ff7961",
-      main: "#f44336",
-      dark: "#ba000d",
-      contrastText: "#000",
+      main: "#D0E4E9",
+      mediumOpacity: "rgba(208, 228, 233, 0.4)",
+    },
+    paragraphs: {
+      main: "#367588",
     },
   },
-});
+};

@@ -1,6 +1,4 @@
-import {createTheme} from "@mui/material";
-
-export const typeScale = createTheme({
+export const typeScale = {
   typography: {
     fontWeightLight: 400,
     h1: {
@@ -34,6 +32,9 @@ export const typeScale = createTheme({
     body2: {
       fontSize: "0.862rem",
       fontWeight: 400,
+      lineHeight: "150%",
+      // marginBlockEnd: "1em",
+      // marginBlockStart: "1em",
     },
   },
-});
+};

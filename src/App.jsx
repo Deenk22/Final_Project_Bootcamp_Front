@@ -16,15 +16,21 @@ import AddStrategy from "./views/AddStrategy/AddStrategy";
 import Unauthorized from "./views/Unauthorized/Unauthorized";
 import {userRoles} from "./const/userRoles";
 import {Toaster} from "react-hot-toast";
-import {ThemeProvider} from "@mui/material";
+import {ThemeProvider, createTheme} from "@mui/material";
+import {colour} from "./const/colourPalette";
 import {typeScale} from "./const/typeScale";
 import "./App.css";
+
+const combinedTheme = createTheme({
+  ...colour,
+  ...typeScale,
+});
 
 function App() {
   return (
     <>
       <Toaster />
-      <ThemeProvider theme={typeScale}>
+      <ThemeProvider theme={combinedTheme}>
         <UserRegisterContextProvider>
           <UserLoginContextProvider>
             <Routes>

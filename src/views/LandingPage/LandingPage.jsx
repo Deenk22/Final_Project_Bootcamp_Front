@@ -1,30 +1,14 @@
 import {Link} from "react-router-dom";
 import LandingCards from "../../components/InfoCards/LandingCards";
 import CardsSections from "../../components/CardsSections/CardsSections";
-import {Box, Grid, Typography} from "@mui/material";
-import LandingInfoCards from "../../components/InfoCards/LandingInfoCards";
-import "./styleLanding.css";
+import {Box, Grid, Typography, useTheme} from "@mui/material";
 import LandingTitle from "../../components/LandingTitle/LandingTitle";
-
-const chartColorsPalette = {
-  tealBlue2: "rgba(75, 192, 192, 0.6)",
-  lightPink: "rgba(255, 99, 132, 0.6)",
-  lightYellow: "rgba(255, 205, 86, 0.6)",
-  tealBlueOpacity: "rgba(75, 192, 192, 0.2)",
-  lightPinkOpacity: "rgba(255, 99, 132, 0.2)",
-  lightYellowOpacity: "rgba(255, 205, 86, 0.2)",
-  orange: "rgba(255, 159, 64, 0.7)",
-  shadowYellow: "rgba(255, 205, 86, 0.4)",
-  shadowtealBlue2: "rgba(75, 192, 192, 0.4)",
-  blue: "rgba(22, 41, 56)",
-  skyBlue: "rgba(208, 228, 233)",
-  skyBlueOpacity: "rgba(208, 228, 233, 0.1)",
-  tealBlue: "#367588",
-};
+import "./styleLanding.css";
 
 export default function LandingPage() {
+  const theme = useTheme();
   return (
-    <>
+    <section className="split-background-colors">
       <Grid
         container
         direction={"row"}
@@ -32,6 +16,7 @@ export default function LandingPage() {
         alignItems={"center"}
         gap={2}
         mt={16}
+        mb={32}
       >
         <Grid item xs={10} sm={10} md={3} lg={2}>
           <Box>
@@ -51,31 +36,28 @@ export default function LandingPage() {
                   textAlign: "center",
                   padding: 1,
                   width: "104px",
-                  border: "2px solid " + chartColorsPalette.blue,
+                  border: `2px solid ${theme.palette.primary.main}`,
                   borderBottomRightRadius: 12,
                   borderTopLeftRadius: 12,
                 }}
-                color={chartColorsPalette.skyBlue}
+                color={"secondary"}
               >
                 Get Started
               </Typography>
             </Link>
           </Box>
         </Grid>
-        <Grid item xs={10} sm={10} md={6} lg={5}>
+        <Grid item xs={10} sm={10} md={4} lg={4}>
           <Box
             width={"100%"}
             height={"30vh"}
-            bgcolor={chartColorsPalette.blue}
+            bgcolor={"primary"}
             sx={{
               backgroundImage: `url('../src/assets/buildings.jpg')`,
               backgroundPosition: "center",
               backgroundSize: "cover",
               borderRadius: 2,
-              // rotate: "1.5deg",
-              boxShadow: "4px 4px 8px 0px " + chartColorsPalette.blue,
-              border: "1px solid" + chartColorsPalette.tealBlue,
-              // borderTopRightRadius: 64,
+              boxShadow: `4px 4px 8px 2px ${theme.palette.primary.main}`,
             }}
           ></Box>
           <Box
@@ -84,10 +66,10 @@ export default function LandingPage() {
             alignItems={"left"}
             mb={6}
           >
-            <Typography variant="h4" color={chartColorsPalette.blue} mt={4}>
+            <Typography variant="h4" color={"primary"} mt={4}>
               Invest Today
             </Typography>
-            <Typography variant="body2" color={chartColorsPalette.tealBlue}>
+            <Typography variant="body2" color={"primary"}>
               From stocks to real estate, we are here to guide you on your
               journey towards a solid and prosperous financial future. Join us
               and start investing with confidence today.
@@ -95,36 +77,26 @@ export default function LandingPage() {
             <LandingCards />
           </Box>
         </Grid>
-        <Box
-          display={"flex"}
-          justifyContent={"center"}
-          width={"80%"}
-          height={"2px"}
-          mt={8}
-          mb={8}
-          bgcolor={chartColorsPalette.blue}
-        ></Box>
       </Grid>
       <CardsSections />
-      <LandingInfoCards />
       <Box
         display={"flex"}
         justifyContent={"center"}
         alignItems={"center"}
         gap={1}
       >
-        <Typography variant="h6" color={chartColorsPalette.blue}>
+        <Typography variant="h6" color={"secondary"}>
           ©
         </Typography>
         <Typography
           variant="body2"
           fontSize={"0.75rem"}
-          color={chartColorsPalette.blue}
+          color={"secondary"}
           paddingY={1}
         >
           2023 IM Investing / All rights reserved.
         </Typography>
       </Box>
-    </>
+    </section>
   );
 }
