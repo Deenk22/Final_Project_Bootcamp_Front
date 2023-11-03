@@ -14,9 +14,9 @@ import StrategyDetails from "./views/StrategyDetails/StrategyDetails";
 import AddStock from "./views/AddStock/AddStock";
 import AddStrategy from "./views/AddStrategy/AddStrategy";
 import Unauthorized from "./views/Unauthorized/Unauthorized";
-import {ThemeProvider} from "@mui/material";
 import {userRoles} from "./const/userRoles";
 import {Toaster} from "react-hot-toast";
+import {ThemeProvider} from "@mui/material";
 import {typeScale} from "./const/typeScale";
 import "./App.css";
 

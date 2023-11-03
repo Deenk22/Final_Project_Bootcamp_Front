@@ -33,16 +33,7 @@ export default function LoginView() {
       justifyContent="center"
       alignItems="center"
       minHeight={"100vh"}
-      className="login-reg-container"
     >
-      {/* <Box mt={-24} mb={0} zIndex={1}>
-        <img
-          className="color-logo"
-          src="./src/assets/logo-fonto-transparente.png"
-          width={150}
-          alt=""
-        />
-      </Box> */}
       <Typography
         className="wrapper-title"
         variant="h5"
