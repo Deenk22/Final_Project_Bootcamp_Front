@@ -4,7 +4,7 @@ import "./styleCardSection.css";
 export default function CardsSections() {
   const theme = useTheme();
   return (
-    <>
+    <div className="bg-section-card">
       <section>
         <Grid
           container
@@ -32,9 +32,7 @@ export default function CardsSections() {
               alignItems={"center"}
               zIndex={1}
               sx={{
-                borderTopLeftRadius: 32,
                 borderBottomLeftRadius: 32,
-                borderTopRightRadius: 64,
               }}
             >
               <Box
@@ -42,7 +40,7 @@ export default function CardsSections() {
                 height={256}
                 position={"relative"}
                 right={96}
-                border={`4px solid ${theme.palette.primary.main}`}
+                border={`2px solid ${theme.palette.primary.main}`}
                 zIndex={1}
                 sx={{
                   background: `url('./src/assets/photo01C.jpg')`,
@@ -140,7 +138,6 @@ export default function CardsSections() {
             sm={10}
             md={10}
             lg={4}
-            mb={8}
           >
             <Box
               width={384}
@@ -152,7 +149,7 @@ export default function CardsSections() {
               zIndex={1}
               sx={{
                 borderTopRightRadius: 32,
-                borderBottomRightRadius: 32,
+
                 borderTopLeftRadius: 64,
               }}
             >
@@ -161,7 +158,7 @@ export default function CardsSections() {
                 height={256}
                 position={"relative"}
                 left={96}
-                border={`4px solid ${theme.palette.primary.main}`}
+                border={`2px solid ${theme.palette.primary.main}`}
                 zIndex={1}
                 sx={{
                   background: `url('./src/assets/photo02C.jpg')`,
@@ -176,6 +173,6 @@ export default function CardsSections() {
           </Grid>
         </Grid>
       </section>
-    </>
+    </div>
   );
 }

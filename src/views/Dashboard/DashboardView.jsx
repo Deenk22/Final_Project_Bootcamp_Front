@@ -1,11 +1,3 @@
-// import DoughnutData from "../../components/Charts/DoughnutData";
-// import OperationsCard from "../../components/InfoCards/OperationsCard";
-// import OperationSelect from "../../components/Select/OperationSelect";
-// import DoughnutData from "../../components/Charts/DoughnutData";
-// import LineData from "../../components/Charts/LineData";
-// import BrokersBarChart from "../../components/CStockTypeSelectharts/BrokersBarChart";
-// import BrokerBar from "../../components/Charts/BrokerBar";
-// import BarData from "../../components/Charts/BarData";
 import StrategySelect from "../../components/Select/StrategySelect";
 import {useState} from "react";
 import BarChart from "../../components/Charts/BarChart";
@@ -61,23 +53,19 @@ export default function DashboardView({
   totalPerStrategyByYearStockType,
   onOperationPerBrokerAndYearChange,
 }) {
-  // Es el ID del BROKER.
-  const [selectedBroker, setSelectedBroker] = useState("");
-  // Es el ID de la ESTRATEGIA.
-  const [selectedStrategy, setSelectedStrategy] = useState("");
-  // CAMBIO DE VISTA UNA GRÁFICA U OTRA. NO SE ESTA USANDO.
   const [isBrokerGraphicSelected, setIsBrokerGraphicSelected] = useState(true);
-  // Cambiamos los años de la gráfica del total de euros por BROKER, tanto BarChart como PieChart.
-  const [selectedYear, setSelectedYear] = useState(2021);
-  const [selectedYearStockType, setSelectedYearStockType] = useState(2021);
-  // Con este useState cuando seleccionamos el selector de Broker, podremos observar la gráfica por broker.
-  const [isTotalPerBrokerVisible, setIsTotalPerBrokerVisible] = useState(false);
   const [isHowToUseBrokerVisible, setIsHowToUseBrokerVisible] = useState(true);
   const [isHowToUseTypeVisible, setIsHowToUseTypeVisible] = useState(true);
   const [isHowToUseSelectVisible, setIsHowToUseSelectVisible] = useState(true);
+  const [isTotalPerBrokerVisible, setIsTotalPerBrokerVisible] = useState(false);
+  const [selectedBroker, setSelectedBroker] = useState("");
+  const [selectedStrategy, setSelectedStrategy] = useState("");
+  const [selectedYear, setSelectedYear] = useState(2021);
+  const [selectedYearStockType, setSelectedYearStockType] = useState(2021);
 
   function toggleHowToUseBroker() {
     setIsHowToUseBrokerVisible(!isHowToUseBrokerVisible);
+    // window.scrollTo(0, 0);
   }
 
   function toggleHowToUseType() {
@@ -88,13 +76,11 @@ export default function DashboardView({
     setIsHowToUseSelectVisible(!isHowToUseSelectVisible);
   }
 
-  // Selector Broker.
   const handleBrokerChange = (selectedBroker) => {
     setSelectedBroker(selectedBroker);
     onIdBrokerChange(selectedBroker);
   };
 
-  // Selector Strategy.
   const handleStrategyChange = (selectedStrategy) => {
     setSelectedStrategy(selectedStrategy);
     onIdStrategyChange(selectedStrategy);
@@ -108,7 +94,6 @@ export default function DashboardView({
     setSelectedBroker("");
   }
 
-  // Cambia la vista de la gráfica mostrando el dinero total por broker.
   function toggleChangeTotalAmountPerBroker() {
     setIsTotalPerBrokerVisible(!isTotalPerBrokerVisible);
   }

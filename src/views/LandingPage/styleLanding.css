@@ -7,35 +7,20 @@
 }
 
 .to-login:hover {
-  color: #367588;
+  color: #162938;
   background-color: #d0e4e9;
   box-shadow: 0 6px 0 0 #162938;
 }
 
-.split-background-colors{
-  border-top-left-radius: 64px;
-  background-image: linear-gradient(#d0e4e9 40%, #162938 25%);
-}
-
-
-
-/* login-button > */
-
-/* < blur-slide-effect @KEYFRAMES */
-
-/* @keyframes slideInFromLeft {
-  0% {
-    transform: translateX(-20%);
-    filter: blur(64px);
-  }
-    
-  100% {
-    transform: translateX(0%);
-    filter: blur(0);
-  }
-}
-.blur-effect {
-  animation: slideInFromLeft 0.2s ease-out forwards;
+/* .split-background-colors{
+  background-image: linear-gradient( #bbd2d800 40%, #162938 25%);
 } */
 
-/* blur-slide-effect > */
+.container-grid{
+  background: #162938;
+}
+
+.container-grid div{
+  background:#d0e4e9;
+  border-radius: 32px;
+}
