@@ -4,19 +4,23 @@ import LandingTitle from "../../components/LandingTitle/LandingTitle";
 import {Link} from "react-router-dom";
 import {Box, Grid, Typography, useTheme} from "@mui/material";
 import "./styleLanding.css";
+import ScrollToTop from "../../components/ScrollToTop/ScrollToTop";
+import Carrousel from "../../components/Carrousel/Carrousel";
 
 export default function LandingPage() {
   const theme = useTheme();
+
   return (
     <>
+      <ScrollToTop />
       <section className="split-background-colors">
         <Grid
           container
           direction={"row"}
           justifyContent={"space-evenly"}
           alignItems={"center"}
-          mt={16}
-          mb={16}
+          mt={14}
+          mb={14}
         >
           <Grid item xs={10} sm={10} md={3} lg={2}>
             <Box>
@@ -37,6 +41,7 @@ export default function LandingPage() {
                   variant="body2"
                   className="to-login"
                   mt={2}
+                  mb={4}
                   sx={{
                     textAlign: "center",
                     padding: 1,
@@ -71,7 +76,12 @@ export default function LandingPage() {
               alignItems={"left"}
               mb={6}
             >
-              <Typography variant="h4" color={"primary"} mt={4}>
+              <Typography
+                variant="h4"
+                color={"primary"}
+                mt={4}
+                sx={{wordSpacing: -2}}
+              >
                 Invest Today
               </Typography>
               <Typography variant="body2" color={"primary"}>
@@ -85,46 +95,78 @@ export default function LandingPage() {
         </Grid>
         <CardsSections />
       </section>
-      <section>
-        <Grid
-          container
-          direction={"row"}
-          justifyContent={"space-evenly"}
-          mt={16}
-        >
-          <Grid item xs={10} sm={10} md={5}>
+      <section className="dahsboard-section">
+        <Box mt={16}>
+          <Typography variant="h2" component={"h1"} color={"primary"}>
+            <span>Digitize </span>your financial
+          </Typography>
+        </Box>
+        <Grid container spacing={2} justifyContent="center" mb={14}>
+          <Grid item xs={12} md={6} lg={6}>
             <Box
+              display={"flex"}
+              justifyContent={"space-evenly"}
+              alignItems={"center"}
               border={`2px solid ${theme.palette.primary.main}`}
               paddingY={16}
               borderRadius={8}
+              sx={{
+                background: theme.palette.primary.main,
+                backgroundImage: `url('../src/assets/svg/probando04.svg')`,
+                backgroundSize: "cover",
+                backgroundPosition: "bottom",
+                width: "100%",
+              }}
             >
               <Typography
-                textAlign={"center"}
-                variant="body2"
-                color={"primary"}
+                textAlign="center"
+                variant="body1"
+                color={"secondary"}
               >
-                Cosas que hacer
+                Manage your Finances
               </Typography>
             </Box>
           </Grid>
-          <Grid item xs={10} sm={10} md={5}>
+          <Grid item xs={12} md={6} lg={6}>
             <Box
               border={`2px solid ${theme.palette.primary.main}`}
               paddingY={16}
               borderRadius={8}
+              sx={{
+                background: theme.palette.primary.main,
+                backgroundImage: `url('../src/assets/svg/probando02.svg')`,
+                backgroundSize: "cover",
+                backgroundPosition: "bottom",
+                width: "100%",
+              }}
             >
-              <Typography
-                textAlign={"center"}
-                variant="body2"
-                color={"primary"}
-              >
+              <Typography textAlign="center" variant="body1" color="white">
+                Outlines a Strategy
+              </Typography>
+            </Box>
+          </Grid>
+          <Grid item xs={12} lg={12}>
+            <Box
+              border={`2px solid ${theme.palette.primary.main}`}
+              paddingY={16}
+              borderRadius={8}
+              sx={{
+                background: theme.palette.primary.main,
+                backgroundImage: `url('../src/assets/svg/probando03.svg')`,
+                backgroundRepeat: "no-repeat",
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+                width: "100%",
+              }}
+            >
+              <Typography textAlign="center" variant="body1" color="white">
                 Cosas que hacer
               </Typography>
             </Box>
           </Grid>
         </Grid>
       </section>
-      {/* <Box
+      <Box
         display={"flex"}
         justifyContent={"center"}
         alignItems={"center"}
@@ -141,7 +183,7 @@ export default function LandingPage() {
         >
           2023 IM Investing / All rights reserved.
         </Typography>
-      </Box> */}
+      </Box>
     </>
   );
 }

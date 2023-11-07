@@ -46,7 +46,7 @@
 }
 
 .bg-section-card{
-  /* padding-top: 16px;
-  padding-bottom: 16px; */
   background: #162938;
+  background-image: url(../../assets/svg/probando01.svg);
+  background-size: cover;
 }

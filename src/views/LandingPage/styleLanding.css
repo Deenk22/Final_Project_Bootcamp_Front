@@ -12,10 +12,6 @@
   box-shadow: 0 6px 0 0 #162938;
 }
 
-/* .split-background-colors{
-  background-image: linear-gradient( #bbd2d800 40%, #162938 25%);
-} */
-
 .container-grid{
   background: #162938;
 }
@@ -24,3 +20,30 @@
   background:#d0e4e9;
   border-radius: 32px;
 }
+
+.dahsboard-section{
+ margin: auto; 
+ max-width: 72vw;
+ animation: up-movement linear both;
+ animation-timeline: view();
+ animation-range: entry 5% cover 32%;
+
+  & span{
+   color: #367588;
+  }
+}
+
+@keyframes up-movement{
+  from{
+    opacity: 0.5;
+    transform: translateY(128px);
+  }
+  to{
+    opacity: 1;
+    transform: translateY(0px);
+  }
+}
+
+
+
+
