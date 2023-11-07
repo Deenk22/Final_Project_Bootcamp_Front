@@ -1,11 +1,55 @@
 import LandingCards from "../../components/InfoCards/LandingCards";
 import CardsSections from "../../components/CardsSections/CardsSections";
 import LandingTitle from "../../components/LandingTitle/LandingTitle";
+import ScrollToTop from "../../components/ScrollToTop/ScrollToTop";
 import {Link} from "react-router-dom";
 import {Box, Grid, Typography, useTheme} from "@mui/material";
 import "./styleLanding.css";
-import ScrollToTop from "../../components/ScrollToTop/ScrollToTop";
-import Carrousel from "../../components/Carrousel/Carrousel";
+import LooksOneIcon from "@mui/icons-material/LooksOne";
+import LooksTwoIcon from "@mui/icons-material/LooksTwo";
+import Looks3Icon from "@mui/icons-material/Looks3";
+import HowItWorksSection from "../../components/HowItWorksSection/HowItWorksSection";
+// import LogosCarrousel from "../../components/LogosCarrousel/LogosCarrousel";
+// import HelpIcon from "@mui/icons-material/Help";
+
+// const logosCarrousel = [
+//   {
+//     alt: "",
+//     src: "../src/assets/svg/icons/logo.8ba43bf4.svg",
+//     link: "https://www.xtb.com/es",
+//     id: 2,
+//   },
+//   {
+//     alt: "",
+//     src: "../src/assets/svg/icons/Logo.svg",
+//     link: "https://www.ibroker.es/",
+//     id: 3,
+//   },
+//   {
+//     alt: "",
+//     src: "../src/assets/svg/icons/urbanitae-logo-verde.svg",
+//     link: "https://urbanitae.com/es/",
+//     id: 4,
+//   },
+// ];
+
+const howItWorks = [
+  {
+    icon: <LooksOneIcon color="secondary" fontSize="large" />,
+    text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta quod, in aliquid commodi numquam expedita illo voluptatum consectetur et omnis ut repellat mollitia nobis reprehenderit cumque, inventore natus officia consequuntur?",
+    id: 1,
+  },
+  {
+    icon: <LooksTwoIcon color="secondary" fontSize="large" />,
+    text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta quod, in aliquid commodi numquam expedita illo voluptatum consectetur et omnis ut repellat mollitia nobis reprehenderit cumque, inventore natus officia consequuntur?",
+    id: 2,
+  },
+  {
+    icon: <Looks3Icon color="secondary" fontSize="large" />,
+    text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta quod, in aliquid commodi numquam expedita illo voluptatum consectetur et omnis ut repellat mollitia nobis reprehenderit cumque, inventore natus officia consequuntur?",
+    id: 3,
+  },
+];
 
 export default function LandingPage() {
   const theme = useTheme();
@@ -96,12 +140,12 @@ export default function LandingPage() {
         <CardsSections />
       </section>
       <section className="dahsboard-section">
-        <Box mt={16}>
+        <Box mt={12}>
           <Typography variant="h2" component={"h1"} color={"primary"}>
             <span>Digitize </span>your financial
           </Typography>
         </Box>
-        <Grid container spacing={2} justifyContent="center" mb={14}>
+        <Grid container spacing={2} justifyContent="center">
           <Grid item xs={12} md={6} lg={6}>
             <Box
               display={"flex"}
@@ -166,6 +210,96 @@ export default function LandingPage() {
           </Grid>
         </Grid>
       </section>
+      <section className="photo-how-it-works-sections">
+        <Grid
+          container
+          direction={"row"}
+          justifyContent={"space-evenly"}
+          alignItems={"center"}
+          mt={16}
+          paddingY={8}
+        >
+          <Grid item xs={10} sm={10} md={10} lg={5}>
+            <img
+              className="img-how-it-works"
+              src="./src/assets/c02.jpg"
+              width={"100%"}
+              alt="Una persona gestionando y estudiando el resultado de sus inversiones"
+            />
+          </Grid>
+          <Grid item xs={10} sm={10} md={10} lg={5}>
+            <Box display={"flex"} flexDirection={"column"} gap={3}>
+              <Typography
+                mt={-12}
+                variant="h4"
+                fontSize={"8rem"}
+                color={"secondary"}
+                display={"flex"}
+                position={"relative"}
+                top={92}
+                zIndex={0}
+                sx={{opacity: 0.1}}
+                className="fx-movement"
+              >
+                Como Funciona
+              </Typography>
+              <Typography
+                variant="h4"
+                textAlign={{xs: "center", sm: "left"}}
+                color={"secondary"}
+                zIndex={1}
+              >
+                Como funciona IM Investing
+              </Typography>
+              {howItWorks.map((item) => {
+                const {icon, text, id} = item;
+                return <HowItWorksSection key={id} icon={icon} text={text} />;
+              })}
+            </Box>
+            <Box textAlign={{xs: "center", sm: "left"}}>
+              <img
+                src="./src/assets/logo-fonto-transparente.png"
+                alt="Logo de IM Investing"
+                width={144}
+              />
+            </Box>
+          </Grid>
+        </Grid>
+      </section>
+      {/* <section className="logos-carrousel">
+        <Grid
+          container
+          direction={"row"}
+          justifyContent={"space-evenly"}
+          alignItems={"center"}
+          paddingY={8}
+        >
+          <Box>
+            <Typography variant="h4" color={"primary"}>
+              Investing in the best platforms
+            </Typography>
+            <Box
+              display={"flex"}
+              justifyContent={"center"}
+              alignItems={"center"}
+              gap={1}
+            >
+              <HelpIcon color="primary" />
+              <Typography variant="body2" color={"primary"}>
+                Click on the logos to visit their website.
+              </Typography>
+            </Box>
+          </Box>
+          {logosCarrousel.map((img) => {
+            const {alt, src, link} = img;
+            return (
+              <Grid key={img.id} item xs={10} sm={1}>
+                <LogosCarrousel alt={alt} src={src} link={link} />
+              </Grid>
+            );
+          })}
+        </Grid>
+      </section> */}
       <Box
         display={"flex"}
         justifyContent={"center"}

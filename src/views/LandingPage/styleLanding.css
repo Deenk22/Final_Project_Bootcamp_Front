@@ -44,6 +44,48 @@
   }
 }
 
+.fx-movement{
+  animation: in-left-movement linear both;
+  animation-timeline: view();
+  animation-range: entry 50% cover 48%;
+}
+
+@keyframes in-left-movement {
+  from {
+    opacity: 0;
+    transform: translateX(64px);
+  }
+
+  to {
+    opacity: 0.2;
+    transform: translateX(0px);
+  }
+}
+
+
+/* .logos-carrousel{
+  background: #162938;
+} */
+
+.photo-how-it-works-sections{
+  background: #162938;
+  background-image: url(../../assets/svg/probando03.svg);
+  background-size: cover;
+  background-position: right;
+}
+
+.img-how-it-works{
+  border-radius: 64px;
+}
+
+
+
+
+
+
+
+
+
 
 
 
