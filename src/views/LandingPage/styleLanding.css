@@ -62,11 +62,6 @@
   }
 }
 
-
-/* .logos-carrousel{
-  background: #162938;
-} */
-
 .photo-how-it-works-sections{
   background: #162938;
   background-image: url(../../assets/svg/probando03.svg);
@@ -77,6 +72,28 @@
 .img-how-it-works{
   border-radius: 64px;
 }
+
+.logos-carrousel{
+  background: #162938;
+}
+
+.testimonials-section{
+  margin: 128px 0px;
+
+  & strong{
+    color: #367588;
+  }
+}
+
+.user-testimonial-picture{
+  border-radius: 32px;
+  margin-top: 32px;
+}
+
+
+
+
+
 
 
 

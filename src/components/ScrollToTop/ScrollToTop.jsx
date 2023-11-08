@@ -12,7 +12,7 @@ export default function ScrollToTop() {
     <Box position={"fixed"} bottom={0} right={0} p={2}>
       <ExpandCircleDownIcon
         fontSize="large"
-        color="primary"
+        color="paragraphs"
         onClick={handleScroll}
         sx={{
           cursor: "pointer",

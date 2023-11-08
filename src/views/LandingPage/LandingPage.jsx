@@ -9,29 +9,51 @@ import LooksOneIcon from "@mui/icons-material/LooksOne";
 import LooksTwoIcon from "@mui/icons-material/LooksTwo";
 import Looks3Icon from "@mui/icons-material/Looks3";
 import HowItWorksSection from "../../components/HowItWorksSection/HowItWorksSection";
-// import LogosCarrousel from "../../components/LogosCarrousel/LogosCarrousel";
-// import HelpIcon from "@mui/icons-material/Help";
+import Testimonials from "../../components/Testimonials/Testimonials";
+import LogosCarrousel from "../../components/LogosCarrousel/LogosCarrousel";
+import HelpIcon from "@mui/icons-material/Help";
 
-// const logosCarrousel = [
-//   {
-//     alt: "",
-//     src: "../src/assets/svg/icons/logo.8ba43bf4.svg",
-//     link: "https://www.xtb.com/es",
-//     id: 2,
-//   },
-//   {
-//     alt: "",
-//     src: "../src/assets/svg/icons/Logo.svg",
-//     link: "https://www.ibroker.es/",
-//     id: 3,
-//   },
-//   {
-//     alt: "",
-//     src: "../src/assets/svg/icons/urbanitae-logo-verde.svg",
-//     link: "https://urbanitae.com/es/",
-//     id: 4,
-//   },
-// ];
+const logosCarrousel = [
+  {
+    alt: "",
+    src: "../src/assets/svg/icons/logo.8ba43bf4.svg",
+    link: "https://www.xtb.com/es",
+    id: 2,
+  },
+  {
+    alt: "",
+    src: "../src/assets/svg/icons/Logo.svg",
+    link: "https://www.ibroker.es/",
+    id: 3,
+  },
+  {
+    alt: "",
+    src: "../src/assets/svg/icons/urbanitae-logo-verde.svg",
+    link: "https://urbanitae.com/es/",
+    id: 4,
+  },
+];
+
+const testimonials = [
+  {
+    name: "James Thompson",
+    profession: "Financial Consultant",
+    city: "New York City, USA",
+    img: "./src/assets/user-testimonial-picture.jpg",
+    id: 1,
+    testimony:
+      "I've worked in the financial world for years and tried many investment management apps, but this one stands out by far. The amount of detailed information it provides on each trade and strategy is amazing. The platform is highly customizable and perfectly caters to the needs of any investor, from beginners to experts. I'm highly impressed by the attention to detail and reliability of this app. It has been an invaluable tool in my daily work.",
+  },
+  {
+    name: "Carlos Martinez",
+    profession: "Entrepreneur",
+    city: "Mexico City, Mexico",
+    img: "./src/assets/avatarControlPanel.jpg",
+    id: 2,
+    testimony:
+      "As a financial consultant, I'm always on the lookout for tools that can give my clients a competitive edge in the market. This investment management app has exceeded all my expectations. The data accuracy, execution speed, and variety of available tools are unmatched. My clients have experienced steady growth in their portfolios since they started using this app. I can't recommend it enough for anyone serious about their investments.",
+  },
+];
 
 const howItWorks = [
   {
@@ -189,7 +211,7 @@ export default function LandingPage() {
               </Typography>
             </Box>
           </Grid>
-          <Grid item xs={12} lg={12}>
+          <Grid item xs={12} lg={12} mb={4}>
             <Box
               border={`2px solid ${theme.palette.primary.main}`}
               paddingY={16}
@@ -230,18 +252,18 @@ export default function LandingPage() {
           <Grid item xs={10} sm={10} md={10} lg={5}>
             <Box display={"flex"} flexDirection={"column"} gap={3}>
               <Typography
-                mt={-12}
+                textAlign={{xs: "center", md: "left"}}
+                className="fx-movement"
                 variant="h4"
-                fontSize={"8rem"}
+                fontSize={{xs: "7.50rem", sm: "8rem"}}
                 color={"secondary"}
-                display={"flex"}
                 position={"relative"}
                 top={92}
+                mt={-12}
                 zIndex={0}
                 sx={{opacity: 0.1}}
-                className="fx-movement"
               >
-                Como Funciona
+                How it Works
               </Typography>
               <Typography
                 variant="h4"
@@ -249,7 +271,7 @@ export default function LandingPage() {
                 color={"secondary"}
                 zIndex={1}
               >
-                Como funciona IM Investing
+                How does IM Investing work?
               </Typography>
               {howItWorks.map((item) => {
                 const {icon, text, id} = item;
@@ -266,7 +288,38 @@ export default function LandingPage() {
           </Grid>
         </Grid>
       </section>
-      {/* <section className="logos-carrousel">
+      <section className="testimonials-section">
+        <Typography
+          textAlign={"center"}
+          variant="h2"
+          component={"h1"}
+          color={"primary"}
+          mb={{xs: 8, lg: 0}}
+        >
+          What they say
+        </Typography>
+        <Grid
+          container
+          direction={"row"}
+          justifyContent={"space-evenly"}
+          spacing={4}
+        >
+          {testimonials.map((user) => {
+            const {id, ...props} = user;
+            return (
+              <Grid item key={id} xs={10} sm={10} md={10} lg={4} xl={5}>
+                <Testimonials props={props} />
+              </Grid>
+            );
+          })}
+        </Grid>
+        <Typography variant="h3" textAlign={"center"} mt={8} color={"primary"}>
+          More than 10,000
+          <strong> investors</strong> reflect their confidence in our platform
+        </Typography>
+      </section>
+
+      <section className="logos-carrousel">
         <Grid
           container
           direction={"row"}
@@ -275,7 +328,7 @@ export default function LandingPage() {
           paddingY={8}
         >
           <Box>
-            <Typography variant="h4" color={"primary"}>
+            <Typography variant="h4" color={"secondary"}>
               Investing in the best platforms
             </Typography>
             <Box
@@ -284,8 +337,8 @@ export default function LandingPage() {
               alignItems={"center"}
               gap={1}
             >
-              <HelpIcon color="primary" />
-              <Typography variant="body2" color={"primary"}>
+              <HelpIcon color="secondary" />
+              <Typography variant="body2" color={"secondary"}>
                 Click on the logos to visit their website.
               </Typography>
             </Box>
@@ -299,7 +352,7 @@ export default function LandingPage() {
             );
           })}
         </Grid>
-      </section> */}
+      </section>
       <Box
         display={"flex"}
         justifyContent={"center"}
