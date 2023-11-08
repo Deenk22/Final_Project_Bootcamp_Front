@@ -39,7 +39,7 @@ export default function CardsSections() {
                 width={352}
                 height={256}
                 position={"relative"}
-                right={96}
+                right={{xs: 0, sm: 96}}
                 border={`2px solid ${theme.palette.primary.main}`}
                 zIndex={1}
                 sx={{
@@ -157,7 +157,7 @@ export default function CardsSections() {
                 width={352}
                 height={256}
                 position={"relative"}
-                left={96}
+                left={{xs: 0, sm: 96}}
                 border={`2px solid ${theme.palette.primary.main}`}
                 zIndex={1}
                 sx={{

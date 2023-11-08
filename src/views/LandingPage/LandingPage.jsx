@@ -142,12 +142,7 @@ export default function LandingPage() {
               alignItems={"left"}
               mb={6}
             >
-              <Typography
-                variant="h4"
-                color={"primary"}
-                mt={4}
-                sx={{wordSpacing: -2}}
-              >
+              <Typography variant="h4" color={"primary"} mt={4}>
                 Invest Today
               </Typography>
               <Typography variant="body2" color={"primary"}>
@@ -289,15 +284,41 @@ export default function LandingPage() {
         </Grid>
       </section>
       <section className="testimonials-section">
-        <Typography
-          textAlign={"center"}
-          variant="h2"
-          component={"h1"}
-          color={"primary"}
-          mb={{xs: 8, lg: 0}}
-        >
-          What they say
-        </Typography>
+        <Box paddingX={4} className="text-testimonial-animation">
+          <Typography
+            variant="h3"
+            textAlign={"center"}
+            mt={8}
+            color={"primary"}
+          >
+            More than 10,000
+            <strong> investors</strong> reflect their confidence in our platform
+          </Typography>
+          <Typography variant="h3" textAlign={"center"} color={"primary"}>
+            Join <strong> IM Investing</strong> and organise your{" "}
+            <strong>investments</strong>
+          </Typography>
+          <Box textAlign={"center"} mt={2} mb={8}>
+            <Link to={"/login"}>
+              <Typography
+                component={"button"}
+                variant="body2"
+                className="to-login"
+                sx={{
+                  textAlign: "center",
+                  padding: 1,
+                  width: "104px",
+                  border: `2px solid ${theme.palette.primary.main}`,
+                  borderBottomRightRadius: 12,
+                  borderTopLeftRadius: 12,
+                }}
+                color={"secondary"}
+              >
+                Join Us
+              </Typography>
+            </Link>
+          </Box>
+        </Box>
         <Grid
           container
           direction={"row"}
@@ -313,18 +334,14 @@ export default function LandingPage() {
             );
           })}
         </Grid>
-        <Typography variant="h3" textAlign={"center"} mt={8} color={"primary"}>
-          More than 10,000
-          <strong> investors</strong> reflect their confidence in our platform
-        </Typography>
       </section>
-
       <section className="logos-carrousel">
         <Grid
           container
           direction={"row"}
-          justifyContent={"space-evenly"}
+          justifyContent={"center"}
           alignItems={"center"}
+          gap={4}
           paddingY={8}
         >
           <Box>
@@ -352,25 +369,25 @@ export default function LandingPage() {
             );
           })}
         </Grid>
-      </section>
-      <Box
-        display={"flex"}
-        justifyContent={"center"}
-        alignItems={"center"}
-        gap={1}
-      >
-        <Typography variant="h6" color={"primary"}>
-          ©
-        </Typography>
-        <Typography
-          variant="body2"
-          fontSize={"0.75rem"}
-          color={"primary"}
-          paddingY={1}
+        <Box
+          display={"flex"}
+          justifyContent={"center"}
+          alignItems={"center"}
+          gap={1}
         >
-          2023 IM Investing / All rights reserved.
-        </Typography>
-      </Box>
+          <Typography variant="h6" color={"secondary"}>
+            ©
+          </Typography>
+          <Typography
+            variant="body2"
+            fontSize={"0.75rem"}
+            color={"secondary"}
+            paddingY={1}
+          >
+            2023 IM Investing / All rights reserved.
+          </Typography>
+        </Box>
+      </section>
     </>
   );
 }

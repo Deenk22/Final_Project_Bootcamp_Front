@@ -62,6 +62,21 @@
   }
 }
 
+.text-testimonial-animation{
+  animation: text-testimonial-movement linear both;
+  animation-timeline: view();
+  animation-range: entry 50% cover 40%;
+}
+
+@keyframes text-testimonial-movement {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
 .photo-how-it-works-sections{
   background: #162938;
   background-image: url(../../assets/svg/probando03.svg);
@@ -78,9 +93,14 @@
 }
 
 .testimonials-section{
-  margin: 128px 0px;
+  margin: 128px 32px;
+  border: 2px solid #162938;
+  padding: 16px;
+  border-radius: 16px;
 
   & strong{
+    font-weight: 600;
+    letter-spacing: 1px;
     color: #367588;
   }
 }

@@ -33,6 +33,7 @@ export default function LoginView() {
       justifyContent="center"
       alignItems="center"
       minHeight={"100vh"}
+      className="login-section"
     >
       <Typography
         className="wrapper-title"

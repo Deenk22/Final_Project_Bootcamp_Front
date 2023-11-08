@@ -1,6 +1,6 @@
 import {Box, Typography, useTheme} from "@mui/material";
 
-export default function Testimonials({id, props}) {
+export default function Testimonials({props}) {
   const theme = useTheme();
   const {city, name, testimony, profession, img} = props;
 
@@ -23,8 +23,14 @@ export default function Testimonials({id, props}) {
           >
             {name}
           </Typography>
-          <Typography variant="body2" mb={1} mt={-1} color={"primary"}>
-            {city}
+          <Typography
+            variant="body2"
+            mb={1}
+            mt={-1}
+            color={"primary"}
+            textAlign={{xs: "center", md: "left"}}
+          >
+            {city} / {profession}
           </Typography>
         </Box>
         <Typography
